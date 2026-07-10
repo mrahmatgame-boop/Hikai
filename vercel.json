@@ -1,8 +1,8 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/hikai",
-      "destination": "/api/hikai.js"
-    }
-  ]
+"rewrites": [
+{
+"source": "/api/hikai",
+"destination": "/api/hikai.js"
+}
+]
 }
