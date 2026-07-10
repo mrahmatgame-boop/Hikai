@@ -178,7 +178,7 @@
                 catalogDesc: "我们所有的重型中型工业货架均支持实景高清图与CAD工程图双向切换演示。",
                 eduBadge: "结构计算规范",
                 eduTitle: "掌握 Starter (主架) 与 Add-On (副架) 组合规则",
-                eduDesc: "无需购买两套完全独立配置的双侧立柱片。仅需在每排起点放置 1 台 Starter 主架，后续全部采用单侧立柱 Add-On 副架，即可科学节省多达 20% 投资预算！",
+                eduDesc: "无需购买两套完全独立配置的双侧立柱片。仅需在每排起点放置 1台 Starter 主架，后续全部采用单侧立柱 Add-On 副架，即可科学节省多达 20% 投资预算！",
                 compareTitle: "关键技术规格对比",
                 compareDesc: "在上述商品卡片中将货架加入对比矩阵，即可在此处查看深度横向评测报告。",
                 simBadge: "空间智能模拟器",
@@ -188,7 +188,7 @@
                 aisleLabel: "工作通道 / 叉车动线 (米)",
                 submitInquiry: "发送询价请求至尊贵 VIP 微信/WhatsApp",
                 formTitle: "预约实地测量规划服务申请单",
-                footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储 system 研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载 standard，采用优质冷轧硬质高强结构钢保障仓储 environment 绝对安全。"
+                footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储 system 研发生产。我们确保所有 product 均符合欧洲 EN 15512 结构极限承载 standard，采用优质冷轧硬质高强结构钢保障仓储 environment 绝对安全。"
             }
         };
 
@@ -613,8 +613,8 @@
                 <p class="text-gray-500 text-xs font-light">Koneksi dan kata sandi web HIKAI Anda terproteksi secara penuh di sisi server menggunakan enkripsi asinkron Google Cloud & Vercel Serverless proxy.</p>
             </div>
 
-            <!-- Login Screen -->
-            <div id="admin-login" class="max-w-md mx-auto bg-obsidian-card border border-gold-champagne/40 p-8 rounded-2xl shadow-luxury-glow space-y-4 text-center">
+            <!-- Login Screen (Form wrapped for fast responsive Enter-key activation) -->
+            <form id="admin-login" onsubmit="event.preventDefault(); handleAdminLogin();" class="max-w-md mx-auto bg-obsidian-card border border-gold-champagne/40 p-8 rounded-2xl shadow-luxury-glow space-y-4 text-center">
                 <div class="bg-[#111115] border border-gold-champagne/20 p-4 rounded-xl text-left">
                     <span class="text-gold-champagne text-[10px] font-bold block uppercase tracking-wider mb-1"><i class="fa-solid fa-circle-info"></i> Bypass Offline Preview</span>
                     <p class="text-[10px] text-gray-400">Gunakan kata sandi bypass <strong class="text-gold-champagne font-mono bg-black px-1.5 py-0.5 rounded">HIKAI99</strong> untuk membuka gerbang portal internal secara instan.</p>
@@ -626,7 +626,7 @@
                     placeholder="Masukkan sandi otentikasi VVIP..." 
                     class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne"
                 />
-                <button onclick="handleAdminLogin()" class="w-full py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase rounded-lg transition shadow-luxury-glow">
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase rounded-lg transition shadow-luxury-glow">
                     Otentikasi Sandi
                 </button>
 
@@ -640,11 +640,11 @@
                         placeholder="https://script.google.com/macros/s/.../exec" 
                         class="w-full bg-black border border-[#333] p-2 rounded text-[10px] text-gray-300 font-mono outline-none focus:border-amber-500"
                     />
-                    <button onclick="saveFallbackWebhook()" class="w-full py-2 bg-amber-950/20 hover:bg-amber-900 border border-amber-800/40 text-amber-300 font-bold text-[9px] uppercase rounded transition">
+                    <button type="button" onclick="saveFallbackWebhook()" class="w-full py-2 bg-amber-950/20 hover:bg-amber-900 border border-amber-800/40 text-amber-300 font-bold text-[9px] uppercase rounded transition">
                         Aktifkan Bypass Webhook Lokal
                     </button>
                 </div>
-            </div>
+            </form>
 
             <!-- Authenticated Admin Board -->
             <div id="admin-board" class="hidden space-y-8 bg-obsidian-card border border-[#D4AF37]/20 p-6 sm:p-8 rounded-2xl shadow-luxury-glow">
@@ -1148,25 +1148,105 @@
     </script>
 
     <script>
-        // Global variables for CRM simulation
+        // SAFE IFRAME STORAGE ACCESSOR UTILITY (Prevents Sandbox Security Crashes)
+        const safeStorage = {
+            getItem(key) {
+                try {
+                    return localStorage.getItem(key);
+                } catch (e) {
+                    console.warn("Storage access blocked by sandbox:", e);
+                    return null;
+                }
+            },
+            setItem(key, value) {
+                try {
+                    localStorage.setItem(key, value);
+                } catch (e) {
+                    console.warn("Storage write blocked by sandbox:", e);
+                }
+            },
+            removeItem(key) {
+                try {
+                    localStorage.removeItem(key);
+                } catch (e) {
+                    console.warn("Storage delete blocked by sandbox:", e);
+                }
+            }
+        };
+
+        const safeSessionStorage = {
+            getItem(key) {
+                try {
+                    return sessionStorage.getItem(key);
+                } catch (e) {
+                    console.warn("SessionStorage access blocked by sandbox:", e);
+                    return null;
+                }
+            },
+            setItem(key, value) {
+                try {
+                    sessionStorage.setItem(key, value);
+                } catch (e) {
+                    console.warn("SessionStorage write blocked by sandbox:", e);
+                }
+            },
+            removeItem(key) {
+                try {
+                    sessionStorage.removeItem(key);
+                } catch (e) {
+                    console.warn("SessionStorage delete blocked by sandbox:", e);
+                }
+            }
+        };
+
+        // Initialize state variables safely
         let currentEditingImages = [];
         let activeAdminTab = 'db-products';
 
-        let portalSettings = JSON.parse(localStorage.getItem('hikai_portal_settings')) || {
-            waNumber: "628995719102",
-            discountPct: 10,
-            taxPct: 11,
-            surveyPrice: "0"
-        };
+        let portalSettings;
+        try {
+            portalSettings = JSON.parse(safeStorage.getItem('hikai_portal_settings')) || {
+                waNumber: "628995719102",
+                discountPct: 10,
+                taxPct: 11,
+                surveyPrice: "0"
+            };
+        } catch (e) {
+            portalSettings = {
+                waNumber: "628995719102",
+                discountPct: 10,
+                taxPct: 11,
+                surveyPrice: "0"
+            };
+        }
 
-        let mockInquiries = JSON.parse(localStorage.getItem('hikai_crm_inquiries')) || [
-            { id: "lead-01", timestamp: "2026-07-08 14:22", name: "Rendra Wijaya", phone: "6281234567890", company: "PT Logistik Trans Nusantara", details: "Pemesanan 12 set Medium Duty Rack (Starter & Add-On)", status: "Pending" },
-            { id: "lead-02", timestamp: "2026-07-10 09:15", name: "Sylvia Tan", phone: "6289876543210", company: "CV Mode Modern Indonesia", details: "Kebutuhan Light Duty Rack untuk backroom butik", status: "Contacted" }
-        ];
+        let mockInquiries;
+        try {
+            mockInquiries = JSON.parse(safeStorage.getItem('hikai_crm_inquiries')) || [
+                { id: "lead-01", timestamp: "2026-07-08 14:22", name: "Rendra Wijaya", phone: "6281234567890", company: "PT Logistik Trans Nusantara", details: "Pemesanan 12 set Medium Duty Rack (Starter & Add-On)", status: "Pending" },
+                { id: "lead-02", timestamp: "2026-07-10 09:15", name: "Sylvia Tan", phone: "6289876543210", company: "CV Mode Modern Indonesia", details: "Kebutuhan Light Duty Rack untuk backroom butik", status: "Contacted" }
+            ];
+        } catch (e) {
+            mockInquiries = [
+                { id: "lead-01", timestamp: "2026-07-08 14:22", name: "Rendra Wijaya", phone: "6281234567890", company: "PT Logistik Trans Nusantara", details: "Pemesanan 12 set Medium Duty Rack (Starter & Add-On)", status: "Pending" },
+                { id: "lead-02", timestamp: "2026-07-10 09:15", name: "Sylvia Tan", phone: "6289876543210", company: "CV Mode Modern Indonesia", details: "Kebutuhan Light Duty Rack untuk backroom butik", status: "Contacted" }
+            ];
+        }
 
-        // Global State Objects
-        let products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
-        let cart = JSON.parse(localStorage.getItem('hikai_cart')) || [];
+        let products;
+        try {
+            products = JSON.parse(safeStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
+        } catch (e) {
+            products = [...DEFAULT_PRODUCT_DATA];
+        }
+
+        let cart;
+        try {
+            cart = JSON.parse(safeStorage.getItem('hikai_cart')) || [];
+        } catch (e) {
+            cart = [];
+        }
+
         let comparisonList = [];
         let currentFilter = 'all';
         let calcTab = 'quote'; 
@@ -1195,7 +1275,7 @@
 
         function getDynamicApiUrl(action, extraParams = {}) {
             let activeBaseUrl = proxyApiUrl;
-            const savedBypassUrl = localStorage.getItem('hikai_direct_sheets_url');
+            const savedBypassUrl = safeStorage.getItem('hikai_direct_sheets_url');
             if (isLocalEnvironment() && savedBypassUrl) {
                 activeBaseUrl = savedBypassUrl;
             }
@@ -1207,7 +1287,7 @@
         async function sendDynamicPost(payload) {
             let activeBaseUrl = proxyApiUrl;
             let useBypass = false;
-            const savedBypassUrl = localStorage.getItem('hikai_direct_sheets_url');
+            const savedBypassUrl = safeStorage.getItem('hikai_direct_sheets_url');
             if (isLocalEnvironment() && savedBypassUrl) {
                 activeBaseUrl = savedBypassUrl;
                 useBypass = true;
@@ -1278,7 +1358,7 @@
                 const beamMaterial = new THREE.MeshStandardMaterial({ color: 0x4B5563, roughness: 0.5, metalness: 0.5 });
                 const shelfMaterial = new THREE.MeshStandardMaterial({ color: 0x22c55e, roughness: 0.7, metalness: 0.1 });
 
-                // 1. Upright Columns (Gold/Orange Pillars)
+                // Upright Columns (Gold/Orange Pillars)
                 const columnGeo = new THREE.BoxGeometry(0.8, 18, 0.8);
                 const p1 = new THREE.Mesh(columnGeo, goldMaterial); p1.position.set(-8, 9, -2.5);
                 const p2 = new THREE.Mesh(columnGeo, goldMaterial); p2.position.set(-8, 9, 2.5);
@@ -1300,7 +1380,7 @@
                     rackGroup.add(bRight);
                 }
 
-                // 2. Beams (Horizontal Support Rails) and Shelves
+                // Beams (Horizontal Support Rails) and Shelves
                 const beamGeo = new THREE.BoxGeometry(16, 0.6, 0.3);
                 const plateGeo = new THREE.BoxGeometry(15.8, 0.1, 4.8);
 
@@ -1639,7 +1719,7 @@
             portalSettings.taxPct = Number(document.getElementById('setting-tax-pct').value);
             portalSettings.surveyPrice = document.getElementById('setting-survey-price').value;
 
-            localStorage.setItem('hikai_portal_settings', JSON.stringify(portalSettings));
+            safeStorage.setItem('hikai_portal_settings', JSON.stringify(portalSettings));
             showToast("Konfigurasi Ekonomi & hotline VVIP berhasil disimpan!");
             updateCalculations();
         }
@@ -1667,7 +1747,7 @@
         function exportCurrentProductsToJSON() {
             const buffer = document.getElementById('json-buffer-area');
             buffer.value = JSON.stringify(products, null, 2);
-            showToast("JSON generated successfully inside the buffer!");
+            showToast("JSON database berhasil di-generate di buffer bawah!");
         }
 
         function importJSONToProducts() {
@@ -1681,11 +1761,11 @@
                 const parsed = JSON.parse(bufferValue);
                 if (Array.isArray(parsed)) {
                     products = parsed;
-                    localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                    safeStorage.setItem('hikai_products_cache', JSON.stringify(products));
                     renderCatalog();
                     renderAdminProductTable();
                     updateCalculations();
-                    showToast("Database products successfully updated from JSON payload!");
+                    showToast("Database produk berhasil di-import!");
                 } else {
                     showToast("Format JSON harus berupa Array Produk!", false);
                 }
@@ -1696,7 +1776,7 @@
 
         function resetToFactorySettings() {
             products = [...DEFAULT_PRODUCT_DATA];
-            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            safeStorage.setItem('hikai_products_cache', JSON.stringify(products));
             renderCatalog();
             renderAdminProductTable();
             updateCalculations();
@@ -1724,7 +1804,7 @@
             };
 
             mockInquiries.unshift(newInquiry);
-            localStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
+            safeStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
             renderCrmLeadsTable();
             showToast("Lead Simulasi Baru Berhasil Di-generate!");
         }
@@ -1737,7 +1817,7 @@
             else if (lead.status === "Contacted") lead.status = "Completed";
             else lead.status = "Pending";
 
-            localStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
+            safeStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
             renderCrmLeadsTable();
             showToast(`Status leads ${lead.name} diubah menjadi ${lead.status}`);
         }
@@ -1751,7 +1831,7 @@
             if (!userConfirmed) return;
 
             mockInquiries = mockInquiries.filter(item => item.id !== id);
-            localStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
+            safeStorage.setItem('hikai_crm_inquiries', JSON.stringify(mockInquiries));
             renderCrmLeadsTable();
             showToast("Data Lead dihapus.");
         }
@@ -1803,7 +1883,7 @@
             
             // Checking bypass password
             if (pass === "HIKAI99") {
-                sessionStorage.setItem('hikai_admin_session_pass', pass);
+                safeSessionStorage.setItem('hikai_admin_session_pass', pass);
                 document.getElementById('admin-login').classList.add('hidden');
                 document.getElementById('admin-board').classList.remove('hidden');
                 switchAdminTab('db-products');
@@ -1813,14 +1893,14 @@
             }
 
             try {
-                if (isLocalEnvironment() && !localStorage.getItem('hikai_direct_sheets_url')) {
+                if (isLocalEnvironment() && !safeStorage.getItem('hikai_direct_sheets_url')) {
                     throw new Error("Koneksi cloud tidak tersedia di mode pratinjau lokal.");
                 }
                 const response = await fetch(getDynamicApiUrl("verifyAdmin", { password: pass }));
                 const res = await response.json();
                 
                 if (res.status === "success") {
-                    sessionStorage.setItem('hikai_admin_session_pass', pass);
+                    safeSessionStorage.setItem('hikai_admin_session_pass', pass);
                     document.getElementById('admin-login').classList.add('hidden');
                     document.getElementById('admin-board').classList.remove('hidden');
                     switchAdminTab('db-products');
@@ -1834,6 +1914,17 @@
                 showToast("Password salah! Gunakan sandi bypass HIKAI99.", false);
                 document.getElementById('fallback-config-section').classList.remove('hidden');
             }
+        }
+
+        function saveFallbackWebhook() {
+            const url = document.getElementById('fallback-webhook-input').value.trim();
+            if (!url) {
+                showToast("Masukkan URL Webhook valid!", false);
+                return;
+            }
+            safeStorage.setItem('hikai_direct_sheets_url', url);
+            showToast("Bypass Webhook Lokal berhasil disimpan!");
+            testWebhookConnection();
         }
     </script>
 
@@ -1998,7 +2089,7 @@
         }
 
         function saveCart() {
-            localStorage.setItem('hikai_cart', JSON.stringify(cart));
+            safeStorage.setItem('hikai_cart', JSON.stringify(cart));
         }
 
         function clearCart() {
@@ -2343,7 +2434,7 @@
             }
 
             try {
-                if (isLocalEnvironment() && !localStorage.getItem('hikai_direct_sheets_url')) {
+                if (isLocalEnvironment() && !safeStorage.getItem('hikai_direct_sheets_url')) {
                     throw new Error("Mode pratinjau offline. Melewati fetch jaringan sungguhan.");
                 }
 
@@ -2351,7 +2442,7 @@
                 const res = await response.json();
                 if (res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
                     products = res.data;
-                    localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                    safeStorage.setItem('hikai_products_cache', JSON.stringify(products));
                     renderCatalog();
                     updateCalculations();
                     renderAdminProductTable();
@@ -2365,9 +2456,9 @@
         }
 
         async function fetchInquiriesFromSpreadsheet() {
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            const activeSessionPass = safeSessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                if (isLocalEnvironment() && !localStorage.getItem('hikai_direct_sheets_url')) return;
+                if (isLocalEnvironment() && !safeStorage.getItem('hikai_direct_sheets_url')) return;
                 const response = await fetch(getDynamicApiUrl("getInquiries", { password: activeSessionPass }));
                 const res = await response.json();
                 if (res.status === "success" && Array.isArray(res.data)) {
@@ -2401,9 +2492,9 @@
 
         async function testWebhookConnection() {
             const badge = document.getElementById('db-status-badge');
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            const activeSessionPass = safeSessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                if (isLocalEnvironment() && !localStorage.getItem('hikai_direct_sheets_url')) {
+                if (isLocalEnvironment() && !safeStorage.getItem('hikai_direct_sheets_url')) {
                     throw new Error("Mode pratinjau offline.");
                 }
                 const response = await fetch(getDynamicApiUrl("getProducts", { password: activeSessionPass }));
@@ -2502,14 +2593,14 @@
         }
 
         function logoutAdmin() {
-            sessionStorage.removeItem('hikai_admin_session_pass');
+            safeSessionStorage.removeItem('hikai_admin_session_pass');
             document.getElementById('admin-password-input').value = '';
             document.getElementById('admin-login').classList.remove('hidden');
             document.getElementById('admin-board').classList.add('hidden');
         }
 
         async function initializeDefaultDatabase() {
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            const activeSessionPass = safeSessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
                 showToast("Mengirim inisialisasi default ke database...");
                 await sendDynamicPost({
@@ -2599,7 +2690,7 @@
         async function handleProductSave(event) {
             event.preventDefault();
             const id = document.getElementById('edit-key').value;
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            const activeSessionPass = safeSessionStorage.getItem('hikai_admin_session_pass') || '';
             
             const payload = {
                 action: "updateProduct",
@@ -2626,7 +2717,7 @@
                 products.push(payload);
             }
             
-            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            safeStorage.setItem('hikai_products_cache', JSON.stringify(products));
             renderCatalog();
             updateCalculations();
             renderAdminProductTable();
@@ -2656,12 +2747,12 @@
             if (!userConfirmed) return;
 
             products = products.filter(p => p.id !== id);
-            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            safeStorage.setItem('hikai_products_cache', JSON.stringify(products));
             renderCatalog();
             updateCalculations();
             renderAdminProductTable();
 
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            const activeSessionPass = safeSessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
                 showToast("Menghapus data di database cloud...");
                 const response = await sendDynamicPost({
