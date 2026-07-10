@@ -28,20 +28,20 @@
                     },
                     colors: {
                         obsidian: {
-                            base: '#030304',       /* Deep Space Obsidian */
-                            deep: '#010102',       /* Absolute Midnight */
-                            card: '#0a0a0c',       /* Premium Frosted Card */
-                            accent: '#141417'      /* Border Accent */
+                            base: '#020202',       /* Absolute Space Obsidian */
+                            deep: '#060608',       /* Matte Black Premium */
+                            card: '#0c0c0f',       /* Premium Frosted Slate */
+                            accent: '#18181f'      /* High-contrast Gold-Border Slate */
                         },
                         gold: {
-                            champagne: '#D4AF37',  /* Premium Liquid Gold */
-                            hover: '#AA7C11',      /* Luxurious Amber */
-                            light: '#f3e7c4'       /* Cream Gold Glow */
+                            champagne: '#D4AF37',  /* Liquid Gold Accent */
+                            hover: '#AA7C11',      /* Amber Core Gold */
+                            light: '#f4ebd0'       /* Pale Cream Champagne Gold */
                         }
                     },
                     boxShadow: {
-                        'luxury-glow': '0 0 25px rgba(212, 175, 55, 0.15)',
-                        'inner-dark': 'inset 0 2px 8px rgba(0, 0, 0, 0.8)'
+                        'luxury-glow': '0 0 35px rgba(212, 175, 55, 0.18)',
+                        'inner-dark': 'inset 0 2px 10px rgba(0, 0, 0, 0.9)'
                     }
                 }
             }
@@ -50,7 +50,7 @@
     
     <style>
         body {
-            background-color: #030304;
+            background-color: #020202;
             color: #f3f4f6;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -61,7 +61,7 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #010102;
+            background: #060608;
         }
         ::-webkit-scrollbar-thumb {
             background: #D4AF37;
@@ -70,11 +70,11 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #AA7C11;
         }
-        /* Grid pattern background blueprint overlay */
+        /* Grid blueprint pattern background overlay */
         .blueprint-pattern {
-            background-size: 20px 20px;
-            background-image: linear-gradient(to right, rgba(212, 175, 55, 0.015) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(212, 175, 55, 0.015) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-image: linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
         }
     </style>
 </head>
@@ -162,7 +162,7 @@
                 btnCalc: "规划 10x5米立体空间",
                 previewTitle: "实机渲染图",
                 catalogBadge: "尊享专属系列",
-                catalogTitle: "HIKAI 货架工程系统目录",
+                catalogTitle: "HIKAI 货架工程 system 目录",
                 catalogDesc: "我们所有的重型中型工业货架均支持实景高清图与CAD工程图双向切换演示。",
                 eduBadge: "结构计算规范",
                 eduTitle: "掌握 Starter (主架) 与 Add-On (副架) 组合规则",
@@ -208,24 +208,25 @@
     </script>
 
     <!-- Top premium black utility belt -->
-    <div class="bg-black border-b border-obsidian-accent py-2 px-4 md:px-8 text-xs flex justify-between items-center text-gray-400">
+    <div class="bg-black border-b border-obsidian-accent py-2.5 px-4 md:px-8 text-[11px] flex justify-between items-center text-gray-400">
         <div class="flex items-center gap-6">
-            <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" class="hover:text-white font-mono">08995719102</a></span>
+            <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" class="hover:text-white font-mono transition">08995719102</a></span>
             <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> info@hikairack.com</span>
+            <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: Kosambi, Tangerang</span>
         </div>
         <div class="flex items-center gap-4">
-            <div class="flex gap-2 font-bold text-[10px]">
-                <button onclick="setLanguage('id')" class="lang-btn px-1 text-gold-champagne" data-lang="id">ID</button>
+            <div class="flex gap-2 font-bold text-[10px] tracking-wider">
+                <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne transition" data-lang="id">ID</button>
                 <span>|</span>
-                <button onclick="setLanguage('en')" class="lang-btn px-1 text-gray-500" data-lang="en">EN</button>
+                <button onclick="setLanguage('en')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition" data-lang="en">EN</button>
                 <span>|</span>
-                <button onclick="setLanguage('zh')" class="lang-btn px-1 text-gray-500" data-lang="zh">繁中</button>
+                <button onclick="setLanguage('zh')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition" data-lang="zh">繁中</button>
             </div>
         </div>
     </div>
 
     <!-- Main sticky glassmorphic navigation header -->
-    <header class="sticky top-0 z-40 bg-[#030304]/90 backdrop-blur-md border-b border-obsidian-accent">
+    <header class="sticky top-0 z-40 bg-[#020202]/95 backdrop-blur-md border-b border-obsidian-accent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow">
@@ -247,7 +248,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <button onclick="openCartModal()" class="relative p-2.5 bg-obsidian-card border border-[#2c2c30] rounded-full hover:border-gold-champagne text-gray-200 transition">
+                <button onclick="openCartModal()" class="relative p-2.5 bg-obsidian-card border border-white/10 rounded-full hover:border-gold-champagne text-gray-200 transition">
                     <i class="fa-solid fa-shopping-cart text-sm"></i>
                     <span id="cart-counter" class="hidden absolute -top-1 -right-1 bg-red-600 text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
                 </button>
@@ -610,7 +611,7 @@
                 <button onclick="handleAdminLogin()" class="w-full py-3 bg-[#111] hover:bg-gold-champagne hover:text-black text-gold-champagne font-bold text-xs uppercase rounded-lg transition border border-gold-champagne/40">
                     Otentikasi Sandi
                 </button>
-                <p class="text-[9px] text-gray-600 font-mono">Default key: HikaiVVIP77</p>
+                <p class="text-[9px] text-gray-600 font-mono">Default key: 6613</p>
             </div>
 
             <!-- Authenticated Admin Board -->
@@ -703,7 +704,7 @@
     </section>
 
     <!-- Corporate Luxury Footer with ISO certifications and privacy anchors -->
-    <footer class="bg-obsidian-deep border-t border-white/5 py-16 text-gray-500 text-xs text-center">
+    <footer class="bg-[#060608] border-t border-white/5 py-16 text-gray-500 text-xs text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-3 text-left">
@@ -949,7 +950,7 @@
                 construction: "Independent Starter (4 Joint Pillars / Kokoh Fleksibel)",
                 bestFor: "Penyimpanan retail butik mewah, backroom perkantoran VVIP, arsip penting, obat-obatan, dan barang berukuran sedang.",
                 basePrice: 1950000,
-                description: "Solusi rak multifungsi berbobot ringan namun berstabilitas luar biasa tinggi. Didesain ramping tanpa melupakan integrital struktural khas HIKAI.",
+                description: "Solusi rak multifungsi berbobot ringan namun berstabilitas luar biasa tinggi. Didesain ambalan tipis namun tetap kuat berstabilitas tinggi khas HIKAI.",
                 features: ["Pemasangan Boltless Kilat", "Lapisan Anti Gores Premium", "Tampilan Sangat Bersih", "Tebal Pelat Shelving Kokoh"],
                 images: [
                     "https://images.unsplash.com/photo-1566576721346-d4bd3b235017?w=600&auto=format&fit=crop&q=80",
@@ -967,9 +968,9 @@
                 capacity: "100 - 120 Kg / Level",
                 finishing: "Glossy Industrial Electroplated Zinc Coating",
                 construction: "Versatile Slotted Angle Design (Sangat Fleksibel)",
-                bestFor: "Penyimpanan serbaguna berdimensi tipis, sparepart presisi, bahan baku ringan, atau display semi-industri.",
+                bestFor: "Penyimpanan serbaguna berdimensi tipis ambalan siku, sparepart presisi, bahan baku ringan, atau display semi-industri.",
                 basePrice: 1450000,
-                description: "Dikenal dengan sebutan 'Angel Shelf', rak ini menawarkan ketipisan kedalaman (400mm) yang ideal untuk koridor sempit dengan optimalisasi ruang maksimal.",
+                description: "Dikenal dengan sebutan 'Angel Shelf', rak ini menawarkan ketipisan kedalaman (400mm) yang ideal untuk ambalan sempit dengan optimalisasi ruang maksimal.",
                 features: ["Kedalaman Ramping 40cm", "Baja Siku Berlubang Serbaguna", "Finishing Zink Anti Korosi", "Sangat Ringan & Kokoh"],
                 images: [
                     "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?w=600&auto=format&fit=crop&q=80",
@@ -1046,6 +1047,7 @@
             
             let layersHtml = '';
             for (let i = 0; i < layers; i++) {
+                // Ensure proper layers are rendered proportionally
                 const spacing = 120 / (layers - 1 || 1);
                 const yPos = 35 + (i * spacing);
                 layersHtml += `
@@ -1062,9 +1064,9 @@
                 <path d="M30 40 L40 55 M40 55 L30 70 M30 70 L40 85 M40 85 L30 100 M30 100 L40 115 M40 115 L30 130" stroke="${primaryColor}" stroke-width="0.75" />
             ` : `
                 <!-- Shared Frame (Left column is faded dotted connection frame) -->
-                <rect x="30" y="25" width="10" height="135" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3,3" rx="1" />
-                <path d="M30 40 L40 55 M40 55 L30 70 M30 70 L40 85 M40 85 L30 100" stroke="#22c55e" stroke-width="0.5" stroke-dasharray="2,2" />
-                <text x="45" y="20" fill="#22c55e" font-size="6" font-weight="bold">SHARED FRAME (TIDAK TERMASUK)</text>
+                <rect x="30" y="25" width="10" height="135" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3,3" rx="1" opacity="0.3" />
+                <path d="M30 40 L40 55 M40 55 L30 70 M30 70 L40 85 M40 85 L30 100" stroke="#22c55e" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3" />
+                <text x="42" y="20" fill="#22c55e" font-size="5.5" font-weight="bold" opacity="0.8">SHARED FRAME (TIDAK TERMASUK)</text>
             `;
 
             return `
@@ -1467,7 +1469,7 @@
 
             const calcContent = document.getElementById('calc-content');
             if (cart.length === 0) {
-                calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">Kalkulator kosong. Silakan tambahkan beberapa unit rak di samping.</div>`;
+                calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">Kalkulator kosong. Silakan tambahkan beberapa ambalan unit rak di samping.</div>`;
                 return;
             }
 
@@ -1624,10 +1626,10 @@
 
             if (webhookUrl) {
                 try {
+                    // Prevent CORS preflight errors with text/plain
                     await fetch(webhookUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: JSON.stringify(payload)
                     });
                 } catch (error) {
@@ -1651,7 +1653,7 @@
                 showToast("Draf penawaran Anda masih kosong.", false);
                 return;
             }
-            const waText = `Halo PT HIKAI Storage Equipment,\n\nSaya telah menyusun konfigurasi rak melalui website HIKAI.\n\nBerikut draf kebutuhan pergudangan kami:\n\n${generateInquiryDetails()}`;
+            const waText = `Halo PT HIKAI Storage Equipment,\n\nSaya telah menyusun konfigurasi rak melalui website HIKAI.\n\nBerikut draf ambalan kebutuhan pergudangan kami:\n\n${generateInquiryDetails()}`;
             const waUrl = `https://wa.me/628995719102?text=${encodeURIComponent(waText)}`;
             window.open(waUrl, '_blank');
         }
@@ -1745,7 +1747,7 @@
             document.getElementById('modal-product-code').textContent = `MODEL CODE: ${product.code}`;
             document.getElementById('modal-product-cap').textContent = product.capacity;
             document.getElementById('modal-product-finishing').textContent = product.finishing || 'Powder Coating';
-            document.getElementById('modal-product-best').textContent = product.bestFor || 'Gudang industri berat';
+            document.getElementById('modal-product-best').textContent = product.bestFor || 'Gudang ambalan industri berat';
             document.getElementById('modal-product-svg').innerHTML = generateRackSVG(product.svgType, product.layers, true);
 
             const addToCartBtn = document.getElementById('modal-add-to-cart-btn');
@@ -1808,7 +1810,7 @@
 
         function handleAdminLogin() {
             const pass = document.getElementById('admin-password-input').value;
-            if (pass === 'HikaiVVIP77') {
+            if (pass === '6613') {
                 document.getElementById('admin-login').classList.add('hidden');
                 document.getElementById('admin-board').classList.remove('hidden');
                 document.getElementById('admin-webhook-input').value = webhookUrl;
@@ -1842,17 +1844,19 @@
             }
             try {
                 showToast("Mengirim inisialisasi default ke spreadsheet...");
+                // Avoid preflight OPTIONS error by sending plain text
                 await fetch(webhookUrl, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         action: "initializeDefaultProducts",
                         products: DEFAULT_PRODUCT_DATA
                     })
                 });
-                showToast("Inisialisasi berhasil diproses.");
-                fetchProductsFromSpreadsheet();
+                showToast("Inisialisasi berhasil diproses. Memuat ulang data...");
+                setTimeout(() => {
+                    fetchProductsFromSpreadsheet();
+                }, 1500);
             } catch (err) {
                 showToast("Inisialisasi gagal: " + err, false);
             }
@@ -1957,8 +1961,7 @@
                     showToast("Menyimpan baris data ke Google Sheets...");
                     await fetch(webhookUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: JSON.stringify(payload)
                     });
                     showToast("Produk berhasil disinkronkan ke database cloud.");
@@ -1986,8 +1989,7 @@
                     showToast("Menghapus baris data di Google Sheets...");
                     await fetch(webhookUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: JSON.stringify({
                             action: "deleteProduct",
                             id: id
