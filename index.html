@@ -381,9 +381,13 @@
                 <p class="text-gray-400 text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
             </div>
 
+            <!-- MODIFIKASI: Menambahkan Menu Filter Untuk "Angle Shelf" Sesuai Permintaan -->
             <div class="flex flex-wrap gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5">
                 <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black">
                     Semua Kelas
+                </button>
+                <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
+                    Angle Shelf
                 </button>
                 <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
                     Light Duty
@@ -842,11 +846,13 @@
             </div>
             <div class="grid grid-cols-3 gap-3">
                 <div>
+                    <!-- MODIFIKASI: Penambahan Kategori Angle Shelf Ke Form Admin -->
                     <label class="block text-gray-500 mb-1">Type (Duty)</label>
                     <select id="edit-type" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="Light Duty">Light Duty</option>
                         <option value="Medium Duty">Medium Duty</option>
                         <option value="Pallet Rack">Pallet Rack</option>
+                        <option value="Angle Shelf">Angle Shelf</option>
                     </select>
                 </div>
                 <div>
@@ -874,9 +880,11 @@
             </div>
             <div class="grid grid-cols-2 gap-3">
                 <div>
+                    <!-- MODIFIKASI: Penambahan medium-addon ke pilihan icon generator -->
                     <label class="block text-gray-500 mb-1">SvgType Icon Map</label>
                     <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="medium">medium</option>
+                        <option value="medium-addon">medium-addon</option>
                         <option value="light">light</option>
                         <option value="angle">angle</option>
                         <option value="pallet-large">pallet-large</option>
@@ -931,12 +939,13 @@
 </div>
 
 <script>
+    // MODIFIKASI: Data Base Default sekarang menyertakan Add-On Medium dan Angle Shelf di kategori yang tepat
     const DEFAULT_PRODUCT_DATA = [
         {
             id: "hikai-mdr-set",
-            name: "Medium Duty Rack (1 Set)",
+            name: "Medium Duty Rack (Starter)", // Diperjelas Sebagai Starter
             type: "Medium Duty",
-            code: "MDR-2000-SET",
+            code: "MDR-2000-ST",
             layers: 4,
             h: 2000, d: 600, l: 2000,
             capacity: "350 - 500 Kg / Level",
@@ -950,6 +959,25 @@
                 "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "medium"
+        },
+        {
+            // PRODUK BARU: Sistem Add-On dengan tiang sebelah
+            id: "hikai-mdr-addon", 
+            name: "Medium Duty Rack (Add-On)",
+            type: "Medium Duty",
+            code: "MDR-2000-AO",
+            layers: 4,
+            h: 2000, d: 600, l: 2000,
+            capacity: "350 - 500 Kg / Level",
+            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+            construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
+            bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box.",
+            basePrice: 2250000, // Harga Add-On jauh lebih murah karena hemat tiang
+            description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
+            images: [
+                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
+            ],
+            svgType: "medium-addon" // Menggunakan visual tanpa tiang kiri
         },
         {
             id: "hikai-ldr-set",
@@ -972,7 +1000,7 @@
         {
             id: "hikai-asr-set",
             name: "Angle Shelf Rack (1 Set)",
-            type: "Light Duty",
+            type: "Angle Shelf", // KATEGORI BARU (Terpisah dari Light Duty)
             code: "ASR-2000-SET",
             layers: 5,
             h: 2000, d: 400, l: 2000,
@@ -1113,7 +1141,7 @@
     function generateRackSVG(type, layers = 4, isLarge = false) {
         const primaryColor = "#D4AF37";
         let structureHtml = '';
-        const numLayers = Number(layers) || 4; // Mengonversi string dari GS menjadi angka aman
+        const numLayers = Number(layers) || 4;
         
         if (type === 'angle') {
             for (let i = 0; i < numLayers; i++) {
@@ -1161,14 +1189,24 @@
                 </svg>
             `;
         } else {
-            const colorCode = (type === 'light') ? '#4B5563' : '#D4AF37';
-            const beamColor = (type === 'light') ? '#9CA3AF' : '#AA7C11';
+            // Logika untuk Medium & Light Duty (termasuk deteksi Add-On)
+            const isAddon = type.includes('addon');
+            const colorCode = type.includes('light') ? '#4B5563' : '#D4AF37';
+            const beamColor = type.includes('light') ? '#9CA3AF' : '#AA7C11';
+            
+            // Jika addon, hilangkan tiang (pillar) bagian kiri 
+            const leftPillarHtml = isAddon ? '' : `<rect x="30" y="25" width="10" height="135" fill="none" stroke="${colorCode}" stroke-width="2" rx="1" />`;
+            
+            // Beam memanjang hingga ke tepi kiri untuk divisualisasikan menempel ke Starter
+            const beamX = isAddon ? 15 : 39; 
+            const beamWidth = isAddon ? 146 : 122;
+
             for (let i = 0; i < numLayers; i++) {
                 const spacing = 120 / (numLayers - 1 || 1);
                 const yPos = 35 + (i * spacing);
                 structureHtml += `
                     <g>
-                        <rect x="39" y="${yPos}" width="122" height="5" fill="${beamColor}" stroke="${colorCode}" stroke-width="0.75" rx="1" />
+                        <rect x="${beamX}" y="${yPos}" width="${beamWidth}" height="5" fill="${beamColor}" stroke="${colorCode}" stroke-width="0.75" rx="1" />
                     </g>
                 `;
             }
@@ -1176,7 +1214,7 @@
                 <svg viewBox="0 0 200 180" class="${isLarge ? 'w-full h-80' : 'w-full h-48'} bg-[#0d0d0d] rounded-xl p-4 border border-[#222]">
                     <rect width="100%" height="100%" fill="#060608" rx="10"/>
                     <line x1="15" y1="160" x2="185" y2="160" stroke="#333" stroke-width="3" />
-                    <rect x="30" y="25" width="10" height="135" fill="none" stroke="${colorCode}" stroke-width="2" rx="1" />
+                    ${leftPillarHtml}
                     <rect x="160" y="25" width="10" height="135" fill="none" stroke="${colorCode}" stroke-width="2" rx="1" />
                     ${structureHtml}
                 </svg>
@@ -1350,6 +1388,7 @@
 
         const filtered = products.filter(p => {
             if (currentFilter === 'all') return true;
+            // Modifikasi: Logika Filter mendeteksi Tipe Angle Shelf sesuai text yg ada
             return p.type.toLowerCase().includes(currentFilter.toLowerCase());
         });
 
@@ -1509,7 +1548,7 @@
             let quoteRows = '';
             let grandTotal = 0;
             cart.forEach(item => {
-                const basePrice = Number(item.basePrice) || 0; // KOKOH: Parsing numerik aman dari undefined
+                const basePrice = Number(item.basePrice) || 0;
                 const subtotal = basePrice * item.qty;
                 grandTotal += subtotal;
                 quoteRows += `
