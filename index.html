@@ -251,8 +251,8 @@
             simTitle: "Design Layout & Estimate Costs",
             simDesc: "Built-in interactive simulation set for your standard warehouse. Add racks and adjust the operational aisle width.",
             sizeLabel: "Your Warehouse Floor Dimensions",
-            roomLength: "Room Length (M)",
-            roomWidth: "Room Width (M)",
+            roomLength: "Room Length (H)",
+            roomWidth: "Room Width (W)",
             aisleLabel: "Operational Aisle Width (M)",
             calcAisleManual: "Manual Handling (0.8m)",
             calcAisleFork: "Forklift / Heavy Machinery (4m)",
@@ -372,7 +372,7 @@
             calcSafe: "当前货架空间布局安全合理且高效。",
             contactBadge: "实地勘测",
             contactTitle: "联系 HIKAI 专属工程师团队",
-            contactDesc: "我们随时为您提供全方位的专业规划服务，包括免费 2D/3D AutoCAD 厂房动线图设计、大吨位承载极限计算和定制结构方案。欢迎莅临我们的营销中心面对面咨询。",
+            contactDesc: "我们随时为您提供全方位的专业规划服务，包括免费 2D/3D AutoCAD 厂房动线图 design、大吨位承载极限计算和定制结构方案。欢迎莅临我们的营销中心面对面咨询。",
             contactOffice: "营销与销售总部地址:",
             contactEmail: "售后与技术支持邮箱:",
             formTitle: "预约实地测量规划服务申请单",
@@ -449,7 +449,7 @@
         "hikai-mdr-addon": {
             id: {
                 name: "Medium Duty Rack (Add-On)",
-                description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
+                description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) and dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
                 capacity: "350 - 500 Kg / Level",
                 finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
                 construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
@@ -501,7 +501,7 @@
         "hikai-asr-set": {
             id: {
                 name: "Angle Shelf Rack (1 Set)",
-                description: "Sistem rak besi siku lubang legendaris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
+                description: "Sistem rak besi siku lubang legendari yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
                 capacity: "100 - 150 Kg / Level",
                 finishing: "Standard Industrial Powder Coating",
                 construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
@@ -517,7 +517,7 @@
             },
             zh: {
                 name: "万能角钢货架 (1套)",
-                description: "升级 HIKAI 承托工艺 the classic多功能角钢货架。超高经济性，自由穿孔调节层高，完美契合多元化轻量仓储场景。",
+                description: "升级 HIKAI 承托工艺 classic多功能角钢货架。超高经济性，自由穿孔调节层高，完美契合多元化轻量仓储场景。",
                 capacity: "100 - 150 公斤 / 层",
                 finishing: "高硬度工业静电粉末涂装",
                 construction: "插接万能角钢结构 (加厚重载角钢板)",
@@ -547,7 +547,7 @@
                 capacity: "1000 - 2000 公斤 / 层 (每单元最大承载 6 吨)",
                 finishing: "重载耐冲击环氧树脂粉末涂装",
                 construction: "膨胀螺栓地面锚固立柱 + 加厚安全横梁支撑",
-                bestFor: "集装箱重型托盘货载存放、大型跨境 e-commerce 智能仓储配运中心、大型制造加工车间。"
+                bestFor: "集装箱重型托盘货载存放、大型跨境 e-commerce 智能仓储配运中心、大型制造加工车间."
             }
         },
         "hikai-pr-2500": {
@@ -573,13 +573,17 @@
                 capacity: "1000 - 2000 公斤 / 层 (每单元最大承载 6 吨)",
                 finishing: "重载耐冲击环氧树脂粉末涂装",
                 construction: "膨胀螺栓地面锚固立柱 + 加厚安全横梁支撑",
-                bestFor: "密集型堆垛厂房、极窄通道货车及剪叉高位叉车配合运行、全空间密闭保温库。"
+                bestFor: "密集型堆垛厂房、极窄通道货车及剪叉高位叉车配合运行、全空间密闭保温库."
             }
         }
     };
 
+    let currentLang = 'id';
+</script>
+
+<script>
     function getProductTranslation(p, field) {
-        // Jika data dari database/spreadsheet tersedia dan tidak kosong, gunakan langsung untuk menghindari inkonsistensi
+        // SOLUSI B: Selalu memprioritaskan database mentah dari spreadsheet agar update nama seketika terlihat
         if (p[field] && (p.isCustom || p.isEdited || currentLang === 'id')) {
             return p[field];
         }
@@ -643,23 +647,34 @@
     </div>
 </div>
 
-<header class="sticky top-0 z-40 bg-[#020202]/95 backdrop-blur-md border-b border-obsidian-accent">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<header class="sticky top-0 z-40 bg-[#020202]/85 backdrop-blur-xl border-b border-white/5 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between transition-all duration-300">
         <div class="flex items-center gap-3">
-            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-10 h-10 object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-xl tracking-tighter\'>H</span></div>';">
-            <div>
-                <span class="text-xl font-bold tracking-widest text-gold-champagne block">HIKAI</span>
-                <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">Storage Equipment</span>
+            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-9 sm:h-11 w-auto object-contain rounded-lg transition-transform duration-300 hover:scale-105" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-xl tracking-tighter\'>H</span></div>';">
+            <div class="border-l border-white/10 pl-3 py-1 hidden sm:block">
+                <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase block font-mono font-semibold">Storage Equipment</span>
             </div>
         </div>
 
-        <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase">
-            <a href="#about" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navAbout">Tentang Kami</a>
-            <a href="#products" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navCatalog">Katalog Rack</a>
-            <a href="#education" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navEdu">Edukasi Sistem</a>
-            <a href="#comparison" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navCompare">Bandingkan</a>
-            <a href="#calculator" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navCalc">Kalkulator Gudang</a>
-            <a href="#contact" class="text-gray-300 hover:text-gold-champagne transition" data-trans="navContact">Kontak VVIP</a>
+        <nav class="hidden md:flex items-center lg:gap-3.5 md:gap-2 text-[10px] font-semibold tracking-wider uppercase">
+            <a href="#about" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="about" data-trans="navAbout">
+                Tentang Kami
+            </a>
+            <a href="#products" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="products" data-trans="navCatalog">
+                Katalog Rack
+            </a>
+            <a href="#education" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="education" data-trans="navEdu">
+                Edukasi Sistem
+            </a>
+            <a href="#comparison" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="comparison" data-trans="navCompare">
+                Bandingkan
+            </a>
+            <a href="#calculator" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="calculator" data-trans="navCalc">
+                Kalkulator Gudang
+            </a>
+            <a href="#contact" class="nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95" data-section="contact" data-trans="navContact">
+                Kontak VVIP
+            </a>
         </nav>
 
         <div class="flex items-center gap-4">
@@ -680,8 +695,10 @@
         <div class="space-y-8">
             <div class="flex items-center justify-between border-b border-white/5 pb-5">
                 <div class="flex items-center gap-2.5">
-                    <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-8 h-8 object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-base\'>H</span></div>';">
-                    <span class="text-xs font-extrabold tracking-widest text-gold-champagne uppercase font-mono">HIKAI PANEL</span>
+                    <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-8 w-auto object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-base\'>H</span></div>';">
+                    <div class="border-l border-white/10 pl-2 py-0.5">
+                        <span class="text-[10px] font-extrabold tracking-widest text-gray-400 uppercase font-mono block">INTERNAL PANEL</span>
+                    </div>
                 </div>
                 <button onclick="toggleMobileMenu(false)" class="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition">
                     <i class="fa-solid fa-xmark text-sm"></i>
@@ -804,7 +821,6 @@
                 <p class="text-gray-400 text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
             </div>
 
-            <!-- Highly optimized mobile swipe-friendly tabs (Prevents cutting off) -->
             <div class="w-full lg:w-auto overflow-x-auto scrollbar-none pb-1 flex justify-start lg:justify-end">
                 <div class="flex gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5 min-w-max shadow-inner-dark">
                     <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAll">
@@ -938,9 +954,11 @@
             <div class="lg:col-span-7 space-y-6 w-full">
                 <div class="bg-obsidian-card border border-gold-champagne/25 rounded-2xl p-5 sm:p-8 relative shadow-2xl card-glow">
                     <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-b border-white/5 pb-6 gap-4">
-                        <div>
-                            <span class="text-xl font-bold tracking-widest text-gold-champagne block font-serif">HIKAI</span>
-                            <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">PLANNING BOARD</span>
+                        <div class="flex items-center gap-2.5">
+                            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-7 w-auto object-contain rounded" onerror="this.onerror=null; this.outerHTML='<span class=\'text-xs font-bold tracking-widest text-gold-champagne block font-serif\'>HIKAI</span>';">
+                            <div class="border-l border-white/10 pl-2.5 py-0.5">
+                                <span class="text-[8px] tracking-widest text-gray-400 uppercase block font-mono font-bold">PLANNING BOARD</span>
+                            </div>
                         </div>
                         <div class="flex bg-black/80 rounded-lg p-1 border border-white/10 text-xs self-start sm:self-auto overflow-x-auto max-w-full">
                             <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3.5 py-1.5 rounded-lg font-bold transition duration-300" data-trans="tabQuote">Draf Nota</button>
@@ -1088,7 +1106,6 @@
                 </div>
             </div>
 
-            <!-- Products CRUD Subpanel (Responsive Dual View) -->
             <div id="admin-panel-catalog" class="admin-panel-content hidden space-y-4">
                 <div class="flex justify-between items-center bg-obsidian-card p-4 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-base">Manajemen Katalog Produk</h4>
@@ -1113,11 +1130,11 @@
                     </table>
                 </div>
 
-                <!-- Mobile Responsive Cards Mode (Stunning design for HP screen dimensions) -->
+                <!-- Mobile Responsive Cards Mode -->
                 <div id="admin-product-cards" class="block md:hidden space-y-3"></div>
             </div>
 
-            <!-- Inquiries CRM Inbox Subpanel (Responsive Dual View) -->
+            <!-- Inquiries CRM Inbox Subpanel desktop table vs responsive mobile card mode... -->
             <div id="admin-panel-crm" class="admin-panel-content hidden space-y-4">
                 <div class="bg-obsidian-card p-4 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-base"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
@@ -1140,11 +1157,10 @@
                     </table>
                 </div>
 
-                <!-- Mobile Responsive Cards Mode (Stunning design for HP screen dimensions) -->
+                <!-- Mobile Responsive Cards Mode -->
                 <div id="admin-inquiry-cards" class="block md:hidden space-y-3"></div>
             </div>
 
-            <!-- Admin Settings Subpanel -->
             <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-6">
                 <div>
                     <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> <span data-trans="adminSettingsTitle">Pengaturan Konfigurasi Web Global</span></h4>
@@ -1181,11 +1197,11 @@
 <footer class="bg-[#060608] border-t border-white/5 py-16 text-gray-500 text-xs text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3 text-left">
-                <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-8 h-8 object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center\'><span class=\'text-black font-extrabold text-base font-serif\'>H</span></div>';">
-                <div>
-                    <span class="text-base font-bold tracking-widest text-[#D4AF37] block">PT. HIKAI STORAGE EQUIPMENT</span>
-                    <span class="text-[8px] tracking-widest text-gray-400 uppercase block -mt-1">PT. HIKAI STORAGE EQUIPMENT</span>
+            <div class="flex items-center gap-3.5 text-left">
+                <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-9 w-auto object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center\'><span class=\'text-black font-extrabold text-base font-serif\'>H</span></div>';">
+                <div class="border-l border-white/10 pl-3.5 py-1">
+                    <span class="text-xs font-bold tracking-wider text-gold-champagne block">PT. HIKAI STORAGE EQUIPMENT</span>
+                    <span class="text-[8px] tracking-widest text-gray-500 uppercase block font-mono">Premium Spatial Engineering</span>
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-6 text-sm">
@@ -1200,7 +1216,7 @@
             PT. Hikai Storage Equipment ("HIKAI") menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
         </p>
         <div class="flex justify-center gap-4">
-            <button onclick="toggleAdminPanel()" class="px-4 py-1.5 rounded border border-white/5 hover:border-gold-champagne/40 text-[10px] text-gray-600 hover:text-gold-champagne font-mono transition"><i class="fa-solid fa-key mr-1.5"></i> HIKAI Internal Portal</button>
+            <button onclick="toggleAdminPanel()" class="px-4 py-1.5 rounded border border-white/5 hover:border-gold-champagne/40 text-[10px] text-gray-600 hover:text-gold-champagne font-mono transition" data-trans="adminPortal"><i class="fa-solid fa-key mr-1.5"></i> HIKAI Internal Portal</button>
         </div>
         <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-gray-600">
             <p>© 2026 PT. Hikai Storage Equipment. Seluruh Hak Cipta Dilindungi.</p>
@@ -1226,7 +1242,7 @@
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow">
         <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
         <div class="border-b border-white/5 pb-4">
-            <span id="modal-product-cat" class="text-[10px] font-bold tracking-widest text-gold-champagne uppercase">MEDIUM DUTY</span>
+            <span id="modal-product-cat" class="text-[10px] font-bold tracking-widest text-gold-champagne uppercase" data-trans="filterMedium">MEDIUM DUTY</span>
             <h3 id="modal-product-title" class="text-xl sm:text-2xl font-extrabold text-white mt-1">Medium Duty Rack (Starter)</h3>
             <p id="modal-product-code" class="text-xs text-gray-500 font-mono">MODEL CODE: MDR-2000-ST</p>
         </div>
@@ -1380,7 +1396,7 @@
         </div>
         <p id="confirm-modal-desc" class="text-xs text-gray-300 leading-relaxed"></p>
         <div class="flex gap-3 pt-2">
-            <button id="confirm-modal-execute" class="flex-1 py-3 bg-gold-champagne hover:bg-gold-hover text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
+            <button id="confirm-modal-execute" onclick="handleConfirmExecute()" class="flex-1 py-3 bg-gold-champagne hover:bg-gold-hover text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
                 Ya, Lanjutkan
             </button>
             <button onclick="closeConfirmModal()" class="py-3 px-5 bg-obsidian-card border border-white/10 text-gray-300 rounded-lg text-xs transition">
@@ -1423,7 +1439,7 @@
             construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
             bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box.",
             basePrice: 2250000,
-            description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
+            description: "Unit ekspensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
             images: [
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
             ],
@@ -2004,7 +2020,7 @@
                                 <button onclick="toggleComparison('${p.id}')" class="p-3 rounded-xl border transition active:scale-95 ${comparisonClass}"><i class="fa-solid fa-sliders text-xs"></i></button>
                             </div>
                             <button onclick="addToCart('${p.id}')" class="w-full py-3 bg-gradient-to-r from-gold-champagne/10 to-[#AA7C11]/20 border border-gold-champagne/50 text-gold-champagne hover:from-gold-champagne hover:to-[#AA7C11] hover:text-black font-extrabold rounded-xl text-xs uppercase transition active:scale-95 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i> ${btnAddToCart} ${cartQtyLabel}
+                                <i class="fa-solid fa-cart-plus"></i> <span>${btnAddToCart}</span> ${cartQtyLabel}
                             </button>
                         </div>
                     </div>
@@ -2332,7 +2348,7 @@
     }
 
     async function fetchProductsFromSpreadsheet() {
-        // JIKA BERADA DI PREVIEW WORKSPACE GOOGLE: Lewati pemanggilan API agar tidak memicu 404
+        // JIKA BERADA DI PREVIEW WORKSPACE GOOGLE: Lewati sinkronisasi cloud API
         if (isSandboxEnv()) {
             console.warn("[HIKAI Sandbox] Melewati sinkronisasi cloud API. Mengambil data dari cadangan lokal.");
             loadLocalCachedProducts();
@@ -2436,8 +2452,14 @@
 
     function confirmInitializeDefault() {
         confirmActionType = "initDefault";
-        document.getElementById('confirm-modal-desc').innerHTML = "Apakah Anda yakin ingin memformat & mengirim data default (<strong class='text-gold-champagne'>DEFAULT_PRODUCT_DATA</strong>) ke Google Sheets Anda? Tindakan ini akan mengesampingkan seluruh modifikasi data produk saat ini di cloud.";
-        document.getElementById('confirm-modal').classList.remove('hidden');
+        const modalDesc = document.getElementById('confirm-modal-desc');
+        if (modalDesc) {
+            modalDesc.innerHTML = "Apakah Anda yakin ingin memformat & mengirim data default (<strong class='text-gold-champagne'>DEFAULT_PRODUCT_DATA</strong>) ke Google Sheets Anda? Tindakan ini akan mengesampingkan seluruh modifikasi data produk saat ini di cloud.";
+        }
+        const confirmModal = document.getElementById('confirm-modal');
+        if (confirmModal) {
+            confirmModal.classList.remove('hidden');
+        }
     }
 
     async function initializeDefaultDatabase() {
@@ -2505,7 +2527,7 @@
             }
         }
 
-        /* Mobile Card View (HP Optimizations) */
+        /* Mobile Card View */
         const mobileContainer = document.getElementById('admin-inquiry-cards');
         if (mobileContainer) {
             mobileContainer.innerHTML = '';
@@ -2587,7 +2609,7 @@
             });
         }
 
-        /* Mobile Card View (HP Optimizations) */
+        /* Mobile Card View */
         const mobileContainer = document.getElementById('admin-product-cards');
         if (mobileContainer) {
             mobileContainer.innerHTML = '';
@@ -2607,7 +2629,7 @@
                             <span class="text-xs text-white font-bold font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
                             <div class="flex gap-1.5">
                                 <button onclick="openProductEditForm('${p.id}')" class="p-2 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition text-xs"><i class="fa-solid fa-edit"></i></button>
-                                <button onclick="confirmDeleteProduct('${p.id}')" class="p-2 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition text-xs"><i class="fa-solid fa-trash"></i></button>
+                                <button onclick="confirmDeleteProduct('${p.id}')" class="p-2 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-900/40 transition text-xs"><i class="fa-solid fa-trash text-xs"></i></button>
                             </div>
                         </div>
                     </div>
@@ -2717,6 +2739,7 @@
 <script>
     function addAdminImageSlot(value = "") {
         const container = document.getElementById('admin-images-container');
+        if (!container) return;
         const uniqueId = `img-slot-${Date.now()}`;
         const slotDiv = document.createElement('div');
         slotDiv.className = "flex gap-2 items-center bg-black/60 p-2 rounded-lg border border-[#333]";
@@ -2734,112 +2757,128 @@
     }
 
     function openProductEditForm(id) {
-        document.getElementById('product-edit-modal').classList.remove('hidden');
+        const modal = document.getElementById('product-edit-modal');
+        if (!modal) return;
+        modal.classList.remove('hidden');
         const container = document.getElementById('admin-images-container');
-        container.innerHTML = ''; 
+        if (container) container.innerHTML = ''; 
+
         if (id) {
-            document.getElementById('edit-modal-title').textContent = "Ubah Produk";
+            const editTitle = document.getElementById('edit-modal-title');
+            if (editTitle) editTitle.textContent = "Ubah Produk";
             const p = products.find(item => item.id === id);
-            document.getElementById('edit-id').value = p.id;
-            document.getElementById('edit-key').value = p.id;
-            document.getElementById('edit-key').disabled = true;
-            document.getElementById('edit-code').value = p.code;
-            document.getElementById('edit-name').value = p.name;
-            document.getElementById('edit-type').value = p.type;
-            document.getElementById('edit-layers').value = p.layers;
-            document.getElementById('edit-price').value = p.basePrice;
-            document.getElementById('edit-h').value = p.h;
-            document.getElementById('edit-d').value = p.d;
-            document.getElementById('edit-l').value = p.l;
-            document.getElementById('edit-svgtype').value = p.svgType;
-            document.getElementById('edit-capacity').value = p.capacity;
-            document.getElementById('edit-description').value = p.description;
+            if (!p) return;
+
+            const editId = document.getElementById('edit-id');
+            const editKey = document.getElementById('edit-key');
+            const editCode = document.getElementById('edit-code');
+            const editName = document.getElementById('edit-name');
+            const editType = document.getElementById('edit-type');
+            const editLayers = document.getElementById('edit-layers');
+            const editPrice = document.getElementById('edit-price');
+            const editH = document.getElementById('edit-h');
+            const editD = document.getElementById('edit-d');
+            const editL = document.getElementById('edit-l');
+            const editSvgtype = document.getElementById('edit-svgtype');
+            const editCapacity = document.getElementById('edit-capacity');
+            const editDescription = document.getElementById('edit-description');
+
+            if (editId) editId.value = p.id;
+            if (editKey) {
+                editKey.value = p.id;
+                editKey.disabled = true;
+            }
+            if (editCode) editCode.value = p.code || '';
+            if (editName) editName.value = p.name || '';
+            if (editType) editType.value = p.type || 'Medium Duty';
+            if (editLayers) editLayers.value = p.layers || 4;
+            if (editPrice) editPrice.value = p.basePrice || 0;
+            if (editH) editH.value = p.h || 2000;
+            if (editD) editD.value = p.d || 600;
+            if (editL) editL.value = p.l || 2000;
+            if (editSvgtype) editSvgtype.value = p.svgType || 'medium';
+            if (editCapacity) editCapacity.value = p.capacity || '';
+            if (editDescription) editDescription.value = p.description || '';
+
             const currentPhotos = Array.isArray(p.images) ? p.images : (p.images ? p.images.split('|') : []);
             currentPhotos.forEach(url => addAdminImageSlot(url));
             if (currentPhotos.length === 0) addAdminImageSlot("");
         } else {
-            document.getElementById('edit-modal-title').textContent = "Buat Produk Baru";
-            document.getElementById('edit-id').value = '';
-            document.getElementById('edit-key').value = '';
-            document.getElementById('edit-key').disabled = false;
-            document.getElementById('edit-code').value = '';
-            document.getElementById('edit-name').value = '';
-            document.getElementById('edit-type').value = 'Medium Duty';
-            document.getElementById('edit-layers').value = '4';
-            document.getElementById('edit-price').value = '1000000';
-            document.getElementById('edit-h').value = '2000';
-            document.getElementById('edit-d').value = '600';
-            document.getElementById('edit-l').value = '2000';
-            document.getElementById('edit-svgtype').value = 'medium';
-            document.getElementById('edit-capacity').value = '500 Kg / Level';
-            document.getElementById('edit-description').value = '';
+            const editTitle = document.getElementById('edit-modal-title');
+            if (editTitle) editTitle.textContent = "Buat Produk Baru";
+
+            const editId = document.getElementById('edit-id');
+            const editKey = document.getElementById('edit-key');
+            const editCode = document.getElementById('edit-code');
+            const editName = document.getElementById('edit-name');
+            const editType = document.getElementById('edit-type');
+            const editLayers = document.getElementById('edit-layers');
+            const editPrice = document.getElementById('edit-price');
+            const editH = document.getElementById('edit-h');
+            const editD = document.getElementById('edit-d');
+            const editL = document.getElementById('edit-l');
+            const editSvgtype = document.getElementById('edit-svgtype');
+            const editCapacity = document.getElementById('edit-capacity');
+            const editDescription = document.getElementById('edit-description');
+
+            if (editId) editId.value = '';
+            if (editKey) {
+                editKey.value = '';
+                editKey.disabled = false;
+            }
+            if (editCode) editCode.value = '';
+            if (editName) editName.value = '';
+            if (editType) editType.value = 'Medium Duty';
+            if (editLayers) editLayers.value = '4';
+            if (editPrice) editPrice.value = '1000000';
+            if (editH) editH.value = '2000';
+            if (editD) editD.value = '600';
+            if (editL) editL.value = '2000';
+            if (editSvgtype) editSvgtype.value = 'medium';
+            if (editCapacity) editCapacity.value = '500 Kg / Level';
+            if (editDescription) editDescription.value = '';
             addAdminImageSlot("");
         }
     }
 
     function closeProductEditForm() {
-        document.getElementById('product-edit-modal').classList.add('hidden');
+        const modal = document.getElementById('product-edit-modal');
+        if (modal) modal.classList.add('hidden');
     }
 
     async function handleProductSave(event) {
         event.preventDefault();
         const id = document.getElementById('edit-key').value;
-        const nameValue = document.getElementById('edit-name').value;
-        const descValue = document.getElementById('edit-description').value;
-        const capacityValue = document.getElementById('edit-capacity').value;
-        const typeValue = document.getElementById('edit-type').value;
-        const codeValue = document.getElementById('edit-code').value;
-        const layersValue = Number(document.getElementById('edit-layers').value);
-        const priceValue = Number(document.getElementById('edit-price').value);
-        const hValue = Number(document.getElementById('edit-h').value);
-        const dValue = Number(document.getElementById('edit-d').value);
-        const lValue = Number(document.getElementById('edit-l').value);
-        const svgTypeValue = document.getElementById('edit-svgtype').value;
-        
         const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         const inputElements = document.querySelectorAll('#admin-images-container .slot-url-input');
         const imagesArray = Array.from(inputElements).map(el => el.value.trim()).filter(val => val !== "");
         const combinedImagesString = imagesArray.join("|");
 
-        // Update local state translation map instantly
-        if (!productTranslations[id]) {
-            productTranslations[id] = { id: {}, en: {}, zh: {} };
-        }
-        if (!productTranslations[id][currentLang]) {
-            productTranslations[id][currentLang] = {};
-        }
-        productTranslations[id][currentLang].name = nameValue;
-        productTranslations[id][currentLang].description = descValue;
-        productTranslations[id][currentLang].capacity = capacityValue;
-
         const payload = {
             action: "updateProduct",
             password: activeSessionPass,
             id: id,
-            code: codeValue,
-            name: nameValue,
-            type: typeValue,
-            layers: layersValue,
-            basePrice: priceValue,
-            h: hValue,
-            d: dValue,
-            l: lValue,
-            svgType: svgTypeValue,
-            capacity: capacityValue,
-            description: descValue,
-            images: combinedImagesString,
-            isCustom: true
+            code: document.getElementById('edit-code').value,
+            name: document.getElementById('edit-name').value,
+            type: document.getElementById('edit-type').value,
+            layers: Number(document.getElementById('edit-layers').value),
+            basePrice: Number(document.getElementById('edit-price').value),
+            h: Number(document.getElementById('edit-h').value),
+            d: Number(document.getElementById('edit-d').value),
+            l: Number(document.getElementById('edit-l').value),
+            svgType: document.getElementById('edit-svgtype').value,
+            capacity: document.getElementById('edit-capacity').value,
+            description: document.getElementById('edit-description').value,
+            images: combinedImagesString 
         };
 
         const localIdx = products.findIndex(p => p.id === id);
         const localPayload = { ...payload, images: imagesArray, isCustom: true, isEdited: true };
-        
         if (localIdx !== -1) {
             products[localIdx] = localPayload;
         } else {
             products.push(localPayload);
         }
-        
         localStorage.setItem('hikai_products_cache', JSON.stringify(products));
         renderCatalog();
         updateCalculations();
@@ -2847,51 +2886,44 @@
         closeProductEditForm();
 
         if (isSandboxEnv()) {
-            showToast("Produk sukses disimpan secara lokal (Sandbox Mode).");
+            showToast("Produk disimpan secara lokal (Sandbox).");
             return;
         }
 
-        // Always push to sheets cloud API
         try {
-            showToast("Menyimpan perubahan ke Google Sheets...");
-            const res = await callApi('POST', 'updateProduct', payload);
-            if (res && res.status === "success") {
-                showToast("Produk sukses disimpan & diperbarui di Google Sheets!");
-                await fetchProductsFromSpreadsheet();
-            } else {
-                showToast("Tersimpan lokal. Masalah autentikasi cloud: " + (res.message || "Gagal"), false);
-            }
+            await callApi('POST', 'updateProduct', payload);
+            showToast("Berhasil disinkronkan ke database cloud.");
+            fetchProductsFromSpreadsheet();
         } catch(err) {
-            showToast("Gagal sync ke cloud (Offline). Disimpan sementara di cache lokal.", false);
+            showToast("Gagal menyimpan ke cloud, tersimpan di cache.", false);
         }
     }
 
     function confirmDeleteProduct(id) {
         targetDeleteId = id;
         confirmActionType = "product";
-        document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin menghapus rak ini dari database secara permanen?";
-        document.getElementById('confirm-modal').classList.remove('hidden');
+        const desc = document.getElementById('confirm-modal-desc');
+        if (desc) desc.textContent = "Hapus rak ini dari database?";
+        const modal = document.getElementById('confirm-modal');
+        if (modal) modal.classList.remove('hidden');
     }
 
     function confirmDeleteInquiry(id) {
         targetDeleteId = id;
         confirmActionType = "inquiry";
-        document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin menghapus log inquiries masuk dari prospek ini?";
-        document.getElementById('confirm-modal').classList.remove('hidden');
+        const desc = document.getElementById('confirm-modal-desc');
+        if (desc) desc.textContent = "Hapus log pesan prospek ini?";
+        const modal = document.getElementById('confirm-modal');
+        if (modal) modal.classList.remove('hidden');
     }
 
     function closeConfirmModal() {
         targetDeleteId = null;
-        document.getElementById('confirm-modal').classList.add('hidden');
+        const modal = document.getElementById('confirm-modal');
+        if (modal) modal.classList.add('hidden');
     }
 
-    document.getElementById('confirm-modal-execute').onclick = async function() {
-        if (confirmActionType === "initDefault") {
-            closeConfirmModal();
-            await initializeDefaultDatabase();
-            return;
-        }
-
+    async function handleConfirmExecute() {
         if (!targetDeleteId) return;
         const id = targetDeleteId;
         closeConfirmModal();
@@ -2910,58 +2942,43 @@
 
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                showToast("Menghapus produk dari Google Sheets...");
-                const res = await callApi('POST', 'deleteProduct', { password: activeSessionPass, id: id });
-                if (res && res.status === "success") {
-                    showToast("Produk berhasil terhapus dari cloud Google Sheets.");
-                } else {
-                    showToast("Terhapus lokal. Gagal di cloud: " + (res.message || ""), false);
-                }
-                await fetchProductsFromSpreadsheet();
-            } catch(e) {
-                showToast("Gagal hapus dari Sheets (Offline). Terhapus di cache lokal.", false);
-            }
+                await callApi('POST', 'deleteProduct', { password: activeSessionPass, id: id });
+                showToast("Berhasil dihapus dari cloud.");
+                fetchProductsFromSpreadsheet();
+            } catch(e) {}
         } else if (confirmActionType === "inquiry") {
             globalInquiries = globalInquiries.filter(i => i.id !== id);
             renderInquiryLogs(globalInquiries);
-            localStorage.setItem('hikai_mock_inquiries', JSON.stringify(globalInquiries));
             
             if (isSandboxEnv()) {
+                localStorage.setItem('hikai_mock_inquiries', JSON.stringify(globalInquiries));
                 showToast("Inquiry terhapus secara lokal.");
                 return;
             }
-
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                showToast("Menghapus log inquiry dari Google Sheets...");
-                const res = await callApi('POST', 'deleteInquiry', { password: activeSessionPass, id: id });
-                if (res && res.status === "success") {
-                    showToast("Log inquiry berhasil terhapus dari cloud.");
-                } else {
-                    showToast("Terhapus lokal. Gagal di cloud: " + (res.message || ""), false);
-                }
-                await fetchInquiriesFromSpreadsheet();
-            } catch(e) {
-                showToast("Gagal hapus dari Sheets (Offline). Terhapus di cache lokal.", false);
-            }
+                await callApi('POST', 'deleteInquiry', { password: activeSessionPass, id: id });
+                showToast("Berhasil dihapus dari cloud.");
+                fetchInquiriesFromSpreadsheet();
+            } catch(e) {}
+        } else if (confirmActionType === "initDefault") {
+            initializeDefaultDatabase();
         }
-    };
+    }
 
     function saveGlobalWebSettings() {
-        const hotline = document.getElementById('settings-hotline').value.trim();
-        const email = document.getElementById('settings-email').value.trim();
-        const address = document.getElementById('settings-address').value.trim();
-        const geminiKey = document.getElementById('settings-gemini-key').value.trim();
-        
+        const hotline = document.getElementById('settings-hotline')?.value.trim() || "";
+        const email = document.getElementById('settings-email')?.value.trim() || "";
+        const address = document.getElementById('settings-address')?.value.trim() || "";
+        const geminiKey = document.getElementById('settings-gemini-key')?.value.trim() || "";
         if (!hotline) {
-            showToast(currentLang === 'id' ? "Nomor WhatsApp wajib diisi!" : (currentLang === 'zh' ? "请填写专属热线号码！" : "WhatsApp Hotline is required!"), false);
+            showToast("Hotline WA tidak boleh kosong!", false);
             return;
         }
-        
         globalSettings = { hotline, email, address, geminiKey };
         localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
         applyGlobalSettingsDOM();
-        showToast(currentLang === 'id' ? "Pengaturan global berhasil disimpan." : (currentLang === 'zh' ? "全局设置已成功保存。" : "Global settings successfully saved."));
+        showToast("Pengaturan global berhasil disimpan.");
     }
 
     function applyGlobalSettingsDOM() {
@@ -2970,26 +2987,63 @@
             link.textContent = globalSettings.hotline;
             link.href = `https://wa.me/${globalSettings.hotline}`;
         }
-        document.getElementById('global-email').textContent = globalSettings.email;
-        document.getElementById('global-address').textContent = globalSettings.address;
-        document.getElementById('global-form-email').textContent = globalSettings.email;
-        document.getElementById('global-form-address').textContent = globalSettings.address;
         
-        // Ensure values are mapped directly to inputs to prevent early returns on saving
-        const settingsHotline = document.getElementById('settings-hotline');
-        if (settingsHotline) settingsHotline.value = globalSettings.hotline;
+        const emailEl = document.getElementById('global-email');
+        if (emailEl) emailEl.textContent = globalSettings.email;
         
-        const settingsEmail = document.getElementById('settings-email');
-        if (settingsEmail) settingsEmail.value = globalSettings.email;
+        const addrEl = document.getElementById('global-address');
+        if (addrEl) addrEl.textContent = globalSettings.address;
         
-        const settingsAddress = document.getElementById('settings-address');
-        if (settingsAddress) settingsAddress.value = globalSettings.address;
+        const formEmailEl = document.getElementById('global-form-email');
+        if (formEmailEl) formEmailEl.textContent = globalSettings.email;
+        
+        const formAddrEl = document.getElementById('global-form-address');
+        if (formAddrEl) formAddrEl.textContent = globalSettings.address;
 
-        const keyInput = document.getElementById('settings-gemini-key');
-        if (keyInput) {
-            keyInput.value = globalSettings.geminiKey || "";
-        }
+        const inputHotline = document.getElementById('settings-hotline');
+        if (inputHotline) inputHotline.value = globalSettings.hotline || "628995719102";
+
+        const inputEmail = document.getElementById('settings-email');
+        if (inputEmail) inputEmail.value = globalSettings.email || "info@hikairack.com";
+
+        const inputAddress = document.getElementById('settings-address');
+        if (inputAddress) inputAddress.value = globalSettings.address || "Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214";
+
+        const inputGemini = document.getElementById('settings-gemini-key');
+        if (inputGemini) inputGemini.value = globalSettings.geminiKey || "";
     }
+</script>
+
+<script>
+    function runScrollSpy() {
+        const sections = ['about', 'products', 'education', 'comparison', 'calculator', 'contact'];
+        const scrollPosition = window.scrollY + 160; 
+
+        let currentSection = '';
+        sections.forEach(secId => {
+            const el = document.getElementById(secId);
+            if (el) {
+                const top = el.offsetTop;
+                const height = el.offsetHeight;
+                if (scrollPosition >= top && scrollPosition < top + height) {
+                    currentSection = secId;
+                }
+            }
+        });
+
+        document.querySelectorAll('.nav-link-premium').forEach(link => {
+            const sec = link.getAttribute('data-section');
+            if (sec === currentSection) {
+                // Tampilan Tombol Aktif (Premium Gold Glow)
+                link.className = "nav-link-premium px-4 py-2 rounded-full border border-gold-champagne/40 bg-gradient-to-r from-gold-champagne/10 to-gold-hover/20 text-gold-champagne shadow-[0_0_15px_rgba(212,175,55,0.12)] transition-all duration-300 scale-[1.03] font-bold";
+            } else {
+                // Tampilan Tombol Diam/Biasa (Capsule Kaca Gelap)
+                link.className = "nav-link-premium px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95";
+            }
+        });
+    }
+
+    window.addEventListener('scroll', runScrollSpy);
 
     window.onload = function() {
         document.getElementById('hero-svg-container').innerHTML = generateRackSVG('medium', 4, true);
@@ -3001,6 +3055,7 @@
         updateCartCounter();
         updateCalculations();
         fetchProductsFromSpreadsheet();
+        runScrollSpy(); 
     };
 </script>
 
