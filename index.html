@@ -972,8 +972,8 @@
                     <textarea id="edit-description" rows="2" class="w-full bg-black border border-[#333] p-2 rounded text-white"></textarea>
                 </div>
                 <div>
-                    <label class="block text-gray-500 mb-1">Images (Separate with Pipe |)</label>
-                    <input type="text" id="edit-images" placeholder="https://image1.jpg|https://image2.jpg" class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <label class="block text-gray-500 mb-1">Images (Pisahkan URL dengan Pipa | )</label>
+                    <input type="text" id="edit-images" placeholder="https://img1.jpg | https://img2.jpg" class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
                 </div>
                 
                 <div class="flex gap-2 pt-2 justify-end border-t border-white/5">
@@ -1326,7 +1326,18 @@
         function handleImageSlider(id, dir) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            const maxIdx = prod.images.length;
+            
+            // DUKUNGAN MULTI FOTO (Array atau String dipisah pipa |)
+            let parsedImages = [];
+            if (Array.isArray(prod.images)) {
+                parsedImages = prod.images;
+            } else if (typeof prod.images === 'string' && prod.images.trim() !== '') {
+                parsedImages = prod.images.split('|');
+            }
+
+            if (parsedImages.length === 0) return;
+
+            const maxIdx = parsedImages.length;
             let idx = productImageIndex[id] || 0;
             
             if (dir === 'next') {
@@ -1488,14 +1499,29 @@
                 const isInComparison = comparisonList.find(item => item.id === p.id);
                 const sliderUniqueId = `carousel-container-${p.id}`;
 
+                // NORMALISASI FOTO: Parsing dari array maupun string pemisah pipa
+                let parsedImages = [];
+                if (Array.isArray(p.images)) {
+                    parsedImages = p.images;
+                } else if (typeof p.images === 'string' && p.images.trim() !== '') {
+                    parsedImages = p.images.split('|').map(url => url.trim());
+                }
+                
+                if (parsedImages.length === 0) {
+                    parsedImages = ["https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK"];
+                }
+
                 let mediaSection = '';
                 if (view === 'photo') {
-                    const currentImg = p.images && p.images[imgIdx] ? p.images[imgIdx] : "https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK";
+                    const currentImg = parsedImages[imgIdx] || parsedImages[0];
                     mediaSection = `
                         <div id="${sliderUniqueId}" class="relative h-48 w-full rounded-xl overflow-hidden group/slider cursor-grab active:cursor-grabbing">
                             <img src="${currentImg}" alt="${p.name}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
-                            <button onclick="handleImageSlider('${p.id}', 'prev')" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-champagne hover:text-black p-1.5 rounded-full text-white transition"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                            <button onclick="handleImageSlider('${p.id}', 'next')" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-champagne hover:text-black p-1.5 rounded-full text-white transition"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                            ${parsedImages.length > 1 ? `
+                                <button onclick="event.stopPropagation(); handleImageSlider('${p.id}', 'prev')" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-champagne hover:text-black p-1.5 rounded-full text-white transition"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                                <button onclick="event.stopPropagation(); handleImageSlider('${p.id}', 'next')" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-champagne hover:text-black p-1.5 rounded-full text-white transition"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                                <div class="absolute bottom-2 right-2 bg-black/60 text-[9px] px-1.5 py-0.5 rounded text-gray-400 font-mono">${imgIdx + 1}/${parsedImages.length}</div>
+                            ` : ''}
                         </div>
                     `;
                 } else {
@@ -2141,7 +2167,8 @@
                 document.getElementById('edit-svgtype').value = p.svgType;
                 document.getElementById('edit-capacity').value = p.capacity;
                 document.getElementById('edit-description').value = p.description;
-                document.getElementById('edit-images').value = p.images ? p.images.join("|") : '';
+                // Formater URL ke text field menggunakan pipa |
+                document.getElementById('edit-images').value = p.images ? (Array.isArray(p.images) ? p.images.join("|") : p.images) : '';
             } else {
                 document.getElementById('edit-modal-title').textContent = "CREATE NEW PRODUCT";
                 document.getElementById('edit-id').value = '';
@@ -2170,6 +2197,10 @@
             event.preventDefault();
             const id = document.getElementById('edit-key').value;
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+            
+            // Satukan input multi-foto dari input text untuk diproses sebagai string di cloud
+            const rawImagesString = document.getElementById('edit-images').value;
+            
             const payload = {
                 action: "updateProduct",
                 password: activeSessionPass,
@@ -2185,15 +2216,23 @@
                 svgType: document.getElementById('edit-svgtype').value,
                 capacity: document.getElementById('edit-capacity').value,
                 description: document.getElementById('edit-description').value,
-                images: document.getElementById('edit-images').value ? document.getElementById('edit-images').value.split("|") : []
+                images: rawImagesString // Cloud menerima format string yang digabung |
             };
 
             const localIdx = products.findIndex(p => p.id === id);
+            
+            // Untuk cache web (front-end render), simpan properti proper array agar carousel langsung bekerja optimal
+            const localPayload = { 
+                ...payload, 
+                images: rawImagesString ? rawImagesString.split('|').map(img => img.trim()) : [] 
+            };
+            
             if (localIdx !== -1) {
-                products[localIdx] = payload;
+                products[localIdx] = localPayload;
             } else {
-                products.push(payload);
+                products.push(localPayload);
             }
+            
             localStorage.setItem('hikai_products_cache', JSON.stringify(products));
             renderCatalog();
             updateCalculations();
@@ -2207,7 +2246,7 @@
 
             try {
                 showToast("Menyimpan baris data ke Google Sheets...");
-                await callApi('POST', 'updateProduct', payload);
+                await callApi('POST', 'updateProduct', payload); // Kirim payload string ke proxy backend
                 showToast("Produk berhasil disinkronkan ke database cloud.");
                 fetchProductsFromSpreadsheet();
             } catch(err) {
