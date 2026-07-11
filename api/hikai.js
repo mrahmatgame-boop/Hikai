@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       return res.status(200).json(data);
     }
 
-    // 2. TANGANI METODE POST (Tambah/Edit/Hapus Produk, Tambah Inquiry)
+    // 2. TANGANI METODE POST (Tambah/Edit/Hapus Produk, Tambah Inquiry, Hapus Inquiry)
     if (req.method === 'POST') {
       let bodyPayload;
       try {
