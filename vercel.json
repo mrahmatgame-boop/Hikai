@@ -1,8 +1,13 @@
 {
-"rewrites": [
+"version": 2,
+"routes": [
 {
-"source": "/api/hikai",
-"destination": "/api/hikai.js"
+"src": "/api/(.)",
+"dest": "/api/$1"
+},
+{
+"src": "/(.)",
+"dest": "/$1"
 }
 ]
 }
