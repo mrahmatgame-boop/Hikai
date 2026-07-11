@@ -3,19 +3,15 @@
    ======================================================= */
 
 export default async function handler(req, res) {
-  // Atur Header Keamanan CORS dan Respons JSON
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Tangani Preflight Request dari Browser
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // Ambil Google Apps Script URL secara rahasia dari Environment Variables Vercel
   const targetWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-
   if (!targetWebhookUrl) {
     return res.status(500).json({
       status: "error",
@@ -24,55 +20,63 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. TANGANI METODE GET (Ambil Data Produk, Inquiries, atau Verifikasi Admin)
-    if (req.method === 'GET') {
-      const { action, password } = req.query;
-      let targetParamsUrl = `${targetWebhookUrl}?action=${action || 'getProducts'}`;
-      
-      if (password) {
-        targetParamsUrl += `&password=${encodeURIComponent(password)}`;
-      }
-
-      const response = await fetch(targetParamsUrl);
-      if (!response.ok) {
-        return res.status(response.status).json({
-          status: "error",
-          message: `Google Apps Script mengembalikan status HTTP ${response.status}: ${response.statusText}`
-        });
-      }
-      const data = await response.json();
-      return res.status(200).json(data);
+    // Menggunakan class URL() modern untuk menghindari Deprecation Warning url.parse()
+    const url = new URL(targetWebhookUrl);
+    
+    // Secara otomatis meneruskan semua parameter (seperti action, password)
+    for (const key in req.query) {
+        url.searchParams.append(key, req.query[key]);
     }
+    
+    const options = {
+        method: req.method,
+        // text/plain wajib digunakan agar Google tidak menolak dengan CORS error
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+    };
 
-    // 2. TANGANI METODE POST (Tambah/Edit/Hapus Produk, Tambah Inquiry, Hapus Inquiry)
     if (req.method === 'POST') {
-      let bodyPayload;
-      try {
-        bodyPayload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-      } catch (e) {
-        bodyPayload = req.body;
-      }
-
-      // Gunakan Content-Type 'text/plain' untuk menghindari isu Preflight CORS pada Google Apps Script
-      const response = await fetch(targetWebhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(bodyPayload)
-      });
-
-      if (!response.ok) {
-        return res.status(response.status).json({
-          status: "error",
-          message: `Gagal mengirim data. Google Apps Script merespon dengan status HTTP ${response.status}`
-        });
-      }
-
-      const data = await response.json();
-      return res.status(200).json(data);
+        let bodyPayload;
+        try {
+            bodyPayload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        } catch (e) {
+            bodyPayload = req.body;
+        }
+        options.body = JSON.stringify(bodyPayload);
     }
 
-    return res.status(405).json({ status: "error", message: "Metode HTTP Tidak Diizinkan." });
+    const response = await fetch(url.toString(), options);
+    
+    // BACA SEBAGAI TEXT DULU: Mencegah crash jika Google membalas dengan halaman HTML (bukan JSON)
+    const responseText = await response.text();
+
+    try {
+        // Coba jadikan JSON
+        const data = JSON.parse(responseText);
+        return res.status(200).json(data);
+    } catch (parseError) {
+        // JIKA MASUK KESINI: Google membalas dengan HTML/Text (Biasanya halaman login Google)
+        console.error("Bukan JSON, Google merespon dengan:", responseText.substring(0, 150));
+        
+        if (responseText.includes('<html') || responseText.includes('google')) {
+             return res.status(500).json({
+                status: "error",
+                message: "Akses Ditolak oleh Google. Pastikan 'Who has access' (Siapa yang memiliki akses) di Apps Script diatur ke 'Anyone' (Siapa saja).",
+                detail: "Google meminta login ulang / merespon dengan HTML."
+            });
+        }
+
+        return res.status(500).json({
+            status: "error",
+            message: "Format respons dari Google Apps Script tidak valid.",
+            detail: responseText.substring(0, 100)
+        });
+    }
+
   } catch (error) {
-    return res.status(500).json({ status: "error", message: `Gagal menghubungi Google Apps Script: ${error.message}` });
+    console.error("Vercel Proxy Error Utama:", error);
+    return res.status(500).json({ 
+        status: "error", 
+        message: `Vercel gagal menghubungi Google Apps Script: ${error.message}` 
+    });
   }
 }
