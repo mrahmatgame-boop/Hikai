@@ -1,71 +1,82 @@
+/* =======================================================
+   HIKAI VVIP SERVERLESS WEBHOOK PROXY (api/hikai.js)
+   ======================================================= */
+
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
-  const GAS_WEB_APP_URL = process.env.GAS_WEB_APP_URL;
-
-  if (!GAS_WEB_APP_URL) {
-    return res.status(500).json({ 
-      status: "error", 
-      message: "GAS_WEB_APP_URL belum diatur di Environment Variables Vercel." 
+  const targetWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (!targetWebhookUrl) {
+    return res.status(500).json({
+      status: "error",
+      message: "Konfigurasi Vercel Belum Lengkap: GOOGLE_SHEETS_WEBHOOK_URL tidak ditemukan pada Environment Variables Anda."
     });
   }
 
-  const { query } = req;
-  const action = query.action;
-
-  if (!action) {
-    return res.status(400).json({ status: "error", message: "Aksi tidak boleh kosong." });
-  }
-
-  const queryString = new URLSearchParams(query).toString();
-  const targetUrl = `${GAS_WEB_APP_URL}?${queryString}`;
-
   try {
-    let response;
+    // Menggunakan class URL() modern untuk menghindari Deprecation Warning url.parse()
+    const url = new URL(targetWebhookUrl);
     
+    // Secara otomatis meneruskan semua parameter (seperti action, password)
+    for (const key in req.query) {
+        url.searchParams.append(key, req.query[key]);
+    }
+    
+    const options = {
+        method: req.method,
+        // text/plain wajib digunakan agar Google tidak menolak dengan CORS error
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+    };
+
     if (req.method === 'POST') {
-      // Perbaikan Kritis: Pastikan body diubah menjadi string JSON murni yang valid agar Google Apps Script tidak melempar HTTP 500
-      const bodyPayload = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
-
-      response = await fetch(targetUrl, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json'
-        },
-        body: bodyPayload,
-        redirect: 'follow' // Memaksa Vercel untuk mengikuti pengalihan (302) dari server Google secara otomatis
-      });
-    } else {
-      response = await fetch(targetUrl, { 
-        method: 'GET',
-        redirect: 'follow'
-      });
+        let bodyPayload;
+        try {
+            bodyPayload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        } catch (e) {
+            bodyPayload = req.body;
+        }
+        options.body = JSON.stringify(bodyPayload);
     }
 
+    const response = await fetch(url.toString(), options);
+    
+    // BACA SEBAGAI TEXT DULU: Mencegah crash jika Google membalas dengan halaman HTML (bukan JSON)
     const responseText = await response.text();
-    let data;
-    try {
-      data = JSON.parse(responseText);
-    } catch (e) {
-      // Jika Google mengembalikan format teks biasa, bungkus ke JSON agar front-end tidak crash
-      data = { status: "success", message: responseText };
-    }
 
-    return res.status(200).json(data);
+    try {
+        // Coba jadikan JSON
+        const data = JSON.parse(responseText);
+        return res.status(200).json(data);
+    } catch (parseError) {
+        // JIKA MASUK KESINI: Google membalas dengan HTML/Text (Biasanya halaman login Google)
+        console.error("Bukan JSON, Google merespon dengan:", responseText.substring(0, 150));
+        
+        if (responseText.includes('<html') || responseText.includes('google')) {
+             return res.status(500).json({
+                status: "error",
+                message: "Akses Ditolak oleh Google. Pastikan 'Who has access' (Siapa yang memiliki akses) di Apps Script diatur ke 'Anyone' (Siapa saja).",
+                detail: "Google meminta login ulang / merespon dengan HTML."
+            });
+        }
+
+        return res.status(500).json({
+            status: "error",
+            message: "Format respons dari Google Apps Script tidak valid.",
+            detail: responseText.substring(0, 100)
+        });
+    }
 
   } catch (error) {
-    console.error("Connection Error:", error);
+    console.error("Vercel Proxy Error Utama:", error);
     return res.status(500).json({ 
-      status: "error", 
-      message: error.message 
+        status: "error", 
+        message: `Vercel gagal menghubungi Google Apps Script: ${error.message}` 
     });
   }
 }
