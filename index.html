@@ -69,6 +69,14 @@
             background-image: linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
         }
+        /* Custom styling for smoother swipe experience on phone admin tabs */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="blueprint-pattern">
@@ -90,22 +98,86 @@
             btnCatalog: "Pilih Spesifikasi Rak",
             btnCalc: "Rancang Ruang",
             previewTitle: "Visual Preview",
+            aboutBadge: "SIAPA KAMI",
+            aboutTitle: "Dedikasi Presisi Tinggi &<br/>Rekayasa Tata Ruang Premium",
+            aboutDesc: "PT. Hikai Storage Equipment berdiri sebagai pionir dalam industri manufaktur dan perancangan sistem rak baja penyimpanan industri berat (heavy-duty) dan menengah (medium-duty) di Indonesia. Kami memadukan kekuatan baja premium Cold-Rolled dengan perhitungan presisi matematis untuk melipatgandakan kapasitas penyimpanan gudang Anda tanpa mengorbankan keselamatan kerja.",
+            aboutStat1: "Standarisasi EN 15512",
+            aboutStat2: "Efisiensi Biaya Struktur",
             catalogBadge: "KOLEKSI EKSKLUSIF",
             catalogTitle: "Katalog Sistem Rak HIKAI",
             catalogDesc: "Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.",
+            filterAll: "Semua Kelas",
+            filterAngle: "Angle Shelf",
+            filterLight: "Light Duty",
+            filterMedium: "Medium Duty",
+            filterPallet: "Pallet Rack",
             eduBadge: "ATURAN STRUKTUR",
             eduTitle: "Memahami Sistem Starter vs Add-On",
             eduDesc: "Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan 1 Unit Starter sebagai fondasi utama di ujung baris, lalu sambungkan unit Add-On bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!",
+            eduStarter: "Starter: 2 Tiang Samping (Mandiri)",
+            eduAddOn: "Add-On: 1 Tiang Samping (Menempel ke Starter)",
+            eduSchema: "Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)",
+            eduSharedFrame: "TIANG GABUNGAN (SHARED FRAME)",
             compareTitle: "Bandingkan Spek Teknis",
             compareDesc: "Tambahkan rak ke pembanding pada kartu katalog untuk diulas berdampingan di sini.",
+            compareEmpty: "Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.",
+            compareParam: "Parameter",
+            compareLayers: "Konfigurasi Layer",
+            compareCapacity: "Kapasitas Maksimal",
+            compareDims: "Dimensi Presisi",
+            compareConst: "Jenis Konstruksi",
+            compareFinishing: "Finishing Lapisan",
             simBadge: "SIMULATOR TATA LETAK",
             simTitle: "Atur Layout & Hitung Biaya",
-            simDesc: "Simulasi interaktif bawaan diatur untuk gudang standar Anda berdimensi 10x5 Meter. Tambahkan rak dan sesuaikan lebar gang kerja.",
+            simDesc: "Simulasi interaktif bawaan diatur untuk gudang standar Anda. Tambahkan rak dan sesuaikan lebar gang kerja.",
             sizeLabel: "Ukuran Lantai Gudang Anda",
+            roomLength: "Panjang Ruangan (M)",
+            roomWidth: "Lebar Ruangan (M)",
             aisleLabel: "Lebar Gang Kerja / Aisle (M)",
-            submitInquiry: "Kirim Pengajuan Ke WhatsApp VIP",
+            calcAisleManual: "Sirkulasi Manual (0.8m)",
+            calcAisleFork: "Alat Berat/Forklift (4m)",
+            calcAddTitle: "Tambahkan Unit Rak ke Denah:",
+            tabQuote: "Draf Nota",
+            tabFloorplan: "Denah 2D",
+            btnTambah: "Tambah",
+            calcEmpty: "Kalkulator kosong. Silakan tambahkan beberapa unit rak.",
+            calcTotalEst: "Total Est. Investasi Awal:",
+            calcBtnInquiry: "Ajukan via WhatsApp VIP",
+            calcWarning: "Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!",
+            calcSafe: "Tata ruang aman dan efisien.",
+            contactBadge: "Kunjungan Survei",
+            contactTitle: "Hubungi Tim Teknik HIKAI",
+            contactDesc: "Kami siap melayani kebutuhan Anda, mulai dari konsultasi gambar AutoCAD 2D/3D gratis hingga perencanaan beban tonase besar. Kunjungi kantor pemasaran kami untuk berkonsultasi langsung.",
+            contactOffice: "Marketing & Sales Office:",
+            contactEmail: "Layanan Dukungan Email:",
             formTitle: "Formulir Kunjungan Survei & Konsultasi",
-            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda."
+            formName: "Nama Lengkap *",
+            formPhone: "Nomor WhatsApp *",
+            formCompany: "Nama Perusahaan (Opsional)",
+            formMessage: "Kebutuhan Detail Anda",
+            formMessagePlaceholder: "Deskripsikan gudang Anda, tinggi atap, serta muatan barang...",
+            formNamePlaceholder: "Contoh: Budi Santoso",
+            formPhonePlaceholder: "Contoh: 0811223344",
+            submitInquiry: "Kirim Pengajuan Ke WhatsApp VIP",
+            modalCapacity: "Kapasitas Muatan:",
+            modalFinishing: "Proteksi Lapisan Finishing:",
+            modalBestFor: "Rekomendasi Terbaik:",
+            modalBtnAdd: "Tambahkan Ke Draf Estimasi",
+            modalBtnClose: "Tutup",
+            cartTitle: "Draf Penawaran VVIP Anda",
+            cartSubtitle: "REVIEW DAFTAR ESTIMASI HARGA & SPESIFIKASI",
+            cartEmpty: "Draf belanja masih kosong.",
+            cartBtnCheckout: "Ajukan Penawaran WhatsApp",
+            cartBtnReset: "Reset",
+            adminPortal: "HIKAI Internal Portal",
+            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.",
+            
+            /* Dynamic interface strings for catalog elements */
+            lblConfig: "Konfigurasi:",
+            lblMaxCap: "Kapasitas Maks:",
+            btnDetail: "Detail",
+            btnAddToCart: "Tambah Ke Draf",
+            lblLayerUnit: "Layer"
         },
         en: {
             navHome: "Home",
@@ -122,22 +194,86 @@
             btnCatalog: "Select Rack Specs",
             btnCalc: "Design Space",
             previewTitle: "Visual Preview",
+            aboutBadge: "ABOUT US",
+            aboutTitle: "Dedicated High Precision &<br/>Premium Spatial Engineering",
+            aboutDesc: "PT. Hikai Storage Equipment stands as a pioneer in the manufacturing and design of heavy-duty and medium-duty industrial steel racking systems in Indonesia. We combine the high strength of premium Cold-Rolled Steel with mathematical precision calculations to double your warehouse capacity without compromising safety.",
+            aboutStat1: "EN 15512 Standardization",
+            aboutStat2: "Structural Cost Efficiency",
             catalogBadge: "EXCLUSIVE COLLECTION",
             catalogTitle: "HIKAI Racking Catalog",
             catalogDesc: "All of our premium industrial racks are featured with dynamic dual-mode: Real Photos & CAD Blueprint Drawings.",
+            filterAll: "All Categories",
+            filterAngle: "Angle Shelf",
+            filterLight: "Light Duty",
+            filterMedium: "Medium Duty",
+            filterPallet: "Pallet Rack",
             eduBadge: "STRUCTURAL RULE",
             eduTitle: "Understanding Starter vs Add-On Systems",
             eduDesc: "You don't need to purchase two standalone multi-pillar racks. Simply utilize 1 Starter Unit as the row's main foundation, then extend with single-pillar Add-On units to save space and up to 20% budget!",
+            eduStarter: "Starter: 2 Side Pillars (Standalone)",
+            eduAddOn: "Add-On: 1 Side Pillar (Attaches to Starter)",
+            eduSchema: "HIKAI Composite Row Layout (1 Starter + 1 Add-On)",
+            eduSharedFrame: "SHARED FRAME (MIDDLE PILLAR)",
             compareTitle: "Compare Technical Specs",
             compareDesc: "Add racks to the comparison matrix in the catalog cards to review them side-by-side here.",
+            compareEmpty: "Comparison matrix is empty. Please select racks from the catalog above to compare.",
+            compareParam: "Parameter",
+            compareLayers: "Layer Configuration",
+            compareCapacity: "Maximum Capacity",
+            compareDims: "Precision Dimensions",
+            compareConst: "Construction Type",
+            compareFinishing: "Surface Finishing",
             simBadge: "LAYOUT SIMULATOR",
             simTitle: "Design Layout & Estimate Costs",
-            simDesc: "Built-in interactive simulation set for your standard 10x5 Meter warehouse. Add racks and adjust the operational aisle width.",
+            simDesc: "Built-in interactive simulation set for your standard warehouse. Add racks and adjust the operational aisle width.",
             sizeLabel: "Your Warehouse Floor Dimensions",
+            roomLength: "Room Length (M)",
+            roomWidth: "Room Width (M)",
             aisleLabel: "Operational Aisle Width (M)",
-            submitInquiry: "Submit Inquiry to VIP WhatsApp",
+            calcAisleManual: "Manual Handling (0.8m)",
+            calcAisleFork: "Forklift / Heavy Machinery (4m)",
+            calcAddTitle: "Add Racking Units to Layout:",
+            tabQuote: "Draft Bill",
+            tabFloorplan: "2D Plan",
+            btnTambah: "Add",
+            calcEmpty: "Calculator is empty. Please add some racks.",
+            calcTotalEst: "Total Est. Initial Investment:",
+            calcBtnInquiry: "Submit WhatsApp VIP Inquiry",
+            calcWarning: "Warning: Some racks exceed your warehouse wall boundaries!",
+            calcSafe: "Layout is safe and space-efficient.",
+            contactBadge: "Site Survey",
+            contactTitle: "Contact HIKAI Engineering Team",
+            contactDesc: "We are ready to serve you with free 2D/3D AutoCAD spatial layout consultancy, heavy-duty load capacity calculations, and custom structural design. Visit our marketing office for a direct consultation.",
+            contactOffice: "Marketing & Sales Office:",
+            contactEmail: "Email Support Services:",
             formTitle: "Consultation & Site Survey Form",
-            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") supplies high-precision industrial warehousing systems. We guarantee load standards compliant with EN 15512 and pristine Cold-Rolled Steel raw material to ensure warehouse safety."
+            formName: "Full Name *",
+            formPhone: "WhatsApp Number *",
+            formCompany: "Company Name (Optional)",
+            formMessage: "Your Detailed Requirements",
+            formMessagePlaceholder: "Describe your warehouse layout, roof height, and payload items...",
+            formNamePlaceholder: "e.g., John Doe",
+            formPhonePlaceholder: "e.g., +62 811...",
+            submitInquiry: "Submit Inquiry to VIP WhatsApp",
+            modalCapacity: "Payload Capacity:",
+            modalFinishing: "Finishing Coating Protection:",
+            modalBestFor: "Best Recommendation:",
+            modalBtnAdd: "Add to Estimate Draft",
+            modalBtnClose: "Close",
+            cartTitle: "Your VVIP Quote Draft",
+            cartSubtitle: "REVIEW PRICE ESTIMATION & SPECIFICATION MATRIX",
+            cartEmpty: "Draft is currently empty.",
+            cartBtnCheckout: "Request VVIP WhatsApp Quote",
+            cartBtnReset: "Clear Draft",
+            adminPortal: "HIKAI Internal Portal",
+            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") supplies high-precision industrial warehousing systems. We guarantee load standards compliant with EN 15512 and pristine Cold-Rolled Steel raw material to ensure warehouse safety.",
+            
+            /* Dynamic interface strings for catalog elements */
+            lblConfig: "Configuration:",
+            lblMaxCap: "Max Capacity:",
+            btnDetail: "Detail",
+            btnAddToCart: "Add To Draft",
+            lblLayerUnit: "Layers"
         },
         zh: {
             navHome: "首页",
@@ -150,56 +286,300 @@
             heroBadge: "尊贵 VVIP 仓储物流",
             heroTitle: "高品质工业级货架",
             heroSubtitle: "PT. Hikai Storage Equipment",
-            heroDesc: "带来通过国际品质认证的高精度优质冷轧结构钢货架。为您提供极奢工艺设计、顶尖承重承载力与交互式立体空间动线规划 system。",
+            heroDesc: "带来通过国际品质认证的高精度优质冷轧结构钢货架。为您提供极奢工艺设计、顶尖承重承载力与交互式立体空间动线规划系统。",
             btnCatalog: "选配货架规格",
             btnCalc: "规划立体空间",
             previewTitle: "实机渲染图",
+            aboutBadge: "关于我们",
+            aboutTitle: "专注高精度与<br/>卓越空间工程规划",
+            aboutDesc: "PT. Hikai Storage Equipment 是印度尼西亚重型和中型工业钢制货架系统制造与规划设计的先驱。我们将优质冷轧硬质高强结构钢与精密的数学力学计算相结合，在绝对保障安全生产的前提下双倍扩容您的立体厂房空间。",
+            aboutStat1: "EN 15512 结构承重认证",
+            aboutStat2: "科学节省结构成本",
             catalogBadge: "尊享专属系列",
             catalogTitle: "HIKAI 货架工程系统目录",
             catalogDesc: "我们所有的重型中型工业货架均支持实景高清图与CAD工程图双向切换演示。",
+            filterAll: "全部类型",
+            filterAngle: "角钢货架",
+            filterLight: "轻型货架",
+            filterMedium: "中型货架",
+            filterPallet: "托盘重型货架",
             eduBadge: "结构计算规范",
             eduTitle: "掌握 Starter (主架) 与 Add-On (副架) 组合规则",
             eduDesc: "无需购买两套完全独立配置的双侧立柱片。仅需在每排起点放置 1 台 Starter 主架，后续全部采用单侧立柱 Add-On 副架，即可科学节省多达 20% 投资预算！",
+            eduStarter: "主架 (Starter): 双侧立柱片 (可独立站立)",
+            eduAddOn: "副架 (Add-On): 单侧立柱片 (连接并依附于主架)",
+            eduSchema: "HIKAI 主副架组合排布示意图 (1台主架 + 1台副架)",
+            eduSharedFrame: "中间共用立柱片 (SHARED FRAME)",
             compareTitle: "关键技术规格对比",
             compareDesc: "在上述商品卡片中将货架加入对比矩阵，即可在此处查看深度横向评测报告。",
+            compareEmpty: "对比矩阵为空。请在上方货架目录中选择产品进行横向对比。",
+            compareParam: "技术参数",
+            compareLayers: "层载配置",
+            compareCapacity: "极限承重",
+            compareDims: "精准尺寸",
+            compareConst: "结构类型",
+            compareFinishing: "表面处理工艺",
             simBadge: "空间智能模拟器",
             simTitle: "布局规划与成本测算",
-            simDesc: "内嵌为您的 10x5米标准厂房定制 of 交互式平面仓储演练，支持任意添加货架排布并调整搬运动线通道距离。",
+            simDesc: "内嵌智能仿真布局演练。可任意添加货架排布并无级调整叉车动线通道宽度。",
             sizeLabel: "您的仓库厂房物理尺寸",
+            roomLength: "厂房长度 (米)",
+            roomWidth: "厂房宽度 (米)",
             aisleLabel: "工作通道 / 叉车动线 (米)",
-            submitInquiry: "发送询价请求至尊贵 VIP WhatsApp",
+            calcAisleManual: "人工选配通道 (0.8米)",
+            calcAisleFork: "重型叉车通道 (4米)",
+            calcAddTitle: "添加货架至平面图:",
+            tabQuote: "预算清单",
+            tabFloorplan: "2D平面图",
+            btnTambah: "添加",
+            calcEmpty: "计算面板为空。请在左侧添加货架以进行仿真排布。",
+            calcTotalEst: "预估初期投资总额:",
+            calcBtnInquiry: "一键发送至 WhatsApp 询价",
+            calcWarning: "警告：部分货架排布已超出您的厂房物理墙体尺寸边界！",
+            calcSafe: "当前货架空间布局安全合理且高效。",
+            contactBadge: "实地勘测",
+            contactTitle: "联系 HIKAI 专属工程师团队",
+            contactDesc: "我们随时为您提供全方位的专业规划服务，包括免费 2D/3D AutoCAD 厂房动线图设计、大吨位承载极限计算和定制结构方案。欢迎莅临我们的营销中心面对面咨询。",
+            contactOffice: "营销与销售总部地址:",
+            contactEmail: "售后与技术支持邮箱:",
             formTitle: "预约实地测量规划服务申请单",
-            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储 system 研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储环境绝对安全。"
+            formName: "您的姓名 *",
+            formPhone: "手机/WhatsApp 号码 *",
+            formCompany: "公司/工厂名称 (选填)",
+            formMessage: "您的具体仓储设计需求",
+            formMessagePlaceholder: "请描述您的仓库大小、屋顶梁高以及单个货位承载重物等...",
+            formNamePlaceholder: "例如：张经理",
+            formPhonePlaceholder: "例如：+62 811...",
+            submitInquiry: "发送询价请求至尊贵 VIP WhatsApp",
+            modalCapacity: "单层承重能力:",
+            modalFinishing: "表面处理涂层工艺:",
+            modalBestFor: "极力推荐适用场景:",
+            modalBtnAdd: "加入空间预算清单",
+            modalBtnClose: "关闭",
+            cartTitle: "您的 VVIP 尊享空间配置清单",
+            cartSubtitle: "核对您的定制价格预算明细与货架规格",
+            cartEmpty: "您的预算清单为空。",
+            cartBtnCheckout: "一键发送至微信/WhatsApp定制方案",
+            cartBtnReset: "清空重置",
+            adminPortal: "HIKAI 内部管理系统",
+            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储系统研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储环境绝对安全。",
+            
+            /* Dynamic interface strings for catalog elements */
+            lblConfig: "配置:",
+            lblMaxCap: "极限承重:",
+            btnDetail: "详情",
+            btnAddToCart: "加入空间预算清单",
+            lblLayerUnit: "层"
         }
     };
 
     let currentLang = 'id';
+</script>
+
+<script>
+    const productTranslations = {
+        "hikai-mdr-set": {
+            id: {
+                name: "Medium Duty Rack (Starter)",
+                description: "Sistem ambalan penyimpanan beban menengah dengan penyesuaian tinggi ambalan yang fleksibel. Menggunakan plat baja cold-rolled dengan interlocking presisi tinggi.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Set Starter (2 Upright Frames / Berdiri Mandiri)",
+                bestFor: "Penyimpanan sparepart otomotif kelas berat, arsip korporat tinggi, & logistik box skala menengah."
+            },
+            en: {
+                name: "Medium Duty Rack (Starter)",
+                description: "Medium-duty shelving system with flexible beam height adjustments. Features cold-rolled steel plates with high-precision interlocking structural design.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Starter Set (2 Upright Frames / Standalone)",
+                bestFor: "Heavy automotive spare parts storage, high-tier corporate archiving, and medium-scale box logistics."
+            },
+            zh: {
+                name: "中型储物货架 (主架-Starter)",
+                description: "中型层载存储货架系统，高度自由可调。采用高精度冷轧钢板与卡扣式锁紧连接结构，极为稳固。",
+                capacity: "350 - 500 公斤 / 层",
+                finishing: "尊贵静电粉末喷塑工艺 (防刮、耐磨、防锈)",
+                construction: "1套主架 (双侧立柱片 / 可独立站立式)",
+                bestFor: "重型汽车零部件存储、高端企业档案文件管理、以及中等规格纸箱物料立体仓储。"
+            }
+        },
+        "hikai-mdr-addon": {
+            id: {
+                name: "Medium Duty Rack (Add-On)",
+                description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
+                bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box."
+            },
+            en: {
+                name: "Medium Duty Rack (Add-On)",
+                description: "Highly cost-effective Add-On expansion unit. Uses only one upright frame and hitches directly to the previous Starter unit, saving up to 20% structural budget.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Add-On Set (1 Upright Frame / Attaches to Starter)",
+                bestFor: "Continuous row expansions for auto spare parts and boxed logistics."
+            },
+            zh: {
+                name: "中型储物货架 (副架-Add-On)",
+                description: "性价比极高的拓展副架单元。仅需配置单侧立柱片，直接卡接挂靠于前一台主架上，科学降低达 20% 的结构钢成本预算。",
+                capacity: "350 - 500 公斤 / 层",
+                finishing: "尊贵静电粉末喷塑工艺 (防刮、耐磨、防锈)",
+                construction: "1套副架 (单侧立柱片 / 挂靠连接于主架上)",
+                bestFor: "连续超长排货架延展组装，极大化提升零部件与箱装物资仓储密度."
+            }
+        },
+        "hikai-ldr-set": {
+            id: {
+                name: "Light Duty Rack (1 Set)",
+                description: "Solusi penyimpanan serbaguna yang ramping namun memiliki kekuatan luar biasa. Menggunakan pemasangan boltless (tanpa baut) untuk penataan layout super cepat.",
+                capacity: "150 - 200 Kg / Level",
+                finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
+                construction: "Independent Starter (4 Joint Pillars / Kokoh Fleksibel)",
+                bestFor: "Penyimpanan retail butik mewah, backroom perkantoran VVIP, arsip penting, obat-obatan, dan barang berukuran sedang."
+            },
+            en: {
+                name: "Light Duty Rack (1 Set)",
+                description: "Sleek yet incredibly strong multi-purpose storage solution. Utilizes a modern boltless connection design for super fast warehouse layout reconfiguration.",
+                capacity: "150 - 200 Kg / Level",
+                finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
+                construction: "Independent Starter (4 Joint Pillars / Robust & Flexible)",
+                bestFor: "Luxury retail display boutique, premium VVIP backrooms, critical document archiving, pharmaceuticals, and medium items."
+            },
+            zh: {
+                name: "轻型货架 (主架-1套)",
+                description: "兼顾纤薄外观与超群强度的全能型仓储系统。采用完全无螺栓 (Boltless) 插接设计，拆卸组装、自由组合极速完成。",
+                capacity: "150 - 200 公斤 / 层",
+                finishing: "高光防静电环保粉末喷涂 (防指纹工艺)",
+                construction: "独立主架 (4根连接立柱 / 稳固抗变形)",
+                bestFor: "奢侈品精品零售展示、VVIP行政办公室后备室、关键机密档案盒、高端医疗医药仓储。"
+            }
+        },
+        "hikai-asr-set": {
+            id: {
+                name: "Angle Shelf Rack (1 Set)",
+                description: "Sistem rak besi siku lubang legendaris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
+                capacity: "100 - 150 Kg / Level",
+                finishing: "Standard Industrial Powder Coating",
+                construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
+                bestFor: "Display toko retail kelontong, gudang sekunder rumah tangga, arsip ringan perkantoran."
+            },
+            en: {
+                name: "Angle Shelf Rack (1 Set)",
+                description: "The legendary slotted angle iron shelving system upgraded to HIKAI structural strength standards. Extremely flexible, economical, and stable for light-duty setups.",
+                capacity: "100 - 150 Kg / Level",
+                finishing: "Standard Industrial Powder Coating",
+                construction: "Slotted Angle Joint (Heavy Slotted Angle Iron)",
+                bestFor: "Grocery retail display shelves, domestic secondary home storage, and lightweight office files."
+            },
+            zh: {
+                name: "万能角钢货架 (1套)",
+                description: "升级 HIKAI 承托工艺的经典多功能角钢货架。超高经济性，自由穿孔调节层高，完美契合多元化轻量仓储场景。",
+                capacity: "100 - 150 公斤 / 层",
+                finishing: "高硬度工业静电粉末涂装",
+                construction: "插接万能角钢结构 (加厚重载角钢板)",
+                bestFor: "常规零售货架展示、别墅次卧与地下室收纳、办公室常规文档文件夹等轻型存放。"
+            }
+        },
+        "hikai-pr-2700": {
+            id: {
+                name: "Heavy Duty Pallet Rack (L2700)",
+                description: "Rak palet industri kelas berat bersertifikat standardisasi beban EN 15512. Dirancang khusus untuk penanganan kargo menggunakan forklift, memuat hingga 3 palet standar per baris tingkat.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "Penyimpanan palet logistik kontainer berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik."
+            },
+            en: {
+                name: "Heavy Duty Pallet Rack (L2700)",
+                description: "Heavy-duty industrial pallet racking certified under EN 15512 structural standard. Specifically built for high-altitude forklift access, supporting 3 standard pallets per tier.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "Heavy logistics container pallets, massive e-commerce distribution warehouses, and large industrial production plants."
+            },
+            zh: {
+                name: "重型托盘货架 (L2700)",
+                description: "通过欧洲 EN 15512 结构承重认证的重型托盘货架。专为叉车高位存取货载设计，每层跨度轻松容纳3个标准重载托盘物料位。",
+                capacity: "1000 - 2000 公斤 / 层 (每单元最大承载 6 吨)",
+                finishing: "重载耐冲击环氧树脂粉末涂装",
+                construction: "膨胀螺栓地面锚固立柱 + 加厚安全横梁支撑",
+                bestFor: "集装箱重型托盘货载存放、大型跨境 e-commerce 智能仓储配运中心、大型制造加工车间。"
+            }
+        },
+        "hikai-pr-2500": {
+            id: {
+                name: "Heavy Duty Pallet Rack (L2500)",
+                description: "Varian kompak dari sistem heavy-duty HIKAI dengan bentang bersih 2.5 meter. Sempurna untuk menyelaraskan baris penyimpanan palet ganda dengan presisi tinggi pada area terbatas.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "Pergudangan berkapasitas tinggi dengan optimasi lebar kolom yang presisi untuk efisiensi ruang maksimum."
+            },
+            en: {
+                name: "Heavy Duty Pallet Rack (L2500)",
+                description: "Compact variant of the HIKAI heavy-duty system with 2.5-meter clearance. Perfect for tight spatial conditions requiring high-precision double pallet row alignments.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "High-capacity warehouses with precise operational aisle optimization to ensure absolute maximum storage density."
+            },
+            zh: {
+                name: "重型托盘货架 (L2500)",
+                description: "紧凑版重载托盘存放方案 (2.5米净宽度)。专为库容边界死角设计，在有限的转弯半径下提供极佳高安全性存取效能。",
+                capacity: "1000 - 2000 公斤 / 层 (每单元最大承载 6 吨)",
+                finishing: "重载耐冲击环氧树脂粉末涂装",
+                construction: "膨胀螺栓地面锚固立柱 + 加厚安全横梁支撑",
+                bestFor: "密集型堆垛厂房、极窄通道货车及剪叉高位叉车配合运行、全空间密闭保温库。"
+            }
+        }
+    };
+
+    function getProductTranslation(p, field) {
+        const trans = productTranslations[p.id];
+        if (trans && trans[currentLang] && trans[currentLang][field]) {
+            return trans[currentLang][field];
+        }
+        return p[field] || '';
+    }
 
     function setLanguage(lang) {
         currentLang = lang;
         document.querySelectorAll('[data-trans]').forEach(el => {
             const key = el.getAttribute('data-trans');
             if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];
+                el.innerHTML = translations[lang][key];
             }
         });
         
+        // Translate placeholders dynamically
+        const placeholders = {
+            'form-name': 'formNamePlaceholder',
+            'form-phone': 'formPhonePlaceholder',
+            'form-message': 'formMessagePlaceholder'
+        };
+        for (const [id, key] of Object.entries(placeholders)) {
+            const input = document.getElementById(id);
+            if (input && translations[lang] && translations[lang][key]) {
+                input.placeholder = translations[lang][key];
+            }
+        }
+        
         document.querySelectorAll('.lang-btn').forEach(btn => {
             if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('text-gold-champagne', 'border-b-2', 'border-gold-champagne');
-                btn.classList.remove('text-gray-500');
+                btn.className = "lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono";
             } else {
-                btn.classList.remove('text-gold-champagne', 'border-b-2', 'border-gold-champagne');
-                btn.classList.add('text-gray-500');
+                btn.className = "lang-btn px-1.5 py-0.5 text-gray-500 hover:text-white transition font-mono";
             }
         });
+        
         renderCatalog();
         updateComparisonTable();
         updateCalculations();
     }
 </script>
 
-<!-- Top Premium Info Bar -->
 <div class="bg-black border-b border-obsidian-accent py-2.5 px-4 md:px-8 text-[11px] flex justify-between items-center text-gray-400">
     <div class="flex items-center gap-6">
         <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" id="global-hotline-link" class="hover:text-white font-mono transition">08995719102</a></span>
@@ -208,7 +588,7 @@
     </div>
     <div class="flex items-center gap-4">
         <div class="flex gap-2 font-bold text-[10px] tracking-wider">
-            <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne transition font-mono" data-lang="id">ID</button>
+            <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono" data-lang="id">ID</button>
             <span>|</span>
             <button onclick="setLanguage('en')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition font-mono" data-lang="en">EN</button>
             <span>|</span>
@@ -250,7 +630,6 @@
     </div>
 </header>
 
-<!-- Mobile Navigation Drawer -->
 <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-500 ease-out pointer-events-none">
     <div id="mobile-menu-backdrop" onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500"></div>
     <div class="absolute right-0 top-0 h-full w-[280px] sm:w-[320px] bg-[#060608] border-l border-obsidian-accent p-6 flex flex-col justify-between pointer-events-auto shadow-2xl">
@@ -301,7 +680,6 @@
 </div>
 
 <main class="flex-grow">
-    <!-- Hero Showcase Section -->
     <section class="relative overflow-hidden pt-20 pb-32 border-b border-[#1b1b1d] blueprint-pattern">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.06),transparent_50%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -312,7 +690,7 @@
                     </div>
                     <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-none">
                         <span data-trans="heroTitle">Sistem Rak Industri</span> <br />
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne via-gold-light to-[#AA7C11] font-serif" data-trans="heroSubtitle">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne via-gold-light to-[#AA7C11]" data-trans="heroSubtitle">
                             PT. Hikai Storage Equipment
                         </span>
                     </h1>
@@ -344,28 +722,27 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-24 border-b border-obsidian-accent bg-black relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.03),transparent_50%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-6">
-                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">SIAPA KAMI</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="aboutBadge">SIAPA KAMI</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight" data-trans="aboutTitle">
                         Dedikasi Presisi Tinggi & <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne to-gold-hover">Rekayasa Tata Ruang Premium</span>
+                        Rekayasa Tata Ruang Premium
                     </h2>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">
+                    <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="aboutDesc">
                         PT. Hikai Storage Equipment berdiri sebagai pionir dalam industri manufaktur dan perancangan sistem rak baja penyimpanan industri berat (heavy-duty) dan menengah (medium-duty) di Indonesia. Kami memadukan kekuatan baja premium Cold-Rolled dengan perhitungan presisi matematis untuk melipatgandakan kapasitas penyimpanan gudang Anda tanpa mengorbankan keselamatan kerja.
                     </p>
                     <div class="grid grid-cols-2 gap-6 pt-4">
                         <div class="border-l-2 border-gold-champagne pl-4">
                             <h4 class="text-2xl font-bold text-white font-mono">100%</h4>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Standarisasi EN 15512</p>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1" data-trans="aboutStat1">Standarisasi EN 15512</p>
                         </div>
                         <div class="border-l-2 border-gold-champagne pl-4">
                             <h4 class="text-2xl font-bold text-white font-mono">20%+</h4>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Efisiensi Biaya Struktur</p>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1" data-trans="aboutStat2">Efisiensi Biaya Struktur</p>
                         </div>
                     </div>
                 </div>
@@ -377,7 +754,6 @@
         </div>
     </section>
 
-    <!-- Catalog Section -->
     <section id="products" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div class="space-y-2">
@@ -387,19 +763,19 @@
             </div>
 
             <div class="flex flex-wrap gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5">
-                <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black">
+                <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black" data-trans="filterAll">
                     Semua Kelas
                 </button>
-                <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
+                <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterAngle">
                     Angle Shelf
                 </button>
-                <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
+                <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterLight">
                     Light Duty
                 </button>
-                <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
+                <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterMedium">
                     Medium Duty
                 </button>
-                <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white">
+                <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterPallet">
                     Pallet Rack
                 </button>
             </div>
@@ -408,7 +784,6 @@
         <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </section>
 
-    <!-- Structural Rules / Starter Addon Education Section -->
     <section id="education" class="py-24 bg-obsidian-deep border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 space-y-6">
@@ -417,13 +792,13 @@
                 <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="eduDesc">
                     Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan **1 Unit Starter** sebagai fondasi utama di ujung baris, lalu sambungkan unit **Add-On** bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!</p>
                 <div class="p-4 bg-obsidian-card border border-white/5 rounded-xl text-xs text-gray-400 space-y-2.5">
-                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong>Starter:</strong> 2 Tiang Samping (Mandiri)</p>
-                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong>Add-On:</strong> 1 Tiang Samping (Menempel ke Starter)</p>
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong data-trans="eduStarter">Starter: 2 Tiang Samping (Mandiri)</strong></p>
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong data-trans="eduAddOn">Add-On: 1 Tiang Samping (Menempel ke Starter)</strong></p>
                 </div>
             </div>
 
             <div class="lg:col-span-7 bg-obsidian-card border border-white/5 p-6 rounded-2xl">
-                <h3 class="text-white font-bold text-sm mb-4">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
+                <h3 class="text-white font-bold text-sm mb-4" data-trans="eduSchema">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
                 <svg viewBox="0 0 320 160" class="w-full h-auto rounded-lg bg-black/40 border border-[#1b1b1d]">
                     <rect width="100%" height="100%" fill="#070709" />
                     <line x1="10" y1="135" x2="310" y2="135" stroke="#333" stroke-width="2" />
@@ -442,22 +817,21 @@
                     
                     <text x="85" y="20" fill="#D4AF37" font-size="7" font-weight="bold" text-anchor="middle">1x STARTER UNIT</text>
                     <text x="215" y="20" fill="#22c55e" font-size="7" font-weight="bold" text-anchor="middle">1x ADD-ON UNIT</text>
-                    <text x="150" y="150" fill="#eab308" font-size="7" font-weight="bold" text-anchor="middle">TIANG GABUNGAN (SHARED FRAME)</text>
+                    <text x="150" y="150" fill="#eab308" font-size="7" font-weight="bold" text-anchor="middle" data-trans="eduSharedFrame">TIANG GABUNGAN (SHARED FRAME)</text>
                 </svg>
             </div>
         </div>
     </section>
 
-    <!-- Technical Specs Comparison Section -->
     <section id="comparison" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
-            <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">SPESIFIKASI TEKNIS</span>
+            <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="compareTitle">Bandingkan Spek Teknis</span>
             <h2 class="text-3xl font-extrabold text-white" data-trans="compareTitle">Bandingkan Spek Teknis</h2>
             <p class="text-gray-400 text-sm font-light" data-trans="compareDesc">Tambahkan rak ke pembanding pada kartu katalog untuk diulas berdampingan di sini.</p>
         </div>
 
         <div id="comparison-placeholder" class="text-center py-16 bg-[#0e0e11] rounded-2xl border border-dashed border-[#333] max-w-xl mx-auto">
-            <p class="text-gray-400 text-sm">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
+            <p class="text-gray-400 text-sm" data-trans="compareEmpty">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
         </div>
 
         <div id="comparison-table-wrapper" class="hidden bg-obsidian-card border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
@@ -465,7 +839,7 @@
                 <table class="w-full text-left text-xs border-collapse">
                     <thead>
                         <tr id="comp-header-row" class="bg-black border-b border-white/5">
-                            <th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">Parameter</th>
+                            <th class="p-6 font-bold uppercase tracking-widest text-gold-champagne" data-trans="compareParam">Parameter</th>
                         </tr>
                     </thead>
                     <tbody id="comp-body" class="divide-y divide-white/5"></tbody>
@@ -474,7 +848,6 @@
         </div>
     </section>
 
-    <!-- Warehouse Planner & Cost Calculator Section -->
     <section id="calculator" class="py-24 bg-obsidian-deep border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div class="lg:col-span-5 space-y-6">
@@ -482,7 +855,7 @@
                     <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="simBadge">Simulator Tata Letak</span>
                     <h2 class="text-3xl font-extrabold text-white mt-1" data-trans="simTitle">Atur Layout & Hitung Biaya</h2>
                     <p class="text-gray-400 text-sm mt-2 font-light" data-trans="simDesc">
-                        Simulasi interaktif bawaan diatur untuk gudang standar Anda berdimensi **10x5 Meter**. Tambahkan rak dan sesuaikan lebar gang kerja.
+                        Simulasi interaktif bawaan diatur untuk gudang standar Anda. Tambahkan rak dan sesuaikan lebar gang kerja.
                     </p>
                 </div>
 
@@ -492,11 +865,11 @@
                     </h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Panjang Ruangan (M)</label>
+                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="roomLength">Panjang Ruangan (M)</label>
                             <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Lebar Ruangan (M)</label>
+                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="roomWidth">Lebar Ruangan (M)</label>
                             <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
                         </div>
                     </div>
@@ -504,15 +877,15 @@
                         <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="aisleLabel">Lebar Gang Kerja / Aisle (M)</label>
                         <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne">
                         <div class="flex justify-between text-[10px] text-gray-500 mt-1">
-                            <span>Sirkulasi Manual (0.8m)</span>
+                            <span data-trans="calcAisleManual">Sirkulasi Manual (0.8m)</span>
                             <span class="text-gold-champagne font-bold" id="label-aisle-value">1.5m</span>
-                            <span>Alat Berat/Forklift (4m)</span>
+                            <span data-trans="calcAisleFork">Alat Berat/Forklift (4m)</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-obsidian-card border border-white/5 p-6 rounded-2xl space-y-4">
-                    <h3 class="text-white font-bold text-sm">Tambahkan Unit Rak ke Denah:</h3>
+                    <h3 class="text-white font-bold text-sm" data-trans="calcAddTitle">Tambahkan Unit Rak ke Denah:</h3>
                     <div id="simulator-selection-list" class="space-y-2"></div>
                 </div>
             </div>
@@ -525,8 +898,8 @@
                             <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">PLANNING BOARD</span>
                         </div>
                         <div class="flex bg-black/60 rounded-lg p-1 border border-white/5 text-xs">
-                            <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black">Draf Nota</button>
-                            <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white">Denah 2D</button>
+                            <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black" data-trans="tabQuote">Draf Nota</button>
+                            <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white" data-trans="tabFloorplan">Denah 2D</button>
                             <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
                         </div>
                     </div>
@@ -536,27 +909,26 @@
         </div>
     </section>
 
-    <!-- Consultation & WhatsApp Inquiry Form Section -->
     <section id="contact" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 space-y-6">
-                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">Kunjungan Survei</span>
-                <h2 class="text-3xl font-extrabold text-white">Hubungi Tim Teknik HIKAI</h2>
-                <p class="text-gray-400 text-sm leading-relaxed font-light">
+                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="contactBadge">Kunjungan Survei</span>
+                <h2 class="text-3xl font-extrabold text-white" data-trans="contactTitle">Hubungi Tim Teknik HIKAI</h2>
+                <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="contactDesc">
                     Kami siap melayani kebutuhan Anda, mulai dari konsultasi gambar AutoCAD 2D/3D gratis hingga perencanaan beban tonase besar. Kunjungi kantor pemasaran kami untuk berkonsultasi langsung.
                 </p>
                 <div class="space-y-4 pt-4 border-t border-white/5 text-xs text-gray-400">
                     <div class="flex gap-3">
                         <i class="fa-solid fa-map-pin text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                         <div>
-                            <h4 class="text-white font-bold">Marketing & Sales Office:</h4>
+                            <h4 class="text-white font-bold" data-trans="contactOffice">Marketing & Sales Office:</h4>
                             <p class="mt-1" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
                         <i class="fa-solid fa-envelope text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                         <div>
-                            <h4 class="text-white font-bold">Layanan Dukungan Email:</h4>
+                            <h4 class="text-white font-bold" data-trans="contactEmail">Layanan Dukungan Email:</h4>
                             <p class="mt-1" id="global-form-email">info@hikairack.com</p>
                         </div>
                     </div>
@@ -569,20 +941,20 @@
                     <form onsubmit="handleInquirySubmit(event)" class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5">Nama Lengkap *</label>
+                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5" data-trans="formName">Nama Lengkap *</label>
                                 <input type="text" id="form-name" placeholder="Contoh: Budi Santoso" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne">
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5">Nomor WhatsApp *</label>
+                                <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5" data-trans="formPhone">Nomor WhatsApp *</label>
                                 <input type="tel" id="form-phone" placeholder="Contoh: 0811223344" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5">Nama Perusahaan (Opsional)</label>
+                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5" data-trans="formCompany">Nama Perusahaan (Opsional)</label>
                             <input type="text" id="form-company" placeholder="Contoh: PT Sukses Sentosa" class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne">
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5">Kebutuhan Detail Anda</label>
+                            <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5" data-trans="formMessage">Kebutuhan Detail Anda</label>
                             <textarea id="form-message" rows="4" placeholder="Deskripsikan gudang Anda, tinggi atap, serta muatan barang..." class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne resize-none"></textarea>
                         </div>
                         <button type="submit" id="form-submit-btn" class="w-full py-4 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest hover:scale-[1.01] transition shadow-luxury-glow" data-trans="submitInquiry">
@@ -595,7 +967,6 @@
     </section>
 </main>
 
-<!-- Superadmin Protected Command Suite -->
 <section id="admin" class="py-24 bg-obsidian-deep border-t border-white/5 hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="text-center max-w-xl mx-auto space-y-2">
@@ -604,29 +975,35 @@
             <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
         </div>
 
-        <!-- Login Authenticator Panel -->
+        <!-- Login Authenticator Panel with Beautiful Icon -->
         <div id="admin-login" class="max-w-md mx-auto bg-obsidian-card border border-white/5 p-8 rounded-2xl shadow-xl space-y-4 text-center">
-            <input type="password" id="admin-password-input" placeholder="Masukkan sandi otentikasi VVIP..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne">
+            <div class="w-16 h-16 bg-gold-champagne/10 rounded-full flex items-center justify-center mx-auto text-gold-champagne border border-gold-champagne/20 mb-2">
+                <i class="fa-solid fa-lock text-xl animate-pulse"></i>
+            </div>
+            <input type="password" id="admin-password-input" placeholder="Masukkan sandi otentikasi VVIP..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne font-mono">
             <button onclick="handleAdminLogin()" class="w-full py-3 bg-[#111] hover:bg-gold-champagne hover:text-black text-gold-champagne font-bold text-xs uppercase rounded-lg transition border border-gold-champagne/40">
                 Otentikasi Sandi
             </button>
         </div>
 
-        <!-- Main Superadmin Control Board -->
+        <!-- Main Superadmin Control Board (Responsive Wrapper) -->
         <div id="admin-board" class="hidden space-y-6">
-            <div class="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-4">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-white/5 pb-4">
                 <div class="flex items-center gap-3">
-                    <span id="db-status-badge" class="p-2 bg-red-950/20 border border-red-500/30 text-red-400 text-xs font-bold rounded">DB DISCONNECTED</span>
+                    <span id="db-status-badge" class="p-2 bg-red-950/20 border border-red-500/30 text-red-400 text-xs font-bold rounded font-mono">DB DISCONNECTED</span>
                     <h4 class="text-white font-bold text-lg">HIKAI Command Center</h4>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex gap-1">
-                        <button onclick="switchAdminTab('stats')" id="admin-btn-stats" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black"><i class="fa-solid fa-chart-line mr-1.5"></i> Ringkasan</button>
-                        <button onclick="switchAdminTab('catalog')" id="admin-btn-catalog" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-boxes-stacked mr-1.5"></i> Katalog Rak</button>
-                        <button onclick="switchAdminTab('crm')" id="admin-btn-crm" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-id-card mr-1.5"></i> Inquiries Inbox</button>
-                        <button onclick="switchAdminTab('settings')" id="admin-btn-settings" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-gears mr-1.5"></i> Pengaturan</button>
+                <!-- Fully-responsive horizontal-swipe scrollable menu bar for HP devices -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+                    <div class="overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none">
+                        <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex gap-1 min-w-max">
+                            <button onclick="switchAdminTab('stats')" id="admin-btn-stats" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black"><i class="fa-solid fa-chart-line mr-1.5"></i> Ringkasan</button>
+                            <button onclick="switchAdminTab('catalog')" id="admin-btn-catalog" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-boxes-stacked mr-1.5"></i> Katalog Rak</button>
+                            <button onclick="switchAdminTab('crm')" id="admin-btn-crm" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-id-card mr-1.5"></i> Inquiries Inbox</button>
+                            <button onclick="switchAdminTab('settings')" id="admin-btn-settings" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-gears mr-1.5"></i> Pengaturan</button>
+                        </div>
                     </div>
-                    <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-950/20 border border-red-500/30 text-red-500 rounded-lg text-xs font-bold transition hover:bg-red-500 hover:text-black">Logout</button>
+                    <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-950/20 border border-red-500/30 text-red-500 rounded-lg text-xs font-bold transition hover:bg-red-500 hover:text-black text-center whitespace-nowrap">Logout</button>
                 </div>
             </div>
 
@@ -657,7 +1034,7 @@
                     <h4 class="text-white font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
                     <div class="flex flex-wrap gap-3">
                         <button onclick="confirmInitializeDefault()" class="px-5 py-3 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-xs uppercase rounded-xl transition">
-                            <i class="fa-solid fa-arrows-rotate mr-2"></i> Reset & Kirim DEFAULT_PRODUCT_DATA ke Database Cloud
+                            <i class="fa-solid fa-arrows-rotate mr-2"></i> Reset ke Produk Bawaan Pabrik
                         </button>
                         <button onclick="fetchProductsFromSpreadsheet()" class="px-5 py-3 bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs uppercase rounded-xl transition">
                             <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Muat Ulang Data Dari Cloud Sheets
@@ -666,17 +1043,17 @@
                 </div>
             </div>
 
-            <!-- Products CRUD Subpanel -->
-            <div id="admin-panel-catalog" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h4 class="text-white font-bold text-base">Manajemen Katalog Produk</h4>
-                    </div>
-                    <button onclick="openProductEditForm(null)" class="px-4 py-2 bg-gold-champagne text-black font-extrabold text-xs uppercase rounded-lg hover:bg-gold-hover transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-plus text-xs"></i> Tambah Rack Baru
+            <!-- Products CRUD Subpanel (Responsive Dual View) -->
+            <div id="admin-panel-catalog" class="admin-panel-content hidden space-y-4">
+                <div class="flex justify-between items-center bg-obsidian-card p-4 rounded-xl border border-white/5">
+                    <h4 class="text-white font-bold text-base">Manajemen Katalog Produk</h4>
+                    <button onclick="openProductEditForm(null)" class="px-4 py-2.5 bg-gold-champagne text-black font-extrabold text-xs uppercase rounded-lg hover:bg-gold-hover transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus text-xs"></i> Tambah Rack
                     </button>
                 </div>
-                <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
+                
+                <!-- Desktop Table Mode -->
+                <div class="hidden md:block overflow-x-auto text-xs font-mono rounded-xl border border-white/5 bg-obsidian-card">
                     <table class="w-full text-left border-collapse">
                         <thead class="bg-black text-gray-500 border-b border-white/5">
                             <tr>
@@ -690,14 +1067,19 @@
                         <tbody id="admin-product-rows" class="divide-y divide-white/5 text-gray-300"></tbody>
                     </table>
                 </div>
+
+                <!-- Mobile Responsive Cards Mode (Stunning design for HP screen dimensions) -->
+                <div id="admin-product-cards" class="block md:hidden space-y-3"></div>
             </div>
 
-            <!-- Inquiries CRM Inbox Subpanel -->
-            <div id="admin-panel-crm" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                <div>
+            <!-- Inquiries CRM Inbox Subpanel (Responsive Dual View) -->
+            <div id="admin-panel-crm" class="admin-panel-content hidden space-y-4">
+                <div class="bg-obsidian-card p-4 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-base"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
                 </div>
-                <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
+                
+                <!-- Desktop Table Mode -->
+                <div class="hidden md:block overflow-x-auto text-xs font-mono rounded-xl border border-white/5 bg-obsidian-card">
                     <table class="w-full text-left border-collapse">
                         <thead class="bg-black text-gray-500 border-b border-white/5">
                             <tr>
@@ -712,6 +1094,9 @@
                         <tbody id="admin-inquiry-rows" class="divide-y divide-white/5 text-gray-400"></tbody>
                     </table>
                 </div>
+
+                <!-- Mobile Responsive Cards Mode (Stunning design for HP screen dimensions) -->
+                <div id="admin-inquiry-cards" class="block md:hidden space-y-3"></div>
             </div>
 
             <!-- Admin Settings Subpanel -->
@@ -748,7 +1133,6 @@
     </div>
 </section>
 
-<!-- Luxury Elegant Footer Section -->
 <footer class="bg-[#060608] border-t border-white/5 py-16 text-gray-500 text-xs text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -757,7 +1141,7 @@
                     <span class="text-black font-extrabold text-base font-serif">H</span>
                 </div>
                 <div>
-                    <span class="text-base font-bold tracking-widest text-[#D4AF37] block">HIKAI</span>
+                    <span class="text-base font-bold tracking-widest text-[#D4AF37] block">PT. HIKAI STORAGE EQUIPMENT</span>
                     <span class="text-[8px] tracking-widest text-gray-400 uppercase block -mt-1">PT. HIKAI STORAGE EQUIPMENT</span>
                 </div>
             </div>
@@ -807,24 +1191,24 @@
             <div id="modal-product-svg"></div>
             <div class="space-y-4 text-xs">
                 <div>
-                    <strong class="text-gray-400 block">Kapasitas Muatan:</strong>
+                    <strong class="text-gray-400 block" data-trans="modalCapacity">Kapasitas Muatan:</strong>
                     <span id="modal-product-cap" class="text-gold-champagne font-bold text-sm">350 - 500 Kg / Level</span>
                 </div>
                 <div>
-                    <strong class="text-gray-400 block">Proteksi Lapisan Finishing:</strong>
-                    <span id="modal-product-finishing" class="text-gray-300">Powder Coating (Anti-Scratch)</span>
+                    <strong class="text-gray-400 block" data-trans="modalFinishing">Proteksi Lapisan Finishing:</strong>
+                    <span id="modal-product-finishing" class="text-gray-300 font-semibold">Powder Coating (Anti-Scratch)</span>
                 </div>
                 <div>
-                    <strong class="text-gray-400 block">Rekomendasi Terbaik:</strong>
+                    <strong class="text-gray-400 block" data-trans="modalBestFor">Rekomendasi Terbaik:</strong>
                     <span id="modal-product-best" class="text-gray-300 leading-relaxed block mt-1">Penyimpanan sparepart otomotif.</span>
                 </div>
             </div>
         </div>
         <div class="flex gap-3 pt-2">
-            <button id="modal-add-to-cart-btn" class="flex-1 py-3 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
+            <button id="modal-add-to-cart-btn" class="flex-1 py-3 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition" data-trans="modalBtnAdd">
                 Tambahkan Ke Draf Estimasi
             </button>
-            <button onclick="closeProductModal()" class="py-3 px-6 bg-obsidian-card border border-white/5 text-gray-300 rounded-lg text-xs transition">Tutup</button>
+            <button onclick="closeProductModal()" class="py-3 px-6 bg-obsidian-card border border-white/5 text-gray-300 rounded-lg text-xs transition" data-trans="modalBtnClose">Tutup</button>
         </div>
     </div>
 </div>
@@ -834,19 +1218,19 @@
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow">
         <button onclick="closeCartModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
         <div class="border-b border-white/5 pb-4">
-            <h3 class="text-xl font-bold text-white uppercase tracking-widest"><i class="fa-solid fa-shopping-cart text-gold-champagne mr-2"></i> Draf Penawaran VVIP Anda</h3>
-            <p class="text-[10px] text-gray-500 font-mono mt-1">REVIEW DAFTAR ESTIMASI HARGA & SPESIFIKASI</p>
+            <h3 class="text-xl font-bold text-white uppercase tracking-widest" data-trans="cartTitle"><i class="fa-solid fa-shopping-cart text-gold-champagne mr-2"></i> Draf Penawaran VVIP Anda</h3>
+            <p class="text-[10px] text-gray-500 font-mono mt-1" data-trans="cartSubtitle">REVIEW DAFTAR ESTIMASI HARGA & SPESIFIKASI</p>
         </div>
         <div id="cart-items-wrapper" class="divide-y divide-white/5 max-h-60 overflow-y-auto"></div>
         <div class="border-t border-white/5 pt-4 flex justify-between items-center">
-            <span class="text-xs text-gray-400">Total Est. Investasi Awal:</span>
-            <span id="cart-total-value" class="text-xl font-bold text-gold-champagne">Rp 0</span>
+            <span class="text-xs text-gray-400" data-trans="calcTotalEst">Total Est. Investasi Awal:</span>
+            <span id="cart-total-value" class="text-xl font-bold text-gold-champagne font-mono">Rp 0</span>
         </div>
         <div class="flex gap-3 pt-2">
-            <button onclick="checkoutViaWhatsApp()" class="flex-1 py-3.5 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition flex items-center justify-center gap-2">
+            <button onclick="checkoutViaWhatsApp()" class="flex-1 py-3.5 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition flex items-center justify-center gap-2" data-trans="cartBtnCheckout">
                 <i class="fa-brands fa-whatsapp text-sm"></i> Ajukan Penawaran WhatsApp
             </button>
-            <button onclick="clearCart()" class="py-3.5 px-6 bg-red-950/20 hover:bg-red-900/40 border border-red-800/30 text-red-400 rounded-lg text-xs font-semibold">Reset</button>
+            <button onclick="clearCart()" class="py-3.5 px-6 bg-red-950/20 hover:bg-red-900/40 border border-red-800/30 text-red-400 rounded-lg text-xs font-semibold" data-trans="cartBtnReset">Reset</button>
         </div>
     </div>
 </div>
@@ -962,6 +1346,7 @@
         </div>
     </div>
 </div>
+
 <script>
     const DEFAULT_PRODUCT_DATA = [
         {
@@ -1245,7 +1630,6 @@
         }
     }
 
-    // Modern VVIP Toast System with Smooth Progress Bar Timer
     let toastTimeout = null;
     function showToast(message, isSuccess = true) {
         const toast = document.getElementById('toast-notification');
@@ -1269,7 +1653,6 @@
         toast.classList.remove('hidden');
         progress.style.width = '100%';
         
-        // Start countdown animation
         setTimeout(() => {
             progress.style.width = '0%';
         }, 10);
@@ -1311,7 +1694,8 @@
             cart.push({ ...product, qty: 1 });
         }
         saveCart();
-        showToast(`${product.name} dimasukkan ke draf belanja Anda.`);
+        const translatedName = getProductTranslation(product, 'name');
+        showToast(`${translatedName} dimasukkan ke draf belanja Anda.`);
         renderCatalog();
         updateCalculations();
         updateCartCounter();
@@ -1362,16 +1746,17 @@
         const product = products.find(p => p.id === productId);
         if (!product) return;
         const existsIdx = comparisonList.findIndex(p => p.id === productId);
+        const translatedName = getProductTranslation(product, 'name');
         if (existsIdx !== -1) {
             comparisonList.splice(existsIdx, 1);
-            showToast(`${product.name} dilepas dari matriks perbandingan.`);
+            showToast(`${translatedName} dilepas dari matriks perbandingan.`);
         } else {
             if (comparisonList.length >= 3) {
                 showToast("Batas maksimal pembandingan adalah 3 tipe rak.", false);
                 return;
             }
             comparisonList.push(product);
-            showToast(`${product.name} siap dibandingkan berdampingan.`);
+            showToast(`${translatedName} siap dibandingkan berdampingan.`);
         }
         updateComparisonTable();
         renderCatalog();
@@ -1391,12 +1776,14 @@
 
         placeholder.classList.add('hidden');
         tableWrapper.classList.remove('hidden');
-        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">Parameter</th>`;
+        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">${translations[currentLang]?.compareParam || 'Parameter'}</th>`;
+        
         comparisonList.forEach(p => {
+            const translatedName = getProductTranslation(p, 'name');
             headerRow.innerHTML += `
                 <th class="p-6">
                     <div class="flex justify-between items-center">
-                      <span class="font-bold text-white block">${p.name}</span>
+                      <span class="font-bold text-white block">${translatedName}</span>
                       <button onclick="toggleComparison('${p.id}')" class="text-red-500 hover:text-red-400 ml-4"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </th>
@@ -1404,11 +1791,11 @@
         });
 
         const parameters = [
-            { key: 'layers', label: 'Konfigurasi Layer', format: val => `${val} Layer` },
-            { key: 'capacity', label: 'Kapasitas Maksimal', format: val => val },
-            { key: 'dims', label: 'Dimensi Presisi', format: (val, p) => `${p.h}x${p.d}x${p.l} mm` },
-            { key: 'construction', label: 'Jenis Konstruksi', format: val => val },
-            { key: 'finishing', label: 'Finishing Lapisan', format: val => val }
+            { key: 'layers', label: translations[currentLang]?.compareLayers || 'Konfigurasi Layer', format: (val, p) => `${val} ${translations[currentLang]?.lblLayerUnit || 'Layer'}` },
+            { key: 'capacity', label: translations[currentLang]?.compareCapacity || 'Kapasitas Maksimal', format: (val, p) => getProductTranslation(p, 'capacity') },
+            { key: 'dims', label: translations[currentLang]?.compareDims || 'Dimensi Presisi', format: (val, p) => `${p.h}x${p.d}x${p.l} mm` },
+            { key: 'construction', label: translations[currentLang]?.compareConst || 'Jenis Konstruksi', format: (val, p) => getProductTranslation(p, 'construction') },
+            { key: 'finishing', label: translations[currentLang]?.compareFinishing || 'Finishing Lapisan', format: (val, p) => getProductTranslation(p, 'finishing') }
         ];
 
         body.innerHTML = '';
@@ -1425,7 +1812,6 @@
 </script>
 
 <script>
-    // Smooth multi-image controller inside catalog card
     function navigateCardImage(id, step, e) {
         if (e) e.stopPropagation();
         const p = products.find(item => item.id === id);
@@ -1450,7 +1836,6 @@
             imgEl.src = parsedImages[currentIndex];
         }
 
-        // Update dots UI if exist
         const dotContainer = document.getElementById(`img-dots-${id}`);
         if (dotContainer) {
             const dots = dotContainer.children;
@@ -1479,10 +1864,23 @@
             return;
         }
 
+        /* Multilingual element strings mapping */
+        const lblConfig = translations[currentLang]?.lblConfig || 'Konfigurasi:';
+        const lblMaxCap = translations[currentLang]?.lblMaxCap || 'Kapasitas Maks:';
+        const btnDetail = translations[currentLang]?.btnDetail || 'Detail';
+        const btnAddToCart = translations[currentLang]?.btnAddToCart || 'Tambah Ke Draf';
+        const lblLayerUnit = translations[currentLang]?.lblLayerUnit || 'Layer';
+
         filtered.forEach(p => {
             const view = productViewMode[p.id] || 'photo';
             const isInCart = cart.find(item => item.id === p.id);
             const isInComparison = comparisonList.find(item => item.id === p.id);
+
+            // Fetch dynamic translations of name, description, and specs
+            const translatedName = getProductTranslation(p, 'name');
+            const translatedDesc = getProductTranslation(p, 'description');
+            const translatedType = getProductTranslation(p, 'type');
+            const translatedCapacity = getProductTranslation(p, 'capacity');
 
             let parsedImages = [];
             if (Array.isArray(p.images)) {
@@ -1506,7 +1904,7 @@
 
                 mediaSection = `
                     <div class="relative h-48 w-full rounded-xl overflow-hidden group">
-                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${p.name}" class="w-full h-full object-cover select-none" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
+                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${translatedName}" class="w-full h-full object-cover select-none" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
                         ${showNavButtons ? `
                             <button onclick="navigateCardImage('${p.id}', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 hover:border-gold-champagne transition duration-300">
                                 <i class="fa-solid fa-chevron-left text-[10px]"></i>
@@ -1540,29 +1938,29 @@
                     <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-bold text-gold-champagne uppercase">${p.type}</span>
+                                <span class="text-[10px] font-bold text-gold-champagne uppercase">${translatedType}</span>
                                 <span class="text-xs font-mono text-gray-500">${p.code}</span>
                             </div>
-                            <h3 class="text-lg font-bold text-white">${p.name}</h3>
-                            <p class="text-gray-400 text-xs line-clamp-2 leading-relaxed font-light">${p.description}</p>
+                            <h3 class="text-lg font-bold text-white">${translatedName}</h3>
+                            <p class="text-gray-400 text-xs line-clamp-2 leading-relaxed font-light">${translatedDesc}</p>
                         </div>
                         <div class="bg-[#121215] p-3 rounded-lg text-xs space-y-1.5 font-mono">
                             <div class="flex justify-between">
-                                <span class="text-gray-500">Konfigurasi:</span>
-                                <span class="font-semibold text-gray-200">${p.layers} Layer</span>
+                                <span class="text-gray-500">${lblConfig}</span>
+                                <span class="font-semibold text-gray-200">${p.layers} ${lblLayerUnit}</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-500">Kapasitas Maks:</span>
-                                <span class="font-semibold text-gray-200">${p.capacity}</span>
+                                <span class="text-gray-500">${lblMaxCap}</span>
+                                <span class="font-semibold text-gray-200">${translatedCapacity}</span>
                             </div>
                         </div>
                         <div class="space-y-2">
                             <div class="flex gap-2">
-                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-2.5 bg-[#121214] border border-[#2a2a2e] rounded-lg text-xs text-gray-300 font-semibold transition hover:border-gold-champagne"><i class="fa-solid fa-expand mr-1 text-[10px]"></i> Detail</button>
+                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-2.5 bg-[#121214] border border-[#2a2a2e] rounded-lg text-xs text-gray-300 font-semibold transition hover:border-gold-champagne"><i class="fa-solid fa-expand mr-1 text-[10px]"></i> ${btnDetail}</button>
                                 <button onclick="toggleComparison('${p.id}')" class="p-2.5 rounded-lg border transition ${comparisonClass}"><i class="fa-solid fa-sliders text-xs"></i></button>
                             </div>
                             <button onclick="addToCart('${p.id}')" class="w-full py-3 bg-gradient-to-r from-gold-champagne/10 to-[#AA7C11]/20 border border-gold-champagne/50 text-gold-champagne hover:from-gold-champagne hover:to-[#AA7C11] hover:text-black font-bold rounded-lg text-xs uppercase transition flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i> Tambah Ke Draf ${cartQtyLabel}
+                                <i class="fa-solid fa-cart-plus"></i> ${btnAddToCart} ${cartQtyLabel}
                             </button>
                         </div>
                     </div>
@@ -1606,14 +2004,13 @@
         const roomLength = document.getElementById('input-room-length').value || 10;
         const roomWidth = document.getElementById('input-room-width').value || 5;
         const aisleWidth = document.getElementById('input-aisle-width').value || 1.5;
-        const rackDetails = cart.map(i => `${i.name} x${i.qty}`).join(', ');
+        const rackDetails = cart.map(i => `${getProductTranslation(i, 'name')} x${i.qty}`).join(', ');
 
         const prompt = `Sebagai konsultan logistik pergudangan profesional VVIP HIKAI, berikan analisis optimasi tata ruang berdasarkan ukuran ruangan ${roomLength}m x ${roomWidth}m, lebar gang kerja (aisle) ${aisleWidth}m, dan total rak: ${rackDetails || 'Belum ada rak'}. Berikan 3 rekomendasi pendek bahasa Indonesia terstruktur HTML.`;
         
         const activeKey = globalSettings.geminiKey || "";
 
         if (!activeKey) {
-            // High-quality deterministic fallback analysis if key is not configured
             setTimeout(() => {
                 calcContent.innerHTML = `
                     <div class="space-y-4 p-4 rounded-xl bg-purple-950/10 border border-purple-500/30 text-xs leading-relaxed text-purple-200 font-mono">
@@ -1668,7 +2065,7 @@
         const calcContent = document.getElementById('calc-content');
 
         if (cart.length === 0) {
-            calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">Kalkulator kosong. Silakan tambahkan beberapa unit rak untuk mensimulasikan denah.</div>`;
+            calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">${translations[currentLang]?.calcEmpty || 'Kalkulator kosong.'}</div>`;
             return;
         }
 
@@ -1679,10 +2076,11 @@
                 const basePrice = Number(item.basePrice) || 0; 
                 const subtotal = basePrice * item.qty;
                 grandTotal += subtotal;
+                const translatedName = getProductTranslation(item, 'name');
                 quoteRows += `
                     <div class="py-3 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0">
                         <div>
-                            <span class="font-bold text-white block">${item.name}</span>
+                            <span class="font-bold text-white block">${translatedName}</span>
                             <span class="text-[10px] text-gray-500">${item.layers} Layer | ${item.code}</span>
                         </div>
                         <div class="text-right font-mono">
@@ -1696,11 +2094,11 @@
                 <div class="space-y-4">
                     <div class="divide-y divide-white/5">${quoteRows}</div>
                     <div class="border-t border-white/5 pt-4 flex justify-between items-center font-mono">
-                        <span class="text-xs text-gray-400">Total Est. Investasi Awal:</span>
+                        <span class="text-xs text-gray-400">${translations[currentLang]?.calcTotalEst || 'Total Est. Investasi Awal:'}</span>
                         <span class="text-xl font-bold text-gold-champagne">Rp ${grandTotal.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="pt-2 flex gap-3">
-                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gold-champagne text-black font-extrabold rounded-lg text-center text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 hover:bg-gold-hover"><i class="fa-brands fa-whatsapp text-sm"></i> Ajukan via WhatsApp VIP</button>
+                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gold-champagne text-black font-extrabold rounded-lg text-center text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 hover:bg-gold-hover"><i class="fa-brands fa-whatsapp text-sm"></i> ${translations[currentLang]?.calcBtnInquiry || 'Ajukan via WhatsApp'}</button>
                     </div>
                 </div>
             `;
@@ -1752,8 +2150,8 @@
             });
 
             const warningBanner = isCollision ? 
-                `<div class="p-3 rounded-lg bg-red-950/40 border border-red-500/50 text-red-400 text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!</div>` : 
-                `<div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Tata letak rak aman dan tersusun sesuai standar ergonomi sirkulasi.</div>`;
+                `<div class="p-3 rounded-lg bg-red-950/40 border border-red-500/50 text-red-400 text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> ${translations[currentLang]?.calcWarning || 'Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!'}</div>` : 
+                `<div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> ${translations[currentLang]?.calcSafe || 'Tata ruang aman dan efisien.'}</div>`;
 
             calcContent.innerHTML = `
                 <div class="space-y-4">
@@ -1762,8 +2160,8 @@
                             <rect width="100%" height="100%" fill="#070709" rx="8" />
                             <rect x="${startX}" y="${startY}" width="${wallW}" height="${wallH}" fill="#0d0d10" stroke="#AA7C11" stroke-width="2" stroke-dasharray="5,3" />
                             ${rackSlices}
-                            <text x="${startX + wallW/2}" y="${startY - 15}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle">PANJANG: ${roomLength} M</text>
-                            <text x="${startX - 15}" y="${startY + wallH/2}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle" transform="rotate(-90 ${startX - 15} ${startY + wallH/2})">LEBAR: ${roomWidth} M</text>
+                            <text x="${startX + wallW/2}" y="${startY - 15}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle">L / W: ${roomLength} M</text>
+                            <text x="${startX - 15}" y="${startY + wallH/2}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle" transform="rotate(-90 ${startX - 15} ${startY + wallH/2})">D / H: ${roomWidth} M</text>
                         </svg>
                     </div>
                     ${warningBanner}
@@ -1779,6 +2177,9 @@
             products.forEach(p => {
                 const itemInCart = cart.find(i => i.id === p.id);
                 const basePrice = Number(p.basePrice) || 0;
+                const translatedName = getProductTranslation(p, 'name');
+                const btnLabel = translations[currentLang]?.btnTambah || 'Tambah';
+
                 const controlBlock = itemInCart ? `
                     <div class="flex items-center bg-[#1c1c1f] rounded border border-[#333]">
                         <button onclick="updateCartQty('${p.id}', -1)" class="px-2 py-1 text-red-500 font-bold hover:bg-red-500/10 transition">-</button>
@@ -1786,13 +2187,13 @@
                         <button onclick="updateCartQty('${p.id}', 1)" class="px-2 py-1 text-gold-champagne font-bold hover:bg-gold-champagne/10 transition">+</button>
                     </div>
                 ` : `
-                    <button onclick="addToCart('${p.id}')" class="px-3 py-1.5 bg-gold-champagne text-black font-extrabold text-[10px] uppercase rounded hover:bg-gold-hover transition">Tambah</button>
+                    <button onclick="addToCart('${p.id}')" class="px-3 py-1.5 bg-gold-champagne text-black font-extrabold text-[10px] uppercase rounded hover:bg-gold-hover transition">${btnLabel}</button>
                 `;
 
                 selectionContainer.innerHTML += `
                     <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-white/5 text-xs">
                         <div>
-                            <span class="font-semibold text-white block">${p.name}</span>
+                            <span class="font-semibold text-white block">${translatedName}</span>
                             <span class="text-[10px] text-gold-champagne font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
                         </div>
                         ${controlBlock}
@@ -1813,7 +2214,8 @@
         
         let details = "=== DRAF PEMILIHAN RAK ===\n";
         cart.forEach((item, idx) => {
-            details += `${idx+1}. ${item.name} [${item.code}] x${item.qty}\n`;
+            const translatedName = getProductTranslation(item, 'name');
+            details += `${idx+1}. ${translatedName} [${item.code}] x${item.qty}\n`;
         });
 
         const payload = { action: "addInquiry", name, phone, company, message, details };
@@ -1839,7 +2241,10 @@
     function checkoutViaWhatsApp() {
         if (cart.length === 0) return;
         let details = "=== DRAFT RACKS ===\n";
-        cart.forEach(item => { details += `${item.name} x${item.qty}\n`; });
+        cart.forEach(item => { 
+            const translatedName = getProductTranslation(item, 'name');
+            details += `${translatedName} x${item.qty}\n`; 
+        });
         const waText = `Halo PT HIKAI,\n\nSaya ingin memesan paket rak berikut:\n\n${details}`;
         const targetHotline = globalSettings.hotline || "628995719102";
         window.open(`https://wa.me/${targetHotline}?text=${encodeURIComponent(waText)}`, '_blank');
@@ -1945,28 +2350,57 @@
             showToast("Koneksi gagal. Periksa kembali Google Sheets URL di Vercel.", false);
         }
     }
+</script>
 
+<script>
     function renderInquiryLogs(data) {
+        /* Desktop Table View */
         const table = document.getElementById('admin-inquiry-rows');
         table.innerHTML = '';
         if (data.length === 0) {
             table.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">Inquiries Kosong.</td></tr>`;
-            return;
+        } else {
+            data.forEach(log => {
+                table.innerHTML += `
+                    <tr>
+                        <td class="p-3 text-gold-champagne">${log.Timestamp || '-'}</td>
+                        <td class="p-3 font-bold text-white">${log.Name || '-'}</td>
+                        <td class="p-3">${log.Phone || '-'}</td>
+                        <td class="p-3">${log.Company || '-'}</td>
+                        <td class="p-3 truncate max-w-xs">${log.Details || '-'}</td>
+                        <td class="p-3 text-right">
+                            <button onclick="confirmDeleteInquiry('${log.id}')" class="px-2 py-1 bg-red-950 text-red-400 rounded-lg hover:bg-red-900 transition"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
         }
-        data.forEach(log => {
-            table.innerHTML += `
-                <tr>
-                    <td class="p-3 text-gold-champagne">${log.Timestamp || '-'}</td>
-                    <td class="p-3 font-bold text-white">${log.Name || '-'}</td>
-                    <td class="p-3">${log.Phone || '-'}</td>
-                    <td class="p-3">${log.Company || '-'}</td>
-                    <td class="p-3 truncate max-w-xs">${log.Details || '-'}</td>
-                    <td class="p-3 text-right">
-                        <button onclick="confirmDeleteInquiry('${log.id}')" class="px-2 py-1 bg-red-950 text-red-400 rounded-lg hover:bg-red-900 transition"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-                </tr>
-            `;
-        });
+
+        /* Mobile Card View (HP Optimizations) */
+        const mobileContainer = document.getElementById('admin-inquiry-cards');
+        mobileContainer.innerHTML = '';
+        if (data.length === 0) {
+            mobileContainer.innerHTML = `<div class="p-6 text-center text-xs text-gray-500 bg-obsidian-card border border-white/5 rounded-xl">Inquiries Kosong.</div>`;
+        } else {
+            data.forEach(log => {
+                mobileContainer.innerHTML += `
+                    <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-white font-bold text-sm">${log.Name || '-'}</h4>
+                                <span class="text-[10px] text-gold-champagne font-mono block mt-0.5">${log.Timestamp || '-'}</span>
+                            </div>
+                            <button onclick="confirmDeleteInquiry('${log.id}')" class="p-2 bg-red-950/40 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-900/40 transition"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                        </div>
+                        <div class="space-y-1 text-[11px] text-gray-400 pt-2 border-t border-white/5 font-mono">
+                            <p><span class="text-gray-600 font-bold uppercase">WA:</span> ${log.Phone || '-'}</p>
+                            <p><span class="text-gray-600 font-bold uppercase">CO:</span> ${log.Company || '-'}</p>
+                            <p class="pt-1 text-gray-300 whitespace-pre-line text-xs font-sans leading-relaxed border-t border-white/5">${log.Details || '-'}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
     }
 
     function toggleAdminPanel() {
@@ -1999,14 +2433,16 @@
     }
 
     function renderAdminProductTable() {
+        /* Desktop Table View */
         const rows = document.getElementById('admin-product-rows');
         rows.innerHTML = '';
         products.forEach(p => {
             const basePrice = Number(p.basePrice) || 0;
+            const translatedName = getProductTranslation(p, 'name');
             rows.innerHTML += `
                 <tr>
                     <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
-                    <td class="p-4">${p.name}</td>
+                    <td class="p-4">${translatedName}</td>
                     <td class="p-4">${p.type}</td>
                     <td class="p-4 text-white font-bold">Rp ${basePrice.toLocaleString('id-ID')}</td>
                     <td class="p-4 text-right">
@@ -2014,6 +2450,32 @@
                         <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition"><i class="fa-solid fa-trash"></i> Hapus</button>
                     </td>
                 </tr>
+            `;
+        });
+
+        /* Mobile Card View (HP Optimizations) */
+        const mobileContainer = document.getElementById('admin-product-cards');
+        mobileContainer.innerHTML = '';
+        products.forEach(p => {
+            const basePrice = Number(p.basePrice) || 0;
+            const translatedName = getProductTranslation(p, 'name');
+            mobileContainer.innerHTML += `
+                <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-[10px] font-mono text-gold-champagne uppercase tracking-wider">${p.code}</span>
+                            <h4 class="text-white font-bold text-sm">${translatedName}</h4>
+                        </div>
+                        <span class="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 font-mono">${p.type}</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-white/5">
+                        <span class="text-xs text-white font-bold font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
+                        <div class="flex gap-1.5">
+                            <button onclick="openProductEditForm('${p.id}')" class="p-2 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition text-xs"><i class="fa-solid fa-edit"></i></button>
+                            <button onclick="confirmDeleteProduct('${p.id}')" class="p-2 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
             `;
         });
     }
@@ -2040,19 +2502,34 @@
         document.querySelectorAll('.admin-tab-btn').forEach(b => {
             b.className = "admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white";
         });
-        document.getElementById(`admin-panel-${targetTab}`).classList.remove('hidden');
+        
+        /* Direct support for catalogs and crm dashboard views */
+        if (targetTab === 'catalog') {
+            document.getElementById('admin-panel-catalog').classList.remove('hidden');
+        } else if (targetTab === 'crm') {
+            document.getElementById('admin-panel-crm').classList.remove('hidden');
+        } else {
+            document.getElementById(`admin-panel-${targetTab}`).classList.remove('hidden');
+        }
         document.getElementById(`admin-btn-${targetTab}`).className = "admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black";
     }
 
     function openProductModal(id) {
         const product = products.find(p => p.id === id);
         if (!product) return;
-        document.getElementById('modal-product-cat').textContent = product.type;
-        document.getElementById('modal-product-title').textContent = product.name;
+
+        const translatedName = getProductTranslation(product, 'name');
+        const translatedType = getProductTranslation(product, 'type');
+        const translatedCapacity = getProductTranslation(product, 'capacity');
+        const translatedFinishing = getProductTranslation(product, 'finishing');
+        const translatedBestFor = getProductTranslation(product, 'bestFor');
+
+        document.getElementById('modal-product-cat').textContent = translatedType;
+        document.getElementById('modal-product-title').textContent = translatedName;
         document.getElementById('modal-product-code').textContent = `MODEL CODE: ${product.code}`;
-        document.getElementById('modal-product-cap').textContent = product.capacity;
-        document.getElementById('modal-product-finishing').textContent = product.finishing || 'Powder Coating';
-        document.getElementById('modal-product-best').textContent = product.bestFor || 'Gudang ambalan industri berat';
+        document.getElementById('modal-product-cap').textContent = translatedCapacity;
+        document.getElementById('modal-product-finishing').textContent = translatedFinishing || 'Powder Coating';
+        document.getElementById('modal-product-best').textContent = translatedBestFor || 'Gudang ambalan industri berat';
         document.getElementById('modal-product-svg').innerHTML = generateRackSVG(product.svgType, product.layers, true);
         document.getElementById('modal-add-to-cart-btn').onclick = () => {
             addToCart(product.id);
@@ -2078,7 +2555,7 @@
         const wrapper = document.getElementById('cart-items-wrapper');
         const totalValue = document.getElementById('cart-total-value');
         if (cart.length === 0) {
-            wrapper.innerHTML = `<div class="py-8 text-center text-xs text-gray-500">Draf belanja masih kosong.</div>`;
+            wrapper.innerHTML = `<div class="py-8 text-center text-xs text-gray-500">${translations[currentLang]?.cartEmpty || 'Draf kosong.'}</div>`;
             totalValue.textContent = "Rp 0";
             return;
         }
@@ -2088,10 +2565,11 @@
             const basePrice = Number(item.basePrice) || 0;
             const subtotal = basePrice * item.qty;
             grandTotal += subtotal;
+            const translatedName = getProductTranslation(item, 'name');
             cartRows += `
                 <div class="py-3 flex justify-between items-center text-xs gap-4">
                     <div>
-                        <span class="font-bold text-white block">${item.name}</span>
+                        <span class="font-bold text-white block">${translatedName}</span>
                         <span class="text-[10px] text-gray-500 block">Rp ${basePrice.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="flex items-center gap-3">
@@ -2328,7 +2806,9 @@
         const cachedSettings = localStorage.getItem('hikai_global_settings');
         if (cachedSettings) globalSettings = JSON.parse(cachedSettings);
         applyGlobalSettingsDOM();
-        renderCatalog();
+        
+        // Load initial catalog & language preference
+        setLanguage('id'); 
         updateCartCounter();
         updateCalculations();
         fetchProductsFromSpreadsheet();
