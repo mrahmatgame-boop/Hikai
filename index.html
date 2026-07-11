@@ -169,7 +169,7 @@
             aisleLabel: "工作通道 / 叉车动线 (米)",
             submitInquiry: "发送询价请求至尊贵 VIP WhatsApp",
             formTitle: "预约实地测量规划服务申请单",
-            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储系统研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储环境绝对安全。"
+            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储 system 研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储环境绝对安全。"
         }
     };
 
@@ -381,7 +381,6 @@
                 <p class="text-gray-400 text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
             </div>
 
-            <!-- MODIFIKASI: Menambahkan Menu Filter Untuk "Angle Shelf" Sesuai Permintaan -->
             <div class="flex flex-wrap gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5">
                 <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black">
                     Semua Kelas
@@ -846,7 +845,6 @@
             </div>
             <div class="grid grid-cols-3 gap-3">
                 <div>
-                    <!-- MODIFIKASI: Penambahan Kategori Angle Shelf Ke Form Admin -->
                     <label class="block text-gray-500 mb-1">Type (Duty)</label>
                     <select id="edit-type" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="Light Duty">Light Duty</option>
@@ -880,7 +878,6 @@
             </div>
             <div class="grid grid-cols-2 gap-3">
                 <div>
-                    <!-- MODIFIKASI: Penambahan medium-addon ke pilihan icon generator -->
                     <label class="block text-gray-500 mb-1">SvgType Icon Map</label>
                     <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="medium">medium</option>
@@ -939,11 +936,10 @@
 </div>
 
 <script>
-    // MODIFIKASI: Data Base Default sekarang menyertakan Add-On Medium dan Angle Shelf di kategori yang tepat
     const DEFAULT_PRODUCT_DATA = [
         {
             id: "hikai-mdr-set",
-            name: "Medium Duty Rack (Starter)", // Diperjelas Sebagai Starter
+            name: "Medium Duty Rack (Starter)",
             type: "Medium Duty",
             code: "MDR-2000-ST",
             layers: 4,
@@ -961,7 +957,6 @@
             svgType: "medium"
         },
         {
-            // PRODUK BARU: Sistem Add-On dengan tiang sebelah
             id: "hikai-mdr-addon", 
             name: "Medium Duty Rack (Add-On)",
             type: "Medium Duty",
@@ -972,12 +967,12 @@
             finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
             construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
             bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box.",
-            basePrice: 2250000, // Harga Add-On jauh lebih murah karena hemat tiang
+            basePrice: 2250000,
             description: "Unit ekstensi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
             images: [
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
             ],
-            svgType: "medium-addon" // Menggunakan visual tanpa tiang kiri
+            svgType: "medium-addon"
         },
         {
             id: "hikai-ldr-set",
@@ -1000,7 +995,7 @@
         {
             id: "hikai-asr-set",
             name: "Angle Shelf Rack (1 Set)",
-            type: "Angle Shelf", // KATEGORI BARU (Terpisah dari Light Duty)
+            type: "Angle Shelf",
             code: "ASR-2000-SET",
             layers: 5,
             h: 2000, d: 400, l: 2000,
@@ -1143,7 +1138,10 @@
         let structureHtml = '';
         const numLayers = Number(layers) || 4;
         
-        if (type === 'angle') {
+        // NORMALISASI: Sangat aman terhadap null/undefined data dari Google Sheets
+        const safeType = (type || 'medium').toString().toLowerCase();
+        
+        if (safeType === 'angle') {
             for (let i = 0; i < numLayers; i++) {
                 const spacing = 120 / (numLayers - 1 || 1);
                 const yPos = 35 + (i * spacing);
@@ -1166,7 +1164,7 @@
                     ${structureHtml}
                 </svg>
             `;
-        } else if (type.includes('pallet')) {
+        } else if (safeType.includes('pallet')) {
             for (let i = 0; i < numLayers; i++) {
                 const spacing = 110 / (numLayers - 1 || 1);
                 const yPos = 40 + (i * spacing);
@@ -1189,15 +1187,13 @@
                 </svg>
             `;
         } else {
-            // Logika untuk Medium & Light Duty (termasuk deteksi Add-On)
-            const isAddon = type.includes('addon');
-            const colorCode = type.includes('light') ? '#4B5563' : '#D4AF37';
-            const beamColor = type.includes('light') ? '#9CA3AF' : '#AA7C11';
+            // Logika Fleksibel Starter vs Add-On (Add-on hanya mendapat 1 pilar kanan)
+            const isAddon = safeType.includes('addon');
+            const colorCode = safeType.includes('light') ? '#4B5563' : '#D4AF37';
+            const beamColor = safeType.includes('light') ? '#9CA3AF' : '#AA7C11';
             
-            // Jika addon, hilangkan tiang (pillar) bagian kiri 
+            // Starter mempunyai 2 pilar (kiri & kanan), Add-on hanya pilar kanan (menempel ke pilar kiri)
             const leftPillarHtml = isAddon ? '' : `<rect x="30" y="25" width="10" height="135" fill="none" stroke="${colorCode}" stroke-width="2" rx="1" />`;
-            
-            // Beam memanjang hingga ke tepi kiri untuk divisualisasikan menempel ke Starter
             const beamX = isAddon ? 15 : 39; 
             const beamWidth = isAddon ? 146 : 122;
 
@@ -1388,7 +1384,6 @@
 
         const filtered = products.filter(p => {
             if (currentFilter === 'all') return true;
-            // Modifikasi: Logika Filter mendeteksi Tipe Angle Shelf sesuai text yg ada
             return p.type.toLowerCase().includes(currentFilter.toLowerCase());
         });
 
@@ -1727,13 +1722,33 @@
         try {
             const res = await callApi('GET', 'getProducts');
             if (res.status === "success" && Array.isArray(res.data)) {
-                products = res.data;
+                // SANGAT PENTING: Normalisasi data key secara fleksibel (Cegah Crash akibat kolom kosong atau perbedaan huruf)
+                products = res.data.map(item => {
+                    return {
+                        id: item.id || item.ID || '',
+                        name: item.name || item.Name || '',
+                        type: item.type || item.Type || 'Medium Duty',
+                        code: item.code || item.Code || '',
+                        layers: Number(item.layers || item.Layers || 4),
+                        h: Number(item.h || item.H || 2000),
+                        d: Number(item.d || item.D || 600),
+                        l: Number(item.l || item.L || 2000),
+                        capacity: item.capacity || item.Capacity || '',
+                        svgType: item.svgType || item.svgtype || item.SvgType || 'medium',
+                        description: item.description || item.Description || '',
+                        images: item.images || item.Images || '',
+                        finishing: item.finishing || item.Finishing || 'Powder Coating (Anti-Scratch & Anti-Rust)',
+                        construction: item.construction || item.Construction || 'Standard Industrial Joint',
+                        bestFor: item.bestFor || item.bestfor || item.BestFor || 'Aplikasi pergudangan serbaguna.'
+                    };
+                });
                 localStorage.setItem('hikai_products_cache', JSON.stringify(products));
                 renderCatalog();
                 updateCalculations();
                 updateDashboardStats();
             }
         } catch(e) {
+            console.error("Terjadi galat pengambilan data, memakai cache lokal:", e);
             renderCatalog();
         }
     }
@@ -1758,10 +1773,14 @@
 
     async function initializeDefaultDatabase() {
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
-        const confirmation = confirm("Apakah Anda yakin ingin me-reset seluruh isi database produk ke bawaan pabrik?");
+        if (!activePass) {
+            showToast("Sesi Admin belum terverifikasi.", false);
+            return;
+        }
+        const confirmation = confirm("Apakah Anda yakin ingin menyinkronkan seluruh database Google Sheets Anda dengan daftar default HIKAI (Termasuk Starter, Add-on, Angle Siku & Pallet)?");
         if (!confirmation) return;
 
-        showToast("Memulai proses reset...");
+        showToast("Memulai sinkronisasi...");
         if (isSandbox()) {
             products = [...DEFAULT_PRODUCT_DATA];
             localStorage.setItem('hikai_products_cache', JSON.stringify(products));
@@ -1779,7 +1798,7 @@
                 products: DEFAULT_PRODUCT_DATA
             });
             if (res.status === "success") {
-                showToast("Berhasil merestore database bawaan!");
+                showToast("Sukses menyinkronkan database ke Google Sheets!");
                 fetchProductsFromSpreadsheet();
             } else {
                 showToast("Gagal: " + res.message, false);
