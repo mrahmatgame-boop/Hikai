@@ -585,6 +585,7 @@
             <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
         </div>
 
+        <!-- Login Authenticator Panel -->
         <div id="admin-login" class="max-w-md mx-auto bg-obsidian-card border border-white/5 p-8 rounded-2xl shadow-xl space-y-4 text-center">
             <input type="password" id="admin-password-input" placeholder="Masukkan sandi otentikasi VVIP..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne">
             <button onclick="handleAdminLogin()" class="w-full py-3 bg-[#111] hover:bg-gold-champagne hover:text-black text-gold-champagne font-bold text-xs uppercase rounded-lg transition border border-gold-champagne/40">
@@ -592,6 +593,7 @@
             </button>
         </div>
 
+        <!-- Main Superadmin Control Board -->
         <div id="admin-board" class="hidden space-y-6">
             <div class="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-4">
                 <div class="flex items-center gap-3">
@@ -609,7 +611,7 @@
                 </div>
             </div>
 
-            <!-- Stats Subpanel -->
+            <!-- Dashboard Stats Subpanel -->
             <div id="admin-panel-stats" class="admin-panel-content grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
                     <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Total Koleksi Rak</span>
@@ -671,7 +673,7 @@
                 </div>
             </div>
 
-            <!-- Inquiries CRM Subpanel -->
+            <!-- Inquiries CRM Inbox Subpanel -->
             <div id="admin-panel-crm" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
                 <div>
                     <h4 class="text-white font-bold text-base"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
@@ -693,7 +695,7 @@
                 </div>
             </div>
 
-            <!-- Settings Subpanel -->
+            <!-- Admin Settings Subpanel -->
             <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-6">
                 <div>
                     <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> Pengaturan Konfigurasi Web Global</h4>
@@ -755,6 +757,7 @@
     </div>
 </footer>
 
+<!-- Toast Notifications -->
 <div id="toast-notification" class="hidden fixed bottom-6 right-6 z-50 bg-obsidian-card border border-gold-champagne p-4 rounded-xl shadow-2xl flex items-center gap-3 max-w-sm transform translate-y-10 transition-all duration-300">
     <span id="toast-icon" class="text-gold-champagne text-lg"></span>
     <p id="toast-message" class="text-xs text-white font-medium"></p>
@@ -817,7 +820,7 @@
     </div>
 </div>
 
-<!-- Modal CRUD Edit Produk -->
+<!-- Modal CRUD Edit/Tambah Produk Database -->
 <div id="product-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm overflow-y-auto">
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 space-y-4 text-left shadow-luxury-glow my-8">
         <h3 id="edit-modal-title" class="text-md font-bold text-white uppercase border-b border-white/5 pb-3 text-gold-champagne">Edit Database Row</h3>
@@ -1110,10 +1113,11 @@
     function generateRackSVG(type, layers = 4, isLarge = false) {
         const primaryColor = "#D4AF37";
         let structureHtml = '';
+        const numLayers = Number(layers) || 4; // Mengonversi string dari GS menjadi angka aman
         
         if (type === 'angle') {
-            for (let i = 0; i < layers; i++) {
-                const spacing = 120 / (layers - 1 || 1);
+            for (let i = 0; i < numLayers; i++) {
+                const spacing = 120 / (numLayers - 1 || 1);
                 const yPos = 35 + (i * spacing);
                 structureHtml += `
                     <g>
@@ -1135,8 +1139,8 @@
                 </svg>
             `;
         } else if (type.includes('pallet')) {
-            for (let i = 0; i < layers; i++) {
-                const spacing = 110 / (layers - 1 || 1);
+            for (let i = 0; i < numLayers; i++) {
+                const spacing = 110 / (numLayers - 1 || 1);
                 const yPos = 40 + (i * spacing);
                 structureHtml += `
                     <g>
@@ -1159,8 +1163,8 @@
         } else {
             const colorCode = (type === 'light') ? '#4B5563' : '#D4AF37';
             const beamColor = (type === 'light') ? '#9CA3AF' : '#AA7C11';
-            for (let i = 0; i < layers; i++) {
-                const spacing = 120 / (layers - 1 || 1);
+            for (let i = 0; i < numLayers; i++) {
+                const spacing = 120 / (numLayers - 1 || 1);
                 const yPos = 35 + (i * spacing);
                 structureHtml += `
                     <g>
@@ -1505,7 +1509,8 @@
             let quoteRows = '';
             let grandTotal = 0;
             cart.forEach(item => {
-                const subtotal = item.basePrice * item.qty;
+                const basePrice = Number(item.basePrice) || 0; // KOKOH: Parsing numerik aman dari undefined
+                const subtotal = basePrice * item.qty;
                 grandTotal += subtotal;
                 quoteRows += `
                     <div class="py-3 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0">
@@ -1514,7 +1519,7 @@
                             <span class="text-[10px] text-gray-500">${item.layers} Layer | ${item.code}</span>
                         </div>
                         <div class="text-right font-mono">
-                            <span class="text-gray-400 block">${item.qty} Set x Rp ${item.basePrice.toLocaleString('id-ID')}</span>
+                            <span class="text-gray-400 block">${item.qty} Set x Rp ${basePrice.toLocaleString('id-ID')}</span>
                             <span class="font-bold text-gold-champagne block">Rp ${subtotal.toLocaleString('id-ID')}</span>
                         </div>
                     </div>
@@ -1552,8 +1557,10 @@
             let isCollision = false;
 
             cart.forEach((item) => {
-                const rackW = (item.l / 1000) * scale;
-                const rackD = (item.d / 1000) * scale;
+                const itemL = Number(item.l) || 2000;
+                const itemD = Number(item.d) || 600;
+                const rackW = (itemL / 1000) * scale;
+                const rackD = (itemD / 1000) * scale;
                 maxRowH = Math.max(maxRowH, rackD);
 
                 for (let r = 0; r < item.qty; r++) {
@@ -1604,6 +1611,7 @@
             selectionContainer.innerHTML = '';
             products.forEach(p => {
                 const itemInCart = cart.find(i => i.id === p.id);
+                const basePrice = Number(p.basePrice) || 0;
                 const controlBlock = itemInCart ? `
                     <div class="flex items-center bg-[#1c1c1f] rounded border border-[#333]">
                         <button onclick="updateCartQty('${p.id}', -1)" class="px-2 py-1 text-red-500 font-bold hover:bg-red-500/10 transition">-</button>
@@ -1618,7 +1626,7 @@
                     <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-white/5 text-xs">
                         <div>
                             <span class="font-semibold text-white block">${p.name}</span>
-                            <span class="text-[10px] text-gold-champagne font-mono">Rp ${p.basePrice.toLocaleString('id-ID')}</span>
+                            <span class="text-[10px] text-gold-champagne font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
                         </div>
                         ${controlBlock}
                     </div>
@@ -1709,6 +1717,39 @@
         } catch (e) {}
     }
 
+    async function initializeDefaultDatabase() {
+        const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+        const confirmation = confirm("Apakah Anda yakin ingin me-reset seluruh isi database produk ke bawaan pabrik?");
+        if (!confirmation) return;
+
+        showToast("Memulai proses reset...");
+        if (isSandbox()) {
+            products = [...DEFAULT_PRODUCT_DATA];
+            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            renderCatalog();
+            updateCalculations();
+            renderAdminProductTable();
+            updateDashboardStats();
+            showToast("Berhasil di-reset secara lokal (Sandbox).");
+            return;
+        }
+
+        try {
+            const res = await callApi('POST', 'initializeDefaultProducts', {
+                password: activePass,
+                products: DEFAULT_PRODUCT_DATA
+            });
+            if (res.status === "success") {
+                showToast("Berhasil merestore database bawaan!");
+                fetchProductsFromSpreadsheet();
+            } else {
+                showToast("Gagal: " + res.message, false);
+            }
+        } catch(e) {
+            showToast("Gagal menghubungi server database.", false);
+        }
+    }
+
     function renderInquiryLogs(data) {
         const table = document.getElementById('admin-inquiry-rows');
         table.innerHTML = '';
@@ -1765,12 +1806,13 @@
         const rows = document.getElementById('admin-product-rows');
         rows.innerHTML = '';
         products.forEach(p => {
+            const basePrice = Number(p.basePrice) || 0;
             rows.innerHTML += `
                 <tr>
                     <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
                     <td class="p-4">${p.name}</td>
                     <td class="p-4">${p.type}</td>
-                    <td class="p-4 text-white font-bold">Rp ${p.basePrice.toLocaleString('id-ID')}</td>
+                    <td class="p-4 text-white font-bold">Rp ${basePrice.toLocaleString('id-ID')}</td>
                     <td class="p-4 text-right">
                         <button onclick="openProductEditForm('${p.id}')" class="px-3 py-1.5 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg"><i class="fa-solid fa-edit"></i> Edit</button>
                         <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg"><i class="fa-solid fa-trash"></i> Hapus</button>
@@ -1784,6 +1826,17 @@
         document.getElementById('stat-total-products').textContent = products.length;
         document.getElementById('stat-total-inquiries').textContent = globalInquiries.length;
         document.getElementById('stat-db-status').textContent = isSandbox() ? "SANDBOX" : "SINKRONISASI";
+        
+        const badge = document.getElementById('db-status-badge');
+        if (badge) {
+            if (isSandbox()) {
+                badge.className = "p-2 bg-yellow-950/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold rounded";
+                badge.textContent = "DB SANDBOX MODE";
+            } else {
+                badge.className = "p-2 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold rounded";
+                badge.textContent = "DB CONNECTED";
+            }
+        }
     }
 
     function switchAdminTab(targetTab) {
@@ -1836,13 +1889,14 @@
         let cartRows = '';
         let grandTotal = 0;
         cart.forEach(item => {
-            const subtotal = item.basePrice * item.qty;
+            const basePrice = Number(item.basePrice) || 0;
+            const subtotal = basePrice * item.qty;
             grandTotal += subtotal;
             cartRows += `
                 <div class="py-3 flex justify-between items-center text-xs gap-4">
                     <div>
                         <span class="font-bold text-white block">${item.name}</span>
-                        <span class="text-[10px] text-gray-500 block">Rp ${item.basePrice.toLocaleString('id-ID')}</span>
+                        <span class="text-[10px] text-gray-500 block">Rp ${basePrice.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="flex items-center bg-black rounded border border-[#333] text-xs">
