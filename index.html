@@ -69,13 +69,28 @@
             background-image: linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
         }
-        /* Custom styling for smoother swipe experience on phone admin tabs */
+        /* Custom styling for smoother swipe experience on phone admin and catalog tabs */
         .scrollbar-none::-webkit-scrollbar {
             display: none;
         }
         .scrollbar-none {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+        
+        .glass-luxury {
+            background: rgba(12, 12, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-luxury:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: 0 15px 45px rgba(212, 175, 55, 0.12);
+            transform: translateY(-2px);
+        }
+        .card-glow {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -475,7 +490,7 @@
             },
             zh: {
                 name: "万能角钢货架 (1套)",
-                description: "升级 HIKAI 承托工艺的经典多功能角钢货架。超高经济性，自由穿孔调节层高，完美契合多元化轻量仓储场景。",
+                description: "升级 HIKAI 承托工艺 the classic多功能角钢货架。超高经济性，自由穿孔调节层高，完美契合多元化轻量仓储场景。",
                 capacity: "100 - 150 公斤 / 层",
                 finishing: "高硬度工业静电粉末涂装",
                 construction: "插接万能角钢结构 (加厚重载角钢板)",
@@ -537,6 +552,10 @@
     };
 
     function getProductTranslation(p, field) {
+        // JIKA PRODUK MEMILIKI KUSTOMISASI: Prioritaskan langsung value database agar update langsung bereaksi
+        if (p.isCustom || p.isEdited) {
+            return p[field] || '';
+        }
         const trans = productTranslations[p.id];
         if (trans && trans[currentLang] && trans[currentLang][field]) {
             return trans[currentLang][field];
@@ -680,34 +699,34 @@
 </div>
 
 <main class="flex-grow">
-    <section class="relative overflow-hidden pt-20 pb-32 border-b border-[#1b1b1d] blueprint-pattern">
+    <section class="relative overflow-hidden pt-12 md:pt-24 pb-20 md:pb-32 border-b border-[#1b1b1d] blueprint-pattern">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.06),transparent_50%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#1a1813] border border-[#52441c] rounded-full text-gold-champagne text-xs font-semibold uppercase tracking-widest">
-                        <i class="fa-solid fa-star text-[10px] mr-1.5 text-gold-champagne animate-pulse"></i> <span data-trans="heroBadge">SOLUSI PERGUDANGAN KELAS VVIP</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1a1813] border border-[#52441c] rounded-full text-gold-champagne text-[11px] font-semibold uppercase tracking-widest mx-auto lg:mx-0">
+                        <i class="fa-solid fa-star text-[10px] text-gold-champagne animate-pulse"></i> <span data-trans="heroBadge">SOLUSI PERGUDANGAN KELAS VVIP</span>
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-none">
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight md:leading-none">
                         <span data-trans="heroTitle">Sistem Rak Industri</span> <br />
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne via-gold-light to-[#AA7C11]" data-trans="heroSubtitle">
                             PT. Hikai Storage Equipment
                         </span>
                     </h1>
-                    <p class="text-gray-400 text-base sm:text-lg max-w-xl leading-relaxed font-light" data-trans="heroDesc">
+                    <p class="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light" data-trans="heroDesc">
                         Menghadirkan sistem rak baja Cold-Rolled bersertifikat internasional dengan tingkat presisi ekstrem. Didesain mewah, kokoh, dan dihitung secara interaktif untuk efisiensi ruang optimal Anda.</p>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#products" class="px-8 py-4 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg shadow-luxury-glow hover:scale-[1.02] transition" data-trans="btnCatalog">
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#products" class="w-full sm:w-auto text-center px-8 py-4 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg shadow-luxury-glow hover:scale-[1.02] active:scale-95 transition" data-trans="btnCatalog">
                             Pilih Spesifikasi Rak
                         </a>
-                        <a href="#calculator" class="px-8 py-4 bg-obsidian-card hover:bg-black border border-obsidian-accent text-gray-200 font-semibold rounded-lg transition" data-trans="btnCalc">
+                        <a href="#calculator" class="w-full sm:w-auto text-center px-8 py-4 bg-obsidian-card hover:bg-black border border-obsidian-accent text-gray-200 font-semibold rounded-lg active:scale-95 transition" data-trans="btnCalc">
                             Rancang Ruang
                         </a>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5">
-                    <div class="bg-obsidian-card border border-white/5 p-6 rounded-2xl shadow-2xl relative">
+                <div class="lg:col-span-5 w-full mt-6 lg:mt-0">
+                    <div class="bg-obsidian-card border border-white/5 p-4 sm:p-6 rounded-2xl shadow-2xl relative card-glow">
                         <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
                             <div>
                                 <span class="text-gold-champagne text-[10px] font-bold block uppercase" data-trans="previewTitle">Visual Preview</span>
@@ -715,7 +734,7 @@
                             </div>
                             <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-gold-champagne text-[10px] font-mono rounded">H2000*D600*L2000</span>
                         </div>
-                        <div id="hero-svg-container"></div>
+                        <div id="hero-svg-container" class="w-full overflow-hidden flex items-center justify-center"></div>
                     </div>
                 </div>
             </div>
@@ -725,8 +744,8 @@
     <section id="about" class="py-24 border-b border-obsidian-accent bg-black relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.03),transparent_50%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="space-y-6 text-center lg:text-left">
                     <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="aboutBadge">SIAPA KAMI</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight" data-trans="aboutTitle">
                         Dedikasi Presisi Tinggi & <br/>
@@ -735,7 +754,7 @@
                     <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="aboutDesc">
                         PT. Hikai Storage Equipment berdiri sebagai pionir dalam industri manufaktur dan perancangan sistem rak baja penyimpanan industri berat (heavy-duty) dan menengah (medium-duty) di Indonesia. Kami memadukan kekuatan baja premium Cold-Rolled dengan perhitungan presisi matematis untuk melipatgandakan kapasitas penyimpanan gudang Anda tanpa mengorbankan keselamatan kerja.
                     </p>
-                    <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="grid grid-cols-2 gap-6 pt-4 max-w-sm mx-auto lg:mx-0 text-left">
                         <div class="border-l-2 border-gold-champagne pl-4">
                             <h4 class="text-2xl font-bold text-white font-mono">100%</h4>
                             <p class="text-[10px] text-gray-500 uppercase tracking-wider mt-1" data-trans="aboutStat1">Standarisasi EN 15512</p>
@@ -746,59 +765,62 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative w-full">
                     <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-champagne to-gold-hover opacity-10 blur-xl"></div>
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-80 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-64 sm:h-80 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="products" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div class="space-y-2">
+    <section id="products" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+            <div class="space-y-2 text-center lg:text-left">
                 <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="catalogBadge">KOLEKSI EKSKLUSIF</span>
                 <h2 class="text-3xl font-extrabold text-white" data-trans="catalogTitle">Katalog Sistem Rak HIKAI</h2>
                 <p class="text-gray-400 text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
             </div>
 
-            <div class="flex flex-wrap gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5">
-                <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black" data-trans="filterAll">
-                    Semua Kelas
-                </button>
-                <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterAngle">
-                    Angle Shelf
-                </button>
-                <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterLight">
-                    Light Duty
-                </button>
-                <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterMedium">
-                    Medium Duty
-                </button>
-                <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white" data-trans="filterPallet">
-                    Pallet Rack
-                </button>
+            <!-- Highly optimized mobile swipe-friendly tabs (Prevents cutting off) -->
+            <div class="w-full lg:w-auto overflow-x-auto scrollbar-none pb-1 flex justify-start lg:justify-end">
+                <div class="flex gap-1.5 bg-obsidian-card p-1.5 rounded-xl border border-white/5 min-w-max shadow-inner-dark">
+                    <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAll">
+                        Semua Kelas
+                    </button>
+                    <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAngle">
+                        Angle Shelf
+                    </button>
+                    <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterLight">
+                        Light Duty
+                    </button>
+                    <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterMedium">
+                        Medium Duty
+                    </button>
+                    <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterPallet">
+                        Pallet Rack
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
     </section>
 
     <section id="education" class="py-24 bg-obsidian-deep border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-6 text-center lg:text-left">
                 <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="eduBadge">Aturan Struktur</span>
                 <h2 class="text-3xl font-bold text-white" data-trans="eduTitle">Memahami Sistem Starter vs Add-On</h2>
                 <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="eduDesc">
                     Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan **1 Unit Starter** sebagai fondasi utama di ujung baris, lalu sambungkan unit **Add-On** bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!</p>
-                <div class="p-4 bg-obsidian-card border border-white/5 rounded-xl text-xs text-gray-400 space-y-2.5">
+                <div class="p-4 bg-obsidian-card border border-white/5 rounded-xl text-xs text-gray-400 space-y-2.5 max-w-sm mx-auto lg:mx-0 text-left">
                     <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong data-trans="eduStarter">Starter: 2 Tiang Samping (Mandiri)</strong></p>
                     <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong data-trans="eduAddOn">Add-On: 1 Tiang Samping (Menempel ke Starter)</strong></p>
                 </div>
             </div>
 
-            <div class="lg:col-span-7 bg-obsidian-card border border-white/5 p-6 rounded-2xl">
-                <h3 class="text-white font-bold text-sm mb-4" data-trans="eduSchema">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
+            <div class="lg:col-span-7 bg-obsidian-card border border-white/5 p-4 sm:p-6 rounded-2xl w-full">
+                <h3 class="text-white font-bold text-sm mb-4 text-center sm:text-left" data-trans="eduSchema">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
                 <svg viewBox="0 0 320 160" class="w-full h-auto rounded-lg bg-black/40 border border-[#1b1b1d]">
                     <rect width="100%" height="100%" fill="#070709" />
                     <line x1="10" y1="135" x2="310" y2="135" stroke="#333" stroke-width="2" />
@@ -825,7 +847,7 @@
 
     <section id="comparison" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
-            <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="compareTitle">Bandingkan Spek Teknis</span>
+            <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">SPESIFIKASI TEKNIS</span>
             <h2 class="text-3xl font-extrabold text-white" data-trans="compareTitle">Bandingkan Spek Teknis</h2>
             <p class="text-gray-400 text-sm font-light" data-trans="compareDesc">Tambahkan rak ke pembanding pada kartu katalog untuk diulas berdampingan di sini.</p>
         </div>
@@ -848,8 +870,8 @@
         </div>
     </section>
 
-    <section id="calculator" class="py-24 bg-obsidian-deep border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <section id="calculator" class="py-20 bg-obsidian-deep border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div class="lg:col-span-5 space-y-6">
                 <div>
                     <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="simBadge">Simulator Tata Letak</span>
@@ -859,48 +881,48 @@
                     </p>
                 </div>
 
-                <div class="bg-obsidian-card border border-gold-champagne/30 p-6 rounded-2xl space-y-4 shadow-xl">
-                    <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                <div class="bg-obsidian-card border border-gold-champagne/20 p-5 sm:p-6 rounded-2xl space-y-4 shadow-xl card-glow">
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 border-b border-white/5 pb-3">
                         <i class="fa-solid fa-table-cells text-gold-champagne"></i> <span data-trans="sizeLabel">Ukuran Lantai Gudang Anda</span>
                     </h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="roomLength">Panjang Ruangan (M)</label>
-                            <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
+                            <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-3 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
                         </div>
                         <div>
                             <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="roomWidth">Lebar Ruangan (M)</label>
-                            <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
+                            <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-3 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
                         </div>
                     </div>
-                    <div>
+                    <div class="pt-2">
                         <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="aisleLabel">Lebar Gang Kerja / Aisle (M)</label>
-                        <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne">
+                        <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne py-2">
                         <div class="flex justify-between text-[10px] text-gray-500 mt-1">
                             <span data-trans="calcAisleManual">Sirkulasi Manual (0.8m)</span>
-                            <span class="text-gold-champagne font-bold" id="label-aisle-value">1.5m</span>
+                            <span class="text-gold-champagne font-bold text-xs" id="label-aisle-value">1.5m</span>
                             <span data-trans="calcAisleFork">Alat Berat/Forklift (4m)</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-obsidian-card border border-white/5 p-6 rounded-2xl space-y-4">
-                    <h3 class="text-white font-bold text-sm" data-trans="calcAddTitle">Tambahkan Unit Rak ke Denah:</h3>
-                    <div id="simulator-selection-list" class="space-y-2"></div>
+                <div class="bg-obsidian-card border border-white/5 p-5 sm:p-6 rounded-2xl space-y-4">
+                    <h3 class="text-white font-bold text-sm border-b border-white/5 pb-2" data-trans="calcAddTitle">Tambahkan Unit Rak ke Denah:</h3>
+                    <div id="simulator-selection-list" class="space-y-2.5"></div>
                 </div>
             </div>
 
-            <div class="lg:col-span-7 space-y-6">
-                <div class="bg-obsidian-card border border-gold-champagne/30 rounded-2xl p-6 sm:p-8 relative shadow-2xl">
-                    <div class="flex justify-between items-center border-b border-white/5 pb-6">
+            <div class="lg:col-span-7 space-y-6 w-full">
+                <div class="bg-obsidian-card border border-gold-champagne/25 rounded-2xl p-5 sm:p-8 relative shadow-2xl card-glow">
+                    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-b border-white/5 pb-6 gap-4">
                         <div>
                             <span class="text-xl font-bold tracking-widest text-gold-champagne block font-serif">HIKAI</span>
                             <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">PLANNING BOARD</span>
                         </div>
-                        <div class="flex bg-black/60 rounded-lg p-1 border border-white/5 text-xs">
-                            <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black" data-trans="tabQuote">Draf Nota</button>
-                            <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white" data-trans="tabFloorplan">Denah 2D</button>
-                            <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
+                        <div class="flex bg-black/80 rounded-lg p-1 border border-white/10 text-xs self-start sm:self-auto overflow-x-auto max-w-full">
+                            <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3.5 py-1.5 rounded-lg font-bold transition duration-300" data-trans="tabQuote">Draf Nota</button>
+                            <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3.5 py-1.5 rounded-lg font-bold transition duration-300" data-trans="tabFloorplan">Denah 2D</button>
+                            <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3.5 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5 transition duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
                         </div>
                     </div>
                     <div id="calc-content" class="pt-6 space-y-6"></div>
@@ -1484,26 +1506,25 @@
         productImageIndex[p.id] = 0;
     });
 
-    function isSandbox() {
+    // MEMASANG BYPASS SANDBOX PREMIUM UNTUK MENGHINDARI ERROR 404 KONSOL DI LINGKUNGAN PREVIEW
+    function isSandboxEnv() {
         try {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
             return (
-                window.location.protocol === 'blob:' ||
-                window.location.href.startsWith('blob:') ||
-                window.location.hostname === '' ||
-                window.location.hostname === 'null' ||
-                window.location.hostname.includes('usercontent.goog') ||
-                window.location.hostname.includes('googleusercontent.com')
+                protocol === 'blob:' ||
+                hostname === '' ||
+                hostname === 'null' ||
+                hostname.includes('usercontent.goog') ||
+                hostname.includes('googleusercontent.com') ||
+                window.location.href.startsWith('blob:')
             );
         } catch (e) {
-            return true; 
+            return true; // Cadangan aman kembali ke fungsional lokal jika terjadi block CORS origin
         }
     }
 
     async function callApi(method, action, body = null, queryParams = {}) {
-        if (isSandbox()) {
-            console.log(`[Sandbox Mode] Bypassed network fetch for: ${action}`);
-            return { status: "sandbox", message: "Bypassed successfully" };
-        }
         let url = `/api/hikai?action=${action}`;
         try {
             if (window.location.origin && window.location.origin !== 'null' && !window.location.origin.startsWith('blob:')) {
@@ -1637,6 +1658,7 @@
         const toastIcon = document.getElementById('toast-icon');
         const progress = document.getElementById('toast-progress');
         
+        if (!toast || !toastMsg || !toastIcon || !progress) return;
         if (toastTimeout) clearTimeout(toastTimeout);
         
         toastMsg.textContent = message;
@@ -1670,11 +1692,11 @@
     function setProductFilter(filter) {
         currentFilter = filter;
         document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.className = "filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition text-gray-400 hover:text-white";
+            btn.className = "filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-300 text-gray-400 hover:text-white whitespace-nowrap";
         });
         const activeBtn = document.getElementById(`filter-btn-${filter}`);
         if (activeBtn) {
-            activeBtn.className = "filter-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black";
+            activeBtn.className = "filter-btn px-4.5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold-champagne text-black whitespace-nowrap";
         }
         renderCatalog();
     }
@@ -1733,6 +1755,7 @@
 
     function updateCartCounter() {
         const counter = document.getElementById('cart-counter');
+        if (!counter) return;
         const totalQty = cart.reduce((acc, curr) => acc + curr.qty, 0);
         if (totalQty > 0) {
             counter.textContent = totalQty;
@@ -1768,6 +1791,8 @@
         const headerRow = document.getElementById('comp-header-row');
         const body = document.getElementById('comp-body');
 
+        if (!placeholder || !tableWrapper || !headerRow || !body) return;
+
         if (comparisonList.length === 0) {
             placeholder.classList.remove('hidden');
             tableWrapper.classList.add('hidden');
@@ -1776,7 +1801,7 @@
 
         placeholder.classList.add('hidden');
         tableWrapper.classList.remove('hidden');
-        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">${translations[currentLang]?.compareParam || 'Parameter'}</th>`;
+        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne" data-trans="compareParam">${translations[currentLang]?.compareParam || 'Parameter'}</th>`;
         
         comparisonList.forEach(p => {
             const translatedName = getProductTranslation(p, 'name');
@@ -1864,7 +1889,6 @@
             return;
         }
 
-        /* Multilingual element strings mapping */
         const lblConfig = translations[currentLang]?.lblConfig || 'Konfigurasi:';
         const lblMaxCap = translations[currentLang]?.lblMaxCap || 'Kapasitas Maks:';
         const btnDetail = translations[currentLang]?.btnDetail || 'Detail';
@@ -1876,7 +1900,6 @@
             const isInCart = cart.find(item => item.id === p.id);
             const isInComparison = comparisonList.find(item => item.id === p.id);
 
-            // Fetch dynamic translations of name, description, and specs
             const translatedName = getProductTranslation(p, 'name');
             const translatedDesc = getProductTranslation(p, 'description');
             const translatedType = getProductTranslation(p, 'type');
@@ -1904,12 +1927,12 @@
 
                 mediaSection = `
                     <div class="relative h-48 w-full rounded-xl overflow-hidden group">
-                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${translatedName}" class="w-full h-full object-cover select-none" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
+                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${translatedName}" class="w-full h-full object-cover select-none transition duration-500 hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
                         ${showNavButtons ? `
-                            <button onclick="navigateCardImage('${p.id}', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 hover:border-gold-champagne transition duration-300">
+                            <button onclick="navigateCardImage('${p.id}', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 border border-white/10 text-white opacity-0 group-hover:opacity-100 hover:border-gold-champagne transition duration-300">
                                 <i class="fa-solid fa-chevron-left text-[10px]"></i>
                             </button>
-                            <button onclick="navigateCardImage('${p.id}', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 hover:border-gold-champagne transition duration-300">
+                            <button onclick="navigateCardImage('${p.id}', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 border border-white/10 text-white opacity-0 group-hover:opacity-100 hover:border-gold-champagne transition duration-300">
                                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
                             </button>
                             <div id="img-dots-${p.id}" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
@@ -1926,25 +1949,25 @@
             const cartQtyLabel = isInCart ? `(${isInCart.qty})` : '';
 
             grid.innerHTML += `
-                <div class="bg-obsidian-card border border-white/5 rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
-                    <div class="p-4 bg-[#060608] relative">
-                        <div class="absolute top-6 left-6 z-10 flex bg-black/80 backdrop-blur-md rounded-lg p-1 border border-[#333]">
-                            <button onclick="toggleViewMode('${p.id}', 'photo')" class="px-2.5 py-1 rounded text-[9px] font-bold uppercase ${view === 'photo' ? 'bg-gold-champagne text-black' : 'text-gray-400'}">Foto Real</button>
-                            <button onclick="toggleViewMode('${p.id}', 'blueprint')" class="px-2.5 py-1 rounded text-[9px] font-bold uppercase ${view === 'blueprint' ? 'bg-gold-champagne text-black' : 'text-gray-400'}">Blueprint</button>
+                <div class="glass-luxury rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
+                    <div class="p-4 bg-[#060608]/90 relative">
+                        <div class="absolute top-6 left-6 z-10 flex bg-black/85 backdrop-blur-md rounded-lg p-1 border border-white/10 shadow-lg">
+                            <button onclick="toggleViewMode('${p.id}', 'photo')" class="px-2.5 py-1 rounded text-[9px] font-bold uppercase transition duration-200 ${view === 'photo' ? 'bg-gold-champagne text-black font-extrabold shadow' : 'text-gray-400 hover:text-white'}">Foto Real</button>
+                            <button onclick="toggleViewMode('${p.id}', 'blueprint')" class="px-2.5 py-1 rounded text-[9px] font-bold uppercase transition duration-200 ${view === 'blueprint' ? 'bg-gold-champagne text-black font-extrabold shadow' : 'text-gray-400 hover:text-white'}">Blueprint</button>
                         </div>
-                        <span class="absolute top-6 right-6 z-10 bg-black/90 text-gray-300 border border-[#333] px-2 py-0.5 rounded font-mono text-[10px]">${p.h}x${p.d}x${p.l}</span>
+                        <span class="absolute top-6 right-6 z-10 bg-black/90 text-gray-300 border border-white/10 px-2 py-0.5 rounded font-mono text-[10px] shadow-md">${p.h}x${p.d}x${p.l}</span>
                         ${mediaSection}
                     </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-bold text-gold-champagne uppercase">${translatedType}</span>
+                                <span class="text-[10px] font-bold text-gold-champagne uppercase tracking-wider">${translatedType}</span>
                                 <span class="text-xs font-mono text-gray-500">${p.code}</span>
                             </div>
-                            <h3 class="text-lg font-bold text-white">${translatedName}</h3>
+                            <h3 class="text-base font-bold text-white leading-snug">${translatedName}</h3>
                             <p class="text-gray-400 text-xs line-clamp-2 leading-relaxed font-light">${translatedDesc}</p>
                         </div>
-                        <div class="bg-[#121215] p-3 rounded-lg text-xs space-y-1.5 font-mono">
+                        <div class="bg-[#121215]/80 p-3 rounded-xl text-xs space-y-1.5 font-mono border border-white/5">
                             <div class="flex justify-between">
                                 <span class="text-gray-500">${lblConfig}</span>
                                 <span class="font-semibold text-gray-200">${p.layers} ${lblLayerUnit}</span>
@@ -1956,10 +1979,10 @@
                         </div>
                         <div class="space-y-2">
                             <div class="flex gap-2">
-                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-2.5 bg-[#121214] border border-[#2a2a2e] rounded-lg text-xs text-gray-300 font-semibold transition hover:border-gold-champagne"><i class="fa-solid fa-expand mr-1 text-[10px]"></i> ${btnDetail}</button>
-                                <button onclick="toggleComparison('${p.id}')" class="p-2.5 rounded-lg border transition ${comparisonClass}"><i class="fa-solid fa-sliders text-xs"></i></button>
+                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-3 bg-[#121214] border border-[#2a2a2e] rounded-xl text-xs text-gray-300 font-semibold transition hover:border-gold-champagne hover:bg-black active:scale-95"><i class="fa-solid fa-expand mr-1.5 text-[10px]"></i> ${btnDetail}</button>
+                                <button onclick="toggleComparison('${p.id}')" class="p-3 rounded-xl border transition active:scale-95 ${comparisonClass}"><i class="fa-solid fa-sliders text-xs"></i></button>
                             </div>
-                            <button onclick="addToCart('${p.id}')" class="w-full py-3 bg-gradient-to-r from-gold-champagne/10 to-[#AA7C11]/20 border border-gold-champagne/50 text-gold-champagne hover:from-gold-champagne hover:to-[#AA7C11] hover:text-black font-bold rounded-lg text-xs uppercase transition flex items-center justify-center gap-2">
+                            <button onclick="addToCart('${p.id}')" class="w-full py-3 bg-gradient-to-r from-gold-champagne/10 to-[#AA7C11]/20 border border-gold-champagne/50 text-gold-champagne hover:from-gold-champagne hover:to-[#AA7C11] hover:text-black font-extrabold rounded-xl text-xs uppercase transition active:scale-95 flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-cart-plus"></i> ${btnAddToCart} ${cartQtyLabel}
                             </button>
                         </div>
@@ -1977,16 +2000,18 @@
         const floorTabBtn = document.getElementById('calc-tab-floorplan');
         const aiTabBtn = document.getElementById('calc-tab-ai');
 
-        quoteTabBtn.className = "px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white";
-        floorTabBtn.className = "px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white";
-        aiTabBtn.className = "px-3 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1";
+        if (!quoteTabBtn || !floorTabBtn || !aiTabBtn) return;
+
+        quoteTabBtn.className = "px-3.5 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white";
+        floorTabBtn.className = "px-3.5 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white";
+        aiTabBtn.className = "px-3.5 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5";
 
         if (tab === 'quote') {
-            quoteTabBtn.className = "px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black";
+            quoteTabBtn.className = "px-3.5 py-1.5 rounded-lg font-extrabold bg-gold-champagne text-black shadow-md";
         } else if (tab === 'floorplan') {
-            floorTabBtn.className = "px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black";
+            floorTabBtn.className = "px-3.5 py-1.5 rounded-lg font-extrabold bg-gold-champagne text-black shadow-md";
         } else if (tab === 'ai') {
-            aiTabBtn.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-900/40 border border-purple-500/40 text-purple-200";
+            aiTabBtn.className = "px-3.5 py-1.5 rounded-lg font-extrabold bg-purple-900/40 border border-purple-500/40 text-purple-200 shadow-md";
         }
         updateCalculations();
     }
@@ -1994,6 +2019,7 @@
     async function getAISpaceAdvice() {
         setCalcTab('ai');
         const calcContent = document.getElementById('calc-content');
+        if (!calcContent) return;
         calcContent.innerHTML = `
             <div class="py-12 text-center flex flex-col items-center justify-center space-y-4">
                 <i class="fa-solid fa-spinner fa-spin text-purple-400 text-3xl"></i>
@@ -2001,9 +2027,9 @@
             </div>
         `;
 
-        const roomLength = document.getElementById('input-room-length').value || 10;
-        const roomWidth = document.getElementById('input-room-width').value || 5;
-        const aisleWidth = document.getElementById('input-aisle-width').value || 1.5;
+        const roomLength = document.getElementById('input-room-length')?.value || 10;
+        const roomWidth = document.getElementById('input-room-width')?.value || 5;
+        const aisleWidth = document.getElementById('input-aisle-width')?.value || 1.5;
         const rackDetails = cart.map(i => `${getProductTranslation(i, 'name')} x${i.qty}`).join(', ');
 
         const prompt = `Sebagai konsultan logistik pergudangan profesional VVIP HIKAI, berikan analisis optimasi tata ruang berdasarkan ukuran ruangan ${roomLength}m x ${roomWidth}m, lebar gang kerja (aisle) ${aisleWidth}m, dan total rak: ${rackDetails || 'Belum ada rak'}. Berikan 3 rekomendasi pendek bahasa Indonesia terstruktur HTML.`;
@@ -2057,12 +2083,20 @@
     }
 
     function updateCalculations() {
-        const roomLength = Math.max(2, parseFloat(document.getElementById('input-room-length').value) || 10);
-        const roomWidth = Math.max(2, parseFloat(document.getElementById('input-room-width').value) || 5);
-        const aisleWidth = parseFloat(document.getElementById('input-aisle-width').value) || 1.5;
-
-        document.getElementById('label-aisle-value').textContent = `${aisleWidth}m`;
+        const inputLen = document.getElementById('input-room-length');
+        const inputWid = document.getElementById('input-room-width');
+        const inputAisle = document.getElementById('input-aisle-width');
+        const labelAisle = document.getElementById('label-aisle-value');
         const calcContent = document.getElementById('calc-content');
+
+        const roomLength = Math.max(2, parseFloat(inputLen ? inputLen.value : 10) || 10);
+        const roomWidth = Math.max(2, parseFloat(inputWid ? inputWid.value : 5) || 5);
+        const aisleWidth = parseFloat(inputAisle ? inputAisle.value : 1.5) || 1.5;
+
+        if (labelAisle) {
+            labelAisle.textContent = `${aisleWidth}m`;
+        }
+        if (!calcContent) return;
 
         if (cart.length === 0) {
             calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">${translations[currentLang]?.calcEmpty || 'Kalkulator kosong.'}</div>`;
@@ -2084,8 +2118,8 @@
                             <span class="text-[10px] text-gray-500">${item.layers} Layer | ${item.code}</span>
                         </div>
                         <div class="text-right font-mono">
-                            <span class="text-gray-400 block">${item.qty} Set x Rp ${basePrice.toLocaleString('id-ID')}</span>
-                            <span class="font-bold text-gold-champagne block">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                            <span class="text-gray-400 block text-[11px]">${item.qty} Set x Rp ${basePrice.toLocaleString('id-ID')}</span>
+                            <span class="font-bold text-gold-champagne block text-sm">Rp ${subtotal.toLocaleString('id-ID')}</span>
                         </div>
                     </div>
                 `;
@@ -2098,7 +2132,7 @@
                         <span class="text-xl font-bold text-gold-champagne">Rp ${grandTotal.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="pt-2 flex gap-3">
-                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gold-champagne text-black font-extrabold rounded-lg text-center text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 hover:bg-gold-hover"><i class="fa-brands fa-whatsapp text-sm"></i> ${translations[currentLang]?.calcBtnInquiry || 'Ajukan via WhatsApp'}</button>
+                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-xl text-center text-xs uppercase tracking-wider transition duration-300 flex items-center justify-center gap-2 hover:shadow-luxury-glow active:scale-[0.98]"><i class="fa-brands fa-whatsapp text-sm"></i> ${translations[currentLang]?.calcBtnInquiry || 'Ajukan via WhatsApp'}</button>
                     </div>
                 </div>
             `;
@@ -2155,7 +2189,7 @@
 
             calcContent.innerHTML = `
                 <div class="space-y-4">
-                    <div class="bg-black p-4 rounded-xl border border-white/5 relative">
+                    <div class="bg-black p-4 rounded-xl border border-white/5 relative shadow-inner">
                         <svg viewBox="0 0 500 300" class="w-full h-auto">
                             <rect width="100%" height="100%" fill="#070709" rx="8" />
                             <rect x="${startX}" y="${startY}" width="${wallW}" height="${wallH}" fill="#0d0d10" stroke="#AA7C11" stroke-width="2" stroke-dasharray="5,3" />
@@ -2181,17 +2215,17 @@
                 const btnLabel = translations[currentLang]?.btnTambah || 'Tambah';
 
                 const controlBlock = itemInCart ? `
-                    <div class="flex items-center bg-[#1c1c1f] rounded border border-[#333]">
-                        <button onclick="updateCartQty('${p.id}', -1)" class="px-2 py-1 text-red-500 font-bold hover:bg-red-500/10 transition">-</button>
-                        <span class="px-2 text-white font-mono font-bold">${itemInCart.qty}</span>
-                        <button onclick="updateCartQty('${p.id}', 1)" class="px-2 py-1 text-gold-champagne font-bold hover:bg-gold-champagne/10 transition">+</button>
+                    <div class="flex items-center bg-[#1c1c1f] rounded-lg border border-[#333] shadow-sm">
+                        <button onclick="updateCartQty('${p.id}', -1)" class="px-3 py-1.5 text-red-500 font-bold hover:bg-red-500/10 transition">-</button>
+                        <span class="px-3 text-white font-mono font-bold text-xs">${itemInCart.qty}</span>
+                        <button onclick="updateCartQty('${p.id}', 1)" class="px-3 py-1.5 text-gold-champagne font-bold hover:bg-gold-champagne/10 transition">+</button>
                     </div>
                 ` : `
-                    <button onclick="addToCart('${p.id}')" class="px-3 py-1.5 bg-gold-champagne text-black font-extrabold text-[10px] uppercase rounded hover:bg-gold-hover transition">${btnLabel}</button>
+                    <button onclick="addToCart('${p.id}')" class="px-4 py-2 bg-gradient-to-r from-gold-champagne to-gold-hover text-black font-extrabold text-[10px] uppercase rounded-lg hover:opacity-90 active:scale-95 transition shadow-sm">${btnLabel}</button>
                 `;
 
                 selectionContainer.innerHTML += `
-                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-white/5 text-xs">
+                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-xl border border-white/5 text-xs transition hover:border-gold-champagne/25 hover:bg-black/60">
                         <div>
                             <span class="font-semibold text-white block">${translatedName}</span>
                             <span class="text-[10px] text-gold-champagne font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
@@ -2220,14 +2254,40 @@
 
         const payload = { action: "addInquiry", name, phone, company, message, details };
         
-        if (isSandbox()) {
+        // JIKA DI PREVIEW SANDBOX: Bypass langsung penulisan ke cache lokal untuk menghindari 404
+        if (isSandboxEnv()) {
+            console.warn("[HIKAI] Sandbox Mode - Melakukan bypass request API cloud dan menulis cadangan lokal.");
             const mockInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
-            mockInquiries.unshift({ Timestamp: new Date().toLocaleString(), Name: name, Phone: phone, Company: company, Details: details });
+            mockInquiries.unshift({ 
+                id: "inq_" + Date.now(),
+                Timestamp: new Date().toLocaleString(), 
+                Name: name, 
+                Phone: phone, 
+                Company: company, 
+                Details: details 
+            });
             localStorage.setItem('hikai_mock_inquiries', JSON.stringify(mockInquiries));
+            showToast("Sukses dicatat dalam cadangan memori offline (Sandbox).");
         } else {
+            // MODE PRODUKSI: Tembak langsung ke API Cloud
             try {
+                showToast("Mengirim draf inquiries ke Google Sheets...");
                 await callApi('POST', 'addInquiry', payload);
-            } catch(e) {}
+                showToast("Inquiries Anda sukses tersimpan di Google Sheets!");
+            } catch(e) {
+                console.error("Gagal mengirim ke Sheets, menyimpan lokal:", e);
+                const mockInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
+                mockInquiries.unshift({ 
+                    id: "inq_" + Date.now(),
+                    Timestamp: new Date().toLocaleString(), 
+                    Name: name, 
+                    Phone: phone, 
+                    Company: company, 
+                    Details: details 
+                });
+                localStorage.setItem('hikai_mock_inquiries', JSON.stringify(mockInquiries));
+                showToast("Tersimpan lokal di cadangan memori offline.", false);
+            }
         }
 
         const waText = `Halo PT HIKAI,\nSaya ingin konsultasi survei pergudangan:\nNama: ${name}\nPerusahaan: ${company}\nKebutuhan:\n${details}`;
@@ -2251,16 +2311,21 @@
     }
 
     async function fetchProductsFromSpreadsheet() {
-        if (isSandbox()) {
-            products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
+        // JIKA BERADA DI PREVIEW WORKSPACE GOOGLE: Lewati pemanggilan API agar tidak memicu 404
+        if (isSandboxEnv()) {
+            console.warn("[HIKAI Sandbox] Melewati sinkronisasi cloud API. Mengambil data dari cadangan lokal.");
+            loadLocalCachedProducts();
             renderCatalog();
             updateCalculations();
+            updateDashboardStats();
             return;
         }
+
         try {
             const res = await callApi('GET', 'getProducts');
             if (res && res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
                 products = res.data.map(item => {
+                    const isCustomProduct = item.isCustom === 'true' || item.isCustom === true || item.isEdited === 'true' || item.isEdited === true || false;
                     return {
                         id: item.id || item.ID || '',
                         name: item.name || item.Name || '',
@@ -2277,17 +2342,19 @@
                         finishing: item.finishing || item.Finishing || 'Powder Coating (Anti-Scratch & Anti-Rust)',
                         construction: item.construction || item.Construction || 'Standard Industrial Joint',
                         bestFor: item.bestFor || item.bestfor || item.BestFor || 'Aplikasi pergudangan serbaguna.',
-                        basePrice: Number(item.basePrice || item.baseprice || item.BasePrice || 0)
+                        basePrice: Number(item.basePrice || item.baseprice || item.BasePrice || 0),
+                        isCustom: isCustomProduct,
+                        isEdited: isCustomProduct
                     };
                 });
                 localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                updateDatabaseStatus(true);
             } else {
-                console.warn("Respon database tidak valid, menggunakan cache lokal...");
-                products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
+                loadLocalCachedProducts();
             }
         } catch(e) {
-            console.error("Gagal memuat produk dari cloud, memuat data default:", e);
-            products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
+            console.warn("Koneksi API offline. Memuat dari penyimpanan lokal:", e);
+            loadLocalCachedProducts();
         }
 
         renderCatalog();
@@ -2295,22 +2362,55 @@
         updateDashboardStats();
     }
 
+    function loadLocalCachedProducts() {
+        products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
+        updateDatabaseStatus(false);
+    }
+
+    function updateDatabaseStatus(isConnected) {
+        const badge = document.getElementById('db-status-badge');
+        const dbStatusText = document.getElementById('stat-db-status');
+        
+        if (badge) {
+            if (isConnected) {
+                badge.className = "p-2 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold rounded font-mono";
+                badge.textContent = "DB CONNECTED";
+                if (dbStatusText) dbStatusText.textContent = "SINKRON";
+            } else {
+                badge.className = "p-2 bg-yellow-950/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold rounded font-mono";
+                badge.textContent = "LOCAL OFFLINE MODE";
+                if (dbStatusText) dbStatusText.textContent = "LOKAL CACHE";
+            }
+        }
+    }
+
     async function fetchInquiriesFromSpreadsheet() {
-        if (isSandbox()) {
-            globalInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
-            renderInquiryLogs(globalInquiries);
-            updateDashboardStats();
+        // JIKA BERADA DI PREVIEW: Melewati request API untuk mencegah 404
+        if (isSandboxEnv()) {
+            console.warn("[HIKAI Sandbox] Melewati sinkronisasi inquiries cloud API.");
+            loadLocalCachedInquiries();
             return;
         }
+
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         try {
             const res = await callApi('GET', 'getInquiries', null, { password: activePass });
-            if (res.status === "success" && Array.isArray(res.data)) {
+            if (res && res.status === "success" && Array.isArray(res.data)) {
                 globalInquiries = res.data;
                 renderInquiryLogs(res.data);
                 updateDashboardStats();
+            } else {
+                loadLocalCachedInquiries();
             }
-        } catch (e) {}
+        } catch (e) {
+            loadLocalCachedInquiries();
+        }
+    }
+
+    function loadLocalCachedInquiries() {
+        globalInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
+        renderInquiryLogs(globalInquiries);
+        updateDashboardStats();
     }
 
     function confirmInitializeDefault() {
@@ -2323,14 +2423,14 @@
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         showToast("Menghubungkan ke Cloud Webhook...");
         
-        if (isSandbox()) {
+        if (isSandboxEnv()) {
             products = [...DEFAULT_PRODUCT_DATA];
             localStorage.setItem('hikai_products_cache', JSON.stringify(products));
             renderCatalog();
             updateCalculations();
             renderAdminProductTable();
             updateDashboardStats();
-            showToast("Sukses merestore database lokal (Mode Sandbox).");
+            showToast("Sukses direset secara lokal (Sandbox Mode).");
             return;
         }
 
@@ -2347,7 +2447,13 @@
                 showToast("Gagal menyelaraskan: " + (res.message || "Akses tidak valid"), false);
             }
         } catch(e) {
-            showToast("Koneksi gagal. Periksa kembali Google Sheets URL di Vercel.", false);
+            products = [...DEFAULT_PRODUCT_DATA];
+            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            renderCatalog();
+            updateCalculations();
+            renderAdminProductTable();
+            updateDashboardStats();
+            showToast("Gagal sync cloud. Database default di-restore secara lokal.", false);
         }
     }
 </script>
@@ -2356,55 +2462,60 @@
     function renderInquiryLogs(data) {
         /* Desktop Table View */
         const table = document.getElementById('admin-inquiry-rows');
-        table.innerHTML = '';
-        if (data.length === 0) {
-            table.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">Inquiries Kosong.</td></tr>`;
-        } else {
-            data.forEach(log => {
-                table.innerHTML += `
-                    <tr>
-                        <td class="p-3 text-gold-champagne">${log.Timestamp || '-'}</td>
-                        <td class="p-3 font-bold text-white">${log.Name || '-'}</td>
-                        <td class="p-3">${log.Phone || '-'}</td>
-                        <td class="p-3">${log.Company || '-'}</td>
-                        <td class="p-3 truncate max-w-xs">${log.Details || '-'}</td>
-                        <td class="p-3 text-right">
-                            <button onclick="confirmDeleteInquiry('${log.id}')" class="px-2 py-1 bg-red-950 text-red-400 rounded-lg hover:bg-red-900 transition"><i class="fa-solid fa-trash-can"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
+        if (table) {
+            table.innerHTML = '';
+            if (data.length === 0) {
+                table.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">Inquiries Kosong.</td></tr>`;
+            } else {
+                data.forEach(log => {
+                    table.innerHTML += `
+                        <tr>
+                            <td class="p-3 text-gold-champagne">${log.Timestamp || '-'}</td>
+                            <td class="p-3 font-bold text-white">${log.Name || '-'}</td>
+                            <td class="p-3">${log.Phone || '-'}</td>
+                            <td class="p-3">${log.Company || '-'}</td>
+                            <td class="p-3 truncate max-w-xs">${log.Details || '-'}</td>
+                            <td class="p-3 text-right">
+                                <button onclick="confirmDeleteInquiry('${log.id || log.ID}')" class="px-2 py-1 bg-red-950 text-red-400 rounded-lg hover:bg-red-900 transition"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
         }
 
         /* Mobile Card View (HP Optimizations) */
         const mobileContainer = document.getElementById('admin-inquiry-cards');
-        mobileContainer.innerHTML = '';
-        if (data.length === 0) {
-            mobileContainer.innerHTML = `<div class="p-6 text-center text-xs text-gray-500 bg-obsidian-card border border-white/5 rounded-xl">Inquiries Kosong.</div>`;
-        } else {
-            data.forEach(log => {
-                mobileContainer.innerHTML += `
-                    <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-white font-bold text-sm">${log.Name || '-'}</h4>
-                                <span class="text-[10px] text-gold-champagne font-mono block mt-0.5">${log.Timestamp || '-'}</span>
+        if (mobileContainer) {
+            mobileContainer.innerHTML = '';
+            if (data.length === 0) {
+                mobileContainer.innerHTML = `<div class="p-6 text-center text-xs text-gray-500 bg-obsidian-card border border-white/5 rounded-xl">Inquiries Kosong.</div>`;
+            } else {
+                data.forEach(log => {
+                    mobileContainer.innerHTML += `
+                        <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">${log.Name || '-'}</h4>
+                                    <span class="text-[10px] text-gold-champagne font-mono block mt-0.5">${log.Timestamp || '-'}</span>
+                                </div>
+                                <button onclick="confirmDeleteInquiry('${log.id || log.ID}')" class="p-2 bg-red-950/40 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-900/40 transition"><i class="fa-solid fa-trash-can text-xs"></i></button>
                             </div>
-                            <button onclick="confirmDeleteInquiry('${log.id}')" class="p-2 bg-red-950/40 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-900/40 transition"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                            <div class="space-y-1 text-[11px] text-gray-400 pt-2 border-t border-white/5 font-mono">
+                                <p><span class="text-gray-600 font-bold uppercase">WA:</span> ${log.Phone || '-'}</p>
+                                <p><span class="text-gray-600 font-bold uppercase">CO:</span> ${log.Company || '-'}</p>
+                                <p class="pt-1 text-gray-300 whitespace-pre-line text-xs font-sans leading-relaxed border-t border-white/5">${log.Details || '-'}</p>
+                            </div>
                         </div>
-                        <div class="space-y-1 text-[11px] text-gray-400 pt-2 border-t border-white/5 font-mono">
-                            <p><span class="text-gray-600 font-bold uppercase">WA:</span> ${log.Phone || '-'}</p>
-                            <p><span class="text-gray-600 font-bold uppercase">CO:</span> ${log.Company || '-'}</p>
-                            <p class="pt-1 text-gray-300 whitespace-pre-line text-xs font-sans leading-relaxed border-t border-white/5">${log.Details || '-'}</p>
-                        </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
         }
     }
 
     function toggleAdminPanel() {
         const panel = document.getElementById('admin');
+        if (!panel) return;
         panel.classList.toggle('hidden');
         if (!panel.classList.contains('hidden')) {
             panel.scrollIntoView({ behavior: 'smooth' });
@@ -2435,66 +2546,61 @@
     function renderAdminProductTable() {
         /* Desktop Table View */
         const rows = document.getElementById('admin-product-rows');
-        rows.innerHTML = '';
-        products.forEach(p => {
-            const basePrice = Number(p.basePrice) || 0;
-            const translatedName = getProductTranslation(p, 'name');
-            rows.innerHTML += `
-                <tr>
-                    <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
-                    <td class="p-4">${translatedName}</td>
-                    <td class="p-4">${p.type}</td>
-                    <td class="p-4 text-white font-bold">Rp ${basePrice.toLocaleString('id-ID')}</td>
-                    <td class="p-4 text-right">
-                        <button onclick="openProductEditForm('${p.id}')" class="px-3 py-1.5 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition"><i class="fa-solid fa-edit"></i> Edit</button>
-                        <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition"><i class="fa-solid fa-trash"></i> Hapus</button>
-                    </td>
-                </tr>
-            `;
-        });
+        if (rows) {
+            rows.innerHTML = '';
+            products.forEach(p => {
+                const basePrice = Number(p.basePrice) || 0;
+                const translatedName = getProductTranslation(p, 'name');
+                rows.innerHTML += `
+                    <tr>
+                        <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
+                        <td class="p-4">${translatedName}</td>
+                        <td class="p-4">${p.type}</td>
+                        <td class="p-4 text-white font-bold">Rp ${basePrice.toLocaleString('id-ID')}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="openProductEditForm('${p.id}')" class="px-3 py-1.5 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition"><i class="fa-solid fa-edit"></i> Edit</button>
+                            <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition"><i class="fa-solid fa-trash"></i> Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
 
         /* Mobile Card View (HP Optimizations) */
         const mobileContainer = document.getElementById('admin-product-cards');
-        mobileContainer.innerHTML = '';
-        products.forEach(p => {
-            const basePrice = Number(p.basePrice) || 0;
-            const translatedName = getProductTranslation(p, 'name');
-            mobileContainer.innerHTML += `
-                <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span class="text-[10px] font-mono text-gold-champagne uppercase tracking-wider">${p.code}</span>
-                            <h4 class="text-white font-bold text-sm">${translatedName}</h4>
+        if (mobileContainer) {
+            mobileContainer.innerHTML = '';
+            products.forEach(p => {
+                const basePrice = Number(p.basePrice) || 0;
+                const translatedName = getProductTranslation(p, 'name');
+                mobileContainer.innerHTML += `
+                    <div class="bg-obsidian-card border border-white/5 p-4 rounded-xl space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-[10px] font-mono text-gold-champagne uppercase tracking-wider">${p.code}</span>
+                                <h4 class="text-white font-bold text-sm">${translatedName}</h4>
+                            </div>
+                            <span class="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 font-mono">${p.type}</span>
                         </div>
-                        <span class="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 font-mono">${p.type}</span>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-white/5">
-                        <span class="text-xs text-white font-bold font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
-                        <div class="flex gap-1.5">
-                            <button onclick="openProductEditForm('${p.id}')" class="p-2 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition text-xs"><i class="fa-solid fa-edit"></i></button>
-                            <button onclick="confirmDeleteProduct('${p.id}')" class="p-2 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition text-xs"><i class="fa-solid fa-trash"></i></button>
+                        <div class="flex justify-between items-center pt-2 border-t border-white/5">
+                            <span class="text-xs text-white font-bold font-mono">Rp ${basePrice.toLocaleString('id-ID')}</span>
+                            <div class="flex gap-1.5">
+                                <button onclick="openProductEditForm('${p.id}')" class="p-2 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition text-xs"><i class="fa-solid fa-edit"></i></button>
+                                <button onclick="confirmDeleteProduct('${p.id}')" class="p-2 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition text-xs"><i class="fa-solid fa-trash"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
     }
 
     function updateDashboardStats() {
-        document.getElementById('stat-total-products').textContent = products.length;
-        document.getElementById('stat-total-inquiries').textContent = globalInquiries.length;
-        document.getElementById('stat-db-status').textContent = isSandbox() ? "SANDBOX" : "SINKRONISASI";
+        const prodStat = document.getElementById('stat-total-products');
+        const inqStat = document.getElementById('stat-total-inquiries');
         
-        const badge = document.getElementById('db-status-badge');
-        if (badge) {
-            if (isSandbox()) {
-                badge.className = "p-2 bg-yellow-950/20 border border-yellow-500/30 text-yellow-400 text-xs font-bold rounded";
-                badge.textContent = "DB SANDBOX MODE";
-            } else {
-                badge.className = "p-2 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold rounded";
-                badge.textContent = "DB CONNECTED";
-            }
-        }
+        if (prodStat) prodStat.textContent = products.length;
+        if (inqStat) inqStat.textContent = globalInquiries.length;
     }
 
     function switchAdminTab(targetTab) {
@@ -2503,7 +2609,6 @@
             b.className = "admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white";
         });
         
-        /* Direct support for catalogs and crm dashboard views */
         if (targetTab === 'catalog') {
             document.getElementById('admin-panel-catalog').classList.remove('hidden');
         } else if (targetTab === 'crm') {
@@ -2658,53 +2763,85 @@
     async function handleProductSave(event) {
         event.preventDefault();
         const id = document.getElementById('edit-key').value;
+        const nameValue = document.getElementById('edit-name').value;
+        const descValue = document.getElementById('edit-description').value;
+        const capacityValue = document.getElementById('edit-capacity').value;
+        const typeValue = document.getElementById('edit-type').value;
+        const codeValue = document.getElementById('edit-code').value;
+        const layersValue = Number(document.getElementById('edit-layers').value);
+        const priceValue = Number(document.getElementById('edit-price').value);
+        const hValue = Number(document.getElementById('edit-h').value);
+        const dValue = Number(document.getElementById('edit-d').value);
+        const lValue = Number(document.getElementById('edit-l').value);
+        const svgTypeValue = document.getElementById('edit-svgtype').value;
+        
         const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         const inputElements = document.querySelectorAll('#admin-images-container .slot-url-input');
         const imagesArray = Array.from(inputElements).map(el => el.value.trim()).filter(val => val !== "");
         const combinedImagesString = imagesArray.join("|");
 
+        // Update local state translation map instantly
+        if (!productTranslations[id]) {
+            productTranslations[id] = { id: {}, en: {}, zh: {} };
+        }
+        if (!productTranslations[id][currentLang]) {
+            productTranslations[id][currentLang] = {};
+        }
+        productTranslations[id][currentLang].name = nameValue;
+        productTranslations[id][currentLang].description = descValue;
+        productTranslations[id][currentLang].capacity = capacityValue;
+
         const payload = {
             action: "updateProduct",
             password: activeSessionPass,
             id: id,
-            code: document.getElementById('edit-code').value,
-            name: document.getElementById('edit-name').value,
-            type: document.getElementById('edit-type').value,
-            layers: Number(document.getElementById('edit-layers').value),
-            basePrice: Number(document.getElementById('edit-price').value),
-            h: Number(document.getElementById('edit-h').value),
-            d: Number(document.getElementById('edit-d').value),
-            l: Number(document.getElementById('edit-l').value),
-            svgType: document.getElementById('edit-svgtype').value,
-            capacity: document.getElementById('edit-capacity').value,
-            description: document.getElementById('edit-description').value,
-            images: combinedImagesString 
+            code: codeValue,
+            name: nameValue,
+            type: typeValue,
+            layers: layersValue,
+            basePrice: priceValue,
+            h: hValue,
+            d: dValue,
+            l: lValue,
+            svgType: svgTypeValue,
+            capacity: capacityValue,
+            description: descValue,
+            images: combinedImagesString,
+            isCustom: true
         };
 
         const localIdx = products.findIndex(p => p.id === id);
-        const localPayload = { ...payload, images: imagesArray };
+        const localPayload = { ...payload, images: imagesArray, isCustom: true, isEdited: true };
+        
         if (localIdx !== -1) {
             products[localIdx] = localPayload;
         } else {
             products.push(localPayload);
         }
+        
         localStorage.setItem('hikai_products_cache', JSON.stringify(products));
         renderCatalog();
         updateCalculations();
         renderAdminProductTable();
         closeProductEditForm();
 
-        if (isSandbox()) {
-            showToast("Produk disimpan secara lokal (Sandbox).");
+        if (isSandboxEnv()) {
+            showToast("Produk sukses disimpan secara lokal (Sandbox Mode).");
             return;
         }
 
+        // Always push to sheets cloud API
         try {
-            await callApi('POST', 'updateProduct', payload);
-            showToast("Berhasil disinkronkan ke database cloud.");
-            fetchProductsFromSpreadsheet();
+            showToast("Menyimpan perubahan ke Google Sheets...");
+            const res = await callApi('POST', 'updateProduct', payload);
+            if (res && res.status === "success") {
+                showToast("Produk sukses disimpan & diperbarui di Google Sheets!");
+                await fetchProductsFromSpreadsheet();
+            } else {
+                showToast("Tersimpan lokal. Masalah autentikasi cloud: " + (res.message || "Gagal"), false);
+            }
         } catch(err) {
-            showToast("Gagal menyimpan ke cloud, tersimpan di cache.", false);
+            showToast("Gagal sync ke cloud (Offline). Disimpan sementara di cache lokal.", false);
         }
     }
 
@@ -2745,30 +2882,47 @@
             updateCalculations();
             renderAdminProductTable();
 
-            if (isSandbox()) {
+            if (isSandboxEnv()) {
                 showToast("Produk terhapus secara lokal.");
                 return;
             }
 
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                await callApi('POST', 'deleteProduct', { password: activeSessionPass, id: id });
-                showToast("Berhasil dihapus dari cloud.");
-                fetchProductsFromSpreadsheet();
-            } catch(e) {}
+                showToast("Menghapus produk dari Google Sheets...");
+                const res = await callApi('POST', 'deleteProduct', { password: activeSessionPass, id: id });
+                if (res && res.status === "success") {
+                    showToast("Produk berhasil terhapus dari cloud Google Sheets.");
+                } else {
+                    showToast("Terhapus lokal. Gagal di cloud: " + (res.message || ""), false);
+                }
+                await fetchProductsFromSpreadsheet();
+            } catch(e) {
+                showToast("Gagal hapus dari Sheets (Offline). Terhapus di cache lokal.", false);
+            }
         } else if (confirmActionType === "inquiry") {
             globalInquiries = globalInquiries.filter(i => i.id !== id);
             renderInquiryLogs(globalInquiries);
-            if (isSandbox()) {
-                localStorage.setItem('hikai_mock_inquiries', JSON.stringify(globalInquiries));
+            localStorage.setItem('hikai_mock_inquiries', JSON.stringify(globalInquiries));
+            
+            if (isSandboxEnv()) {
+                showToast("Inquiry terhapus secara lokal.");
                 return;
             }
+
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
             try {
-                await callApi('POST', 'deleteInquiry', { password: activeSessionPass, id: id });
-                showToast("Log inquiries terhapus dari cloud.");
-                fetchInquiriesFromSpreadsheet();
-            } catch(e) {}
+                showToast("Menghapus log inquiry dari Google Sheets...");
+                const res = await callApi('POST', 'deleteInquiry', { password: activeSessionPass, id: id });
+                if (res && res.status === "success") {
+                    showToast("Log inquiry berhasil terhapus dari cloud.");
+                } else {
+                    showToast("Terhapus lokal. Gagal di cloud: " + (res.message || ""), false);
+                }
+                await fetchInquiriesFromSpreadsheet();
+            } catch(e) {
+                showToast("Gagal hapus dari Sheets (Offline). Terhapus di cache lokal.", false);
+            }
         }
     };
 
@@ -2807,7 +2961,6 @@
         if (cachedSettings) globalSettings = JSON.parse(cachedSettings);
         applyGlobalSettingsDOM();
         
-        // Load initial catalog & language preference
         setLanguage('id'); 
         updateCartCounter();
         updateCalculations();
