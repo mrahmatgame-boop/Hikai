@@ -161,7 +161,7 @@
                 heroBadge: "尊贵 VVIP 仓储物流 system",
                 heroTitle: "高品质工业级货架",
                 heroSubtitle: "PT. Hikai Storage Equipment",
-                heroDesc: "带来通过 international 品质认证的高精度优质冷轧结构钢货架。为您提供极奢工艺设计、顶尖承重承载力与交互式立体空间动线规划系统。",
+                heroDesc: "带来通过 international 品质认证的高精度优质冷轧结构钢货架。为您提供极奢工艺设计、顶尖承重承载力与交互式立体空间动线规划 system。",
                 btnCatalog: "选配货架规格",
                 btnCalc: "规划 10x5米立体空间",
                 previewTitle: "实机渲染图",
@@ -214,9 +214,9 @@
     <!-- Top premium black utility belt -->
     <div class="bg-black border-b border-obsidian-accent py-2.5 px-4 md:px-8 text-[11px] flex justify-between items-center text-gray-400">
         <div class="flex items-center gap-6">
-            <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" class="hover:text-white font-mono transition">08995719102</a></span>
-            <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> info@hikairack.com</span>
-            <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: Kosambi, Tangerang</span>
+            <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" id="global-hotline-link" class="hover:text-white font-mono transition">08995719102</a></span>
+            <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> <span id="global-email">info@hikairack.com</span></span>
+            <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: <span id="global-address">Kosambi, Tangerang</span></span>
         </div>
         <div class="flex items-center gap-4">
             <div class="flex gap-2 font-bold text-[10px] tracking-wider">
@@ -285,7 +285,6 @@
                         <i class="fa-solid fa-xmark text-sm"></i>
                     </button>
                 </div>
-                <!-- Navigation list structured with icons -->
                 <nav class="flex flex-col gap-4 text-xs font-bold tracking-widest uppercase">
                     <a href="#about" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5 pb-3">
                         <i class="fa-solid fa-circle-info text-gold-champagne text-xs w-5 text-center"></i>
@@ -313,7 +312,6 @@
                     </a>
                 </nav>
             </div>
-            <!-- Bottom Drawer identity signatures -->
             <div class="border-t border-white/5 pt-5 text-center">
                 <p class="text-[8px] text-gray-600 uppercase tracking-widest font-mono">Premium Spatial Engineering</p>
                 <p class="text-[9px] text-gold-champagne font-bold mt-1">PT. HIKAI STORAGE EQUIPMENT</p>
@@ -615,14 +613,14 @@
                             <i class="fa-solid fa-map-pin text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                             <div>
                                 <h4 class="text-white font-bold">Marketing & Sales Office:</h4>
-                                <p class="mt-1">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
+                                <p class="mt-1" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
                             <i class="fa-solid fa-envelope text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                             <div>
                                 <h4 class="text-white font-bold">Layanan Dukungan Email:</h4>
-                                <p class="mt-1">info@hikairack.com</p>
+                                <p class="mt-1" id="global-form-email">info@hikairack.com</p>
                             </div>
                         </div>
                     </div>
@@ -691,9 +689,9 @@
     <section id="admin" class="py-24 bg-obsidian-deep border-t border-white/5 hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div class="text-center max-w-xl mx-auto space-y-2">
-                <span class="text-red-500 text-xs font-bold uppercase tracking-widest font-mono"><i class="fa-solid fa-lock-open mr-1.5"></i> Superadmin Security Gateway (Server-Side Shield)</span>
-                <h3 class="text-xl font-bold text-white">Gerbang Akses Database</h3>
-                <p class="text-gray-500 text-xs font-light">Koneksi dan kata sandi web HIKAI Anda terproteksi secara penuh di sisi server menggunakan enkripsi asinkron Google Cloud & Vercel Serverless proxy.</p>
+                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest font-mono"><i class="fa-solid fa-shield-halved mr-1.5"></i> Superadmin Control Suite (Secure Sync)</span>
+                <h3 class="text-2xl font-bold text-white">Panel Administrasi HIKAI</h3>
+                <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
             </div>
 
             <!-- Login Screen -->
@@ -709,85 +707,167 @@
                 </button>
             </div>
 
-            <!-- Authenticated Admin Board -->
-            <div id="admin-board" class="hidden space-y-8">
-                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-6">
+            <!-- Authenticated Admin Board with Tabbed Interface -->
+            <div id="admin-board" class="hidden space-y-6">
+                <!-- Header Stats Belt -->
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-4">
                     <div class="flex items-center gap-3">
                         <span id="db-status-badge" class="p-2 bg-red-950/20 border border-red-500/30 text-red-400 text-xs font-bold rounded">DB DISCONNECTED</span>
-                        <h4 class="text-white font-bold text-lg">HIKAI Database Sync Panel</h4>
+                        <h4 class="text-white font-bold text-lg">HIKAI Command Center</h4>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-900/10 border border-red-500/30 text-red-500 rounded text-xs transition hover:bg-red-500 hover:text-black">Logout Panel</button>
+                    <div class="flex items-center gap-3">
+                        <!-- Navigation Tab Buttons -->
+                        <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex gap-1">
+                            <button onclick="switchAdminTab('stats')" id="admin-btn-stats" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black"><i class="fa-solid fa-chart-line mr-1.5"></i> Ringkasan</button>
+                            <button onclick="switchAdminTab('catalog')" id="admin-btn-catalog" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-boxes-stacked mr-1.5"></i> Katalog Rak</button>
+                            <button onclick="switchAdminTab('crm')" id="admin-btn-crm" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-id-card mr-1.5"></i> Inquiries Inbox</button>
+                            <button onclick="switchAdminTab('settings')" id="admin-btn-settings" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-gears mr-1.5"></i> Pengaturan</button>
+                        </div>
+                        <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-950/20 border border-red-500/30 text-red-500 rounded-lg text-xs font-bold transition hover:bg-red-500 hover:text-black">Logout</button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- OVERVIEW STATS PANEL -->
+                <div id="admin-panel-stats" class="admin-panel-content grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
+                        <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Total Koleksi Rak</span>
+                        <div class="flex justify-between items-center mt-2">
+                            <h3 class="text-3xl font-extrabold text-white" id="stat-total-products">0</h3>
+                            <div class="p-3 bg-gold-champagne/10 rounded-xl text-gold-champagne text-lg"><i class="fa-solid fa-box-open"></i></div>
+                        </div>
+                        <p class="text-gray-400 text-[11px] mt-2">Item terdaftar yang aktif di halaman katalog.</p>
+                    </div>
+                    <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
+                        <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Inbox Prospek Masuk</span>
+                        <div class="flex justify-between items-center mt-2">
+                            <h3 class="text-3xl font-extrabold text-white" id="stat-total-inquiries">0</h3>
+                            <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400 text-lg"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        </div>
+                        <p class="text-gray-400 text-[11px] mt-2">Total pengajuan survei/konsultasi pelanggan.</p>
+                    </div>
+                    <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
+                        <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Status Integrasi</span>
+                        <div class="flex justify-between items-center mt-2">
+                            <h3 class="text-xl font-bold text-emerald-400" id="stat-db-status">SINKRON</h3>
+                            <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400 text-lg"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        </div>
+                        <p class="text-gray-400 text-[11px] mt-2">Terhubung ke Google Sheets & Vercel API Proxy.</p>
+                    </div>
+
+                    <!-- Quick Action Terminal -->
+                    <div class="md:col-span-3 bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
+                        <h4 class="text-white font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="initializeDefaultDatabase()" class="px-5 py-3 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-xs uppercase rounded-xl transition">
+                                <i class="fa-solid fa-arrows-rotate mr-2"></i> Reset ke Produk Bawaan Pabrik
+                            </button>
+                            <button onclick="fetchProductsFromSpreadsheet()" class="px-5 py-3 bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs uppercase rounded-xl transition">
+                                <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Muat Ulang Data Dari Cloud Sheets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATALOG LISTING PANEL -->
+                <div id="admin-panel-catalog" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="text-white font-bold text-base">Manajemen Katalog Produk</h4>
+                            <p class="text-gray-500 text-xs mt-0.5">Tambah, ubah, atau hapus item rak dari database.</p>
+                        </div>
+                        <button onclick="openProductEditForm(null)" class="px-4 py-2 bg-gold-champagne text-black font-extrabold text-xs uppercase rounded-lg hover:bg-gold-hover transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus text-xs"></i> Tambah Rack Baru
+                        </button>
+                    </div>
                     
-                    <!-- Webhook Parameter Config -->
-                    <div class="lg:col-span-4 bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                        <div class="p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-xl space-y-2">
-                            <h4 class="text-xs font-bold text-gold-champagne flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> SECURED BY VERCEL</h4>
-                            <p class="text-[10px] text-gray-400 leading-relaxed">Database URL Anda disimpan di server terenkripsi Vercel (Environment Variables). Tidak ada satu pun kode di browser pelanggan yang dapat mengintip database Anda.</p>
-                        </div>
-                        <hr class="border-white/5">
-                        <div class="space-y-2">
-                            <button onclick="initializeDefaultDatabase()" class="w-full py-2.5 bg-blue-950/20 hover:bg-blue-900 border border-blue-800/40 text-blue-300 font-bold text-[10px] uppercase rounded transition">
-                                <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Initialize default sheets data
-                            </button>
-                            <button onclick="fetchProductsFromSpreadsheet()" class="w-full py-2.5 bg-emerald-950/20 hover:bg-emerald-900 border border-emerald-800/40 text-emerald-300 font-bold text-[10px] uppercase rounded transition">
-                                <i class="fa-solid fa-cloud-arrow-down mr-1.5"></i> Fetch Data from Sheets
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Spreadsheet Content Editor -->
-                    <div class="lg:col-span-8 bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                        <div class="flex justify-between items-center">
-                            <h4 class="text-white font-bold text-xs uppercase tracking-wider">Spreadsheet Database Rows</h4>
-                            <button onclick="openProductEditForm(null)" class="px-3 py-1.5 bg-emerald-950 text-emerald-400 border border-emerald-500/30 font-bold text-[10px] uppercase rounded hover:bg-emerald-500 hover:text-black transition">
-                                <i class="fa-solid fa-plus mr-1"></i> Tambah Rack Baru
-                            </button>
-                        </div>
-                        
-                        <div class="overflow-x-auto text-xs font-mono">
-                            <table class="w-full text-left border-collapse">
-                                <thead class="bg-black text-gray-500 border-b border-white/5">
-                                    <tr>
-                                        <th class="p-3">CODE</th>
-                                        <th class="p-3">NAME</th>
-                                        <th class="p-3">PRICE</th>
-                                        <th class="p-3 text-right">ACTION</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admin-product-rows" class="divide-y divide-white/5 text-gray-300">
-                                    <!-- Injected database rows -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Inquiry Logs from Google Sheets -->
-                <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4 mt-8">
-                    <h4 class="text-white font-bold text-xs uppercase tracking-wider"><i class="fa-solid fa-list-check text-gold-champagne mr-1.5"></i> Inquiry Inbox Log (Sheets Data)</h4>
-                    <div class="overflow-x-auto text-xs font-mono">
+                    <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
                         <table class="w-full text-left border-collapse">
                             <thead class="bg-black text-gray-500 border-b border-white/5">
                                 <tr>
-                                    <th class="p-3">WAKTU</th>
-                                    <th class="p-3">NAMA</th>
-                                    <th class="p-3">WHATSAPP</th>
-                                    <th class="p-3">PERUSAHAAN</th>
-                                    <th class="p-3">DETAIL REKOMENDASI</th>
+                                    <th class="p-4">KODE</th>
+                                    <th class="p-4">NAMA PRODUK</th>
+                                    <th class="p-4">KATEGORI RAK</th>
+                                    <th class="p-4">HARGA DASAR</th>
+                                    <th class="p-4 text-right">AKSI</th>
                                 </tr>
                             </thead>
-                            <tbody id="admin-inquiry-rows" class="divide-y divide-white/5 text-gray-400">
-                                <tr><td colspan="5" class="p-6 text-center text-gray-600">No Webhook connected or inquiries empty.</td></tr>
+                            <tbody id="admin-product-rows" class="divide-y divide-white/5 text-gray-300">
+                                <!-- Dynamic database rows -->
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <!-- INQUIRIES WORKSPACE PANEL -->
+                <div id="admin-panel-crm" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
+                    <div>
+                        <h4 class="text-white font-bold text-base"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
+                        <p class="text-gray-500 text-xs mt-0.5">Tindak lanjuti penawaran klien langsung menggunakan integrasi WhatsApp API.</p>
+                    </div>
+
+                    <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-black text-gray-500 border-b border-white/5">
+                                <tr>
+                                    <th class="p-4">WAKTU</th>
+                                    <th class="p-4">NAMA PELANGGAN</th>
+                                    <th class="p-4">WHATSAPP</th>
+                                    <th class="p-4">PERUSAHAAN</th>
+                                    <th class="p-4">DETAIL REKOMENDASI</th>
+                                    <th class="p-4 text-right">AKSI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inquiry-rows" class="divide-y divide-white/5 text-gray-400">
+                                <!-- Inquiry rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- WEB SETTINGS CONTROL PANEL -->
+                <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-6">
+                    <div>
+                        <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> Pengaturan Konfigurasi Web Global</h4>
+                        <p class="text-gray-500 text-xs mt-0.5">Ubah kontak hotline, email, dan kantor pusat secara langsung untuk seluruh halaman publik.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                        <div>
+                            <label class="block text-gray-400 font-bold uppercase mb-2">WhatsApp VIP Hotline (Format: 628xxx)</label>
+                            <input 
+                                type="text" 
+                                id="settings-hotline" 
+                                placeholder="628995719102"
+                                class="w-full bg-black border border-[#333] p-3 rounded-lg text-white font-mono outline-none focus:border-gold-champagne"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 font-bold uppercase mb-2">Email Dukungan Pelanggan</label>
+                            <input 
+                                type="email" 
+                                id="settings-email" 
+                                placeholder="info@hikairack.com"
+                                class="w-full bg-black border border-[#333] p-3 rounded-lg text-white font-mono outline-none focus:border-gold-champagne"
+                            />
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-gray-400 font-bold uppercase mb-2">Alamat Kantor Pusat</label>
+                            <input 
+                                type="text" 
+                                id="settings-address" 
+                                placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang"
+                                class="w-full bg-black border border-[#333] p-3 rounded-lg text-white outline-none focus:border-gold-champagne"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/5 flex justify-end">
+                        <button onclick="saveGlobalWebSettings()" class="px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-luxury-glow">
+                            Simpan Pengaturan Global
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -899,8 +979,8 @@
     </div>
 
     <!-- CRUD Product Add / Edit Dialog Modal -->
-    <div id="product-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm">
-        <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-lg w-full p-6 space-y-4 text-left shadow-luxury-glow">
+    <div id="product-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm overflow-y-auto">
+        <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 space-y-4 text-left shadow-luxury-glow my-8">
             <h3 id="edit-modal-title" class="text-md font-bold text-white uppercase border-b border-white/5 pb-3 text-gold-champagne">Edit Database Row</h3>
             <form onsubmit="handleProductSave(event)" class="space-y-3 text-xs">
                 <input type="hidden" id="edit-id">
@@ -971,9 +1051,23 @@
                     <label class="block text-gray-500 mb-1">Description</label>
                     <textarea id="edit-description" rows="2" class="w-full bg-black border border-[#333] p-2 rounded text-white"></textarea>
                 </div>
-                <div>
-                    <label class="block text-gray-500 mb-1">Images (Pisahkan URL dengan Pipa | )</label>
-                    <input type="text" id="edit-images" placeholder="https://img1.jpg | https://img2.jpg" class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+
+                <!-- NEW: Interactive Dynamic Multi-Photo Manager Area -->
+                <div class="p-4 bg-black/40 rounded-xl border border-white/5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gold-champagne"><i class="fa-solid fa-images mr-1"></i> Interactive Multi-Photo Manager</span>
+                        <button type="button" onclick="addAdminImageSlot()" class="px-2 py-1 bg-gold-champagne/10 border border-gold-champagne/30 text-gold-champagne rounded hover:bg-gold-champagne hover:text-black transition text-[10px] font-bold">
+                            <i class="fa-solid fa-plus mr-1"></i> Tambah Foto Baru
+                        </button>
+                    </div>
+                    
+                    <!-- Container for interactive thumbnails and URL inputs -->
+                    <div id="admin-images-container" class="space-y-2.5 max-h-48 overflow-y-auto pr-1">
+                        <!-- Instantiated URL items with preview go here -->
+                    </div>
+
+                    <!-- Plain raw back up tracker -->
+                    <input type="hidden" id="edit-images">
                 </div>
                 
                 <div class="flex gap-2 pt-2 justify-end border-t border-white/5">
@@ -993,11 +1087,11 @@
                 </h3>
                 <p class="text-[9px] text-gray-500 font-mono mt-1">SUPERADMIN PRIVILEGED COMMAND</p>
             </div>
-            <p class="text-xs text-gray-300 leading-relaxed">
+            <p id="confirm-modal-desc" class="text-xs text-gray-300 leading-relaxed">
                 Apakah Anda benar-benar yakin ingin menghapus baris data produk ini dari sistem database lokal dan Google Sheets cloud? Tindakan ini tidak dapat dibatalkan.
             </p>
             <div class="flex gap-3 pt-2">
-                <button onclick="executeConfirmedDelete()" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
+                <button id="confirm-modal-execute" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
                     Ya, Hapus
                 </button>
                 <button onclick="closeConfirmModal()" class="py-3 px-5 bg-obsidian-card border border-white/10 text-gray-300 rounded-lg text-xs transition">
@@ -1069,46 +1163,6 @@
                     "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=600&auto=format&fit=crop&q=80"
                 ],
                 svgType: "light"
-            },
-            {
-                id: "hikai-pr-2700",
-                name: "Pallet Rack Heavy Duty (L2700)",
-                type: "Pallet Rack",
-                code: "PR-3000-L2700",
-                layers: 3,
-                h: 3000, d: 1000, l: 2700,
-                capacity: "1000 - 2000 Kg / Level",
-                finishing: "Extreme Duty Thermo-Hardened Powder Coating (Epoxy Polyester)",
-                construction: "Super Heavy Duty Upright & Box Beam Construction",
-                bestFor: "Penyimpanan Palet Kayu/Plastik standar ISO besar dengan beban tonase berat, manufaktur manufaktur, dan logistik logistik masif.",
-                basePrice: 5400000,
-                description: "Standar emas pergudangan masif. Memiliki panjang bentang (2700mm) yang sempurna untuk memuat 2 unit palet standar ukuran 1200x1000mm sekaligus berdampingan.",
-                features: ["Memuat 2 Palet Standar ISO", "Struktur Sangat Kaku", "Braket Kunci Tebal", "Sertifikasi Beban Tonase Rill"],
-                images: [
-                    "https://images.unsplash.com/photo-1589793466184-72782b7c6c4c?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&auto=format&fit=crop&q=80"
-                ],
-                svgType: "pallet-large"
-            },
-            {
-                id: "hikai-pr-2500",
-                name: "Pallet Rack Heavy Duty (L2500)",
-                type: "Pallet Rack",
-                code: "PR-3000-L2500",
-                layers: 3,
-                h: 3000, d: 1000, l: 2500,
-                capacity: "1000 - 1500 Kg / Level",
-                finishing: "Extreme Duty Powder Coating (Epoxy Polyester)",
-                construction: "Heavy Duty Box Beam Construction - Compact Edition",
-                bestFor: "Penyimpanan pallet khusus, ruang terbatas yang menuntut ketahanan beban tonase tinggi, atau variasi layout logistik.",
-                basePrice: 4950000,
-                description: "Versi kompak dari Pallet Rack HIKAI dengan panjang 2500mm. Didesain khusus untuk optimalisasi zonasi beban berat tanpa mengorbankan ruang sirkulasi alat berat.",
-                features: ["Dimensi Kompak Kuat", "Box Beams Berdaya Tahan Tinggi", "Kaki Anchor Bolt Rigid", "Optimal Untuk Gudang Sempit"],
-                images: [
-                    "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?w=600&auto=format&fit=crop&q=80"
-                ],
-                svgType: "pallet-medium"
             }
         ];
 
@@ -1119,8 +1173,17 @@
         let currentFilter = 'all';
         let calcTab = 'quote'; 
 
+        // Superadmin Dynamic States
+        let globalInquiries = [];
+        let globalSettings = {
+            hotline: "628995719102",
+            email: "info@hikairack.com",
+            address: "Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214"
+        };
+
         // Target delete reference for Custom Modal Confirm
         let targetDeleteId = null;
+        let confirmActionType = "product"; // product atau inquiry
 
         // Tracker visual mode
         let productViewMode = {}; 
@@ -1280,6 +1343,7 @@
             if (!panel.classList.contains('hidden')) {
                 panel.scrollIntoView({ behavior: 'smooth' });
                 testWebhookConnection();
+                loadLocalSettings();
             }
         }
     </script>
@@ -1327,15 +1391,17 @@
             const prod = products.find(p => p.id === id);
             if (!prod) return;
             
-            // DUKUNGAN MULTI FOTO (Array atau String dipisah pipa |)
+            // DUKUNGAN MULTI FOTO (Bisa bertipe Array asli atau String dipisah pipa |)
             let parsedImages = [];
             if (Array.isArray(prod.images)) {
                 parsedImages = prod.images;
             } else if (typeof prod.images === 'string' && prod.images.trim() !== '') {
-                parsedImages = prod.images.split('|');
+                parsedImages = prod.images.split('|').map(u => u.trim());
             }
 
-            if (parsedImages.length === 0) return;
+            if (parsedImages.length === 0) {
+                parsedImages = ["https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK"];
+            }
 
             const maxIdx = parsedImages.length;
             let idx = productImageIndex[id] || 0;
@@ -1499,12 +1565,12 @@
                 const isInComparison = comparisonList.find(item => item.id === p.id);
                 const sliderUniqueId = `carousel-container-${p.id}`;
 
-                // NORMALISASI FOTO: Parsing dari array maupun string pemisah pipa
+                // Parse image URLs safely
                 let parsedImages = [];
                 if (Array.isArray(p.images)) {
                     parsedImages = p.images;
                 } else if (typeof p.images === 'string' && p.images.trim() !== '') {
-                    parsedImages = p.images.split('|').map(url => url.trim());
+                    parsedImages = p.images.split('|').map(u => u.trim());
                 }
                 
                 if (parsedImages.length === 0) {
@@ -1642,7 +1708,7 @@
                             <i class="fa-solid fa-robot"></i>
                             <span class="font-bold uppercase tracking-wider">HIKAI AI Core Recommendations</span>
                         </div>
-                        <div class="space-y-3 prose-invert">
+                        <div class="space-y-3 prose-invert text-[11px]">
                             ${text.replace(/\n/g, '<br>')}
                         </div>
                     </div>
@@ -1745,8 +1811,8 @@
                             <svg viewBox="0 0 500 300" class="w-full h-auto">
                                 <rect width="100%" height="100%" fill="#070709" />
                                 <rect x="40" y="40" width="420" height="220" fill="#0d0d10" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6,4" />
-                                <text x="250" y="30" fill="#D4AF37" font-size="10" font-weight="bold" text-anchor="middle">PANJANG RUANGAN: ${roomLength} METER</text>
-                                <text x="25" y="150" fill="#D4AF37" font-size="10" font-weight="bold" text-anchor="middle" transform="rotate(-90 25 150)">LEBAR: ${roomWidth} METER</text>
+                                <text x="250" y="30" fill="#D4AF37" font-size="10" font-weight="bold" text-anchor="middle">PANJANG: ${roomLength} M</text>
+                                <text x="25" y="150" fill="#D4AF37" font-size="10" font-weight="bold" text-anchor="middle" transform="rotate(-90 25 150)">LEBAR: ${roomWidth} M</text>
                                 ${rackSlices}
                             </svg>
                         </div>
@@ -1853,7 +1919,8 @@
             }
 
             const waText = `Halo PT HIKAI Storage Equipment,\n\nSaya ingin mengajukan kunjungan survei.\n\n*Nama:* ${name}\n*Perusahaan:* ${company}\n*Telp:* ${phone}\n\n${details}`;
-            const waUrl = `https://wa.me/628995719102?text=${encodeURIComponent(waText)}`;
+            const targetHotline = globalSettings.hotline || "628995719102";
+            const waUrl = `https://wa.me/${targetHotline}?text=${encodeURIComponent(waText)}`;
             
             showToast("Inquiry terekam. Mengalihkan ke WhatsApp...");
             setTimeout(() => {
@@ -1869,7 +1936,8 @@
                 return;
             }
             const waText = `Halo PT HIKAI Storage Equipment,\n\nSaya telah menyusun konfigurasi rak melalui website HIKAI.\n\nBerikut draf ambalan kebutuhan pergudangan kami:\n\n${generateInquiryDetails()}`;
-            const waUrl = `https://wa.me/628995719102?text=${encodeURIComponent(waText)}`;
+            const targetHotline = globalSettings.hotline || "628995719102";
+            const waUrl = `https://wa.me/${targetHotline}?text=${encodeURIComponent(waText)}`;
             window.open(waUrl, '_blank');
         }
     </script>
@@ -1886,11 +1954,6 @@
                             <span class="w-2.5 h-2.5 bg-gold-champagne rounded-full animate-ping"></span>
                             Sinkronisasi Awan VVIP...
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full opacity-35">
-                            <div class="h-64 bg-obsidian-card border border-white/5 rounded-2xl animate-pulse"></div>
-                            <div class="h-64 bg-obsidian-card border border-white/5 rounded-2xl animate-pulse"></div>
-                            <div class="h-64 bg-obsidian-card border border-white/5 rounded-2xl animate-pulse"></div>
-                        </div>
                     </div>
                 `;
             }
@@ -1901,6 +1964,7 @@
                     renderCatalog();
                     updateCalculations();
                     renderAdminProductTable();
+                    updateDashboardStats();
                     showToast("Database HIKAI disinkronisasikan secara lokal (Mode Sandbox).");
                 }, 500);
                 return;
@@ -1914,6 +1978,7 @@
                     renderCatalog();
                     updateCalculations();
                     renderAdminProductTable();
+                    updateDashboardStats();
                     showToast("Database HIKAI disinkronisasikan dari Google Sheets.");
                 }
             } catch (error) {
@@ -1922,6 +1987,7 @@
                 renderCatalog();
                 updateCalculations();
                 renderAdminProductTable();
+                updateDashboardStats();
                 showToast("Katalog gagal diunduh dari cloud, beralih ke cache lokal.", false);
             }
         }
@@ -1929,7 +1995,9 @@
         async function fetchInquiriesFromSpreadsheet() {
             if (isSandbox()) {
                 const mockInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
+                globalInquiries = mockInquiries;
                 renderInquiryLogs(mockInquiries);
+                updateDashboardStats();
                 return;
             }
 
@@ -1937,28 +2005,46 @@
             try {
                 const res = await callApi('GET', 'getInquiries', null, { password: activeSessionPass });
                 if (res.status === "success" && Array.isArray(res.data)) {
+                    globalInquiries = res.data;
                     renderInquiryLogs(res.data);
+                    updateDashboardStats();
                 }
             } catch (error) {
                 console.error("Inquiries fetch error:", error);
             }
         }
 
+        // NEW: Membuka percakapan WhatsApp draf kustom dengan prospek dari inbox admin
+        function replyProspekWhatsApp(nama, phone, rincian) {
+            const cleanPhone = phone.replace(/[^0-9]/g, "");
+            const pesan = `Halo Bpk/Ibu *${nama}*,\n\nTerima kasih telah mengajukan penawaran konsultasi tata ruang gudang di PT. Hikai Storage Equipment.\n\nBerikut rincian draf kalkulator yang Anda kirimkan:\n${rincian}\n\nTim ahli kami segera melakukan survei atau estimasi gambar CAD lanjutan. Apakah lokasi ruang pergudangan Anda sudah siap dikunjungi?`;
+            const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+
         function renderInquiryLogs(data) {
             const table = document.getElementById('admin-inquiry-rows');
             table.innerHTML = '';
             if (data.length === 0) {
-                table.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">Log inquiry kosong.</td></tr>`;
+                table.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500 font-mono">Log inquiries masih kosong.</td></tr>`;
                 return;
             }
             data.forEach(log => {
                 table.innerHTML += `
                     <tr>
-                        <td class="p-3 text-gold-champagne">${log.Timestamp || '-'}</td>
-                        <td class="p-3 font-bold text-white">${log.Name || '-'}</td>
-                        <td class="p-3">${log.Phone || '-'}</td>
-                        <td class="p-3 text-gray-300">${log.Company || '-'}</td>
-                        <td class="p-3 truncate max-w-xs" title="${log.Details || ''}">${log.Details || '-'}</td>
+                        <td class="p-3 text-gold-champagne font-mono text-[11px]">${log.Timestamp || '-'}</td>
+                        <td class="p-3 font-bold text-white text-[11px]">${log.Name || '-'}</td>
+                        <td class="p-3 font-mono text-[11px] text-gray-300">${log.Phone || '-'}</td>
+                        <td class="p-3 text-[11px] text-gray-300">${log.Company || '-'}</td>
+                        <td class="p-3 truncate max-w-xs text-[11px]" title="${log.Details || ''}">${log.Details || '-'}</td>
+                        <td class="p-3 text-right space-x-1.5 min-w-[120px]">
+                            <button onclick="replyProspekWhatsApp('${log.Name}', '${log.Phone}', '${log.Details ? log.Details.replace(/\n/g, ' ') : ''}')" class="px-2.5 py-1.5 bg-emerald-950 hover:bg-emerald-800 text-emerald-400 font-bold rounded-lg text-[10px] transition" title="Balas via WhatsApp">
+                                <i class="fa-brands fa-whatsapp text-xs mr-1"></i> Balas
+                            </button>
+                            <button onclick="confirmDeleteInquiry('${log.id}')" class="px-2.5 py-1.5 bg-red-950 hover:bg-red-900/40 text-red-400 font-bold rounded-lg text-[10px] transition" title="Hapus Inquiry">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </td>
                     </tr>
                 `;
             });
@@ -2061,6 +2147,27 @@
             totalValue.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
         }
 
+        // TAB SWITCHING LOGIC FOR MASTER ADMIN CONTROL BOARD
+        function switchAdminTab(targetTab) {
+            // Hide all panels
+            document.querySelectorAll('.admin-panel-content').forEach(p => p.classList.add('hidden'));
+            // Remove active button styling
+            document.querySelectorAll('.admin-tab-btn').forEach(b => {
+                b.className = "admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white";
+            });
+
+            // Show target panel
+            document.getElementById(`admin-panel-${targetTab}`).classList.remove('hidden');
+            // Style active tab button
+            document.getElementById(`admin-btn-${targetTab}`).className = "admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black";
+        }
+
+        function updateDashboardStats() {
+            document.getElementById('stat-total-products').textContent = products.length;
+            document.getElementById('stat-total-inquiries').textContent = globalInquiries.length;
+            document.getElementById('stat-db-status').textContent = isSandbox() ? "SANDBOX" : "SINKRONISASI";
+        }
+
         async function handleAdminLogin() {
             const pass = document.getElementById('admin-password-input').value;
             showToast("Menghubungi Google Cloud Secure Shield...");
@@ -2072,6 +2179,7 @@
                     document.getElementById('admin-board').classList.remove('hidden');
                     renderAdminProductTable();
                     testWebhookConnection();
+                    updateDashboardStats();
                     showToast("Otentikasi Sandbox Berhasil!");
                 } else {
                     showToast("Sandi Sandbox (6613) tidak valid.", false);
@@ -2087,6 +2195,7 @@
                     document.getElementById('admin-board').classList.remove('hidden');
                     renderAdminProductTable();
                     testWebhookConnection();
+                    updateDashboardStats();
                     showToast("Otentikasi Superadmin Berhasil!");
                 } else {
                     showToast("Sandi tidak sah. Verifikasi gagal.", false);
@@ -2111,6 +2220,7 @@
                 renderCatalog();
                 updateCalculations();
                 renderAdminProductTable();
+                updateDashboardStats();
                 showToast("Database direset ke produk standar (Lokal).");
                 return;
             }
@@ -2136,22 +2246,72 @@
             products.forEach(p => {
                 tableBody.innerHTML += `
                     <tr>
-                        <td class="p-3 font-bold">${p.code}</td>
-                        <td class="p-3">${p.name}</td>
-                        <td class="p-3 text-gold-champagne font-bold">Rp ${p.basePrice.toLocaleString('id-ID')}</td>
-                        <td class="p-3 text-right space-x-1.5">
-                            <button onclick="openProductEditForm('${p.id}')" class="px-2 py-1 bg-blue-900/10 border border-blue-500/20 text-blue-400 rounded"><i class="fa-solid fa-edit"></i></button>
-                            <button onclick="confirmDeleteProduct('${p.id}')" class="px-2 py-1 bg-red-900/10 border border-red-500/20 text-red-400 rounded"><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
+                        <td class="p-4">${p.name}</td>
+                        <td class="p-4">${p.type}</td>
+                        <td class="p-4 text-white font-bold">Rp ${p.basePrice.toLocaleString('id-ID')}</td>
+                        <td class="p-4 text-right space-x-1.5">
+                            <button onclick="openProductEditForm('${p.id}')" class="px-3 py-1.5 bg-blue-900/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-black rounded-lg transition"><i class="fa-solid fa-edit"></i> Edit</button>
+                            <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/10 border border-red-500/20 text-red-400 hover:bg-red-500 hover:text-black rounded-lg transition"><i class="fa-solid fa-trash"></i> Hapus</button>
                         </td>
                     </tr>
                 `;
             });
         }
+    </script>
+
+    <script>
+        // NEW: Fungsi menambah kolom/baris input foto kustom secara dinamis di form edit
+        function addAdminImageSlot(value = "") {
+            const container = document.getElementById('admin-images-container');
+            const slotIndex = container.children.length;
+            const uniqueId = `img-slot-${slotIndex}-${Date.now()}`;
+            
+            const slotDiv = document.createElement('div');
+            slotDiv.className = "flex gap-2 items-center bg-black/60 p-2 rounded-lg border border-[#333] transition";
+            slotDiv.id = uniqueId;
+            
+            slotDiv.innerHTML = `
+                <div class="w-10 h-10 bg-[#121215] rounded overflow-hidden flex-shrink-0 border border-white/10 flex items-center justify-center">
+                    <img src="${value || 'https://placehold.co/100x100/121215/D4AF37?text=URL'}" alt="Preview" class="w-full h-full object-cover rounded" onerror="this.onerror=null; this.src='https://placehold.co/100x100/121215/D4AF37?text=Error';">
+                </div>
+                <input 
+                    type="url" 
+                    value="${value}" 
+                    placeholder="Masukkan URL foto (https://...)" 
+                    oninput="updateSlotThumbnailPreview(this)"
+                    required
+                    class="flex-1 bg-black/90 border border-white/10 p-1.5 rounded text-[11px] text-white outline-none focus:border-gold-champagne font-mono slot-url-input"
+                >
+                <button type="button" onclick="removeAdminImageSlot('${uniqueId}')" class="p-2 bg-red-950/20 hover:bg-red-900 border border-red-500/30 text-red-400 rounded-lg transition text-[10px]" title="Hapus slot">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            `;
+            
+            container.appendChild(slotDiv);
+        }
+
+        function removeAdminImageSlot(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.remove();
+            }
+        }
+
+        function updateSlotThumbnailPreview(inputElement) {
+            const previewImg = inputElement.previousElementSibling.querySelector('img');
+            if (previewImg) {
+                previewImg.src = inputElement.value || 'https://placehold.co/100x100/121215/D4AF37?text=URL';
+            }
+        }
 
         function openProductEditForm(id) {
             document.getElementById('product-edit-modal').classList.remove('hidden');
+            const container = document.getElementById('admin-images-container');
+            container.innerHTML = ''; // Kosongkan container input foto
+            
             if (id) {
-                document.getElementById('edit-modal-title').textContent = "EDIT PRODUCT PROFILE";
+                document.getElementById('edit-modal-title').textContent = "Ubah Produk " + id;
                 const p = products.find(item => item.id === id);
                 document.getElementById('edit-id').value = p.id;
                 document.getElementById('edit-key').value = p.id;
@@ -2167,10 +2327,24 @@
                 document.getElementById('edit-svgtype').value = p.svgType;
                 document.getElementById('edit-capacity').value = p.capacity;
                 document.getElementById('edit-description').value = p.description;
-                // Formater URL ke text field menggunakan pipa |
-                document.getElementById('edit-images').value = p.images ? (Array.isArray(p.images) ? p.images.join("|") : p.images) : '';
+                
+                // Urutkan dan bangun slot input foto secara bertahap
+                let currentPhotos = [];
+                if (Array.isArray(p.images)) {
+                    currentPhotos = p.images;
+                } else if (typeof p.images === 'string' && p.images.trim() !== '') {
+                    currentPhotos = p.images.split('|').map(u => u.trim());
+                }
+
+                currentPhotos.forEach(url => {
+                    addAdminImageSlot(url);
+                });
+                
+                if (currentPhotos.length === 0) {
+                    addAdminImageSlot(""); // Slot kosong default
+                }
             } else {
-                document.getElementById('edit-modal-title').textContent = "CREATE NEW PRODUCT";
+                document.getElementById('edit-modal-title').textContent = "BUAT PRODUK BARU";
                 document.getElementById('edit-id').value = '';
                 document.getElementById('edit-key').value = '';
                 document.getElementById('edit-key').disabled = false;
@@ -2185,7 +2359,9 @@
                 document.getElementById('edit-svgtype').value = 'starter';
                 document.getElementById('edit-capacity').value = '500 Kg / Level';
                 document.getElementById('edit-description').value = '';
-                document.getElementById('edit-images').value = '';
+                
+                // Tambahkan satu slot kosong default
+                addAdminImageSlot("");
             }
         }
 
@@ -2198,9 +2374,11 @@
             const id = document.getElementById('edit-key').value;
             const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
             
-            // Satukan input multi-foto dari input text untuk diproses sebagai string di cloud
-            const rawImagesString = document.getElementById('edit-images').value;
-            
+            // Kumpulkan seluruh URL foto dari input slot dinamis dan satukan menggunakan pipa (|)
+            const inputElements = document.querySelectorAll('#admin-images-container .slot-url-input');
+            const imagesArray = Array.from(inputElements).map(el => el.value.trim()).filter(val => val !== "");
+            const combinedImagesString = imagesArray.join("|");
+
             const payload = {
                 action: "updateProduct",
                 password: activeSessionPass,
@@ -2216,15 +2394,15 @@
                 svgType: document.getElementById('edit-svgtype').value,
                 capacity: document.getElementById('edit-capacity').value,
                 description: document.getElementById('edit-description').value,
-                images: rawImagesString // Cloud menerima format string yang digabung |
+                images: combinedImagesString // Kirim sebagai format string digabung pipa
             };
 
             const localIdx = products.findIndex(p => p.id === id);
             
-            // Untuk cache web (front-end render), simpan properti proper array agar carousel langsung bekerja optimal
+            // Simpan sebagai array murni secara lokal agar navigasi carousel slider publik bekerja mulus
             const localPayload = { 
                 ...payload, 
-                images: rawImagesString ? rawImagesString.split('|').map(img => img.trim()) : [] 
+                images: imagesArray 
             };
             
             if (localIdx !== -1) {
@@ -2241,21 +2419,33 @@
 
             if (isSandbox()) {
                 showToast("Produk disimpan secara lokal (Mode Sandbox).");
+                updateDashboardStats();
                 return;
             }
 
             try {
                 showToast("Menyimpan baris data ke Google Sheets...");
-                await callApi('POST', 'updateProduct', payload); // Kirim payload string ke proxy backend
+                await callApi('POST', 'updateProduct', payload);
                 showToast("Produk berhasil disinkronkan ke database cloud.");
                 fetchProductsFromSpreadsheet();
             } catch(err) {
                 showToast("Simpan cloud gagal, tersimpan di cache lokal.", false);
             }
         }
+    </script>
 
+    <script>
         function confirmDeleteProduct(id) {
             targetDeleteId = id;
+            confirmActionType = "product";
+            document.getElementById('confirm-modal-desc').textContent = "Apakah Anda benar-benar yakin ingin menghapus baris data produk ini dari sistem database lokal dan Google Sheets cloud? Tindakan ini tidak dapat dibatalkan.";
+            document.getElementById('confirm-modal').classList.remove('hidden');
+        }
+
+        function confirmDeleteInquiry(id) {
+            targetDeleteId = id;
+            confirmActionType = "inquiry";
+            document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin menghapus data pesan prospek (inquiry) ini dari Google Sheets? Tindakan ini tidak dapat dibatalkan.";
             document.getElementById('confirm-modal').classList.remove('hidden');
         }
 
@@ -2264,40 +2454,115 @@
             document.getElementById('confirm-modal').classList.add('hidden');
         }
 
-        async function executeConfirmedDelete() {
+        // Jalankan eksekusi terkonfirmasi berdasarkan tipe aksi (Hapus produk atau hapus inquiry CRM)
+        document.getElementById('confirm-modal-execute').onclick = async function() {
             if (!targetDeleteId) return;
             const id = targetDeleteId;
             closeConfirmModal();
 
-            products = products.filter(p => p.id !== id);
-            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
-            renderCatalog();
-            updateCalculations();
-            renderAdminProductTable();
+            if (confirmActionType === "product") {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                renderCatalog();
+                updateCalculations();
+                renderAdminProductTable();
+                updateDashboardStats();
 
-            if (isSandbox()) {
-                showToast("Produk dihapus secara lokal (Mode Sandbox).");
+                if (isSandbox()) {
+                    showToast("Produk dihapus secara lokal (Mode Sandbox).");
+                    return;
+                }
+
+                const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+                try {
+                    showToast("Menghapus baris data di Google Sheets...");
+                    await callApi('POST', 'deleteProduct', {
+                        password: activeSessionPass,
+                        id: id
+                    });
+                    showToast("Produk berhasil dihapus dari cloud.");
+                    fetchProductsFromSpreadsheet();
+                } catch(err) {
+                    showToast("Penghapusan cloud gagal.", false);
+                }
+            } else if (confirmActionType === "inquiry") {
+                globalInquiries = globalInquiries.filter(inq => inq.id !== id);
+                renderInquiryLogs(globalInquiries);
+                updateDashboardStats();
+
+                if (isSandbox()) {
+                    // Update fallback data localstorage
+                    const mockInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
+                    const filtered = mockInquiries.filter(item => item.id !== id);
+                    localStorage.setItem('hikai_mock_inquiries', JSON.stringify(filtered));
+                    showToast("Inquiry dihapus secara lokal (Mode Sandbox).");
+                    return;
+                }
+
+                const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+                try {
+                    showToast("Menghapus log inquiry di Google Sheets...");
+                    await callApi('POST', 'deleteInquiry', {
+                        password: activeSessionPass,
+                        id: id
+                    });
+                    showToast("Inquiry berhasil dihapus dari cloud.");
+                    fetchInquiriesFromSpreadsheet();
+                } catch(err) {
+                    showToast("Gagal menghapus log dari database cloud.", false);
+                }
+            }
+        };
+
+        // NEW: Menyimpan pengaturan global web ke localstorage dan mengupdate teks publik
+        function saveGlobalWebSettings() {
+            const hotline = document.getElementById('settings-hotline').value.trim();
+            const email = document.getElementById('settings-email').value.trim();
+            const address = document.getElementById('settings-address').value.trim();
+
+            if (!hotline) {
+                showToast("Nomor Hotline WhatsApp wajib diisi.", false);
                 return;
             }
 
-            const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
-            try {
-                showToast("Menghapus baris data di Google Sheets...");
-                await callApi('POST', 'deleteProduct', {
-                    password: activeSessionPass,
-                    id: id
-                });
-                showToast("Produk berhasil dihapus dari cloud.");
-                fetchProductsFromSpreadsheet();
-            } catch(err) {
-                showToast("Penghapusan cloud gagal.", false);
+            globalSettings = { hotline, email, address };
+            localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
+            
+            applyGlobalSettingsDOM();
+            showToast("Pengaturan global berhasil disimpan.");
+        }
+
+        function loadLocalSettings() {
+            const cached = localStorage.getItem('hikai_global_settings');
+            if (cached) {
+                globalSettings = JSON.parse(cached);
             }
+            // Populate ke input panel admin
+            document.getElementById('settings-hotline').value = globalSettings.hotline;
+            document.getElementById('settings-email').value = globalSettings.email;
+            document.getElementById('settings-address').value = globalSettings.address;
+            applyGlobalSettingsDOM();
+        }
+
+        function applyGlobalSettingsDOM() {
+            // Update link hotline telepon
+            const globalLink = document.getElementById('global-hotline-link');
+            if (globalLink) {
+                globalLink.textContent = globalSettings.hotline;
+                globalLink.href = `https://wa.me/${globalSettings.hotline}`;
+            }
+            // Update email & alamat VVIP
+            document.getElementById('global-email').textContent = globalSettings.email;
+            document.getElementById('global-address').textContent = globalSettings.address;
+            document.getElementById('global-form-email').textContent = globalSettings.email;
+            document.getElementById('global-form-address').textContent = globalSettings.address;
         }
     </script>
 
     <script>
         window.onload = function() {
             document.getElementById('hero-svg-container').innerHTML = generateRackSVG('starter', 4, true);
+            loadLocalSettings();
             renderCatalog();
             updateCartCounter();
             updateCalculations();
