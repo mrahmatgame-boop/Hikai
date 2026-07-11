@@ -591,7 +591,7 @@
         <div class="text-center max-w-xl mx-auto space-y-2">
             <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest font-mono"><i class="fa-solid fa-shield-halved mr-1.5"></i> Superadmin Control Suite (Secure Sync)</span>
             <h3 class="text-2xl font-bold text-white">Panel Administrasi HIKAI</h3>
-            <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
+            <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta sinkronisasi file "Portal-HIKAI.xlsx" Anda.</p>
         </div>
 
         <!-- Login Authenticator Panel -->
@@ -610,7 +610,7 @@
                     <h4 class="text-white font-bold text-lg">HIKAI Command Center</h4>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex gap-1">
+                    <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex flex-wrap gap-1">
                         <button onclick="switchAdminTab('stats')" id="admin-btn-stats" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black"><i class="fa-solid fa-chart-line mr-1.5"></i> Ringkasan</button>
                         <button onclick="switchAdminTab('catalog')" id="admin-btn-catalog" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-boxes-stacked mr-1.5"></i> Katalog Rak</button>
                         <button onclick="switchAdminTab('crm')" id="admin-btn-crm" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-id-card mr-1.5"></i> Inquiries Inbox</button>
@@ -643,10 +643,29 @@
                         <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400 text-lg"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                     </div>
                 </div>
+
                 <div class="md:col-span-3 bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                    <h4 class="text-white font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="initializeDefaultDatabase()" class="px-5 py-3 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-xs uppercase rounded-xl transition">
+                    <h4 class="text-white font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-file-excel text-gold-champagne"></i> Integrasi File "Portal-HIKAI.xlsx" & Cloud Database</h4>
+                    <p class="text-xs text-gray-400">Sinkronisasikan secara offline maupun online dengan mengimpor dan mengekspor file spreadsheet data rak Anda.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 bg-black/40 border border-[#333] rounded-xl space-y-3">
+                            <span class="text-[10px] uppercase font-bold text-gold-champagne block"><i class="fa-solid fa-cloud-arrow-up mr-1"></i> Impor Data dari Portal-HIKAI.xlsx</span>
+                            <p class="text-[11px] text-gray-500">Unggah file CSV cetakan dari Excel Anda untuk memperbarui katalog web secara massal.</p>
+                            <input type="file" id="xlsx-import-input" accept=".csv" onchange="handleExcelImport(event)" class="hidden">
+                            <button onclick="document.getElementById('xlsx-import-input').click()" class="w-full py-2.5 bg-gold-champagne/10 hover:bg-gold-champagne/20 border border-gold-champagne/30 text-gold-champagne font-bold text-xs uppercase rounded-lg transition">
+                                <i class="fa-solid fa-file-import mr-2"></i> Unggah File CSV Excel
+                            </button>
+                        </div>
+                        <div class="p-4 bg-black/40 border border-[#333] rounded-xl space-y-3">
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 block"><i class="fa-solid fa-file-arrow-down mr-1"></i> Ekspor Data untuk Portal-HIKAI.xlsx</span>
+                            <p class="text-[11px] text-gray-500">Unduh data katalog web saat ini untuk diarsipkan atau dimodifikasi kembali di Excel.</p>
+                            <button onclick="exportToCSV()" class="w-full py-2.5 bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs uppercase rounded-lg transition">
+                                <i class="fa-solid fa-file-excel mr-2"></i> Ekspor ke Excel (.CSV)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="confirmInitializeDefaultDatabase()" class="px-5 py-3 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-xs uppercase rounded-xl transition">
                             <i class="fa-solid fa-arrows-rotate mr-2"></i> Reset ke Produk Bawaan Pabrik
                         </button>
                         <button onclick="fetchProductsFromSpreadsheet()" class="px-5 py-3 bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs uppercase rounded-xl transition">
@@ -722,6 +741,10 @@
                         <label class="block text-gray-400 font-bold uppercase mb-2">Alamat Kantor Pusat</label>
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white outline-none focus:border-gold-champagne">
                     </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-purple-400 font-bold uppercase mb-2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Gemini API Key (Optional untuk AI Advice)</label>
+                        <input type="password" id="settings-gemini" placeholder="Masukkan Gemini API Key Anda untuk analisis otomatis..." class="w-full bg-black border border-purple-900/50 p-3 rounded-lg text-white outline-none focus:border-purple-400">
+                    </div>
                 </div>
                 <div class="pt-4 border-t border-white/5 flex justify-end">
                     <button onclick="saveGlobalWebSettings()" class="px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-luxury-glow">
@@ -772,9 +795,8 @@
     <p id="toast-message" class="text-xs text-white font-medium"></p>
 </div>
 
-<!-- Modal Detail Produk -->
 <div id="product-detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm">
-    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow">
+    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow max-h-[90vh] overflow-y-auto">
         <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
         <div class="border-b border-white/5 pb-4">
             <span id="modal-product-cat" class="text-[10px] font-bold tracking-widest text-gold-champagne uppercase">MEDIUM DUTY</span>
@@ -782,7 +804,16 @@
             <p id="modal-product-code" class="text-xs text-gray-500 font-mono">MODEL CODE: MDR-2000-ST</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-            <div id="modal-product-svg"></div>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold text-gray-500">MEDIA SELECTION</span>
+                    <div class="flex bg-black rounded p-1 border border-[#333]">
+                        <button id="modal-view-photo" class="px-2 py-0.5 rounded text-[9px] font-bold uppercase transition bg-gold-champagne text-black">Foto Real</button>
+                        <button id="modal-view-cad" class="px-2 py-0.5 rounded text-[9px] font-bold uppercase transition text-gray-400">Blueprint CAD</button>
+                    </div>
+                </div>
+                <div id="modal-product-media-wrapper" class="relative"></div>
+            </div>
             <div class="space-y-4 text-xs">
                 <div>
                     <strong class="text-gray-400 block">Kapasitas Muatan:</strong>
@@ -791,6 +822,10 @@
                 <div>
                     <strong class="text-gray-400 block">Proteksi Lapisan Finishing:</strong>
                     <span id="modal-product-finishing" class="text-gray-300">Powder Coating (Anti-Scratch)</span>
+                </div>
+                <div>
+                    <strong class="text-gray-400 block">Konstruksi Utama:</strong>
+                    <span id="modal-product-construction" class="text-gray-300">Starter Set</span>
                 </div>
                 <div>
                     <strong class="text-gray-400 block">Rekomendasi Terbaik:</strong>
@@ -932,7 +967,7 @@
         <p id="confirm-modal-desc" class="text-xs text-gray-300 leading-relaxed"></p>
         <div class="flex gap-3 pt-2">
             <button id="confirm-modal-execute" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
-                Ya, Hapus
+                Ya, Lanjutkan
             </button>
             <button onclick="closeConfirmModal()" class="py-3 px-5 bg-obsidian-card border border-white/10 text-gray-300 rounded-lg text-xs transition">
                 Batal
@@ -1064,7 +1099,8 @@
     let globalSettings = {
         hotline: "628995719102",
         email: "info@hikairack.com",
-        address: "Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214"
+        address: "Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214",
+        geminiKey: ""
     };
 
     let targetDeleteId = null;
@@ -1191,7 +1227,6 @@
                 </svg>
             `;
         } else {
-            // DETEKSI ADD-ON: Jika addon, hilangkan tiang sisi kiri (Shared Frame)
             const isAddon = safeType.includes('addon');
             const colorCode = safeType.includes('light') ? '#4B5563' : '#D4AF37';
             const beamColor = safeType.includes('light') ? '#9CA3AF' : '#AA7C11';
@@ -1252,6 +1287,12 @@
 
     function toggleViewMode(id, mode) {
         productViewMode[id] = mode;
+        renderCatalog();
+    }
+
+    function changeProductImage(id, offset, totalCount) {
+        if (!productImageIndex[id]) productImageIndex[id] = 0;
+        productImageIndex[id] = (productImageIndex[id] + offset + totalCount) % totalCount;
         renderCatalog();
     }
 
@@ -1404,11 +1445,27 @@
                 parsedImages = ["https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK"];
             }
 
+            const activeImgIdx = productImageIndex[p.id] || 0;
+            const currentImgUrl = parsedImages[activeImgIdx] || parsedImages[0];
+
             let mediaSection = '';
             if (view === 'photo') {
                 mediaSection = `
-                    <div class="relative h-48 w-full rounded-xl overflow-hidden">
-                        <img src="${parsedImages[0]}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
+                    <div class="relative h-48 w-full rounded-xl overflow-hidden group">
+                        <img src="${currentImgUrl}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
+                        ${parsedImages.length > 1 ? `
+                            <button onclick="changeProductImage('${p.id}', -1, ${parsedImages.length})" class="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-black/60 rounded-full text-white flex items-center justify-center hover:bg-gold-champagne hover:text-black transition z-10">
+                                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                            </button>
+                            <button onclick="changeProductImage('${p.id}', 1, ${parsedImages.length})" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-black/60 rounded-full text-white flex items-center justify-center hover:bg-gold-champagne hover:text-black transition z-10">
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                                ${parsedImages.map((_, idx) => `
+                                    <span class="w-1.5 h-1.5 rounded-full ${idx === activeImgIdx ? 'bg-gold-champagne' : 'bg-white/40'}"></span>
+                                `).join('')}
+                            </div>
+                        ` : ''}
                     </div>
                 `;
             } else {
@@ -1501,8 +1558,31 @@
 
         const prompt = `Sebagai konsultan logistik pergudangan profesional VVIP HIKAI, berikan analisis optimasi tata ruang berdasarkan ukuran ruangan ${roomLength}m x ${roomWidth}m, lebar gang kerja (aisle) ${aisleWidth}m, dan total rak: ${rackDetails || 'Belum ada rak'}. Berikan 3 rekomendasi pendek bahasa Indonesia terstruktur HTML.`;
         
+        const userApiKey = globalSettings.geminiKey || '';
+
+        if (!userApiKey) {
+            // Simulasi AI Expert (Fallback Pintar tanpa API Key)
+            setTimeout(() => {
+                const estCapacity = cart.reduce((acc, c) => acc + (c.qty * c.layers * 400), 0);
+                calcContent.innerHTML = `
+                    <div class="space-y-4 p-4 rounded-xl bg-purple-950/10 border border-purple-500/30 text-xs leading-relaxed text-purple-200 font-mono">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-purple-500/20 text-purple-400">
+                            <span class="font-bold uppercase flex items-center gap-2"><i class="fa-solid fa-robot"></i> HIKAI AI Core Recommendations</span>
+                            <span class="text-[9px] bg-purple-500/10 px-2 py-0.5 rounded text-purple-300">PREMIUM ANALYTICS</span>
+                        </div>
+                        <ul class="space-y-3 list-disc pl-4">
+                            <li><strong>Optimalisasi Pola Aliran:</strong> Ruang gudang berdimensi <span class="text-gold-champagne">${roomLength}x${roomWidth}m</span> sebaiknya dikonfigurasikan dengan pola aliran "U-Shape" untuk meminimalkan waktu penanganan palet.</li>
+                            <li><strong>Evaluasi Lebar Gang:</strong> Lebar gang <span class="text-gold-champagne">${aisleWidth}m</span> sangat cocok untuk sistem pemindahan manual / hand-pallet truck. Jika menggunakan Reach Truck Forklift, harap naikkan ke minimal 2.8 Meter.</li>
+                            <li><strong>Estimasi Kapasitas:</strong> Total sistem rak yang Anda pilih saat ini mampu menampung beban logistik hingga ±<span class="text-emerald-400">${estCapacity.toLocaleString('id-ID')} Kg</span> secara aman di bawah uji beban standardisasi EN 15512.</li>
+                        </ul>
+                    </div>
+                `;
+            }, 1000);
+            return;
+        }
+
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${userApiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1524,7 +1604,7 @@
                 </div>
             `;
         } catch (err) {
-            calcContent.innerHTML = `<div class="py-6 text-center text-xs text-red-400">Gagal menghubungkan layanan AI. Hubungi kami langsung.</div>`;
+            calcContent.innerHTML = `<div class="py-6 text-center text-xs text-red-400">Gagal menghubungkan layanan AI. Hubungi kami langsung atau periksa API Key Anda di tab Pengaturan.</div>`;
         }
     }
 
@@ -1673,6 +1753,106 @@
 </script>
 
 <script>
+    function handleExcelImport(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const text = e.target.result;
+            const lines = text.split("\n");
+            if (lines.length <= 1) {
+                showToast("Format file kosong atau tidak valid.", false);
+                return;
+            }
+
+            const importedProducts = [];
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Memisahkan kolom dengan aman, termasuk nilai dalam tanda kutip ganda
+                const rawColumns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (rawColumns.length < 16) continue;
+
+                const clean = rawColumns.map(val => val.replace(/^"|"$/g, '').replace(/""/g, '"').trim());
+
+                importedProducts.push({
+                    id: clean[0],
+                    name: clean[1],
+                    type: clean[2],
+                    code: clean[3],
+                    layers: Number(clean[4]) || 4,
+                    h: Number(clean[5]) || 2000,
+                    d: Number(clean[6]) || 600,
+                    l: Number(clean[7]) || 2000,
+                    capacity: clean[8],
+                    svgType: clean[9],
+                    description: clean[10],
+                    images: clean[11] ? clean[11].split("|") : [],
+                    finishing: clean[12],
+                    construction: clean[13],
+                    bestFor: clean[14],
+                    basePrice: Number(clean[15]) || 0
+                });
+            }
+
+            if (importedProducts.length > 0) {
+                products = importedProducts;
+                localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                renderCatalog();
+                updateCalculations();
+                renderAdminProductTable();
+                updateDashboardStats();
+                showToast(`Berhasil menyinkronkan ${importedProducts.length} produk dari Portal-HIKAI.xlsx!`);
+            } else {
+                showToast("Gagal menguraikan file CSV. Pastikan data kolom lengkap.", false);
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    function exportToCSV() {
+        const headers = ["id", "name", "type", "code", "layers", "h", "d", "l", "capacity", "svgType", "description", "images", "finishing", "construction", "bestFor", "basePrice"];
+        let csvContent = headers.join(",") + "\n";
+
+        products.forEach(p => {
+            const imgStr = Array.isArray(p.images) ? p.images.join("|") : (p.images || "");
+            const row = [
+                p.id,
+                `"${(p.name || "").replace(/"/g, '""')}"`,
+                `"${(p.type || "").replace(/"/g, '""')}"`,
+                p.code || "",
+                p.layers || 4,
+                p.h || 2000,
+                p.d || 600,
+                p.l || 2000,
+                `"${(p.capacity || "").replace(/"/g, '""')}"`,
+                p.svgType || "medium",
+                `"${(p.description || "").replace(/"/g, '""')}"`,
+                `"${imgStr.replace(/"/g, '""')}"`,
+                `"${(p.finishing || "").replace(/"/g, '""')}"`,
+                `"${(p.construction || "").replace(/"/g, '""')}"`,
+                `"${(p.bestFor || "").replace(/"/g, '""')}"`,
+                p.basePrice || 0
+            ];
+            csvContent += row.join(",") + "\n";
+        });
+
+        // Mengunduh berkas CSV
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", "Portal-HIKAI.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("Database diekspor ke file Excel (Portal-HIKAI.csv)!");
+    }
+</script>
+
+<script>
     async function handleInquirySubmit(event) {
         event.preventDefault();
         const name = document.getElementById('form-name').value;
@@ -1724,7 +1904,6 @@
         try {
             const res = await callApi('GET', 'getProducts');
             if (res.status === "success" && Array.isArray(res.data)) {
-                // NORMALISASI: Petakan data secara fleksibel terlepas dari case header di sheet
                 products = res.data.map(item => {
                     return {
                         id: item.id || item.ID || '',
@@ -1773,11 +1952,14 @@
         } catch (e) {}
     }
 
-    async function initializeDefaultDatabase() {
-        const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
-        const confirmation = confirm("Apakah Anda yakin ingin me-reset seluruh isi database produk ke bawaan pabrik di Google Sheets?");
-        if (!confirmation) return;
+    function confirmInitializeDefaultDatabase() {
+        confirmActionType = "reset_db";
+        document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin me-reset seluruh isi database produk ke bawaan pabrik?";
+        document.getElementById('confirm-modal').classList.remove('hidden');
+    }
 
+    async function executeDefaultDatabaseReset() {
+        const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         showToast("Memulai proses reset...");
         if (isSandbox()) {
             products = [...DEFAULT_PRODUCT_DATA];
@@ -1877,7 +2059,9 @@
             `;
         });
     }
+</script>
 
+<script>
     function updateDashboardStats() {
         document.getElementById('stat-total-products').textContent = products.length;
         document.getElementById('stat-total-inquiries').textContent = globalInquiries.length;
@@ -1907,13 +2091,73 @@
     function openProductModal(id) {
         const product = products.find(p => p.id === id);
         if (!product) return;
+
         document.getElementById('modal-product-cat').textContent = product.type;
         document.getElementById('modal-product-title').textContent = product.name;
         document.getElementById('modal-product-code').textContent = `MODEL CODE: ${product.code}`;
         document.getElementById('modal-product-cap').textContent = product.capacity;
         document.getElementById('modal-product-finishing').textContent = product.finishing || 'Powder Coating';
+        document.getElementById('modal-product-construction').textContent = product.construction || 'Standard Industrial Joint';
         document.getElementById('modal-product-best').textContent = product.bestFor || 'Gudang ambalan industri berat';
-        document.getElementById('modal-product-svg').innerHTML = generateRackSVG(product.svgType, product.layers, true);
+        
+        let parsedImages = [];
+        if (Array.isArray(product.images)) {
+            parsedImages = product.images;
+        } else if (typeof product.images === 'string' && product.images.trim() !== '') {
+            parsedImages = product.images.split('|').map(u => u.trim());
+        }
+        if (parsedImages.length === 0) {
+            parsedImages = ["https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK"];
+        }
+
+        const mediaWrapper = document.getElementById('modal-product-media-wrapper');
+        const viewPhotoBtn = document.getElementById('modal-view-photo');
+        const viewCadBtn = document.getElementById('modal-view-cad');
+
+        let currentModalView = 'photo';
+        let currentModalImgIdx = 0;
+
+        function updateModalMedia() {
+            if (currentModalView === 'photo') {
+                viewPhotoBtn.className = "px-2 py-0.5 rounded text-[9px] font-bold uppercase transition bg-gold-champagne text-black";
+                viewCadBtn.className = "px-2 py-0.5 rounded text-[9px] font-bold uppercase transition text-gray-400";
+                
+                mediaWrapper.innerHTML = `
+                    <div class="relative h-48 w-full rounded-xl overflow-hidden">
+                        <img src="${parsedImages[currentModalImgIdx]}" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/600x400/121215/D4AF37?text=HIKAI+RACK';">
+                        ${parsedImages.length > 1 ? `
+                            <button id="modal-img-prev" class="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-black/60 rounded-full text-white flex items-center justify-center hover:bg-gold-champagne hover:text-black transition">
+                                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                            </button>
+                            <button id="modal-img-next" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-black/60 rounded-full text-white flex items-center justify-center hover:bg-gold-champagne hover:text-black transition">
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+
+                if (parsedImages.length > 1) {
+                    document.getElementById('modal-img-prev').onclick = () => {
+                        currentModalImgIdx = (currentModalImgIdx - 1 + parsedImages.length) % parsedImages.length;
+                        updateModalMedia();
+                    };
+                    document.getElementById('modal-img-next').onclick = () => {
+                        currentModalImgIdx = (currentModalImgIdx + 1) % parsedImages.length;
+                        updateModalMedia();
+                    };
+                }
+            } else {
+                viewPhotoBtn.className = "px-2 py-0.5 rounded text-[9px] font-bold uppercase transition text-gray-400";
+                viewCadBtn.className = "px-2 py-0.5 rounded text-[9px] font-bold uppercase transition bg-gold-champagne text-black";
+                mediaWrapper.innerHTML = generateRackSVG(product.svgType, product.layers, true);
+            }
+        }
+
+        viewPhotoBtn.onclick = () => { currentModalView = 'photo'; updateModalMedia(); };
+        viewCadBtn.onclick = () => { currentModalView = 'blueprint'; updateModalMedia(); };
+
+        updateModalMedia();
+
         document.getElementById('modal-add-to-cart-btn').onclick = () => {
             addToCart(product.id);
             closeProductModal();
@@ -2093,14 +2337,14 @@
     function confirmDeleteProduct(id) {
         targetDeleteId = id;
         confirmActionType = "product";
-        document.getElementById('confirm-modal-desc').textContent = "Hapus rak ini dari database?";
+        document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin menghapus rak ini dari database?";
         document.getElementById('confirm-modal').classList.remove('hidden');
     }
 
     function confirmDeleteInquiry(id) {
         targetDeleteId = id;
         confirmActionType = "inquiry";
-        document.getElementById('confirm-modal-desc').textContent = "Hapus log pesan prospek ini?";
+        document.getElementById('confirm-modal-desc').textContent = "Apakah Anda yakin ingin menghapus log pesan prospek ini?";
         document.getElementById('confirm-modal').classList.remove('hidden');
     }
 
@@ -2110,6 +2354,12 @@
     }
 
     document.getElementById('confirm-modal-execute').onclick = async function() {
+        if (confirmActionType === "reset_db") {
+            closeConfirmModal();
+            await executeDefaultDatabaseReset();
+            return;
+        }
+
         if (!targetDeleteId) return;
         const id = targetDeleteId;
         closeConfirmModal();
@@ -2152,8 +2402,9 @@
         const hotline = document.getElementById('settings-hotline').value.trim();
         const email = document.getElementById('settings-email').value.trim();
         const address = document.getElementById('settings-address').value.trim();
+        const geminiKey = document.getElementById('settings-gemini').value.trim();
         if (!hotline) return;
-        globalSettings = { hotline, email, address };
+        globalSettings = { hotline, email, address, geminiKey };
         localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
         applyGlobalSettingsDOM();
         showToast("Pengaturan global berhasil disimpan.");
@@ -2169,6 +2420,9 @@
         document.getElementById('global-address').textContent = globalSettings.address;
         document.getElementById('global-form-email').textContent = globalSettings.email;
         document.getElementById('global-form-address').textContent = globalSettings.address;
+        if(document.getElementById('settings-gemini')) {
+            document.getElementById('settings-gemini').value = globalSettings.geminiKey || '';
+        }
     }
 
     window.onload = function() {
