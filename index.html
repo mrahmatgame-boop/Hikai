@@ -224,7 +224,7 @@
             </div>
             <div>
                 <span class="text-xl font-bold tracking-widest text-gold-champagne block">HIKAI</span>
-                <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">Storage Equipment</span>
+                <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1">Storage Equipment</span>
             </div>
         </div>
 
@@ -258,7 +258,7 @@
                     <div class="w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow">
                         <span class="text-black font-extrabold text-base">H</span>
                     </div>
-                    <span class="text-xs font-extrabold tracking-widest text-gold-champagne uppercase font-mono">HIKAI PANEL</span>
+                    <span class="text-xs font-extrabold tracking-widest text-gold-champagne uppercase">HIKAI PANEL</span>
                 </div>
                 <button onclick="toggleMobileMenu(false)" class="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition">
                     <i class="fa-solid fa-xmark text-sm"></i>
@@ -332,7 +332,7 @@
                                 <span class="text-gold-champagne text-[10px] font-bold block uppercase" data-trans="previewTitle">Visual Preview</span>
                                 <h4 class="text-white font-bold text-sm">Medium Duty Starter (4 Layer)</h4>
                             </div>
-                            <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-gold-champagne text-[10px] font-mono rounded font-mono">H2000*D600*L2000</span>
+                            <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-gold-champagne text-[10px] font-mono rounded">H2000*D600*L2000</span>
                         </div>
                         <div id="hero-svg-container"></div>
                     </div>
@@ -407,7 +407,7 @@
                 <h2 class="text-3xl font-bold text-white" data-trans="eduTitle">Memahami Sistem Starter vs Add-On</h2>
                 <p class="text-gray-400 text-sm leading-relaxed font-light" data-trans="eduDesc">
                     Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan **1 Unit Starter** sebagai fondasi utama di ujung baris, lalu sambungkan unit **Add-On** bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!</p>
-                <div class="p-4 bg-obsidian-card border border-white/5 rounded-xl text-xs text-gray-400 space-y-2.5 font-sans">
+                <div class="p-4 bg-obsidian-card border border-white/5 rounded-xl text-xs text-gray-400 space-y-2.5">
                     <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong>Starter:</strong> 2 Tiang Samping (Mandiri)</p>
                     <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong>Add-On:</strong> 1 Tiang Samping (Menempel ke Starter)</p>
                 </div>
@@ -441,7 +441,7 @@
         </div>
 
         <div id="comparison-placeholder" class="text-center py-16 bg-[#0e0e11] rounded-2xl border border-dashed border-[#333] max-w-xl mx-auto">
-            <p class="text-gray-400 text-sm font-sans">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
+            <p class="text-gray-400 text-sm">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
         </div>
 
         <div id="comparison-table-wrapper" class="hidden bg-obsidian-card border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
@@ -449,7 +449,7 @@
                 <table class="w-full text-left text-xs border-collapse">
                     <thead>
                         <tr id="comp-header-row" class="bg-black border-b border-white/5">
-                            <th class="p-6 font-bold uppercase tracking-widest text-gold-champagne font-mono">Parameter</th>
+                            <th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">Parameter</th>
                         </tr>
                     </thead>
                     <tbody id="comp-body" class="divide-y divide-white/5"></tbody>
@@ -476,20 +476,20 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Panjang Ruangan (M)</label>
-                            <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne font-mono">
+                            <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
                         </div>
                         <div>
                             <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1">Lebar Ruangan (M)</label>
-                            <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne font-mono">
+                            <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne">
                         </div>
                     </div>
                     <div>
                         <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1" data-trans="aisleLabel">Lebar Gang Kerja / Aisle (M)</label>
                         <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne">
                         <div class="flex justify-between text-[10px] text-gray-500 mt-1">
-                            <span class="font-sans">Sirkulasi Manual (0.8m)</span>
-                            <span class="text-gold-champagne font-bold font-mono" id="label-aisle-value">1.5m</span>
-                            <span class="font-sans">Alat Berat/Forklift (4m)</span>
+                            <span>Sirkulasi Manual (0.8m)</span>
+                            <span class="text-gold-champagne font-bold" id="label-aisle-value">1.5m</span>
+                            <span>Alat Berat/Forklift (4m)</span>
                         </div>
                     </div>
                 </div>
@@ -507,7 +507,7 @@
                             <span class="text-xl font-bold tracking-widest text-gold-champagne block font-serif">HIKAI</span>
                             <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">PLANNING BOARD</span>
                         </div>
-                        <div class="flex bg-black/60 rounded-lg p-1 border border-white/5 text-xs font-sans">
+                        <div class="flex bg-black/60 rounded-lg p-1 border border-white/5 text-xs">
                             <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1.5 rounded-lg font-bold bg-gold-champagne text-black">Draf Nota</button>
                             <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1.5 rounded-lg font-bold text-gray-400 hover:text-white">Denah 2D</button>
                             <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3 py-1.5 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
@@ -522,31 +522,31 @@
     <section id="contact" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 space-y-6">
-                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest font-mono">Kunjungan Survei</span>
+                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">Kunjungan Survei</span>
                 <h2 class="text-3xl font-extrabold text-white">Hubungi Tim Teknik HIKAI</h2>
                 <p class="text-gray-400 text-sm leading-relaxed font-light">
                     Kami siap melayani kebutuhan Anda, mulai dari konsultasi gambar AutoCAD 2D/3D gratis hingga perencanaan beban tonase besar. Kunjungi kantor pemasaran kami untuk berkonsultasi langsung.
                 </p>
-                <div class="space-y-4 pt-4 border-t border-white/5 text-xs text-gray-400 font-sans">
+                <div class="space-y-4 pt-4 border-t border-white/5 text-xs text-gray-400">
                     <div class="flex gap-3">
                         <i class="fa-solid fa-map-pin text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold">Marketing & Sales Office:</h4>
-                            <p class="mt-1 font-light" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
+                            <p class="mt-1" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
                         <i class="fa-solid fa-envelope text-gold-champagne flex-shrink-0 text-base mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold">Layanan Dukungan Email:</h4>
-                            <p class="mt-1 font-light" id="global-form-email">info@hikairack.com</p>
+                            <p class="mt-1" id="global-form-email">info@hikairack.com</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="lg:col-span-7">
-                <div class="bg-obsidian-card border border-white/5 p-8 rounded-2xl shadow-2xl font-sans">
+                <div class="bg-obsidian-card border border-white/5 p-8 rounded-2xl shadow-2xl">
                     <h3 class="text-lg font-bold text-white mb-6" data-trans="formTitle">Formulir Kunjungan Survei & Konsultasi</h3>
                     <form onsubmit="handleInquirySubmit(event)" class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -556,7 +556,7 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] uppercase font-bold text-gray-500 mb-1.5">Nomor WhatsApp *</label>
-                                <input type="tel" id="form-phone" placeholder="Contoh: 0811223344" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne font-mono">
+                                <input type="tel" id="form-phone" placeholder="Contoh: 0811223344" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-3 text-xs text-white outline-none focus:border-gold-champagne">
                             </div>
                         </div>
                         <div>
@@ -581,12 +581,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="text-center max-w-xl mx-auto space-y-2">
             <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest font-mono"><i class="fa-solid fa-shield-halved mr-1.5"></i> Superadmin Control Suite (Secure Sync)</span>
-            <h3 class="text-2xl font-bold text-white font-serif">Panel Administrasi HIKAI</h3>
-            <p class="text-gray-500 text-xs font-light font-sans">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
+            <h3 class="text-2xl font-bold text-white">Panel Administrasi HIKAI</h3>
+            <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
         </div>
 
         <div id="admin-login" class="max-w-md mx-auto bg-obsidian-card border border-white/5 p-8 rounded-2xl shadow-xl space-y-4 text-center">
-            <input type="password" id="admin-password-input" placeholder="Masukkan sandi otentikasi VVIP..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne font-mono">
+            <input type="password" id="admin-password-input" placeholder="Masukkan sandi otentikasi VVIP..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-xs text-white text-center outline-none focus:border-gold-champagne">
             <button onclick="handleAdminLogin()" class="w-full py-3 bg-[#111] hover:bg-gold-champagne hover:text-black text-gold-champagne font-bold text-xs uppercase rounded-lg transition border border-gold-champagne/40">
                 Otentikasi Sandi
             </button>
@@ -596,9 +596,9 @@
             <div class="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-4">
                 <div class="flex items-center gap-3">
                     <span id="db-status-badge" class="p-2 bg-red-950/20 border border-red-500/30 text-red-400 text-xs font-bold rounded">DB DISCONNECTED</span>
-                    <h4 class="text-white font-bold text-lg font-serif">HIKAI Command Center</h4>
+                    <h4 class="text-white font-bold text-lg">HIKAI Command Center</h4>
                 </div>
-                <div class="flex items-center gap-3 font-sans">
+                <div class="flex items-center gap-3">
                     <div class="bg-black/80 rounded-xl p-1 border border-white/5 flex gap-1">
                         <button onclick="switchAdminTab('stats')" id="admin-btn-stats" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition bg-gold-champagne text-black"><i class="fa-solid fa-chart-line mr-1.5"></i> Ringkasan</button>
                         <button onclick="switchAdminTab('catalog')" id="admin-btn-catalog" class="admin-tab-btn px-4 py-2 rounded-lg text-xs font-bold uppercase transition text-gray-400 hover:text-white"><i class="fa-solid fa-boxes-stacked mr-1.5"></i> Katalog Rak</button>
@@ -611,42 +611,30 @@
 
             <!-- Stats Subpanel -->
             <div id="admin-panel-stats" class="admin-panel-content grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Panduan Troubleshooting Koneksi Error (Diagnosa Cerdas) -->
-                <div class="md:col-span-3 bg-red-950/10 border border-red-500/30 p-6 rounded-2xl space-y-4">
-                    <h4 class="text-red-400 font-bold text-sm flex items-center gap-2 font-mono"><i class="fa-solid fa-triangle-exclamation"></i> Diagnosa Gangguan Sinkronisasi (Penyebab Web Error/Offline)</h4>
-                    <p class="text-xs text-gray-400 font-light">Jika status database Anda <strong class="text-red-400">DB DISCONNECTED / OFFLINE</strong>, ikuti checklist solusi di bawah ini:</p>
-                    <ul class="text-[11px] text-gray-400 space-y-2 list-disc pl-5 font-mono">
-                        <li><strong class="text-white">DEPLOYMENT BARU DI GOOGLE SHEETS:</strong> Apakah Anda sudah mengklik <strong class="text-gold-champagne">Deploy > Manage Deployments > Edit > Version: New Version</strong> setelah memodifikasi skrip? (Jika tidak, Google akan tetap menjalankan kode lama yang error).</li>
-                        <li><strong class="text-white">AKSES GOOGLE SCRIPT:</strong> Di Google Apps Script, pastikan <strong class="text-gold-champagne">Who has access</strong> disetel ke <strong class="text-gold-champagne">Anyone (Siapa saja)</strong>, bukan "Only me".</li>
-                        <li><strong class="text-white">KONFIGURASI KEY VERCEL:</strong> Apakah Anda sudah memasukkan <strong class="text-emerald-400">GAS_WEB_APP_URL</strong> pada bagian <strong class="text-emerald-400">Environment Variables</strong> di dashboard Vercel Anda, lalu melakukan <strong class="text-emerald-400">Redeploy</strong>?</li>
-                        <li><strong class="text-white">LOCAL TESTING NOTIFICATION:</strong> Jika Anda menguji di komputer lokal via Live Server, sistem secara aman berpindah ke <strong class="text-yellow-500">OFFLINE CACHE MODE</strong> agar web tetap tampil menawan tanpa macet.</li>
-                    </ul>
-                </div>
-
                 <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
-                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block font-sans">Total Koleksi Rak</span>
+                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Total Koleksi Rak</span>
                     <div class="flex justify-between items-center mt-2">
-                        <h3 class="text-3xl font-extrabold text-white font-mono" id="stat-total-products">0</h3>
+                        <h3 class="text-3xl font-extrabold text-white" id="stat-total-products">0</h3>
                         <div class="p-3 bg-gold-champagne/10 rounded-xl text-gold-champagne text-lg"><i class="fa-solid fa-box-open"></i></div>
                     </div>
                 </div>
                 <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
-                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block font-sans">Inbox Prospek Masuk</span>
+                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Inbox Prospek Masuk</span>
                     <div class="flex justify-between items-center mt-2">
-                        <h3 class="text-3xl font-extrabold text-white font-mono" id="stat-total-inquiries">0</h3>
+                        <h3 class="text-3xl font-extrabold text-white" id="stat-total-inquiries">0</h3>
                         <div class="p-3 bg-purple-500/10 rounded-xl text-purple-400 text-lg"><i class="fa-solid fa-envelope-open-text"></i></div>
                     </div>
                 </div>
                 <div class="bg-obsidian-card p-6 rounded-2xl border border-white/5">
-                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block font-sans">Status Integrasi</span>
+                    <span class="text-gray-500 text-[10px] uppercase font-bold tracking-widest block">Status Integrasi</span>
                     <div class="flex justify-between items-center mt-2">
-                        <h3 class="text-xl font-bold text-emerald-400 font-mono" id="stat-db-status">SINKRON</h3>
+                        <h3 class="text-xl font-bold text-emerald-400" id="stat-db-status">SINKRON</h3>
                         <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400 text-lg"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                     </div>
                 </div>
                 <div class="md:col-span-3 bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
-                    <h4 class="text-white font-bold text-sm flex items-center gap-2 font-serif"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
-                    <div class="flex flex-wrap gap-3 font-sans">
+                    <h4 class="text-white font-bold text-sm flex items-center gap-2"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
+                    <div class="flex flex-wrap gap-3">
                         <button onclick="initializeDefaultDatabase()" class="px-5 py-3 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-xs uppercase rounded-xl transition">
                             <i class="fa-solid fa-arrows-rotate mr-2"></i> Reset ke Produk Bawaan Pabrik
                         </button>
@@ -661,14 +649,14 @@
             <div id="admin-panel-catalog" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h4 class="text-white font-bold text-base font-serif">Manajemen Katalog Produk</h4>
+                        <h4 class="text-white font-bold text-base">Manajemen Katalog Produk</h4>
                     </div>
-                    <button onclick="openProductEditForm(null)" class="px-4 py-2 bg-gold-champagne text-black font-extrabold text-xs uppercase rounded-lg hover:bg-gold-hover transition flex items-center gap-1.5 font-sans">
+                    <button onclick="openProductEditForm(null)" class="px-4 py-2 bg-gold-champagne text-black font-extrabold text-xs uppercase rounded-lg hover:bg-gold-hover transition flex items-center gap-1.5">
                         <i class="fa-solid fa-plus text-xs"></i> Tambah Rack Baru
                     </button>
                 </div>
                 <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
-                    <table class="w-full text-left border-collapse font-mono">
+                    <table class="w-full text-left border-collapse">
                         <thead class="bg-black text-gray-500 border-b border-white/5">
                             <tr>
                                 <th class="p-4">KODE</th>
@@ -686,10 +674,10 @@
             <!-- Inquiries CRM Subpanel -->
             <div id="admin-panel-crm" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-4">
                 <div>
-                    <h4 class="text-white font-bold text-base font-serif"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
+                    <h4 class="text-white font-bold text-base"><i class="fa-solid fa-id-card text-gold-champagne mr-2"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
                 </div>
                 <div class="overflow-x-auto text-xs font-mono rounded-xl border border-white/5">
-                    <table class="w-full text-left border-collapse font-mono">
+                    <table class="w-full text-left border-collapse">
                         <thead class="bg-black text-gray-500 border-b border-white/5">
                             <tr>
                                 <th class="p-4">WAKTU</th>
@@ -708,9 +696,9 @@
             <!-- Settings Subpanel -->
             <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-6">
                 <div>
-                    <h4 class="text-white font-bold text-base font-serif"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> Pengaturan Konfigurasi Web Global</h4>
+                    <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> Pengaturan Konfigurasi Web Global</h4>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-sans">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
                     <div>
                         <label class="block text-gray-400 font-bold uppercase mb-2">WhatsApp VIP Hotline (Format: 628xxx)</label>
                         <input type="text" id="settings-hotline" placeholder="628995719102" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
@@ -724,7 +712,7 @@
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white outline-none focus:border-gold-champagne">
                     </div>
                 </div>
-                <div class="pt-4 border-t border-white/5 flex justify-end font-sans">
+                <div class="pt-4 border-t border-white/5 flex justify-end">
                     <button onclick="saveGlobalWebSettings()" class="px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-luxury-glow">
                         Simpan Pengaturan Global
                     </button>
@@ -734,7 +722,7 @@
     </div>
 </section>
 
-<footer class="bg-[#060608] border-t border-white/5 py-16 text-gray-500 text-xs text-center font-sans">
+<footer class="bg-[#060608] border-t border-white/5 py-16 text-gray-500 text-xs text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3 text-left">
@@ -742,8 +730,8 @@
                     <span class="text-black font-extrabold text-base font-serif">H</span>
                 </div>
                 <div>
-                    <span class="text-base font-bold tracking-widest text-[#D4AF37] block font-serif">HIKAI</span>
-                    <span class="text-[8px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">PT. HIKAI STORAGE EQUIPMENT</span>
+                    <span class="text-base font-bold tracking-widest text-[#D4AF37] block">HIKAI</span>
+                    <span class="text-[8px] tracking-widest text-gray-400 uppercase block -mt-1">PT. HIKAI STORAGE EQUIPMENT</span>
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-6 text-sm">
@@ -754,13 +742,13 @@
                 <a href="#calculator" class="hover:text-white transition" data-trans="navCalc">Kalkulator</a>
             </div>
         </div>
-        <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600 font-sans" data-trans="footerDesc">
+        <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600" data-trans="footerDesc">
             PT. Hikai Storage Equipment ("HIKAI") menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
         </p>
         <div class="flex justify-center gap-4">
             <button onclick="toggleAdminPanel()" class="px-4 py-1.5 rounded border border-white/5 hover:border-gold-champagne/40 text-[10px] text-gray-600 hover:text-gold-champagne font-mono transition"><i class="fa-solid fa-key mr-1.5"></i> HIKAI Internal Portal</button>
         </div>
-        <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-gray-600 font-sans">
+        <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-gray-600">
             <p>© 2026 PT. Hikai Storage Equipment. Seluruh Hak Cipta Dilindungi.</p>
             <p class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#D4AF37]"></i> Certified ISO 9001:2015 & EN 15512 Structural Standards</p>
         </div>
@@ -777,16 +765,16 @@
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow">
         <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
         <div class="border-b border-white/5 pb-4">
-            <span id="modal-product-cat" class="text-[10px] font-bold tracking-widest text-gold-champagne uppercase font-mono">MEDIUM DUTY</span>
+            <span id="modal-product-cat" class="text-[10px] font-bold tracking-widest text-gold-champagne uppercase">MEDIUM DUTY</span>
             <h3 id="modal-product-title" class="text-xl sm:text-2xl font-extrabold text-white mt-1">Medium Duty Rack (Starter)</h3>
-            <p id="modal-product-code" class="text-xs text-gray-500 font-mono font-mono font-mono font-mono font-mono">MODEL CODE: MDR-2000-ST</p>
+            <p id="modal-product-code" class="text-xs text-gray-500 font-mono">MODEL CODE: MDR-2000-ST</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
             <div id="modal-product-svg"></div>
-            <div class="space-y-4 text-xs font-sans">
+            <div class="space-y-4 text-xs">
                 <div>
                     <strong class="text-gray-400 block">Kapasitas Muatan:</strong>
-                    <span id="modal-product-cap" class="text-gold-champagne font-bold text-sm font-mono">350 - 500 Kg / Level</span>
+                    <span id="modal-product-cap" class="text-gold-champagne font-bold text-sm">350 - 500 Kg / Level</span>
                 </div>
                 <div>
                     <strong class="text-gray-400 block">Proteksi Lapisan Finishing:</strong>
@@ -794,11 +782,11 @@
                 </div>
                 <div>
                     <strong class="text-gray-400 block">Rekomendasi Terbaik:</strong>
-                    <span id="modal-product-best" class="text-gray-300 leading-relaxed block mt-1 font-sans">Penyimpanan sparepart otomotif.</span>
+                    <span id="modal-product-best" class="text-gray-300 leading-relaxed block mt-1">Penyimpanan sparepart otomotif.</span>
                 </div>
             </div>
         </div>
-        <div class="flex gap-3 pt-2 font-sans">
+        <div class="flex gap-3 pt-2">
             <button id="modal-add-to-cart-btn" class="flex-1 py-3 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
                 Tambahkan Ke Draf Estimasi
             </button>
@@ -812,15 +800,15 @@
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 text-left shadow-luxury-glow">
         <button onclick="closeCartModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
         <div class="border-b border-white/5 pb-4">
-            <h3 class="text-xl font-bold text-white uppercase tracking-widest font-serif"><i class="fa-solid fa-shopping-cart text-gold-champagne mr-2"></i> Draf Penawaran VVIP Anda</h3>
+            <h3 class="text-xl font-bold text-white uppercase tracking-widest"><i class="fa-solid fa-shopping-cart text-gold-champagne mr-2"></i> Draf Penawaran VVIP Anda</h3>
             <p class="text-[10px] text-gray-500 font-mono mt-1">REVIEW DAFTAR ESTIMASI HARGA & SPESIFIKASI</p>
         </div>
         <div id="cart-items-wrapper" class="divide-y divide-white/5 max-h-60 overflow-y-auto"></div>
-        <div class="border-t border-white/5 pt-4 flex justify-between items-center font-sans">
+        <div class="border-t border-white/5 pt-4 flex justify-between items-center">
             <span class="text-xs text-gray-400">Total Est. Investasi Awal:</span>
-            <span id="cart-total-value" class="text-xl font-bold text-gold-champagne font-mono">Rp 0</span>
+            <span id="cart-total-value" class="text-xl font-bold text-gold-champagne">Rp 0</span>
         </div>
-        <div class="flex gap-3 pt-2 font-sans">
+        <div class="flex gap-3 pt-2">
             <button onclick="checkoutViaWhatsApp()" class="flex-1 py-3.5 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition flex items-center justify-center gap-2">
                 <i class="fa-brands fa-whatsapp text-sm"></i> Ajukan Penawaran WhatsApp
             </button>
@@ -831,7 +819,7 @@
 
 <!-- Modal CRUD Edit Produk -->
 <div id="product-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm overflow-y-auto">
-    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 space-y-4 text-left shadow-luxury-glow my-8 font-sans">
+    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-6 space-y-4 text-left shadow-luxury-glow my-8">
         <h3 id="edit-modal-title" class="text-md font-bold text-white uppercase border-b border-white/5 pb-3 text-gold-champagne">Edit Database Row</h3>
         <form onsubmit="handleProductSave(event)" class="space-y-3 text-xs">
             <input type="hidden" id="edit-id">
@@ -842,17 +830,17 @@
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Code</label>
-                    <input type="text" id="edit-code" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono font-mono">
+                    <input type="text" id="edit-code" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
                 </div>
             </div>
             <div>
                 <label class="block text-gray-500 mb-1">Name</label>
-                <input type="text" id="edit-name" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                <input type="text" id="edit-name" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
             </div>
-            <div class="grid grid-cols-3 gap-3 font-sans">
+            <div class="grid grid-cols-3 gap-3">
                 <div>
                     <label class="block text-gray-500 mb-1">Type (Duty)</label>
-                    <select id="edit-type" class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <select id="edit-type" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="Light Duty">Light Duty</option>
                         <option value="Medium Duty">Medium Duty</option>
                         <option value="Pallet Rack">Pallet Rack</option>
@@ -860,31 +848,31 @@
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Layers</label>
-                    <input type="number" id="edit-layers" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <input type="number" id="edit-layers" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Base Price (IDR)</label>
-                    <input type="number" id="edit-price" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <input type="number" id="edit-price" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
             </div>
-            <div class="grid grid-cols-3 gap-3 font-sans">
+            <div class="grid grid-cols-3 gap-3">
                 <div>
                     <label class="block text-gray-500 mb-1">Height (mm)</label>
-                    <input type="number" id="edit-h" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <input type="number" id="edit-h" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Depth (mm)</label>
-                    <input type="number" id="edit-d" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono font-mono">
+                    <input type="number" id="edit-d" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Length (mm)</label>
-                    <input type="number" id="edit-l" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono font-mono">
+                    <input type="number" id="edit-l" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-3 font-sans">
+            <div class="grid grid-cols-2 gap-3">
                 <div>
                     <label class="block text-gray-500 mb-1">SvgType Icon Map</label>
-                    <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white">
                         <option value="medium">medium</option>
                         <option value="light">light</option>
                         <option value="angle">angle</option>
@@ -894,23 +882,23 @@
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Capacity</label>
-                    <input type="text" id="edit-capacity" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                    <input type="text" id="edit-capacity" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
             </div>
             <div>
-                <label class="block text-gray-500 mb-1 font-sans">Description</label>
-                <textarea id="edit-description" rows="2" class="w-full bg-black border border-[#333] p-2 rounded text-white font-sans"></textarea>
+                <label class="block text-gray-500 mb-1">Description</label>
+                <textarea id="edit-description" rows="2" class="w-full bg-black border border-[#333] p-2 rounded text-white"></textarea>
             </div>
-            <div class="p-4 bg-black/40 rounded-xl border border-white/5 space-y-3 font-sans">
+            <div class="p-4 bg-black/40 rounded-xl border border-white/5 space-y-3">
                 <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-gold-champagne font-serif"><i class="fa-solid fa-images mr-1"></i> Interactive Multi-Photo Manager</span>
+                    <span class="text-xs font-bold text-gold-champagne"><i class="fa-solid fa-images mr-1"></i> Interactive Multi-Photo Manager</span>
                     <button type="button" onclick="addAdminImageSlot()" class="px-2 py-1 bg-gold-champagne/10 border border-gold-champagne/30 text-gold-champagne rounded hover:bg-gold-champagne hover:text-black transition text-[10px] font-bold">
                         <i class="fa-solid fa-plus mr-1"></i> Tambah Foto Baru
                     </button>
                 </div>
                 <div id="admin-images-container" class="space-y-2.5 max-h-48 overflow-y-auto pr-1"></div>
             </div>
-            <div class="flex gap-2 pt-2 justify-end border-t border-white/5 font-sans">
+            <div class="flex gap-2 pt-2 justify-end border-t border-white/5">
                 <button type="button" onclick="closeProductEditForm()" class="px-4 py-2 bg-obsidian-card border border-[#333] rounded">Batal</button>
                 <button type="submit" class="px-5 py-2 bg-gold-champagne text-black font-bold rounded">Simpan Data</button>
             </div>
@@ -927,8 +915,8 @@
             </h3>
             <p class="text-[9px] text-gray-500 font-mono mt-1">SUPERADMIN PRIVILEGED COMMAND</p>
         </div>
-        <p id="confirm-modal-desc" class="text-xs text-gray-300 leading-relaxed font-sans"></p>
-        <div class="flex gap-3 pt-2 font-sans">
+        <p id="confirm-modal-desc" class="text-xs text-gray-300 leading-relaxed"></p>
+        <div class="flex gap-3 pt-2">
             <button id="confirm-modal-execute" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-lg text-xs uppercase tracking-widest transition">
                 Ya, Hapus
             </button>
@@ -942,37 +930,18 @@
 <script>
     const DEFAULT_PRODUCT_DATA = [
         {
-            id: "hikai-mdr-st",
-            name: "Medium Duty Starter (H2000*D600*L2000)",
+            id: "hikai-mdr-set",
+            name: "Medium Duty Rack (1 Set)",
             type: "Medium Duty",
-            code: "MDR-2000-ST",
+            code: "MDR-2000-SET",
             layers: 4,
             h: 2000, d: 600, l: 2000,
             capacity: "350 - 500 Kg / Level",
             finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
-            construction: "1 Unit Starter (2 Upright Frames / Berdiri Mandiri)",
-            bestFor: "Pilar baris utama penyimpanan suku cadang otomotif, arsip korporat tinggi, & logistik box.",
+            construction: "1 Set Starter (2 Upright Frames / Berdiri Mandiri)",
+            bestFor: "Penyimpanan sparepart otomotif kelas berat, arsip korporat tinggi, & logistik box skala menengah.",
             basePrice: 2850000,
-            description: "Sistem ambalan penyimpanan beban menengah unit Starter (mandiri). Menggunakan 2 tiang samping (Upright Frame) sebagai pondasi utama baris rak.",
-            images: [
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80",
-                "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "medium"
-        },
-        {
-            id: "hikai-mdr-ad",
-            name: "Medium Duty Add-On (H2000*D600*L2000)",
-            type: "Medium Duty",
-            code: "MDR-2000-AD",
-            layers: 4,
-            h: 2000, d: 600, l: 2000,
-            capacity: "350 - 500 Kg / Level",
-            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
-            construction: "1 Unit Add-On (1 Upright Frame / Menyambung ke Starter)",
-            bestFor: "Penyambung barisan rak Medium Duty untuk menghemat ruang kolom tiang dan mereduksi anggaran hingga 20%.",
-            basePrice: 2250000,
-            description: "Sistem ambalan penyimpanan beban menengah unit Add-On (penyambung). Menggunakan hanya 1 tiang samping untuk disambungkan ke unit Starter, sangat efisien.",
+            description: "Sistem ambalan penyimpanan beban menengah dengan penyesuaian tinggi ambalan yang fleksibel. Menggunakan plat baja cold-rolled dengan interlocking presisi tinggi.",
             images: [
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80",
                 "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
@@ -1083,8 +1052,6 @@
                 window.location.href.startsWith('blob:') ||
                 window.location.hostname === '' ||
                 window.location.hostname === 'null' ||
-                window.location.hostname === 'localhost' ||
-                window.location.hostname === '127.0.0.1' ||
                 window.location.hostname.includes('usercontent.goog') ||
                 window.location.hostname.includes('googleusercontent.com')
             );
@@ -1338,11 +1305,11 @@
 
         placeholder.classList.add('hidden');
         tableWrapper.classList.remove('hidden');
-        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne font-mono">Parameter</th>`;
+        headerRow.innerHTML = `<th class="p-6 font-bold uppercase tracking-widest text-gold-champagne">Parameter</th>`;
         comparisonList.forEach(p => {
             headerRow.innerHTML += `
                 <th class="p-6">
-                    <div class="flex justify-between items-center font-sans">
+                    <div class="flex justify-between items-center">
                       <span class="font-bold text-white block">${p.name}</span>
                       <button onclick="toggleComparison('${p.id}')" class="text-red-500 hover:text-red-400 ml-4"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
@@ -1360,11 +1327,11 @@
 
         body.innerHTML = '';
         parameters.forEach(param => {
-            let rowHtml = `<td class="p-6 font-bold text-gray-400 bg-black/40 font-sans">${param.label}</td>`;
+            let rowHtml = `<td class="p-6 font-bold text-gray-400 bg-black/40">${param.label}</td>`;
             comparisonList.forEach(p => {
                 const rawVal = p[param.key];
                 const val = param.format ? param.format(rawVal, p) : rawVal;
-                rowHtml += `<td class="p-6 text-gray-300 font-medium font-sans">${val || '-'}</td>`;
+                rowHtml += `<td class="p-6 text-gray-300 font-medium">${val || '-'}</td>`;
             });
             body.innerHTML += `<tr>${rowHtml}</tr>`;
         });
@@ -1412,7 +1379,7 @@
             const cartQtyLabel = isInCart ? `(${isInCart.qty})` : '';
 
             grid.innerHTML += `
-                <div class="bg-obsidian-card border border-white/5 rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl font-sans">
+                <div class="bg-obsidian-card border border-white/5 rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
                     <div class="p-4 bg-[#060608] relative">
                         <div class="absolute top-6 left-6 z-10 flex bg-black/80 backdrop-blur-md rounded-lg p-1 border border-[#333]">
                             <button onclick="toggleViewMode('${p.id}', 'photo')" class="px-2.5 py-1 rounded text-[9px] font-bold uppercase ${view === 'photo' ? 'bg-gold-champagne text-black' : 'text-gray-400'}">Foto Real</button>
@@ -1424,20 +1391,20 @@
                     <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-bold text-gold-champagne uppercase font-mono">${p.type}</span>
+                                <span class="text-[10px] font-bold text-gold-champagne uppercase">${p.type}</span>
                                 <span class="text-xs font-mono text-gray-500">${p.code}</span>
                             </div>
-                            <h3 class="text-lg font-bold text-white font-serif">${p.name}</h3>
+                            <h3 class="text-lg font-bold text-white">${p.name}</h3>
                             <p class="text-gray-400 text-xs line-clamp-2 leading-relaxed font-light">${p.description}</p>
                         </div>
-                        <div class="bg-[#121215] p-3 rounded-lg text-xs space-y-1.5 font-sans">
+                        <div class="bg-[#121215] p-3 rounded-lg text-xs space-y-1.5">
                             <div class="flex justify-between">
                                 <span class="text-gray-500">Konfigurasi:</span>
-                                <span class="font-semibold text-gray-200 font-mono">${p.layers} Layer</span>
+                                <span class="font-semibold text-gray-200">${p.layers} Layer</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-500">Kapasitas Maks:</span>
-                                <span class="font-semibold text-gray-200 font-mono">${p.capacity}</span>
+                                <span class="font-semibold text-gray-200">${p.capacity}</span>
                             </div>
                         </div>
                         <div class="space-y-2">
@@ -1483,7 +1450,7 @@
         calcContent.innerHTML = `
             <div class="py-12 text-center flex flex-col items-center justify-center space-y-4">
                 <i class="fa-solid fa-spinner fa-spin text-purple-400 text-3xl"></i>
-                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase font-mono">AI sedang merancang analisis tata ruang...</p>
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase">AI sedang merancang analisis tata ruang...</p>
             </div>
         `;
 
@@ -1517,7 +1484,7 @@
                 </div>
             `;
         } catch (err) {
-            calcContent.innerHTML = `<div class="py-6 text-center text-xs text-red-400 font-mono">Gagal menghubungkan layanan AI. Hubungi kami langsung.</div>`;
+            calcContent.innerHTML = `<div class="py-6 text-center text-xs text-red-400">Gagal menghubungkan layanan AI. Hubungi kami langsung.</div>`;
         }
     }
 
@@ -1530,7 +1497,7 @@
         const calcContent = document.getElementById('calc-content');
 
         if (cart.length === 0) {
-            calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light font-sans">Kalkulator kosong. Silakan tambahkan beberapa rak.</div>`;
+            calcContent.innerHTML = `<div class="py-16 text-center text-sm text-gray-500 font-light">Kalkulator kosong. Silakan tambahkan beberapa rak.</div>`;
             return;
         }
 
@@ -1541,14 +1508,14 @@
                 const subtotal = item.basePrice * item.qty;
                 grandTotal += subtotal;
                 quoteRows += `
-                    <div class="py-3 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0 font-sans">
+                    <div class="py-3 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0">
                         <div>
                             <span class="font-bold text-white block">${item.name}</span>
-                            <span class="text-[10px] text-gray-500 font-mono">${item.layers} Layer | ${item.code}</span>
+                            <span class="text-[10px] text-gray-500">${item.layers} Layer | ${item.code}</span>
                         </div>
                         <div class="text-right font-mono">
                             <span class="text-gray-400 block">${item.qty} Set x Rp ${item.basePrice.toLocaleString('id-ID')}</span>
-                            <span class="font-bold text-gold-champagne block font-mono">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                            <span class="font-bold text-gold-champagne block">Rp ${subtotal.toLocaleString('id-ID')}</span>
                         </div>
                     </div>
                 `;
@@ -1558,10 +1525,10 @@
                     <div class="divide-y divide-white/5">${quoteRows}</div>
                     <div class="border-t border-white/5 pt-4 flex justify-between items-center font-mono">
                         <span class="text-xs text-gray-400">Total Est. Investasi Awal:</span>
-                        <span class="text-xl font-bold text-gold-champagne font-mono">Rp ${grandTotal.toLocaleString('id-ID')}</span>
+                        <span class="text-xl font-bold text-gold-champagne">Rp ${grandTotal.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="pt-2 flex gap-3">
-                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gold-champagne text-black font-extrabold rounded-lg text-center text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 font-sans"><i class="fa-brands fa-whatsapp text-sm"></i> Ajukan WhatsApp</button>
+                        <button onclick="checkoutViaWhatsApp()" class="flex-grow py-3.5 bg-gold-champagne text-black font-extrabold rounded-lg text-center text-xs uppercase tracking-wider transition flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-sm"></i> Ajukan WhatsApp</button>
                     </div>
                 </div>
             `;
@@ -1611,8 +1578,8 @@
             });
 
             const warningBanner = isCollision ? 
-                `<div class="p-3 rounded-lg bg-red-950/40 border border-red-500/50 text-red-400 text-xs font-mono">Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!</div>` : 
-                `<div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-xs font-sans">Tata ruang aman dan efisien.</div>`;
+                `<div class="p-3 rounded-lg bg-red-950/40 border border-red-500/50 text-red-400 text-xs">Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!</div>` : 
+                `<div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-xs">Tata ruang aman dan efisien.</div>`;
 
             calcContent.innerHTML = `
                 <div class="space-y-4">
@@ -1639,19 +1606,19 @@
                 const itemInCart = cart.find(i => i.id === p.id);
                 const controlBlock = itemInCart ? `
                     <div class="flex items-center bg-[#1c1c1f] rounded border border-[#333]">
-                        <button onclick="updateCartQty('${p.id}', -1)" class="px-2 py-1 text-red-500 font-bold hover:bg-red-500/10 transition font-mono">-</button>
-                        <span class="px-2 text-white font-mono font-bold font-mono">${itemInCart.qty}</span>
-                        <button onclick="updateCartQty('${p.id}', 1)" class="px-2 py-1 text-gold-champagne font-bold hover:bg-gold-champagne/10 transition font-mono">+</button>
+                        <button onclick="updateCartQty('${p.id}', -1)" class="px-2 py-1 text-red-500 font-bold hover:bg-red-500/10 transition">-</button>
+                        <span class="px-2 text-white font-mono font-bold">${itemInCart.qty}</span>
+                        <button onclick="updateCartQty('${p.id}', 1)" class="px-2 py-1 text-gold-champagne font-bold hover:bg-gold-champagne/10 transition">+</button>
                     </div>
                 ` : `
-                    <button onclick="addToCart('${p.id}')" class="px-3 py-1.5 bg-gold-champagne text-black font-extrabold text-[10px] uppercase rounded font-sans">Tambah</button>
+                    <button onclick="addToCart('${p.id}')" class="px-3 py-1.5 bg-gold-champagne text-black font-extrabold text-[10px] uppercase rounded">Tambah</button>
                 `;
 
                 selectionContainer.innerHTML += `
-                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-white/5 text-xs font-sans">
+                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-white/5 text-xs">
                         <div>
                             <span class="font-semibold text-white block">${p.name}</span>
-                            <span class="text-[10px] text-gold-champagne font-mono font-mono">Rp ${p.basePrice.toLocaleString('id-ID')}</span>
+                            <span class="text-[10px] text-gold-champagne font-mono">Rp ${p.basePrice.toLocaleString('id-ID')}</span>
                         </div>
                         ${controlBlock}
                     </div>
@@ -1712,23 +1679,52 @@
         }
         try {
             const res = await callApi('GET', 'getProducts');
-            if (res && res.status === "success" && Array.isArray(res.data)) {
-                products = res.data;
-                localStorage.setItem('hikai_products_cache', JSON.stringify(products));
-                document.getElementById('db-status-badge').className = "p-2 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold rounded";
-                document.getElementById('db-status-badge').textContent = "DB CONNECTED (LIVE CLOUD)";
-            } else {
-                throw new Error(res ? res.message : "Gagal mengambil data produk");
+            if (res.status === "success" && Array.isArray(res.data)) {
+                // Jika data dari Google Sheets kosong (belum diinisialisasi), gunakan data bawaan (DEFAULT_PRODUCT_DATA)
+                if (res.data.length === 0) {
+                    products = [...DEFAULT_PRODUCT_DATA];
+                    localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                } else {
+                    products = res.data;
+                    localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+                }
+                renderCatalog();
+                updateCalculations();
+                updateDashboardStats();
             }
         } catch(e) {
-            console.warn("API Error, mengaktifkan mode proteksi offline:", e);
-            products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
-            document.getElementById('db-status-badge').className = "p-2 bg-amber-950/20 border border-amber-500/30 text-amber-400 text-xs font-bold rounded";
-            document.getElementById('db-status-badge').textContent = "OFFLINE CACHE MODE";
+            console.error("Gagal memuat produk dari cloud, menggunakan cadangan lokal.", e);
+            renderCatalog();
         }
-        renderCatalog();
-        updateCalculations();
-        updateDashboardStats();
+    }
+
+    // Fungsi inisialisasi database bawaan ke Google Sheets Cloud maupun offline
+    async function initializeDefaultDatabase() {
+        const activeSessionPass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+        if (isSandbox()) {
+            products = [...DEFAULT_PRODUCT_DATA];
+            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
+            renderCatalog();
+            updateCalculations();
+            updateDashboardStats();
+            showToast("Berhasil memulihkan produk bawaan ke penyimpanan lokal (Sandbox).");
+            return;
+        }
+        try {
+            showToast("Sedang mengirim data produk bawaan ke Google Sheets...");
+            const res = await callApi('POST', 'initializeDefaultProducts', {
+                password: activeSessionPass,
+                products: DEFAULT_PRODUCT_DATA
+            });
+            if (res.status === "success") {
+                showToast("Database Google Sheets berhasil diisi dengan produk default!");
+                await fetchProductsFromSpreadsheet();
+            } else {
+                showToast(res.message || "Gagal menginisialisasi database.", false);
+            }
+        } catch(e) {
+            showToast("Koneksi gagal: " + e.message, false);
+        }
     }
 
     async function fetchInquiriesFromSpreadsheet() {
@@ -1741,7 +1737,7 @@
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         try {
             const res = await callApi('GET', 'getInquiries', null, { password: activePass });
-            if (res && res.status === "success" && Array.isArray(res.data)) {
+            if (res.status === "success" && Array.isArray(res.data)) {
                 globalInquiries = res.data;
                 renderInquiryLogs(res.data);
                 updateDashboardStats();
@@ -1753,7 +1749,7 @@
         const table = document.getElementById('admin-inquiry-rows');
         table.innerHTML = '';
         if (data.length === 0) {
-            table.innerHTML = `<tr><td colspan="6" class="p-4 text-center font-sans text-gray-500">Inquiries Kosong.</td></tr>`;
+            table.innerHTML = `<tr><td colspan="6" class="p-4 text-center">Inquiries Kosong.</td></tr>`;
             return;
         }
         data.forEach(log => {
@@ -1810,7 +1806,7 @@
                     <td class="p-4 font-bold text-gold-champagne">${p.code}</td>
                     <td class="p-4">${p.name}</td>
                     <td class="p-4">${p.type}</td>
-                    <td class="p-4 text-white font-bold font-mono">Rp ${p.basePrice.toLocaleString('id-ID')}</td>
+                    <td class="p-4 text-white font-bold">Rp ${p.basePrice.toLocaleString('id-ID')}</td>
                     <td class="p-4 text-right">
                         <button onclick="openProductEditForm('${p.id}')" class="px-3 py-1.5 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg"><i class="fa-solid fa-edit"></i> Edit</button>
                         <button onclick="confirmDeleteProduct('${p.id}')" class="px-3 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg"><i class="fa-solid fa-trash"></i> Hapus</button>
@@ -1879,18 +1875,18 @@
             const subtotal = item.basePrice * item.qty;
             grandTotal += subtotal;
             cartRows += `
-                <div class="py-3 flex justify-between items-center text-xs gap-4 font-sans">
+                <div class="py-3 flex justify-between items-center text-xs gap-4">
                     <div>
                         <span class="font-bold text-white block">${item.name}</span>
-                        <span class="text-[10px] text-gray-500 block font-mono">Rp ${item.basePrice.toLocaleString('id-ID')}</span>
+                        <span class="text-[10px] text-gray-500 block">Rp ${item.basePrice.toLocaleString('id-ID')}</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="flex items-center bg-black rounded border border-[#333] text-xs font-mono">
+                        <div class="flex items-center bg-black rounded border border-[#333] text-xs">
                             <button onclick="updateCartQty('${item.id}', -1)" class="px-2 py-1 text-red-500 font-bold">-</button>
                             <span class="px-2 text-white font-mono font-bold">${item.qty}</span>
                             <button onclick="updateCartQty('${item.id}', 1)" class="px-2 py-1 text-gold-champagne font-bold">+</button>
                         </div>
-                        <span class="font-bold text-gold-champagne min-w-[80px] text-right font-mono">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                        <span class="font-bold text-gold-champagne min-w-[80px] text-right">Rp ${subtotal.toLocaleString('id-ID')}</span>
                     </div>
                 </div>
             `;
@@ -2017,31 +2013,6 @@
             fetchProductsFromSpreadsheet();
         } catch(err) {
             showToast("Gagal menyimpan ke cloud, tersimpan di cache.", false);
-        }
-    }
-
-    async function initializeDefaultDatabase() {
-        if (isSandbox()) {
-            products = [...DEFAULT_PRODUCT_DATA];
-            localStorage.setItem('hikai_products_cache', JSON.stringify(products));
-            renderCatalog();
-            updateCalculations();
-            updateDashboardStats();
-            showToast("Database reset ke default lokal (Sandbox).");
-            return;
-        }
-        const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
-        try {
-            showToast("Menyelaraskan data awal ke Cloud Sheets...");
-            const res = await callApi('POST', 'initializeDefaultProducts', { password: activePass, products: DEFAULT_PRODUCT_DATA });
-            if (res && res.status === "success") {
-                showToast("Berhasil mengisi database default di Cloud Sheets!");
-                await fetchProductsFromSpreadsheet();
-            } else {
-                showToast("Gagal: " + (res ? res.message : "Koneksi Bermasalah"), false);
-            }
-        } catch (err) {
-            showToast("Gagal menghubungi server database.", false);
         }
     }
 
