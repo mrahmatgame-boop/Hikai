@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIKAI Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        dark: {
+                            bg: '#09090b',     // Very dark background
+                            card: '#18181b',   // Card background
+                            border: '#27272a'  // Subtle borders
+                        },
+                        hikai: {
+                            yellow: '#eab308', // Command center accent
+                            green: '#22c55e',
+                            red: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #09090b; color: #e4e4e7; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #eab308; }
+
+        /* Utilitas Tambahan */
+        .glass-btn { background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(4px); }
+        .active-tab { background-color: #eab308 !important; color: #000 !important; font-weight: 700; }
+        
+        /* Loading Animation */
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col items-center">
+
+    <!-- LOGIN SCREEN (Sederhana untuk akses Command Center) -->
+    <div id="login-screen" class="w-full min-h-screen flex items-center justify-center absolute inset-0 bg-dark-bg z-50">
+        <div class="w-full max-w-md p-8 bg-dark-card border border-dark-border rounded-xl shadow-2xl text-center">
+            <i class="fa-solid fa-shield-halved text-hikai-yellow text-4xl mb-4"></i>
+            <h2 class="text-xl font-bold mb-6 tracking-widest text-white">SYSTEM <span class="text-hikai-yellow">AUTH</span></h2>
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+                <input type="password" id="admin-pin" required placeholder="ENTER PIN" 
+                    class="w-full bg-dark-bg border border-dark-border rounded p-4 text-center text-xl tracking-[0.5em] text-white focus:border-hikai-yellow outline-none transition uppercase">
+                <button type="submit" id="btn-login" class="w-full bg-hikai-yellow text-black font-bold py-3 rounded hover:bg-yellow-400 transition">
+                    VERIFY & ACCESS
+                </button>
+                <p id="login-error" class="text-hikai-red text-sm hidden font-medium mt-2">ACCESS DENIED</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- COMMAND CENTER DASHBOARD -->
+    <div id="dashboard-screen" class="w-full min-h-screen hidden flex-col pb-10">
+        
+        <!-- TOP HEADER -->
+        <header class="w-full text-center py-10 border-b border-dark-border relative overflow-hidden">
+            <!-- Subtle background pattern -->
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, #fff 1px, #fff 2px); background-size: 100% 4px;"></div>
+            
+            <div class="relative z-10 space-y-2">
+                <div class="text-hikai-yellow font-bold text-xs tracking-[0.2em] flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shield"></i> SUPERADMIN CONTROL SUITE (SECURE SYNC)
+                </div>
+                <h1 class="text-4xl font-bold text-white tracking-tight">Panel Administrasi HIKAI</h1>
+                <p class="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed mt-2">
+                    Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi<br>database cloud Google Sheets Anda.
+                </p>
+            </div>
+        </header>
+
+        <div class="max-w-7xl mx-auto w-full px-6 mt-8">
+            
+            <!-- NAVIGATION BAR -->
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8 border-b border-dark-border pb-4">
+                
+                <!-- Status Badge -->
+                <div class="flex items-center gap-3">
+                    <div id="connection-status" class="border border-hikai-red text-hikai-red text-[10px] font-bold px-2 py-1 rounded tracking-wider flex items-center gap-2">
+                        <div class="w-2 h-2 bg-hikai-red rounded-full pulse-dot"></div>
+                        DISCONNECTED
+                    </div>
+                    <h2 class="text-xl font-bold text-white">HIKAI Command Center</h2>
+                </div>
+
+                <!-- Tabs -->
+                <nav class="flex gap-2 flex-wrap justify-center bg-dark-card p-1 rounded-lg border border-dark-border">
+                    <button onclick="switchTab('ringkasan')" id="tab-ringkasan" class="active-tab text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line"></i> RINGKASAN
+                    </button>
+                    <button onclick="switchTab('katalog')" id="tab-katalog" class="text-gray-400 hover:text-white text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-stacked"></i> KATALOG RAK
+                    </button>
+                    <button onclick="switchTab('inquiries')" id="tab-inquiries" class="text-gray-400 hover:text-white text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2">
+                        <i class="fa-solid fa-envelope-open-text"></i> INQUIRIES INBOX
+                    </button>
+                    <button onclick="switchTab('pengaturan')" id="tab-pengaturan" class="text-gray-400 hover:text-white text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2">
+                        <i class="fa-solid fa-gears"></i> PENGATURAN
+                    </button>
+                    
+                    <div class="w-px bg-dark-border mx-1"></div>
+                    
+                    <button onclick="logout()" class="text-hikai-red hover:bg-red-950/30 text-xs md:text-sm px-4 py-2.5 rounded border border-transparent hover:border-hikai-red transition font-semibold">
+                        Logout
+                    </button>
+                </nav>
+            </div>
+
+            <!-- MAIN CONTENT AREA -->
+            <main>
+                <!-- TAB 1: RINGKASAN -->
+                <div id="view-ringkasan" class="block space-y-6">
+                    
+                    <!-- Top Summary Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <!-- Card 1 -->
+                        <div class="bg-dark-card border border-dark-border rounded-xl p-6 flex flex-col justify-between h-40">
+                            <h3 class="text-xs font-bold text-gray-500 tracking-wider">TOTAL KOLEKSI RAK</h3>
+                            <div class="flex justify-between items-end">
+                                <span id="stat-total-rak" class="text-5xl font-black text-white">0</span>
+                                <div class="w-12 h-12 rounded-lg bg-yellow-900/20 text-hikai-yellow flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-dark-card border border-dark-border rounded-xl p-6 flex flex-col justify-between h-40">
+                            <h3 class="text-xs font-bold text-gray-500 tracking-wider">INBOX PROSPEK MASUK</h3>
+                            <div class="flex justify-between items-end">
+                                <span id="stat-total-inquiries" class="text-5xl font-black text-white">0</span>
+                                <div class="w-12 h-12 rounded-lg bg-purple-900/20 text-purple-400 flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-dark-card border border-dark-border rounded-xl p-6 flex flex-col justify-between h-40">
+                            <h3 class="text-xs font-bold text-gray-500 tracking-wider">STATUS INTEGRASI</h3>
+                            <div class="flex justify-between items-end">
+                                <span id="stat-integrasi" class="text-2xl font-bold text-hikai-green mt-4">MENUNGGU...</span>
+                                <div class="w-12 h-12 rounded-lg bg-green-900/20 text-hikai-green flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sync Utilities Section -->
+                    <div class="bg-dark-card border border-dark-border rounded-xl p-6 mt-8">
+                        <h3 class="text-sm font-bold text-white mb-4 border-l-2 border-hikai-yellow pl-3">Utilitas Sinkronisasi Kilat</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="dummyAction('reset')" class="border border-indigo-900/50 bg-indigo-950/20 text-indigo-300 hover:bg-indigo-900/40 text-xs font-bold px-6 py-3 rounded transition flex items-center gap-2">
+                                <i class="fa-solid fa-rotate"></i> RESET KE PRODUK BAWAAN PABRIK
+                            </button>
+                            <button onclick="forceSync()" id="btn-force-sync" class="border border-green-900/50 bg-green-950/20 text-green-400 hover:bg-green-900/40 text-xs font-bold px-6 py-3 rounded transition flex items-center gap-2">
+                                <i class="fa-solid fa-cloud-arrow-down"></i> MUAT ULANG DATA DARI CLOUD SHEETS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: KATALOG RAK (Pengganti desain lama ke tema dark mode baru) -->
+                <div id="view-katalog" class="hidden space-y-6">
+                    <div class="flex justify-between items-center bg-dark-card p-4 rounded-xl border border-dark-border">
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-database text-hikai-yellow"></i> Manajemen Database Produk
+                        </h2>
+                        <button onclick="toggleAddModal()" class="bg-hikai-yellow text-black px-4 py-2 rounded text-sm font-bold flex items-center gap-2 hover:bg-yellow-400 transition">
+                            <i class="fa-solid fa-plus"></i> Tambah Item Baru
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-dark-border bg-dark-card">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-black/40 text-gray-400 text-xs uppercase tracking-wider">
+                                    <th class="p-4 font-semibold border-b border-dark-border">SKU</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border">Nama Produk</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border">Kategori</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border text-center">Tingkat</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border text-center">Kapasitas</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products-table" class="text-sm divide-y divide-dark-border">
+                                <!-- Data Dimuat via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: INQUIRIES INBOX -->
+                <div id="view-inquiries" class="hidden space-y-6">
+                    <div class="bg-dark-card p-4 rounded-xl border border-dark-border">
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-inbox text-purple-400"></i> Kotak Masuk Permintaan Penawaran
+                        </h2>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-dark-border bg-dark-card">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-black/40 text-gray-400 text-xs uppercase tracking-wider">
+                                    <th class="p-4 font-semibold border-b border-dark-border">Timestamp</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border">Prospek / Perusahaan</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border">Kontak Info</th>
+                                    <th class="p-4 font-semibold border-b border-dark-border">Detail Permintaan (Keranjang)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inquiries-table" class="text-sm divide-y divide-dark-border">
+                                <!-- Data Dimuat via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 4: PENGATURAN (Placeholder) -->
+                <div id="view-pengaturan" class="hidden">
+                    <div class="bg-dark-card border border-dark-border rounded-xl p-8 text-center text-gray-500">
+                        <i class="fa-solid fa-screwdriver-wrench text-4xl mb-4 text-gray-600"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Konfigurasi Sistem</h3>
+                        <p>Fitur pengaturan hotline dan preferensi web sedang dalam pengembangan (Under Construction).</p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-dark-card w-full max-w-lg rounded-xl p-6 shadow-2xl relative border border-dark-border">
+            <button onclick="toggleAddModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold mb-6 text-white border-l-2 border-hikai-yellow pl-2">Entri Produk Baru</h3>
+            
+            <form id="add-product-form" onsubmit="submitNewProduct(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Kode/SKU</label>
+                        <input type="text" id="p-code" required class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Kategori Rak</label>
+                        <select id="p-type" class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm">
+                            <option value="Heavy Duty">Heavy Duty</option>
+                            <option value="Medium Duty">Medium Duty</option>
+                            <option value="Light Duty">Light Duty</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Nama Produk</label>
+                    <input type="text" id="p-name" required class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Deskripsi Singkat</label>
+                    <textarea id="p-desc" rows="2" class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Jumlah Tingkat (Layers)</label>
+                        <input type="number" id="p-layers" required min="1" class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Kapasitas / Tingkat</label>
+                        <input type="text" id="p-capacity" required placeholder="Contoh: 500 Kg" class="w-full bg-dark-bg border border-dark-border rounded p-2 text-white focus:border-hikai-yellow outline-none text-sm">
+                    </div>
+                </div>
+                
+                <button type="submit" id="btn-save-product" class="w-full bg-hikai-yellow text-black py-3 rounded mt-6 font-bold flex justify-center items-center gap-2 hover:bg-yellow-400 transition">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> SIMPAN & SINKRONISASI KE CLOUD
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_URL = '/api/hikai'; 
+        let sessionPin = null;
+
+        // System State
+        let state = {
+            totalProducts: 0,
+            totalInquiries: 0
+        };
+
+        // --- AUTHENTICATION ---
+        async function handleLogin(e) {
+            e.preventDefault();
+            const pin = document.getElementById('admin-pin').value;
+            const btn = document.getElementById('btn-login');
+            const errorText = document.getElementById('login-error');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> VERIFYING...';
+            errorText.classList.add('hidden');
+
+            try {
+                // Call verification endpoint
+                const res = await fetch(`${API_URL}?action=verifyAdmin&password=${pin}`);
+                const data = await res.json();
+
+                if (data.status === 'success') {
+                    sessionPin = pin;
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('dashboard-screen').classList.remove('hidden');
+                    document.getElementById('dashboard-screen').classList.add('flex');
+                    
+                    // Initial Data Load
+                    forceSync();
+                } else {
+                    errorText.innerText = "INVALID PIN. ACCESS DENIED.";
+                    errorText.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorText.innerText = "SERVER DISCONNECTED.";
+                errorText.classList.remove('hidden');
+            } finally {
+                btn.innerHTML = 'VERIFY & ACCESS';
+            }
+        }
+
+        function logout() {
+            sessionPin = null;
+            document.getElementById('admin-pin').value = '';
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.remove('flex');
+            document.getElementById('login-screen').classList.remove('hidden');
+            setConnectionStatus(false);
+        }
+
+        // --- TAB NAVIGATION ---
+        function switchTab(tabId) {
+            const tabs = ['ringkasan', 'katalog', 'inquiries', 'pengaturan'];
+            
+            tabs.forEach(t => {
+                // Handle Content Visibility
+                document.getElementById(`view-${t}`).classList.add('hidden');
+                document.getElementById(`view-${t}`).classList.remove('block');
+                
+                // Handle Button Styling
+                const btn = document.getElementById(`tab-${t}`);
+                if(t === tabId) {
+                    btn.className = 'active-tab text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2';
+                    document.getElementById(`view-${t}`).classList.remove('hidden');
+                    document.getElementById(`view-${t}`).classList.add('block');
+                } else {
+                    btn.className = 'text-gray-400 hover:text-white text-xs md:text-sm px-4 py-2.5 rounded font-semibold transition flex items-center gap-2';
+                }
+            });
+        }
+
+        // --- UI HELPERS ---
+        function setConnectionStatus(isConnected) {
+            const statusDiv = document.getElementById('connection-status');
+            const integrasiText = document.getElementById('stat-integrasi');
+            
+            if (isConnected) {
+                statusDiv.className = 'border border-hikai-green text-hikai-green text-[10px] font-bold px-2 py-1 rounded tracking-wider flex items-center gap-2 bg-green-950/20';
+                statusDiv.innerHTML = '<div class="w-2 h-2 bg-hikai-green rounded-full pulse-dot"></div> CONNECTED';
+                integrasiText.innerText = 'SINKRONISASI OK';
+                integrasiText.className = 'text-2xl font-bold text-hikai-green mt-4';
+            } else {
+                statusDiv.className = 'border border-hikai-red text-hikai-red text-[10px] font-bold px-2 py-1 rounded tracking-wider flex items-center gap-2 bg-red-950/20';
+                statusDiv.innerHTML = '<div class="w-2 h-2 bg-hikai-red rounded-full pulse-dot"></div> DISCONNECTED';
+                integrasiText.innerText = 'TERPUTUS';
+                integrasiText.className = 'text-2xl font-bold text-hikai-red mt-4';
+            }
+        }
+
+        function updateSummaryCards() {
+            document.getElementById('stat-total-rak').innerText = state.totalProducts;
+            document.getElementById('stat-total-inquiries').innerText = state.totalInquiries;
+        }
+
+        function dummyAction(type) {
+            if(type === 'reset') alert("Fitur Reset Pabrik dikunci untuk keamanan data production.");
+        }
+
+        // --- STREAMING_CHUNK:Fungsi Sinkronisasi Data (Fetch dari Google Sheets) ---
+        // MAIN SYNC FUNCTION (Called on login and manual refresh)
+        async function forceSync() {
+            const btn = document.getElementById('btn-force-sync');
+            const originalBtnHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> MENYINKRONKAN...';
+            btn.disabled = true;
+
+            try {
+                // Fetch Products
+                const resProd = await fetch(`${API_URL}?action=getProducts`);
+                const dataProd = await resProd.json();
+                
+                // Fetch Inquiries
+                const resInq = await fetch(`${API_URL}?action=getInquiries&password=${sessionPin}`);
+                const dataInq = await resInq.json();
+
+                if (dataProd.status === 'success' && dataInq.status === 'success') {
+                    setConnectionStatus(true);
+                    
+                    state.totalProducts = dataProd.data.length;
+                    state.totalInquiries = dataInq.data.length;
+                    
+                    updateSummaryCards();
+                    renderProductsTable(dataProd.data);
+                    renderInquiriesTable(dataInq.data);
+                } else {
+                    throw new Error("Format data tidak valid dari server.");
+                }
+            } catch (err) {
+                console.error(err);
+                setConnectionStatus(false);
+            } finally {
+                btn.innerHTML = originalBtnHTML;
+                btn.disabled = false;
+            }
+        }
+
+        // RENDER TABLES
+        function renderProductsTable(data) {
+            const tbody = document.getElementById('admin-products-table');
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center p-8 text-gray-600">Database produk kosong.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = data.map(p => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4"><span class="bg-dark-bg px-2 py-1 rounded text-xs text-hikai-yellow border border-dark-border font-mono">${p.code || '-'}</span></td>
+                    <td class="p-4 font-medium text-gray-200">${p.name || '-'}</td>
+                    <td class="p-4 text-gray-500 text-xs">${p.type || '-'}</td>
+                    <td class="p-4 text-center font-mono text-gray-400">${p.layers || 0}</td>
+                    <td class="p-4 text-center text-xs text-gray-400">${p.capacity || '-'}</td>
+                    <td class="p-4 text-center">
+                        <button onclick="deleteProduct('${p.id}', '${p.name}')" class="text-gray-600 hover:text-hikai-red transition px-2 py-1" title="Delete Product">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderInquiriesTable(data) {
+            const tbody = document.getElementById('admin-inquiries-table');
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center p-8 text-gray-600">Belum ada inbox masuk.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = data.map(i => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4 text-xs text-gray-500 whitespace-nowrap font-mono">${i.date || '-'}</td>
+                    <td class="p-4 font-medium text-gray-200">${i.customer_name || i.name || '-'}</td>
+                    <td class="p-4 text-xs">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-gray-400"><i class="fa-solid fa-envelope w-4"></i> ${i.email || '-'}</span>
+                            <span class="text-hikai-yellow"><i class="fa-brands fa-whatsapp w-4"></i> ${i.phone || '-'}</span>
+                        </div>
+                    </td>
+                    <td class="p-4 text-xs text-gray-400 leading-relaxed">${i.cart_details || i.details || '-'}</td>
+                </tr>
+            `).reverse().join('');
+        }
+
+        // --- STREAMING_CHUNK:Logika CRUD Database (Tambah & Hapus Produk) ---
+        // CREATE PRODUCT
+        function toggleAddModal() {
+            const modal = document.getElementById('add-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        async function submitNewProduct(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-save-product');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SYNCING TO CLOUD...';
+            btn.disabled = true;
+
+            const payload = {
+                action: 'addProduct',
+                password: sessionPin,
+                code: document.getElementById('p-code').value,
+                type: document.getElementById('p-type').value,
+                name: document.getElementById('p-name').value,
+                description: document.getElementById('p-desc').value,
+                layers: document.getElementById('p-layers').value,
+                capacity: document.getElementById('p-capacity').value
+            };
+
+            try {
+                const res = await fetch(`${API_URL}?action=addProduct`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await res.json();
+                if (result.status === 'success') {
+                    document.getElementById('add-product-form').reset();
+                    toggleAddModal();
+                    forceSync(); // Auto sync after add
+                } else {
+                    alert('Gagal: ' + result.message);
+                }
+            } catch (err) {
+                alert('Connection Error.');
+            } finally {
+                btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> SIMPAN & SINKRONISASI KE CLOUD';
+                btn.disabled = false;
+            }
+        }
+
+        // DELETE PRODUCT
+        async function deleteProduct(id, name) {
+            const confirmation = window.confirm(`!!! SYSTEM WARNING !!!\n\nMenghapus Data: "${name}"\nTindakan ini akan menghapus data secara permanen dari Cloud Sheets.\n\nLanjutkan?`);
+            
+            if (!confirmation) return;
+
+            try {
+                const res = await fetch(`${API_URL}?action=deleteProduct`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, password: sessionPin })
+                });
+                
+                const result = await res.json();
+                if (result.status === 'success') {
+                    forceSync(); // Auto sync after delete
+                } else {
+                    alert('Gagal menghapus: ' + result.message);
+                }
+            } catch (err) {
+                alert('Connection Error.');
+            }
+        }
+    </script>
+</body>
+</html>
