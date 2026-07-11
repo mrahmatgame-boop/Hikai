@@ -552,9 +552,9 @@
     };
 
     function getProductTranslation(p, field) {
-        // JIKA PRODUK MEMILIKI KUSTOMISASI: Prioritaskan langsung value database agar update langsung bereaksi
-        if (p.isCustom || p.isEdited) {
-            return p[field] || '';
+        // Jika data dari database/spreadsheet tersedia dan tidak kosong, gunakan langsung untuk menghindari inkonsistensi
+        if (p[field] && (p.isCustom || p.isEdited || currentLang === 'id')) {
+            return p[field];
         }
         const trans = productTranslations[p.id];
         if (trans && trans[currentLang] && trans[currentLang][field]) {
