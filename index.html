@@ -192,7 +192,16 @@
             lblMaxCap: "Kapasitas Maks:",
             btnDetail: "Detail",
             btnAddToCart: "Tambah Ke Draf",
-            lblLayerUnit: "Layer"
+            lblLayerUnit: "Layer",
+
+            /* Admin settings translatable elements */
+            saveGlobalSettings: "Simpan Pengaturan Global",
+            adminSettingsTitle: "Pengaturan Konfigurasi Web Global",
+            adminHotlineLabel: "WhatsApp VIP Hotline (Format: 628xxx)",
+            adminEmailLabel: "Email Dukungan Pelanggan",
+            adminAddressLabel: "Alamat Kantor Pusat",
+            adminGeminiLabel: "Google Gemini API Key (Opsional untuk Fitur AI Advice)",
+            adminGeminiDesc: "Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan."
         },
         en: {
             navHome: "Home",
@@ -288,7 +297,16 @@
             lblMaxCap: "Max Capacity:",
             btnDetail: "Detail",
             btnAddToCart: "Add To Draft",
-            lblLayerUnit: "Layers"
+            lblLayerUnit: "Layers",
+
+            /* Admin settings translatable elements */
+            saveGlobalSettings: "Save Global Settings",
+            adminSettingsTitle: "Global Web Configuration Settings",
+            adminHotlineLabel: "WhatsApp VIP Hotline (Format: 628xxx)",
+            adminEmailLabel: "Customer Support Email",
+            adminAddressLabel: "Head Office Address",
+            adminGeminiLabel: "Google Gemini API Key (Optional for AI Advice)",
+            adminGeminiDesc: "Configure API Key to dynamically enable AI Advice. If empty, the system will run default draft analysis."
         },
         zh: {
             navHome: "首页",
@@ -340,7 +358,7 @@
             sizeLabel: "您的仓库厂房物理尺寸",
             roomLength: "厂房长度 (米)",
             roomWidth: "厂房宽度 (米)",
-            aisleLabel: "工作通道 / 叉车动线 (米)",
+            aisleLabel: "工作通道 / 叉车动车 (米)",
             calcAisleManual: "人工选配通道 (0.8米)",
             calcAisleFork: "重型叉车通道 (4米)",
             calcAddTitle: "添加货架至平面图:",
@@ -384,7 +402,16 @@
             lblMaxCap: "极限承重:",
             btnDetail: "详情",
             btnAddToCart: "加入空间预算清单",
-            lblLayerUnit: "层"
+            lblLayerUnit: "层",
+
+            /* Admin settings translatable elements */
+            saveGlobalSettings: "保存全局设置",
+            adminSettingsTitle: "全局网页配置设置",
+            adminHotlineLabel: "微信/WhatsApp 专属热线 (格式: 628xxx)",
+            adminEmailLabel: "客户支持电子邮箱",
+            adminAddressLabel: "总部物理地址",
+            adminGeminiLabel: "Google Gemini API 密钥 (智能空间分析可选)",
+            adminGeminiDesc: "配置 API 密钥以动态启用 AI 空间规划建议。如果为空，系统将运行默认的仿真草稿分析。"
         }
     };
 
@@ -619,9 +646,7 @@
 <header class="sticky top-0 z-40 bg-[#020202]/95 backdrop-blur-md border-b border-obsidian-accent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow">
-                <span class="text-black font-extrabold text-xl tracking-tighter">H</span>
-            </div>
+            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-10 h-10 object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-xl tracking-tighter\'>H</span></div>';">
             <div>
                 <span class="text-xl font-bold tracking-widest text-gold-champagne block">HIKAI</span>
                 <span class="text-[9px] tracking-widest text-gray-400 uppercase block -mt-1 font-mono">Storage Equipment</span>
@@ -655,9 +680,7 @@
         <div class="space-y-8">
             <div class="flex items-center justify-between border-b border-white/5 pb-5">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow">
-                        <span class="text-black font-extrabold text-base">H</span>
-                    </div>
+                    <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-8 h-8 object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-base\'>H</span></div>';">
                     <span class="text-xs font-extrabold tracking-widest text-gold-champagne uppercase font-mono">HIKAI PANEL</span>
                 </div>
                 <button onclick="toggleMobileMenu(false)" class="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition">
@@ -1124,29 +1147,29 @@
             <!-- Admin Settings Subpanel -->
             <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-6 rounded-2xl border border-white/5 space-y-6">
                 <div>
-                    <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> Pengaturan Konfigurasi Web Global</h4>
+                    <h4 class="text-white font-bold text-base"><i class="fa-solid fa-gears text-gold-champagne mr-2"></i> <span data-trans="adminSettingsTitle">Pengaturan Konfigurasi Web Global</span></h4>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
                     <div>
-                        <label class="block text-gray-400 font-bold uppercase mb-2">WhatsApp VIP Hotline (Format: 628xxx)</label>
+                        <label class="block text-gray-400 font-bold uppercase mb-2" data-trans="adminHotlineLabel">WhatsApp VIP Hotline (Format: 628xxx)</label>
                         <input type="text" id="settings-hotline" placeholder="628995719102" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
                     </div>
                     <div>
-                        <label class="block text-gray-400 font-bold uppercase mb-2">Email Dukungan Pelanggan</label>
+                        <label class="block text-gray-400 font-bold uppercase mb-2" data-trans="adminEmailLabel">Email Dukungan Pelanggan</label>
                         <input type="email" id="settings-email" placeholder="info@hikairack.com" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-gray-400 font-bold uppercase mb-2">Alamat Kantor Pusat</label>
+                        <label class="block text-gray-400 font-bold uppercase mb-2" data-trans="adminAddressLabel">Alamat Kantor Pusat</label>
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-3 rounded-lg text-white outline-none focus:border-gold-champagne">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-purple-400 font-bold uppercase mb-2">Google Gemini API Key (Opsional untuk Fitur AI Advice)</label>
+                        <label class="block text-purple-400 font-bold uppercase mb-2" data-trans="adminGeminiLabel">Google Gemini API Key (Opsional untuk Fitur AI Advice)</label>
                         <input type="password" id="settings-gemini-key" placeholder="AI-sy..." class="w-full bg-black border border-[#333] p-3 rounded-lg text-white outline-none focus:border-purple-500 font-mono">
-                        <p class="text-[10px] text-gray-500 mt-1">Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.</p>
+                        <p class="text-[10px] text-gray-500 mt-1" data-trans="adminGeminiDesc">Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.</p>
                     </div>
                 </div>
                 <div class="pt-4 border-t border-white/5 flex justify-end">
-                    <button onclick="saveGlobalWebSettings()" class="px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-luxury-glow">
+                    <button onclick="saveGlobalWebSettings()" class="px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-luxury-glow" data-trans="saveGlobalSettings">
                         Simpan Pengaturan Global
                     </button>
                 </div>
@@ -1159,9 +1182,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3 text-left">
-                <div class="w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center">
-                    <span class="text-black font-extrabold text-base font-serif">H</span>
-                </div>
+                <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="w-8 h-8 object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center\'><span class=\'text-black font-extrabold text-base font-serif\'>H</span></div>';">
                 <div>
                     <span class="text-base font-bold tracking-widest text-[#D4AF37] block">PT. HIKAI STORAGE EQUIPMENT</span>
                     <span class="text-[8px] tracking-widest text-gray-400 uppercase block -mt-1">PT. HIKAI STORAGE EQUIPMENT</span>
@@ -2931,11 +2952,16 @@
         const email = document.getElementById('settings-email').value.trim();
         const address = document.getElementById('settings-address').value.trim();
         const geminiKey = document.getElementById('settings-gemini-key').value.trim();
-        if (!hotline) return;
+        
+        if (!hotline) {
+            showToast(currentLang === 'id' ? "Nomor WhatsApp wajib diisi!" : (currentLang === 'zh' ? "请填写专属热线号码！" : "WhatsApp Hotline is required!"), false);
+            return;
+        }
+        
         globalSettings = { hotline, email, address, geminiKey };
         localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
         applyGlobalSettingsDOM();
-        showToast("Pengaturan global berhasil disimpan.");
+        showToast(currentLang === 'id' ? "Pengaturan global berhasil disimpan." : (currentLang === 'zh' ? "全局设置已成功保存。" : "Global settings successfully saved."));
     }
 
     function applyGlobalSettingsDOM() {
@@ -2949,6 +2975,16 @@
         document.getElementById('global-form-email').textContent = globalSettings.email;
         document.getElementById('global-form-address').textContent = globalSettings.address;
         
+        // Ensure values are mapped directly to inputs to prevent early returns on saving
+        const settingsHotline = document.getElementById('settings-hotline');
+        if (settingsHotline) settingsHotline.value = globalSettings.hotline;
+        
+        const settingsEmail = document.getElementById('settings-email');
+        if (settingsEmail) settingsEmail.value = globalSettings.email;
+        
+        const settingsAddress = document.getElementById('settings-address');
+        if (settingsAddress) settingsAddress.value = globalSettings.address;
+
         const keyInput = document.getElementById('settings-gemini-key');
         if (keyInput) {
             keyInput.value = globalSettings.geminiKey || "";
