@@ -1,38 +1,78 @@
+/* =======================================================
+   HIKAI VVIP SERVERLESS WEBHOOK PROXY (api/hikai.js)
+   ======================================================= */
+
 export default async function handler(req, res) {
-    // ⚠️ PENTING: Ganti dengan URL Web App Google Apps Script Anda yang terbaru
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyY1TCpKHfrP7Ow2Fn4DC-uRgiJ4Q6UTHBMBUsbI6hnZ-rfs6eYhGRSq9WbuIgRSoL/exec";
+  // Atur Header Keamanan CORS dan Respons JSON
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    try {
-        const url = new URL(SCRIPT_URL);
-        
-        // 1. Teruskan Query Parameters (Contoh: action=verifyAdmin & password=6613)
-        // Jika bagian ini tidak ada, GAS tidak akan menerima password dan menolak akses.
-        for (const key in req.query) {
-            url.searchParams.append(key, req.query[key]);
-        }
+  // Tangani Preflight Request dari Browser
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-        const options = {
-            method: req.method,
-            headers: {
-                // Jangan gunakan header tambahan lain agar terhindar dari error CORS Google
-                "Content-Type": "text/plain;charset=utf-8", 
-            },
-        };
+  // Ambil Google Apps Script URL secara rahasia dari Environment Variables Vercel
+  const targetWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
-        // 2. Teruskan Data Payload (Untuk operasi POST seperti update produk)
-        if (req.method === 'POST' && req.body) {
-            options.body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
-        }
+  if (!targetWebhookUrl) {
+    return res.status(500).json({
+      status: "error",
+      message: "Konfigurasi Vercel Belum Lengkap: GOOGLE_SHEETS_WEBHOOK_URL tidak ditemukan pada Environment Variables Anda."
+    });
+  }
 
-        // 3. Panggil Google Apps Script
-        const fetchRes = await fetch(url.toString(), options);
-        const data = await fetchRes.json();
+  try {
+    // 1. TANGANI METODE GET (Ambil Data Produk, Inquiries, atau Verifikasi Admin)
+    if (req.method === 'GET') {
+      const { action, password } = req.query;
+      let targetParamsUrl = `${targetWebhookUrl}?action=${action || 'getProducts'}`;
+      
+      if (password) {
+        targetParamsUrl += `&password=${encodeURIComponent(password)}`;
+      }
 
-        // 4. Kembalikan respon ke Frontend Web
-        res.status(200).json(data);
-
-    } catch (error) {
-        console.error("Vercel Proxy Error:", error);
-        res.status(500).json({ status: "error", message: "Gagal terhubung ke Database Cloud (Google Sheets)." });
+      const response = await fetch(targetParamsUrl);
+      if (!response.ok) {
+        return res.status(response.status).json({
+          status: "error",
+          message: `Google Apps Script mengembalikan status HTTP ${response.status}: ${response.statusText}`
+        });
+      }
+      const data = await response.json();
+      return res.status(200).json(data);
     }
+
+    // 2. TANGANI METODE POST (Tambah/Edit/Hapus Produk, Tambah Inquiry, Hapus Inquiry)
+    if (req.method === 'POST') {
+      let bodyPayload;
+      try {
+        bodyPayload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      } catch (e) {
+        bodyPayload = req.body;
+      }
+
+      // Gunakan Content-Type 'text/plain' untuk menghindari isu Preflight CORS pada Google Apps Script
+      const response = await fetch(targetWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(bodyPayload)
+      });
+
+      if (!response.ok) {
+        return res.status(response.status).json({
+          status: "error",
+          message: `Gagal mengirim data. Google Apps Script merespon dengan status HTTP ${response.status}`
+        });
+      }
+
+      const data = await response.json();
+      return res.status(200).json(data);
+    }
+
+    return res.status(405).json({ status: "error", message: "Metode HTTP Tidak Diizinkan." });
+  } catch (error) {
+    return res.status(500).json({ status: "error", message: `Gagal menghubungi Google Apps Script: ${error.message}` });
+  }
 }
