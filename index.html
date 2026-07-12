@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT. HIKAI STORAGE EQUIPMENT - VVIP CATALOG & PLANNING SYSTEM</title>
+    <title>PT. HIKAI STORAGE EQUIPMENT</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter & Playfair Display -->
@@ -1072,14 +1072,6 @@
 
     <footer class="bg-[#060608] border-t border-white/5 py-10 text-gray-500 text-xs text-center no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-3 text-left">
-                    <div class="border-l border-gold-champagne pl-3.5 py-1">
-                        <span class="text-xs font-bold tracking-wider text-gold-champagne block">PT. HIKAI STORAGE EQUIPMENT</span>
-                        <span class="text-[8px] tracking-widest text-gray-500 uppercase block font-mono">Premium Spatial Engineering</span>
-                    </div>
-                </div>
-            </div>
             <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600" data-trans="footerDesc">
                 PT. Hikai Storage Equipment menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
             </p>
@@ -3329,7 +3321,8 @@
 
     function exportKatalogToCSV() {
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "id,name,type,code,layers,h,d,l,capacity,svgType,description,images,finishing,construction,bestFor,basePrice,blueprintUrl\r\n";
+        // Header disesuaikan: basePrice diletakkan langsung setelah kolom code (Kolom E)
+        csvContent += "id,name,type,code,basePrice,layers,h,d,l,capacity,svgType,description,images,finishing,construction,bestFor,blueprintUrl\r\n";
         
         products.forEach(p => {
             let imagesJoined = Array.isArray(p.images) ? p.images.join("|") : p.images;
@@ -3338,6 +3331,7 @@
                 `"${p.name || ''}"`,
                 `"${p.type || ''}"`,
                 `"${p.code || ''}"`,
+                p.basePrice || 0, // Letakkan nilai harga di sini agar sinkron dengan Kolom E
                 p.layers || 4,
                 p.h || 2000,
                 p.d || 600,
@@ -3349,7 +3343,6 @@
                 `"${p.finishing || ''}"`,
                 `"${p.construction || ''}"`,
                 `"${p.bestFor || ''}"`,
-                p.basePrice || 0,
                 `"${p.blueprintUrl || ''}"`
             ];
             csvContent += row.join(",") + "\r\n";
