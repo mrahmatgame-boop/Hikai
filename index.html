@@ -1258,16 +1258,24 @@
     function convertGoogleDriveLink(url) {
         if (!url) return "";
         url = url.trim();
+        
+        // Cek jika link merujuk pada folder Google Drive (bukan file gambar tunggal)
+        if (url.includes('/folders/') || url.includes('/drive/folders/')) {
+            console.warn("HIKAI Warning: Link yang dimasukkan adalah link FOLDER Google Drive. Harap gunakan link FILE gambar tunggal.");
+            return "https://placehold.co/600x400/020202/D4AF37?text=Gunakan+Link+File+Bukan+Folder";
+        }
+
         // Regex untuk mendeteksi ID file dari URL Google Drive standar (/file/d/ID/...)
         const gdRegexp = /\/file\/d\/([a-zA-Z0-9_-]+)/;
         const match = url.match(gdRegexp);
         if (match && match[1]) {
             return `https://lh3.googleusercontent.com/d/${match[1]}`;
         }
-        // Regex untuk mendeteksi ID dari format query uc?id=ID
+        
+        // Regex untuk mendeteksi ID dari format query uc?id=ID atau open?id=ID
         const ucRegexp = /[?&]id=([a-zA-Z0-9_-]+)/;
         const matchUc = url.match(ucRegexp);
-        if (matchUc && matchUc[1] && url.includes('drive.google.com')) {
+        if (matchUc && matchUc[1] && (url.includes('drive.google.com') || url.includes('docs.google.com'))) {
             return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
         }
         return url;
