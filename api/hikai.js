@@ -15,22 +15,20 @@ export default async function handler(req, res) {
   if (!targetWebhookUrl) {
     return res.status(500).json({
       status: "error",
-      message: "Konfigurasi database Belum Lengkap"
+      message: "Konfigurasi tidak ditemukan pada Environment Variables Anda."
     });
   }
 
   try {
     const url = new URL(targetWebhookUrl);
     
-    // Secara otomatis meneruskan semua parameter (seperti action, password)
     for (const key in req.query) {
         url.searchParams.append(key, req.query[key]);
     }
     
     const options = {
         method: req.method,
-        headers: { 'Content-Type': 'application/json' },
-        redirect: 'manual' // MANDATORI: Tangani pengalihan secara manual agar payload POST tidak hilang/berubah menjadi GET
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
     };
 
     if (req.method === 'POST') {
@@ -43,19 +41,7 @@ export default async function handler(req, res) {
         options.body = JSON.stringify(bodyPayload);
     }
 
-    let response = await fetch(url.toString(), options);
-    
-    // Tangani manual redirect 302/301/307 dari Google Apps Script secara aman
-    if (response.status === 302 || response.status === 301 || response.status === 307) {
-        const redirectUrl = response.headers.get('location');
-        if (redirectUrl) {
-            // Google mengalihkan respon ke URL GET khusus untuk membaca output JSON hasil eksekusi POST
-            response = await fetch(redirectUrl, {
-                method: 'GET'
-            });
-        }
-    }
-    
+    const response = await fetch(url.toString(), options);
     const responseText = await response.text();
 
     try {
@@ -67,14 +53,14 @@ export default async function handler(req, res) {
         if (responseText.includes('<html') || responseText.includes('google')) {
              return res.status(500).json({
                 status: "error",
-                message: "Akses Ditolak oleh Google. Pastikan Apps Script diatur ke 'Anyone'.",
+                message: "Akses Ditolak oleh Google",
                 detail: "Google meminta login ulang / merespon dengan HTML."
             });
         }
 
         return res.status(500).json({
             status: "error",
-            message: "Format respons dari cloud tidak valid.",
+            message: "Format respons dari Google Apps Script tidak valid.",
             detail: responseText.substring(0, 100)
         });
     }
@@ -83,7 +69,7 @@ export default async function handler(req, res) {
     console.error("Vercel Proxy Error Utama:", error);
     return res.status(500).json({ 
         status: "error", 
-        message: `gagal menghubungi jembatan database cloud: ${error.message}` 
+        message: `Vercel gagal menghubungi Google Apps Script: ${error.message}` 
     });
   }
 }
