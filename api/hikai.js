@@ -15,12 +15,11 @@ export default async function handler(req, res) {
   if (!targetWebhookUrl) {
     return res.status(500).json({
       status: "error",
-      message: "Konfigurasi Vercel Belum Lengkap: GOOGLE_SHEETS_WEBHOOK_URL tidak ditemukan pada Environment Variables Anda."
+      message: "Konfigurasi Belum Lengkap pada Environment Variables Anda."
     });
   }
 
   try {
-    // Menggunakan class URL() modern untuk menghindari Deprecation Warning url.parse()
     const url = new URL(targetWebhookUrl);
     
     // Secara otomatis meneruskan semua parameter (seperti action, password)
@@ -31,7 +30,8 @@ export default async function handler(req, res) {
     const options = {
         method: req.method,
         // text/plain wajib digunakan agar Google tidak menolak dengan CORS error
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        redirect: 'follow'
     };
 
     if (req.method === 'POST') {
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
         if (responseText.includes('<html') || responseText.includes('google')) {
              return res.status(500).json({
                 status: "error",
-                message: "Akses Ditolak oleh Google. Pastikan 'Who has access' (Siapa yang memiliki akses) di Apps Script diatur ke 'Anyone' (Siapa saja).",
+                message: "Akses Ditolak",
                 detail: "Google meminta login ulang / merespon dengan HTML."
             });
         }
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
     console.error("Vercel Proxy Error Utama:", error);
     return res.status(500).json({ 
         status: "error", 
-        message: `Vercel gagal menghubungi Google Apps Script: ${error.message}` 
+        message: `gagal menghubungi server: ${error.message}` 
     });
   }
 }
