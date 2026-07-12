@@ -43,6 +43,7 @@
             }
         }
     </script>
+    
     <style>
         body {
             background-color: #020202;
@@ -230,9 +231,9 @@
             btnAddToCart: "Tambah Ke Draf",
             lblLayerUnit: "Layer",
             saveGlobalSettings: "Simpan Pengaturan Global",
-            adminSettingsTitle: "Pengaturan Konfigurasi Web Global",
+            adminSettingsTitle: "Global Web Configuration Settings",
             adminHotlineLabel: "WhatsApp VIP Hotline (Format: 628xxx)",
-            adminEmailLabel: "Email Dukungan Pelanggan",
+            adminEmailLabel: "Customer Support Email",
             adminAddressLabel: "Alamat Kantor Pusat",
             adminGeminiLabel: "Google Gemini API Key (Opsional untuk Fitur AI Advice)",
             adminGeminiDesc: "Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.",
@@ -404,7 +405,7 @@
             calcSafe: "当前货架空间布局安全合理且高效。",
             contactBadge: "实地勘测",
             contactTitle: "联系 HIKAI 专属工程师团队",
-            contactDesc: "我们随时为您提供全方位的专业规划服务，包括免费 2D/3D AutoCAD 厂房动线图 design、大吨位承载极限计算和定制结构方案。欢迎莅临我们的营销中心面对面咨询。",
+            contactDesc: "我们随时为您提供全方位的专业规划服务，包括免费 2D/3D AutoCAD 厂房动线图 design、大吨位承载极限计算和定制结构方案。欢迎莅lim临我们的营销中心面对面咨询。",
             contactOffice: "营销与销售总部地址:",
             contactEmail: "售后与技术支持邮箱:",
             formTitle: "预约实地测量规划服务申请单",
@@ -530,7 +531,7 @@
         "hikai-asr-set": {
             id: {
                 name: "Angle Shelf Rack (1 Set)",
-                description: "Sistem rak besi siku lubang legendaris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
+                description: "Sistem rak besi siku lubang legendris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
                 capacity: "100 - 150 Kg / Level",
                 finishing: "Standard Industrial Powder Coating",
                 construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
@@ -598,7 +599,7 @@
             },
             zh: {
                 name: "重型托盘货架 (L2500)",
-                description: "紧凑版重载托盘存放方案 (2.5米净宽度)。专为库容边界死角设计，在有限的转弯半径下提供极佳高安全性存取效能。",
+                description: "紧凑版重载托盘存放方案 (2.5米净宽度)。专为库容边界死角 design，在有限的转弯半径下提供极佳高安全性存取效能。",
                 capacity: "1000 - 2000 公斤 / 层 (每单元最大承载 6 吨)",
                 finishing: "重载耐冲击环氧树脂粉末涂装",
                 construction: "膨胀螺栓地面锚固立柱 + 加厚安全横梁支撑",
@@ -666,7 +667,19 @@
             <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> <span id="global-email">info@hikairack.com</span></span>
             <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: <span id="global-address">Kosambi, Tangerang</span></span>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-5">
+            <!-- Social Media Premium Links Top-Bar -->
+            <div class="flex items-center gap-3.5 border-r border-white/10 pr-4">
+                <a href="https://instagram.com/hikaistorageequipment" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition flex items-center gap-1.5 text-[10px]" title="Instagram">
+                    <i class="fa-brands fa-instagram text-xs text-gold-champagne"></i> <span class="hidden xl:inline font-semibold">Instagram</span>
+                </a>
+                <a href="https://facebook.com/search/top?q=Hikai%20Storage%20Equipment" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition flex items-center gap-1.5 text-[10px]" title="Facebook">
+                    <i class="fa-brands fa-facebook text-xs text-gold-champagne"></i> <span class="hidden xl:inline font-semibold">Facebook</span>
+                </a>
+                <a href="https://tiktok.com/@hikai.storage.equ" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition flex items-center gap-1.5 text-[10px]" title="TikTok">
+                    <i class="fa-brands fa-tiktok text-xs text-gold-champagne"></i> <span class="hidden xl:inline font-semibold">TikTok</span>
+                </a>
+            </div>
             <div class="flex gap-2 font-bold text-[10px] tracking-wider">
                 <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono" data-lang="id">ID</button>
                 <span>|</span>
@@ -767,9 +780,16 @@
                     </a>
                 </nav>
             </div>
-            <div class="border-t border-white/5 pt-5 text-center">
-                <p class="text-[8px] text-gray-600 uppercase tracking-widest font-mono">Premium Spatial Engineering</p>
-                <p class="text-[9px] text-gold-champagne font-bold mt-1">PT. HIKAI STORAGE EQUIPMENT</p>
+            <div class="border-t border-white/5 pt-5 text-center space-y-3">
+                <div class="flex justify-center gap-4 text-gray-400 text-sm">
+                    <a href="https://instagram.com/hikaistorageequipment" target="_blank" class="hover:text-gold-champagne transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com/search/top?q=Hikai%20Storage%20Equipment" target="_blank" class="hover:text-gold-champagne transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://tiktok.com/@hikai.storage.equ" target="_blank" class="hover:text-gold-champagne transition"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <div>
+                    <p class="text-[8px] text-gray-600 uppercase tracking-widest font-mono">Premium Spatial Engineering</p>
+                    <p class="text-[9px] text-gold-champagne font-bold mt-1">PT. HIKAI STORAGE EQUIPMENT</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1072,6 +1092,17 @@
 
     <footer class="bg-[#060608] border-t border-white/5 py-10 text-gray-500 text-xs text-center no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="https://instagram.com/hikaistorageequipment" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition-colors duration-300 flex items-center gap-1.5 text-gray-400">
+                    <i class="fa-brands fa-instagram text-gold-champagne text-base"></i> <span class="font-mono text-xs">@hikaistorageequipment</span>
+                </a>
+                <a href="https://facebook.com/search/top?q=Hikai%20Storage%20Equipment" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition-colors duration-300 flex items-center gap-1.5 text-gray-400">
+                    <i class="fa-brands fa-facebook text-gold-champagne text-base"></i> <span class="font-mono text-xs">Hikai Storage Equipment</span>
+                </a>
+                <a href="https://tiktok.com/@hikai.storage.equ" target="_blank" rel="noopener noreferrer" class="hover:text-gold-champagne transition-colors duration-300 flex items-center gap-1.5 text-gray-400">
+                    <i class="fa-brands fa-tiktok text-gold-champagne text-base"></i> <span class="font-mono text-xs">@hikai.storage.equ</span>
+                </a>
+            </div>
             <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600" data-trans="footerDesc">
                 PT. Hikai Storage Equipment menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
             </p>
@@ -1129,7 +1160,7 @@
                 </div>
             </div>
 
-            <!-- Admin Stats Content -->
+            <!-- Admin Stats Tab Content -->
             <div id="admin-panel-stats" class="admin-panel-content grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-obsidian-card p-5 rounded-2xl border border-white/5">
                     <span class="text-gray-500 text-[9px] uppercase font-bold tracking-widest block">Total Koleksi Rak</span>
@@ -1183,7 +1214,7 @@
                 </div>
             </div>
 
-            <!-- Admin Catalog Content -->
+            <!-- Admin Catalog Editor Tab -->
             <div id="admin-panel-catalog" class="admin-panel-content hidden space-y-3">
                 <div class="flex justify-between items-center bg-obsidian-card p-3 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-sm">Manajemen Katalog Produk</h4>
@@ -1200,6 +1231,7 @@
                                 <th class="p-3">NAMA PRODUK</th>
                                 <th class="p-3">KATEGORI RAK</th>
                                 <th class="p-3">HARGA DASAR</th>
+                                <th class="p-3">STATUS STOK</th>
                                 <th class="p-3 text-right">AKSI</th>
                             </tr>
                         </thead>
@@ -1285,37 +1317,46 @@
     </div>
 </div>
 
-<!-- Modal Detail Produk -->
 <div id="product-detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm no-print">
-    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-5 sm:p-6 space-y-5 text-left shadow-luxury-glow">
-        <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
+    <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-3xl w-full p-5 sm:p-6 space-y-5 text-left shadow-luxury-glow">
+        <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition z-55">✕</button>
         <div class="border-b border-white/5 pb-3">
             <span id="modal-product-cat" class="text-[9px] font-bold tracking-widest text-gold-champagne uppercase" data-trans="filterMedium">MEDIUM DUTY</span>
             <h3 id="modal-product-title" class="text-lg sm:text-xl font-extrabold text-white mt-0.5">Medium Duty Rack (Starter)</h3>
             <p id="modal-product-code" class="text-[10px] text-gray-500 font-mono">MODEL CODE: MDR-2000-ST</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-            <div id="modal-product-svg"></div>
-            <div class="space-y-3.5 text-xs">
-                <div>
-                    <strong class="text-gray-400 block" data-trans="modalCapacity">Kapasitas Muatan:</strong>
-                    <span id="modal-product-cap" class="text-gold-champagne font-bold text-sm">350 - 500 Kg / Level</span>
-                </div>
-                <div>
-                    <strong class="text-gray-400 block" data-trans="modalFinishing">Proteksi Lapisan Finishing:</strong>
-                    <span id="modal-product-finishing" class="text-gray-300 font-semibold">Powder Coating (Anti-Scratch)</span>
-                </div>
-                <div>
-                    <strong class="text-gray-400 block" data-trans="modalBestFor">Rekomendasi Terbaik:</strong>
-                    <span id="modal-product-best" class="text-gray-300 leading-relaxed block mt-0.5">Penyimpanan sparepart otomotif.</span>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+            <!-- Blueprint Preview Viewport -->
+            <div class="md:col-span-7 flex flex-col relative bg-black rounded-xl border border-white/10 overflow-hidden h-64 sm:h-80 shadow-inner">
+                <div id="modal-blueprint-viewport" class="w-full h-full flex items-center justify-center p-4"></div>
+                <div class="absolute bottom-2.5 left-2.5 bg-black/85 border border-white/10 px-2.5 py-1.5 rounded text-[8px] font-mono text-gray-400 pointer-events-none">
+                    <i class="fa-solid fa-drafting-compass text-gold-champagne mr-1"></i> CAD Vector Engineering Blueprint Display
                 </div>
             </div>
-        </div>
-        <div class="flex gap-3 pt-1">
-            <button id="modal-add-to-cart-btn" class="flex-1 py-2.5 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition" data-trans="modalBtnAdd">
-                Tambahkan Ke Draf Estimasi
-            </button>
-            <button onclick="closeProductModal()" class="py-2.5 px-5 bg-obsidian-card border border-white/5 text-gray-300 rounded-lg text-xs transition" data-trans="modalBtnClose">Tutup</button>
+            
+            <div class="md:col-span-5 flex flex-col justify-between space-y-3 text-xs">
+                <div class="space-y-3.5">
+                    <div>
+                        <strong class="text-gray-400 block" data-trans="modalCapacity">Kapasitas Muatan:</strong>
+                        <span id="modal-product-cap" class="text-gold-champagne font-bold text-sm">350 - 500 Kg / Level</span>
+                    </div>
+                    <div>
+                        <strong class="text-gray-400 block" data-trans="modalFinishing">Proteksi Lapisan Finishing:</strong>
+                        <span id="modal-product-finishing" class="text-gray-300 font-semibold">Powder Coating (Anti-Scratch)</span>
+                    </div>
+                    <div>
+                        <strong class="text-gray-400 block" data-trans="modalBestFor">Rekomendasi Terbaik:</strong>
+                        <span id="modal-product-best" class="text-gray-300 leading-relaxed block mt-0.5">Penyimpanan sparepart otomotif.</span>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 pt-1">
+                    <button id="modal-add-to-cart-btn" class="flex-1 py-2.5 bg-gold-champagne hover:bg-[#b08e23] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest transition" data-trans="modalBtnAdd">
+                        Tambahkan Ke Draf Estimasi
+                    </button>
+                    <button onclick="closeProductModal()" class="py-2.5 px-5 bg-obsidian-card border border-white/5 text-gray-300 rounded-lg text-xs transition" data-trans="modalBtnClose">Tutup</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1342,7 +1383,6 @@
     </div>
 </div>
 
-<!-- Modal CRUD Edit/Tambah Produk Database -->
 <div id="product-edit-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm overflow-y-auto no-print">
     <div class="relative bg-obsidian-card border border-gold-champagne/40 rounded-2xl max-w-2xl w-full p-5 space-y-3.5 text-left shadow-luxury-glow my-6">
         <button onclick="closeProductEditForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 hover:bg-white/10 rounded-full transition">✕</button>
@@ -1379,7 +1419,18 @@
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">Base Price (IDR)</label>
-                    <input type="number" id="edit-price" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
+                    <input type="number" id="edit-price" required class="w-full bg-black border border-[#333] p-2 rounded text-white font-mono">
+                </div>
+            </div>
+            <!-- Integrasi Status Stok / Lead Time -->
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-gold-champagne mb-1 font-semibold"><i class="fa-solid fa-truck-ramp-box"></i> Status Stok / Lead Time</label>
+                    <input type="text" id="edit-lead-time" placeholder="Contoh: Ready Stock / Inden: 7 Hari" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
+                </div>
+                <div>
+                    <label class="block text-gray-500 mb-1">Capacity</label>
+                    <input type="text" id="edit-capacity" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-3">
@@ -1396,22 +1447,16 @@
                     <input type="number" id="edit-l" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="block text-gray-500 mb-1">SvgType Icon Map</label>
-                    <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white">
-                        <option value="medium">medium</option>
-                        <option value="medium-addon">medium-addon</option>
-                        <option value="light">light</option>
-                        <option value="angle">angle</option>
-                        <option value="pallet-large">pallet-large</option>
-                        <option value="pallet-medium">pallet-medium</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-gray-500 mb-1">Capacity</label>
-                    <input type="text" id="edit-capacity" required class="w-full bg-black border border-[#333] p-2 rounded text-white">
-                </div>
+            <div>
+                <label class="block text-gray-500 mb-1">SvgType Icon Map</label>
+                <select id="edit-svgtype" class="w-full bg-black border border-[#333] p-2 rounded text-white">
+                    <option value="medium">medium</option>
+                    <option value="medium-addon">medium-addon</option>
+                    <option value="light">light</option>
+                    <option value="angle">angle</option>
+                    <option value="pallet-large">pallet-large</option>
+                    <option value="pallet-medium">pallet-medium</option>
+                </select>
             </div>
             <div>
                 <label class="block text-purple-400 mb-1 font-mono font-bold"><i class="fa-solid fa-drafting-compass"></i> Custom Blueprint Image URL (Optional)</label>
@@ -1479,7 +1524,8 @@
                 "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "medium",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Ready Stock"
         },
         {
             id: "hikai-mdr-addon", 
@@ -1498,7 +1544,8 @@
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "medium-addon",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Ready Stock"
         },
         {
             id: "hikai-ldr-set",
@@ -1517,7 +1564,8 @@
                 "https://images.unsplash.com/photo-1566576721346-d4bd3b235017?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "light",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Ready Stock"
         },
         {
             id: "hikai-asr-set",
@@ -1536,7 +1584,8 @@
                 "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "angle",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Ready Stock"
         },
         {
             id: "hikai-pr-2700",
@@ -1555,7 +1604,8 @@
                 "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "pallet-large",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Inden: 7-10 Hari"
         },
         {
             id: "hikai-pr-2500",
@@ -1574,7 +1624,8 @@
                 "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
             ],
             svgType: "pallet-medium",
-            blueprintUrl: ""
+            blueprintUrl: "",
+            leadTimeBadge: "Inden: 7-10 Hari"
         }
     ];
 
@@ -1603,11 +1654,10 @@
         productImageIndex[p.id] = 0;
     });
 
-    // Secret Sequential Typing Keylogger Hook
     let footerClickCount = 0;
     let footerClickTimeout;
 
-    // Trigger rahasia 6 kali ketuk pada footer tertentu untuk masuk administrasi
+    // Trigger rahasia 6 kali ketuk pada footer untuk masuk panel admin
     function handleFooterClick() {
         footerClickCount++;
         clearTimeout(footerClickTimeout);
@@ -1636,7 +1686,6 @@
         }
     }
 
-    // Helper tangguh untuk mengonversi properti images dari database ke Array bersih
     function getProductImagesArray(images) {
         if (!images) return [];
         if (Array.isArray(images)) {
@@ -1709,7 +1758,6 @@
         }
     }
 
-    // Interactive Dot Indicators Jump Action
     function jumpToCardImage(id, index, e) {
         if (e) e.stopPropagation();
         const p = products.find(item => item.id === id);
@@ -1813,6 +1861,11 @@
             const comparisonClass = isInComparison ? 'bg-gold-champagne/10 border-gold-champagne text-gold-champagne' : 'bg-[#121214] border-[#2a2a2e] text-gray-400';
             const cartQtyLabel = isInCart ? `(${isInCart.qty})` : '';
 
+            // Dinamis Lead Time Badge / Status Stok dari Data
+            const activeLeadTime = p.leadTimeBadge || "Ready Stock";
+            const leadTimeStyle = activeLeadTime.toLowerCase().includes('inden') ? 
+                'bg-amber-950/40 border-amber-600/30 text-amber-400' : 'bg-emerald-950/40 border-emerald-600/30 text-emerald-400';
+
             grid.innerHTML += `
                 <div class="glass-luxury rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
                     <div class="p-3 bg-[#060608]/90 relative">
@@ -1824,12 +1877,15 @@
                         ${mediaSection}
                     </div>
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
-                        <div class="space-y-1">
+                        <div class="space-y-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[9px] font-bold text-gold-champagne uppercase tracking-wider">${translatedType}</span>
                                 <span class="text-[9px] font-mono text-gray-500">${p.code}</span>
                             </div>
-                            <h3 class="text-sm font-bold text-white leading-snug">${translatedName}</h3>
+                            <div class="flex items-start justify-between gap-2">
+                                <h3 class="text-sm font-bold text-white leading-snug flex-grow">${translatedName}</h3>
+                                <span class="px-1.5 py-0.5 border ${leadTimeStyle} rounded text-[8px] font-sans font-semibold tracking-wide uppercase whitespace-nowrap self-start">${activeLeadTime}</span>
+                            </div>
                             <p class="text-gray-400 text-[11px] line-clamp-2 leading-relaxed font-light">${translatedDesc}</p>
                         </div>
                         <div class="bg-[#121215]/80 p-2.5 rounded-xl text-[10px] space-y-1 font-mono border border-white/5">
@@ -1844,7 +1900,7 @@
                         </div>
                         <div class="space-y-1.5">
                             <div class="flex gap-2">
-                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-2 bg-[#121214] border border-[#2a2a2e] rounded-xl text-xs text-gray-300 font-semibold transition hover:border-gold-champagne hover:bg-black active:scale-95"><i class="fa-solid fa-expand mr-1 text-[9px]"></i> ${btnDetail}</button>
+                                <button onclick="openProductModal('${p.id}')" class="flex-grow py-2 bg-[#121214] border border-[#2a2a2e] rounded-xl text-xs text-gray-300 font-semibold transition hover:border-gold-champagne hover:bg-black active:scale-95"><i class="fa-solid fa-drafting-compass mr-1 text-[10px] text-gold-champagne"></i> Detail Blueprint</button>
                                 <button onclick="toggleComparison('${p.id}')" class="p-2 px-3 rounded-xl border transition active:scale-95 ${comparisonClass}"><i class="fa-solid fa-sliders text-xs"></i></button>
                             </div>
                             <button onclick="addToCart('${p.id}')" class="w-full py-2 bg-gradient-to-r from-gold-champagne/10 to-[#AA7C11]/20 border border-gold-champagne/50 text-gold-champagne hover:from-gold-champagne hover:to-[#AA7C11] hover:text-black font-extrabold rounded-xl text-xs uppercase transition active:scale-95 flex items-center justify-center gap-1.5">
@@ -1905,7 +1961,6 @@
 </script>
 
 <script>
-    // Mengaktifkan panel admin rahasia (Sembunyikan public-site sepenuhnya demi keamanan visual)
     function openSecretAdminPortal() {
         document.getElementById('public-site').classList.add('hidden');
         const panel = document.getElementById('admin');
@@ -1913,7 +1968,6 @@
         panel.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'instant' });
         
-        // Memeriksa status login jika sandi sudah tersimpan di session
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         if (activePass === '6613') {
             document.getElementById('admin-login').classList.add('hidden');
@@ -1927,14 +1981,12 @@
         showToast("Portal Admin Terbuka (Akses Rahasia 6-Clicks VVIP)");
     }
 
-    // Tombol pembatal login opsional di layar autentikasi admin
     function exitAdminPortal() {
         document.getElementById('admin').classList.add('hidden');
         document.getElementById('public-site').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
-    // Sequential Typing Keylogger Hook
     let typedKeys = "";
     window.addEventListener("keydown", (e) => {
         typedKeys += e.key.toLowerCase();
@@ -1947,7 +1999,6 @@
         }
     });
 
-    // Hash check on load
     if (window.location.hash === "#admin-portal" || window.location.hash === "#hikai") {
         setTimeout(openSecretAdminPortal, 500);
     }
@@ -2278,6 +2329,10 @@
     let activeSpeechUtterance = null;
 
     function handleSpeechSynthesis(textToSpeak) {
+        if (!window.speechSynthesis) {
+            showToast("Fitur voice tidak didukung di browser ini.", false);
+            return;
+        }
         window.speechSynthesis.cancel();
         
         if (activeSpeechUtterance) {
@@ -2321,6 +2376,36 @@
         } else {
             waves.classList.add('hidden');
         }
+    }
+
+    let lastAIAdviceText = '';
+
+    function renderAIAdviceBlock(htmlText) {
+        lastAIAdviceText = htmlText;
+        const calcContent = document.getElementById('calc-content');
+        if (!calcContent) return;
+        calcContent.innerHTML = `
+            <div class="space-y-3 p-4 rounded-xl bg-purple-950/10 border border-purple-500/30 text-xs leading-relaxed text-purple-200 font-mono relative">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-2 pb-2 border-b border-purple-500/20 text-purple-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span class="font-bold uppercase text-[9px]">HIKAI AI Consultant Engine</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div id="ai-voice-waves" class="hidden flex items-end gap-0.5 h-5">
+                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.1s"></span>
+                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.3s"></span>
+                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.2s"></span>
+                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.4s"></span>
+                        </div>
+                        <button onclick="handleSpeechSynthesis(lastAIAdviceText)" class="px-2 py-0.5 bg-purple-500/20 border border-purple-400/30 rounded text-[9px] hover:bg-purple-500 hover:text-black font-extrabold uppercase tracking-widest transition flex items-center gap-1">
+                            <i class="fa-solid fa-volume-high"></i> Listen VVIP Voice
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-2 font-sans">${htmlText}</div>
+            </div>
+        `;
     }
 
     async function getAISpaceAdvice() {
@@ -2374,36 +2459,35 @@
             calcContent.innerHTML = `<div class="py-4 text-center text-xs text-red-400">Gagal menghubungkan layanan AI. Hubungi kami langsung untuk perencanaan tata letak manual gratis.</div>`;
         }
     }
-
-    function renderAIAdviceBlock(htmlText) {
-        const calcContent = document.getElementById('calc-content');
-        if (!calcContent) return;
-        calcContent.innerHTML = `
-            <div class="space-y-3 p-4 rounded-xl bg-purple-950/10 border border-purple-500/30 text-xs leading-relaxed text-purple-200 font-mono relative">
-                <div class="flex flex-wrap justify-between items-center gap-2 mb-2 pb-2 border-b border-purple-500/20 text-purple-400">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span class="font-bold uppercase text-[9px]">HIKAI AI Consultant Engine</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div id="ai-voice-waves" class="hidden flex items-end gap-0.5 h-5">
-                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.1s"></span>
-                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.3s"></span>
-                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.2s"></span>
-                            <span class="bar-wave w-0.5 bg-purple-400" style="animation-delay: 0.4s"></span>
-                        </div>
-                        <button onclick="handleSpeechSynthesis(\`${htmlText.replace(/"/g, '&quot;').replace(/'/g, "\\'")}\`)" class="px-2 py-0.5 bg-purple-500/20 border border-purple-400/30 rounded text-[9px] hover:bg-purple-500 hover:text-black font-extrabold uppercase tracking-widest transition flex items-center gap-1">
-                            <i class="fa-solid fa-volume-high"></i> Listen VVIP Voice
-                        </button>
-                    </div>
-                </div>
-                <div class="space-y-2 font-sans">${htmlText}</div>
-            </div>
-        `;
-    }
 </script>
 
 <script>
+    function exportFloorplanAsBlueprint() {
+        const svgEl = document.querySelector('#calc-content svg');
+        if (!svgEl) {
+            showToast("Denah simulasi tidak ditemukan. Harap tambahkan rak terlebih dahulu.", false);
+            return;
+        }
+
+        try {
+            const svgString = new XMLSerializer().serializeToString(svgEl);
+            const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            const URL = window.URL || window.webkitURL || window;
+            const blobURL = URL.createObjectURL(svgBlob);
+            
+            const downloadLink = document.createElement("a");
+            downloadLink.href = blobURL;
+            downloadLink.download = "HIKAI-Warehouse-2D-Blueprint.svg";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            showToast("Blueprint denah sukses diunduh ke komputer Anda!");
+        } catch(e) {
+            showToast("Gagal merender file blueprint.", false);
+        }
+    }
+
     function updateCalculations() {
         const inputLen = document.getElementById('input-room-length');
         const inputWid = document.getElementById('input-room-width');
@@ -2428,16 +2512,29 @@
         if (calcTab === 'quote') {
             let quoteRows = '';
             let grandTotal = 0;
+            let totalLoadCapacityKg = 0;
+
             cart.forEach(item => {
                 const basePrice = Number(item.basePrice) || 0; 
                 const subtotal = basePrice * item.qty;
                 grandTotal += subtotal;
+                
+                let singleLayerCap = 250; 
+                const cleanCap = (item.capacity || "").toLowerCase();
+                const matchedNumbers = cleanCap.match(/\d+/g);
+                if (matchedNumbers && matchedNumbers.length > 0) {
+                    singleLayerCap = Number(matchedNumbers[matchedNumbers.length - 1]);
+                }
+                const totalUnitLayers = Number(item.layers) || 4;
+                const unitTotalCapacity = singleLayerCap * totalUnitLayers;
+                totalLoadCapacityKg += (unitTotalCapacity * item.qty);
+
                 const translatedName = getProductTranslation(item, 'name');
                 quoteRows += `
                     <div class="py-2.5 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0">
                         <div>
                             <span class="font-bold text-white block">${translatedName}</span>
-                            <span class="text-[9px] text-gray-500">${item.layers} Layer | ${item.code}</span>
+                            <span class="text-[9px] text-gray-500">${item.layers} Layer | ${item.code} | <span class="text-gold-champagne font-semibold">${item.leadTimeBadge || 'Ready Stock'}</span></span>
                         </div>
                         <div class="text-right font-mono">
                             <span class="text-gray-400 block text-[10px]">${item.qty} Set x Rp ${basePrice.toLocaleString('id-ID')}</span>
@@ -2446,9 +2543,24 @@
                     </div>
                 `;
             });
+
+            const totalTons = (totalLoadCapacityKg / 1000).toFixed(1);
+
             calcContent.innerHTML = `
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <div class="divide-y divide-white/5">${quoteRows}</div>
+                    
+                    <div class="p-3 bg-gold-champagne/5 border border-gold-champagne/15 rounded-xl flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 bg-gold-champagne/10 rounded-lg text-gold-champagne"><i class="fa-solid fa-weight-hanging"></i></div>
+                            <div>
+                                <span class="text-gray-500 text-[10px] uppercase font-bold block">Beban Maksimum Layout</span>
+                                <span class="text-gray-300">Estimasi total tumpuan kekuatan baja</span>
+                            </div>
+                        </div>
+                        <span class="text-base font-mono font-bold text-gold-champagne">${totalTons} Ton</span>
+                    </div>
+
                     <div class="border-t border-white/5 pt-3.5 flex justify-between items-center font-mono">
                         <span class="text-xs text-gray-400">${translations[currentLang]?.calcTotalEst || 'Total Est. Investasi Awal:'}</span>
                         <span class="text-lg font-bold text-gold-champagne">Rp ${grandTotal.toLocaleString('id-ID')}</span>
@@ -2502,7 +2614,7 @@
                     }
                     
                     rackSlices += `
-                        <g class="cursor-pointer group" onclick="removeSliceQty('${item.id}')" onmouseenter="showFloorplanTooltip('${item.code}', '${itemL}x${itemD} mm', '${item.capacity}')" onmouseleave="clearFloorplanTooltip()">
+                        <g class="cursor-pointer group" onclick="removeSliceQty('${item.id}')" onmouseenter="showFloorplanTooltip('${item.id}')" onmouseleave="clearFloorplanTooltip()">
                             <rect x="${curX}" y="${curY}" width="${rackW}" height="${rackD}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5" class="transition-all duration-300 group-hover:fill-red-500/10 group-hover:stroke-red-500" />
                             <text x="${curX + rackW/2}" y="${curY + rackD/2 + 2}" fill="#fff" font-size="5" text-anchor="middle" font-family="monospace" class="pointer-events-none group-hover:fill-red-400">${item.code}</text>
                         </g>
@@ -2519,7 +2631,14 @@
                 <div class="space-y-3">
                     <div class="bg-black p-3 rounded-xl border border-white/5 relative shadow-inner">
                         <svg viewBox="0 0 500 300" class="w-full h-auto">
-                            <rect width="100%" height="100%" fill="#070709" rx="8" />
+                            <rect width="100%" height="100%" fill="#040406" rx="8" />
+                            <defs>
+                                <pattern id="calcGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(212, 175, 55, 0.05)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#calcGrid)" />
+
                             <rect x="${startX}" y="${startY}" width="${wallW}" height="${wallH}" fill="#0d0d10" stroke="#AA7C11" stroke-width="2" stroke-dasharray="5,3" />
                             ${rackSlices}
                             <text x="${startX + wallW/2}" y="${startY - 15}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle">L / W: ${roomLength} M</text>
@@ -2537,7 +2656,13 @@
                             </div>
                         </div>
                     </div>
-                    ${warningBanner}
+                    
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        ${warningBanner}
+                        <button onclick="exportFloorplanAsBlueprint()" class="px-4 py-2 bg-gradient-to-r from-gold-champagne/10 to-gold-hover/20 border border-gold-champagne/30 text-gold-champagne hover:from-gold-champagne hover:to-gold-hover hover:text-black rounded-lg text-xs font-bold uppercase transition flex items-center justify-center gap-1.5 whitespace-nowrap self-start sm:self-auto shadow-sm">
+                            <i class="fa-solid fa-file-arrow-down"></i> Unduh Blueprint 2D
+                        </button>
+                    </div>
                 </div>
             `;
         } else if (calcTab === 'ai') {
@@ -2576,16 +2701,18 @@
         }
     }
 
-    function showFloorplanTooltip(code, dims, capacity) {
+    function showFloorplanTooltip(productId) {
+        const p = products.find(item => item.id === productId);
+        if (!p) return;
         const hud = document.getElementById('floorplan-hud-overlay');
         const cEl = document.getElementById('hud-rack-code');
         const dEl = document.getElementById('hud-rack-dims');
         const capEl = document.getElementById('hud-rack-cap');
         if (!hud || !cEl || !dEl || !capEl) return;
         
-        cEl.textContent = code;
-        dEl.textContent = dims;
-        capEl.textContent = capacity;
+        cEl.textContent = p.code;
+        dEl.textContent = `${p.l}x${p.d} mm`;
+        capEl.textContent = getProductTranslation(p, 'capacity');
         hud.classList.remove('hidden');
     }
 
@@ -2663,10 +2790,8 @@
                 products = res.data.map(item => {
                     const isCustomProduct = item.isCustom === 'true' || item.isCustom === true || item.isEdited === 'true' || item.isEdited === true || false;
                     
-                    // FALLBACK SENSITIF & CERDAS: Mendukung pemetaan dinamis untuk kolom custom: price, Price, harga, dll.
                     let parsedPrice = Number(item.basePrice || item.baseprice || item.BasePrice || item.price || item.Price || item.harga || item.Harga || 0);
                     
-                    // JIKA KOLOM TIDAK ADA (0 / NaN), AMBIL HARGA DEFAULT BERDASARKAN ID PRODUK
                     if (!parsedPrice || isNaN(parsedPrice)) {
                         const defaultItem = DEFAULT_PRODUCT_DATA.find(d => d.id === (item.id || item.ID));
                         if (defaultItem) {
@@ -2692,6 +2817,7 @@
                         bestFor: item.bestFor || item.bestfor || item.BestFor || 'Aplikasi pergudangan serbaguna.',
                         basePrice: parsedPrice,
                         blueprintUrl: item.blueprintUrl || item.blueprinturl || item.BlueprintUrl || '',
+                        leadTimeBadge: item.leadTimeBadge || item.leadtimebadge || item.leadTime || "Ready Stock",
                         isCustom: isCustomProduct,
                         isEdited: isCustomProduct
                     };
@@ -2705,6 +2831,7 @@
         } catch(e) {
             console.warn("Gagal terhubung ke cloud Spreadsheet. Memuat dari penyimpanan lokal:", e);
             loadLocalCachedProducts();
+            showToast("Mode Offline: Menggunakan data penyimpanan lokal.", false);
         }
 
         renderCatalog();
@@ -2874,7 +3001,6 @@
         }
     }
 
-    // Keluar dari panel admin (Sembunyikan panel admin seketika dan kembalikan public-site)
     function logoutAdmin() {
         sessionStorage.removeItem('hikai_admin_session_pass');
         exitAdminPortal();
@@ -2894,9 +3020,10 @@
                         <td class="p-3">${translatedName}</td>
                         <td class="p-3">${p.type}</td>
                         <td class="p-3 text-white font-bold">Rp ${basePrice.toLocaleString('id-ID')}</td>
+                        <td class="p-3 font-mono text-[11px] text-gold-light">${p.leadTimeBadge || 'Ready Stock'}</td>
                         <td class="p-3 text-right">
                             <button onclick="openProductEditForm('${p.id}')" class="px-2.5 py-1.5 bg-blue-900/20 text-blue-400 border border-blue-500/20 rounded-lg hover:bg-blue-900/40 transition text-[10px]"><i class="fa-solid fa-edit"></i> Edit</button>
-                            <button onclick="confirmDeleteProduct('${p.id}')" class="px-2.5 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/40 transition text-[10px]"><i class="fa-solid fa-trash"></i> Hapus</button>
+                            <button onclick="confirmDeleteProduct('${p.id}')" class="px-2.5 py-1.5 bg-red-900/20 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-900/40 transition text-[10px]"><i class="fa-solid fa-trash"></i> Hapus</button>
                         </td>
                     </tr>
                 `;
@@ -2915,6 +3042,7 @@
                             <div>
                                 <span class="text-[10px] font-mono text-gold-champagne uppercase tracking-wider">${p.code}</span>
                                 <h4 class="text-white font-bold text-sm">${translatedName}</h4>
+                                <span class="text-[10px] text-gold-light font-mono block mt-1">${p.leadTimeBadge || 'Ready Stock'}</span>
                             </div>
                             <span class="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 font-mono">${p.type}</span>
                         </div>
@@ -2954,7 +3082,9 @@
         }
         document.getElementById(`admin-btn-${targetTab}`).className = "admin-tab-btn px-3.5 py-1.5 rounded-lg text-[10px] font-bold uppercase transition bg-gold-champagne text-black";
     }
+</script>
 
+<script>
     function openProductModal(id) {
         const product = products.find(p => p.id === id);
         if (!product) return;
@@ -2972,21 +3102,19 @@
         document.getElementById('modal-product-finishing').textContent = translatedFinishing || 'Powder Coating';
         document.getElementById('modal-product-best').textContent = translatedBestFor || 'Gudang ambalan industri berat';
         
-        if (product.blueprintUrl && product.blueprintUrl.trim() !== "") {
-            document.getElementById('modal-product-svg').innerHTML = `
-                <div class="h-40 w-full rounded-xl overflow-hidden bg-black flex items-center justify-center p-2 border border-white/10">
-                    <img src="${product.blueprintUrl}" alt="CAD ${translatedName}" class="w-full h-full object-contain">
-                </div>
-            `;
-        } else {
-            document.getElementById('modal-product-svg').innerHTML = generateRackSVG(product.svgType, product.layers, true, product.h, product.d, product.l);
+        // Membuka viewport detail modal
+        document.getElementById('product-detail-modal').classList.remove('hidden');
+
+        // Render Blueprint Teknik CAD Vector secara instan (Bebas dari Crash WebGL/Three.js)
+        const viewport = document.getElementById('modal-blueprint-viewport');
+        if (viewport) {
+            viewport.innerHTML = generateRackSVG(product.svgType, product.layers, true, product.h, product.d, product.l);
         }
 
         document.getElementById('modal-add-to-cart-btn').onclick = () => {
             addToCart(product.id);
             closeProductModal();
         };
-        document.getElementById('product-detail-modal').classList.remove('hidden');
     }
 
     function closeProductModal() {
@@ -3021,7 +3149,7 @@
                 <div class="py-2.5 flex justify-between items-center text-xs gap-4">
                     <div>
                         <span class="font-bold text-white block">${translatedName}</span>
-                        <span class="text-[9px] text-gray-500 block">Rp ${basePrice.toLocaleString('id-ID')}</span>
+                        <span class="text-[9px] text-gray-500 block">Rp ${basePrice.toLocaleString('id-ID')} | <span class="text-gold-champagne">${item.leadTimeBadge || 'Ready Stock'}</span></span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="flex items-center bg-black rounded border border-[#333] text-xs">
@@ -3086,6 +3214,7 @@
             const editCapacity = document.getElementById('edit-capacity');
             const editDescription = document.getElementById('edit-description');
             const editBlueprintUrl = document.getElementById('edit-blueprint-url');
+            const editLeadTime = document.getElementById('edit-lead-time');
 
             if (editId) editId.value = p.id;
             if (editKey) {
@@ -3104,6 +3233,7 @@
             if (editCapacity) editCapacity.value = p.capacity || '';
             if (editDescription) editDescription.value = p.description || '';
             if (editBlueprintUrl) editBlueprintUrl.value = p.blueprintUrl || '';
+            if (editLeadTime) editLeadTime.value = p.leadTimeBadge || 'Ready Stock';
 
             const currentPhotos = Array.isArray(p.images) ? p.images : (p.images ? p.images.split('|') : []);
             currentPhotos.forEach(url => addAdminImageSlot(url));
@@ -3126,6 +3256,7 @@
             const editCapacity = document.getElementById('edit-capacity');
             const editDescription = document.getElementById('edit-description');
             const editBlueprintUrl = document.getElementById('edit-blueprint-url');
+            const editLeadTime = document.getElementById('edit-lead-time');
 
             if (editId) editId.value = '';
             if (editKey) {
@@ -3144,6 +3275,7 @@
             if (editCapacity) editCapacity.value = '500 Kg / Level';
             if (editDescription) editDescription.value = '';
             if (editBlueprintUrl) editBlueprintUrl.value = '';
+            if (editLeadTime) editLeadTime.value = 'Ready Stock';
             addAdminImageSlot("");
         }
     }
@@ -3177,6 +3309,7 @@
             capacity: document.getElementById('edit-capacity').value,
             description: document.getElementById('edit-description').value,
             blueprintUrl: document.getElementById('edit-blueprint-url').value,
+            leadTimeBadge: document.getElementById('edit-lead-time').value, // Mengirim data status ke cloud
             images: combinedImagesString 
         };
 
@@ -3321,8 +3454,7 @@
 
     function exportKatalogToCSV() {
         let csvContent = "data:text/csv;charset=utf-8,";
-        // Header disesuaikan: basePrice diletakkan langsung setelah kolom code (Kolom E)
-        csvContent += "id,name,type,code,basePrice,layers,h,d,l,capacity,svgType,description,images,finishing,construction,bestFor,blueprintUrl\r\n";
+        csvContent += "id,name,type,code,basePrice,layers,h,d,l,capacity,svgType,description,images,finishing,construction,bestFor,blueprintUrl,leadTimeBadge\r\n";
         
         products.forEach(p => {
             let imagesJoined = Array.isArray(p.images) ? p.images.join("|") : p.images;
@@ -3331,7 +3463,7 @@
                 `"${p.name || ''}"`,
                 `"${p.type || ''}"`,
                 `"${p.code || ''}"`,
-                p.basePrice || 0, // Letakkan nilai harga di sini agar sinkron dengan Kolom E
+                p.basePrice || 0, 
                 p.layers || 4,
                 p.h || 2000,
                 p.d || 600,
@@ -3343,7 +3475,8 @@
                 `"${p.finishing || ''}"`,
                 `"${p.construction || ''}"`,
                 `"${p.bestFor || ''}"`,
-                `"${p.blueprintUrl || ''}"`
+                `"${p.blueprintUrl || ''}"`,
+                `"${p.leadTimeBadge || 'Ready Stock'}"`
             ];
             csvContent += row.join(",") + "\r\n";
         });
@@ -3405,6 +3538,7 @@
                         bestFor: rowObj.bestFor || "Umum",
                         basePrice: Number(rowObj.basePrice) || 0,
                         blueprintUrl: rowObj.blueprintUrl || "",
+                        leadTimeBadge: rowObj.leadTimeBadge || "Ready Stock",
                         isCustom: true,
                         isEdited: true
                     });
