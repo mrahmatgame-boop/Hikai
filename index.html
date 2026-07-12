@@ -1424,11 +1424,11 @@
                 `).join('');
 
                 mediaSection = `
-                    <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden group bg-black/40 shadow-inner"
+                    <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden group bg-[#0a0a0d] border border-white/5 shadow-inner flex items-center justify-center p-1.5"
                          ontouchstart="handleTouchStart(event, '${p.id}')"
                          ontouchend="handleTouchEnd(event, '${p.id}')"
                          style="touch-action: pan-y;">
-                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${translatedName}" class="w-full h-full object-cover select-none transition duration-500 hover:scale-102" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80';">
+                        <img id="img-slider-${p.id}" src="${currentImgUrl}" alt="${translatedName}" class="w-full h-full object-contain select-none transition duration-500 hover:scale-[1.03]" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80';">
                         ${showNavButtons ? `
                             <button onclick="navigateCardImage('${p.id}', -1, event)" class="absolute left-2.5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/75 border border-white/10 text-white md:opacity-0 md:group-hover:opacity-100 opacity-90 hover:border-gold-champagne transition duration-300" style="touch-action: manipulation; min-width: 28px; min-height: 28px; display: flex; align-items: center; justify-content: center;" aria-label="Previous image">
                                 <i class="fa-solid fa-chevron-left text-[10px]"></i>
