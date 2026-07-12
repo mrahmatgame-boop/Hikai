@@ -237,7 +237,7 @@
             adminAddressLabel: "Alamat Kantor Pusat",
             adminGeminiLabel: "Google Gemini API Key (Opsional untuk Fitur AI Advice)",
             adminGeminiDesc: "Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.",
-            adminSheetsUrlLabel: "Google Sheets Web App URL (Opsional - Direct Sync)"
+            adminSheetsUrlLabel: "Google Sheets Web App URL (Satu Pintu Database Link)"
         }
     };
 
@@ -706,7 +706,7 @@
                                 <div class="border-l border-white/10 pl-2 py-0.5">
                                     <span class="text-[8px] tracking-widest text-gray-400 uppercase block font-mono font-bold">PLANNING BOARD</span>
                                 </div>
-                                <span id="db-status-badge-public" class="p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono">CLOUD CONNECTED</span>
+                                <span id="db-status-badge-public" class="p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono">LOADING DATABASE...</span>
                             </div>
                             <div class="flex bg-black/80 rounded-lg p-1 border border-white/10 text-xs self-start sm:self-auto overflow-x-auto max-w-full scrollbar-none">
                                 <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1 rounded-lg font-bold transition duration-300" data-trans="tabQuote">Draf Nota</button>
@@ -968,14 +968,14 @@
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white outline-none focus:border-gold-champagne">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-emerald-400 font-bold uppercase mb-1.5" data-trans="adminSheetsUrlLabel">Google Sheets Web App URL (Opsional - Direct Sync)</label>
-                        <input type="url" id="settings-sheets-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white font-mono outline-none focus:border-emerald-500">
+                        <label class="block text-emerald-400 font-bold uppercase mb-1.5" data-trans="adminSheetsUrlLabel">Google Sheets Web App URL (Satu Pintu Database Link)</label>
+                        <input type="url" id="settings-sheets-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-black border border-emerald-500/20 p-2.5 rounded-lg text-white font-mono outline-none focus:border-emerald-500">
                         <p class="text-[9px] text-gray-500 mt-0.5">Masukkan URL Web App dari Google Apps Script jika Anda ingin menyambungkan database Spreadsheet Anda secara langsung tanpa server Node.js.</p>
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-purple-400 font-bold uppercase mb-1.5" data-trans="adminGeminiLabel">Google Gemini API Key (Opsional untuk Fitur AI Advice)</label>
                         <input type="password" id="settings-gemini-key" placeholder="AI-sy..." class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white outline-none focus:border-purple-500 font-mono">
-                        <p class="text-[9px] text-gray-500 mt-0.5" data-trans="adminGeminiDesc">Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.</p>
+                        <p class="text-[9px] text-gray-500 mt-0.5" data-trans="adminGeminiDesc">Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf draf analisis simulasi bawaan.</p>
                     </div>
                 </div>
                 <div class="pt-3 border-t border-white/5 flex justify-end">
@@ -1277,7 +1277,7 @@
             capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
             finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
             construction: "Structural Anchor Uprights with Cross Bracing Beam",
-            bestFor: "Penyimpanan palet logistik kargo berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik.",
+            bestFor: "Penyimpanan palet kargo berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik.",
             basePrice: 4800000,
             description: "Rak palet industri kelas berat bersertifikat standardisasi beban EN 15512. Dirancang khusus untuk penanganan kargo menggunakan forklift, memuat hingga 3 palet standar per baris tingkat.",
             images: [
@@ -1336,37 +1336,6 @@
 
     let footerClickCount = 0;
     let footerClickTimeout;
-
-    // Helper untuk sanitasi nilai angka guna menghindari error NaN (Sangat krusial untuk sinkronisasi excel)
-    function sanitizeNumeric(val, fallback = 0) {
-        if (val === undefined || val === null) return fallback;
-        if (typeof val === 'number') return isNaN(val) ? fallback : val;
-        let str = val.toString().replace(/Rp/gi, '').replace(/[^0-9.-]/g, '');
-        let parsed = parseInt(str, 10);
-        return isNaN(parsed) ? fallback : parsed;
-    }
-
-    // RFC-4180 Compliant Robust CSV Parser (Solusi impor Portal-HIKAI.xlsx tanpa error pergeseran kolom)
-    function parseCSVLineRobust(text) {
-        let p = '', c = [];
-        let q = false;
-        for (let i = 0; i < text.length; i++) {
-            let ch = text.charAt(i);
-            if (ch === '"') {
-                if (q && text.charAt(i+1) === '"') {
-                    p += '"'; i++;
-                } else {
-                    q = !q;
-                }
-            } else if (ch === ',' && !q) {
-                c.push(p); p = '';
-            } else {
-                p += ch;
-            }
-        }
-        c.push(p);
-        return c;
-    }
 
     function handleFooterClick() {
         footerClickCount++;
@@ -1570,12 +1539,13 @@
             const comparisonClass = isInComparison ? 'bg-gold-champagne/10 border-gold-champagne text-gold-champagne' : 'bg-[#121214] border-[#2a2a2e] text-gray-400';
             const cartQtyLabel = isInCart ? `(${isInCart.qty})` : '';
 
+            // Dinamik Status dari Kolom J Database (Fallback status/leadTimeBadge)
             const activeLeadTime = p.status || p.leadTimeBadge || "Ready Stock";
             const isReady = activeLeadTime.toLowerCase().includes('ready');
             const leadTimeStyle = isReady ? 
                 'bg-emerald-950/40 border-emerald-600/30 text-emerald-400' : 'bg-amber-950/40 border-amber-600/30 text-amber-400';
 
-            const basePrice = sanitizeNumeric(p.basePrice);
+            const basePrice = Number(p.basePrice) || 0;
 
             grid.innerHTML += `
                 <div class="glass-luxury rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
@@ -1584,7 +1554,7 @@
                             <button onclick="toggleViewMode('${p.id}', 'photo')" class="px-2 py-0.5 rounded text-[8px] font-bold uppercase transition duration-200 ${view === 'photo' ? 'bg-gold-champagne text-black font-extrabold shadow' : 'text-gray-400 hover:text-white'}">Foto Real</button>
                             <button onclick="toggleViewMode('${p.id}', 'blueprint')" class="px-2 py-0.5 rounded text-[8px] font-bold uppercase transition duration-200 ${view === 'blueprint' ? 'bg-gold-champagne text-black font-extrabold shadow' : 'text-gray-400 hover:text-white'}">Blueprint</button>
                         </div>
-                        <span class="absolute top-5 right-5 z-10 bg-black/90 text-gray-300 border border-white/10 px-1.5 py-0.5 rounded font-mono text-[9px] shadow-md">${sanitizeNumeric(p.h)}x${sanitizeNumeric(p.d)}x${sanitizeNumeric(p.l)}</span>
+                        <span class="absolute top-5 right-5 z-10 bg-black/90 text-gray-300 border border-white/10 px-1.5 py-0.5 rounded font-mono text-[9px] shadow-md">${p.h}x${p.d}x${p.l}</span>
                         ${mediaSection}
                     </div>
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
@@ -1597,10 +1567,12 @@
                                 <h3 class="text-sm font-bold text-white leading-snug flex-grow">${translatedName}</h3>
                                 <span class="px-1.5 py-0.5 border ${leadTimeStyle} rounded text-[8px] font-sans font-semibold tracking-wide uppercase whitespace-nowrap self-start">${activeLeadTime}</span>
                             </div>
+                            <!-- AREA DETAIL PRODUK (DESKRIPSI LENGKAP) -->
                             <p class="text-gray-400 text-[11px] leading-relaxed font-light">${translatedDesc || 'Sistem ambalan penyimpanan industri.'}</p>
                             <p class="text-gray-500 text-[9px] line-clamp-1 italic"><i class="fa-solid fa-circle-info text-gold-champagne mr-1"></i>${translatedBestFor || 'Aplikasi pergudangan HIKAI.'}</p>
                         </div>
                         
+                        <!-- AREA HARGA & TEKNIS KARTU (SINKRONISASI DATABASE KOLOM E & J) -->
                         <div class="bg-[#121215]/80 p-2.5 rounded-xl text-[10px] space-y-1.5 font-mono border border-white/10">
                             <div class="flex justify-between">
                                 <span class="text-gray-500">Harga (Est):</span>
@@ -1612,7 +1584,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-500">${lblConfig}</span>
-                                <span class="font-semibold text-gray-200">${sanitizeNumeric(p.layers, 4)} ${lblLayerUnit}</span>
+                                <span class="font-semibold text-gray-200">${p.layers} ${lblLayerUnit}</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-500">${lblMaxCap}</span>
@@ -1620,6 +1592,7 @@
                             </div>
                         </div>
 
+                        <!-- Tombol Detail Produk & Aksi Belanja -->
                         <div class="space-y-1.5">
                             <div class="flex gap-2">
                                 <button onclick="openProductModal('${p.id}')" class="flex-grow py-2 bg-[#121215] border border-white/10 rounded-xl text-xs text-white font-semibold transition hover:border-gold-champagne hover:bg-black active:scale-95 flex items-center justify-center gap-1">
@@ -1728,7 +1701,7 @@
     }
 
     function generateRackSVG(type, layers = 4, isLarge = false, height = 2000, depth = 600, length = 2000) {
-        const numLayers = sanitizeNumeric(layers, 4);
+        const numLayers = Number(layers) || 4;
         const safeType = (type || 'medium').toString().toLowerCase();
         let structureHtml = '';
 
@@ -2007,9 +1980,9 @@
         });
 
         const parameters = [
-            { key: 'layers', label: translations[currentLang]?.compareLayers || 'Konfigurasi Layer', format: (val, p) => `${sanitizeNumeric(val, 4)} ${translations[currentLang]?.lblLayerUnit || 'Layer'}` },
+            { key: 'layers', label: translations[currentLang]?.compareLayers || 'Konfigurasi Layer', format: (val, p) => `${val} ${translations[currentLang]?.lblLayerUnit || 'Layer'}` },
             { key: 'capacity', label: translations[currentLang]?.compareCapacity || 'Kapasitas Maksimal', format: (val, p) => getProductTranslation(p, 'capacity') },
-            { key: 'dims', label: translations[currentLang]?.compareDims || 'Dimensi Presisi', format: (val, p) => `${sanitizeNumeric(p.h)}x${sanitizeNumeric(p.d)}x${sanitizeNumeric(p.l)} mm` },
+            { key: 'dims', label: translations[currentLang]?.compareDims || 'Dimensi Presisi', format: (val, p) => `${p.h}x${p.d}x${p.l} mm` },
             { key: 'construction', label: translations[currentLang]?.compareConst || 'Jenis Konstruksi', format: (val, p) => getProductTranslation(p, 'construction') },
             { key: 'finishing', label: translations[currentLang]?.compareFinishing || 'Finishing Lapisan', format: (val, p) => getProductTranslation(p, 'finishing') }
         ];
@@ -2239,7 +2212,7 @@
             let totalLoadCapacityKg = 0;
 
             cart.forEach(item => {
-                const basePrice = sanitizeNumeric(item.basePrice); 
+                const basePrice = Number(item.basePrice) || 0; 
                 const subtotal = basePrice * item.qty;
                 grandTotal += subtotal;
                 
@@ -2247,9 +2220,9 @@
                 const cleanCap = (item.capacity || "").toLowerCase();
                 const matchedNumbers = cleanCap.match(/\d+/g);
                 if (matchedNumbers && matchedNumbers.length > 0) {
-                    singleLayerCap = sanitizeNumeric(matchedNumbers[matchedNumbers.length - 1], 250);
+                    singleLayerCap = Number(matchedNumbers[matchedNumbers.length - 1]);
                 }
-                const totalUnitLayers = sanitizeNumeric(item.layers, 4);
+                const totalUnitLayers = Number(item.layers) || 4;
                 const unitTotalCapacity = singleLayerCap * totalUnitLayers;
                 totalLoadCapacityKg += (unitTotalCapacity * item.qty);
 
@@ -2260,7 +2233,7 @@
                     <div class="py-2.5 flex justify-between text-xs gap-4 border-b border-white/5 last:border-b-0">
                         <div>
                             <span class="font-bold text-white block">${translatedName}</span>
-                            <span class="text-[9px] text-gray-500">${totalUnitLayers} Layer | ${item.code} | <span class="text-gold-champagne font-semibold">${itemStatus}</span></span>
+                            <span class="text-[9px] text-gray-500">${item.layers} Layer | ${item.code} | <span class="text-gold-champagne font-semibold">${itemStatus}</span></span>
                         </div>
                         <div class="text-right font-mono">
                             <span class="text-gray-400 block text-[10px]">${item.qty} Set x Rp ${basePrice.toLocaleString('id-ID')}</span>
@@ -2319,8 +2292,8 @@
             let isCollision = false;
 
             cart.forEach((item) => {
-                const itemL = sanitizeNumeric(item.l, 2000);
-                const itemD = sanitizeNumeric(item.d, 600);
+                const itemL = Number(item.l) || 2000;
+                const itemD = Number(item.d) || 600;
                 const rackW = (itemL / 1000) * scale;
                 const rackD = (itemD / 1000) * scale;
                 maxRowH = Math.max(maxRowH, rackD);
@@ -2341,7 +2314,7 @@
                     
                     rackSlices += `
                         <g class="cursor-pointer group" onclick="removeSliceQty('${item.id}')" onmouseenter="showFloorplanTooltip('${item.id}')" onmouseleave="clearFloorplanTooltip()">
-                            <rect x="${curX}" y="${curY}" width="${Math.max(5, rackW)}" height="${Math.max(5, rackD)}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5" class="transition-all duration-300 group-hover:fill-red-500/10 group-hover:stroke-red-500" />
+                            <rect x="${curX}" y="${curY}" width="${rackW}" height="${rackD}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5" class="transition-all duration-300 group-hover:fill-red-500/10 group-hover:stroke-red-500" />
                             <text x="${curX + rackW/2}" y="${curY + rackD/2 + 2}" fill="#fff" font-size="5" text-anchor="middle" font-family="monospace" class="pointer-events-none group-hover:fill-red-400">${item.code}</text>
                         </g>
                     `;
@@ -2351,7 +2324,7 @@
 
             const warningBanner = isCollision ? 
                 `<div class="p-2.5 rounded-lg bg-red-950/40 border border-red-500/50 text-red-400 text-[11px] font-mono flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> ${translations[currentLang]?.calcWarning || 'Beberapa rak melebihi kapasitas dimensi dinding ruang gudang Anda!'}</div>` : 
-                `<div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-[11px] font-mono flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> ${translations[currentLang]?.calcSafe || 'Tata ruang aman and efisien.'}</div>`;
+                `<div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-400 text-[11px] font-mono flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> ${translations[currentLang]?.calcSafe || 'Tata ruang aman dan efisien.'}</div>`;
 
             calcContent.innerHTML = `
                 <div class="space-y-3">
@@ -2365,7 +2338,7 @@
                             </defs>
                             <rect width="100%" height="100%" fill="url(#calcGrid)" />
 
-                            <rect x="${startX}" y="${startY}" width="${Math.max(10, wallW)}" height="${Math.max(10, wallH)}" fill="#0d0d10" stroke="#AA7C11" stroke-width="2" stroke-dasharray="5,3" />
+                            <rect x="${startX}" y="${startY}" width="${wallW}" height="${wallH}" fill="#0d0d10" stroke="#AA7C11" stroke-width="2" stroke-dasharray="5,3" />
                             ${rackSlices}
                             <text x="${startX + wallW/2}" y="${startY - 15}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle">L / W: ${roomLength} M</text>
                             <text x="${startX - 15}" y="${startY + wallH/2}" fill="#D4AF37" font-size="8" font-family="monospace" text-anchor="middle" transform="rotate(-90 ${startX - 15} ${startY + wallH/2})">D / H: ${roomWidth} M</text>
@@ -2400,7 +2373,7 @@
             selectionContainer.innerHTML = '';
             products.forEach(p => {
                 const itemInCart = cart.find(i => i.id === p.id);
-                const basePrice = sanitizeNumeric(p.basePrice);
+                const basePrice = Number(p.basePrice) || 0;
                 const translatedName = getProductTranslation(p, 'name');
                 const btnLabel = translations[currentLang]?.btnTambah || 'Tambah';
 
@@ -2437,7 +2410,7 @@
         if (!hud || !cEl || !dEl || !capEl) return;
         
         cEl.textContent = p.code;
-        dEl.textContent = `${sanitizeNumeric(p.l)}x${sanitizeNumeric(p.d)} mm`;
+        dEl.textContent = `${p.l}x${p.d} mm`;
         capEl.textContent = getProductTranslation(p, 'capacity');
         hud.classList.remove('hidden');
     }
@@ -2518,17 +2491,21 @@
                     const defaultItem = DEFAULT_PRODUCT_DATA.find(d => d.id === itemId) || {};
                     const isCustomProduct = item.isCustom === 'true' || item.isCustom === true || item.isEdited === 'true' || item.isEdited === true || false;
                     
-                    let parsedPrice = sanitizeNumeric(item.basePrice || item.baseprice || item.BasePrice || item.price || item.Price || item.harga || item.Harga, defaultItem.basePrice || 0);
+                    // Zero-Error Fallback Guardrail untuk menghindari nilai NaN di frontend
+                    let parsedPrice = parseInt(item.basePrice || item.baseprice || item.BasePrice || item.price || item.Price || item.harga || item.Harga || defaultItem.basePrice || 0);
+                    if (isNaN(parsedPrice)) {
+                        parsedPrice = defaultItem.basePrice || 0;
+                    }
                     
                     return {
                         id: itemId,
                         name: item.name || item.Name || defaultItem.name || '',
                         type: item.type || item.Type || defaultItem.type || 'Medium Duty',
                         code: item.code || item.Code || defaultItem.code || '',
-                        layers: sanitizeNumeric(item.layers || item.Layers, defaultItem.layers || 4),
-                        h: sanitizeNumeric(item.h || item.H, defaultItem.h || 2000),
-                        d: sanitizeNumeric(item.d || item.D, defaultItem.d || 600),
-                        l: sanitizeNumeric(item.l || item.L, defaultItem.l || 2000),
+                        layers: parseInt(item.layers || item.Layers || defaultItem.layers || 4),
+                        h: parseInt(item.h || item.H || defaultItem.h || 2000),
+                        d: parseInt(item.d || item.D || defaultItem.d || 600),
+                        l: parseInt(item.l || item.L || defaultItem.l || 2000),
                         capacity: item.capacity || item.Capacity || defaultItem.capacity || '',
                         svgType: item.svgType || item.svgtype || item.SvgType || defaultItem.svgType || 'medium',
                         description: item.description || item.Description || defaultItem.description || '',
@@ -2609,7 +2586,9 @@
         }
         updateDashboardStats();
     }
+</script>
 
+<script>
     function renderAdminProductTable() {
         const desktopBody = document.getElementById('admin-product-rows');
         const mobileContainer = document.getElementById('admin-product-cards');
@@ -2620,7 +2599,7 @@
 
         products.forEach(p => {
             const rowClass = p.isCustom ? "bg-amber-950/10 border-l-2 border-l-amber-500" : "";
-            const basePrice = sanitizeNumeric(p.basePrice);
+            const basePrice = Number(p.basePrice) || 0;
 
             desktopBody.innerHTML += `
                 <tr class="hover:bg-white/[0.02] transition border-b border-white/5 ${rowClass}">
@@ -2861,7 +2840,9 @@
             updateDashboardStats();
         }
     }
+</script>
 
+<script>
     function openProductEditForm(id = null) {
         const modal = document.getElementById('product-edit-modal');
         const title = document.getElementById('edit-modal-title');
@@ -2917,13 +2898,13 @@
             editCode.value = p.code;
             editName.value = p.name;
             editType.value = p.type;
-            editLayers.value = sanitizeNumeric(p.layers, 4);
-            editPrice.value = sanitizeNumeric(p.basePrice, 0);
+            editLayers.value = p.layers;
+            editPrice.value = p.basePrice || 0;
             editLeadTime.value = p.status || "Ready Stock";
             editCapacity.value = p.capacity || "";
-            editH.value = sanitizeNumeric(p.h, 2000);
-            editD.value = sanitizeNumeric(p.d, 600);
-            editL.value = sanitizeNumeric(p.l, 2000);
+            editH.value = p.h;
+            editD.value = p.d;
+            editL.value = p.l;
             editSvg.value = p.svgType || "medium";
             editBlueprint.value = p.blueprintUrl || "";
             editDesc.value = p.description || "";
@@ -2942,6 +2923,7 @@
     function addAdminImageSlot(url = '') {
         const container = document.getElementById('admin-images-container');
         if (!container) return;
+        const index = container.children.length;
 
         const slot = document.createElement('div');
         slot.className = "flex gap-2 items-center bg-black/40 p-1.5 rounded-lg border border-white/5";
@@ -2961,6 +2943,7 @@
         const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
         
         const idVal = document.getElementById('edit-key').value;
+        const isEditing = document.getElementById('edit-id').value !== '';
 
         const urlInputs = document.querySelectorAll('.admin-img-url-input');
         const imagesArr = [];
@@ -2969,7 +2952,7 @@
         });
         const imagesStr = imagesArr.join('|');
 
-        const basePrice = sanitizeNumeric(document.getElementById('edit-price').value, 0);
+        const basePrice = parseInt(document.getElementById('edit-price').value) || 0;
 
         const updatedProduct = {
             id: idVal,
@@ -2977,10 +2960,10 @@
             type: document.getElementById('edit-type').value,
             code: document.getElementById('edit-code').value,
             basePrice: basePrice,
-            layers: sanitizeNumeric(document.getElementById('edit-layers').value, 4),
-            h: sanitizeNumeric(document.getElementById('edit-h').value, 2000),
-            d: sanitizeNumeric(document.getElementById('edit-d').value, 600),
-            l: sanitizeNumeric(document.getElementById('edit-l').value, 2000),
+            layers: parseInt(document.getElementById('edit-layers').value) || 4,
+            h: parseInt(document.getElementById('edit-h').value) || 2000,
+            d: parseInt(document.getElementById('edit-d').value) || 600,
+            l: parseInt(document.getElementById('edit-l').value) || 2000,
             status: document.getElementById('edit-lead-time').value || "Ready Stock",
             capacity: document.getElementById('edit-capacity').value,
             svgType: document.getElementById('edit-svgtype').value,
@@ -3024,10 +3007,13 @@
         updateCalculations();
         updateDashboardStats();
     }
+</script>
 
+<script>
     function exportKatalogToCSV() {
-        let csvContent = "\uFEFF"; // BOM untuk encoding utf-8 agar karakter spesial Excel aman
+        let csvContent = "data:text/csv;charset=utf-8,";
         
+        // Header CSV disesuaikan dengan urutan fisik Google Sheets
         const headers = ["id","name","type","code","basePrice","layers","h","d","l","status","capacity","svgType","description","images","finishing","construction","bestFor","blueprintUrl"];
         csvContent += headers.join(",") + "\r\n";
 
@@ -3056,10 +3042,9 @@
             csvContent += row.join(",") + "\r\n";
         });
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
+        link.setAttribute("href", encodedUri);
         link.setAttribute("download", "Portal-HIKAI-Katalog.csv");
         document.body.appendChild(link);
         link.click();
@@ -3074,7 +3059,7 @@
         const reader = new FileReader();
         reader.onload = async function(e) {
             const text = e.target.result;
-            const rows = text.split(/\r?\n/).map(r => r.trim()).filter(r => r !== "");
+            const rows = text.split("\n").map(r => r.trim()).filter(r => r !== "");
             if (rows.length <= 1) {
                 showToast("Format CSV tidak memiliki data baris.", false);
                 return;
@@ -3090,9 +3075,12 @@
             const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
 
             for (let i = 1; i < rows.length; i++) {
-                const cleanCols = parseCSVLineRobust(rows[i]);
-                if (cleanCols.length < 5) continue;
+                // Regex parsing CSV sederhana untuk menangani kolom bertanda kutip ganda
+                const matches = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                if (!matches || matches.length < 5) continue;
 
+                const cleanCols = matches.map(col => col.replace(/^"|"$/g, '').trim());
+                
                 const rawImages = cleanCols[13] || "";
                 
                 importedProducts.push({
@@ -3100,11 +3088,11 @@
                     name: cleanCols[1] || "",
                     type: cleanCols[2] || "Medium Duty",
                     code: cleanCols[3] || "IMPORTED-CODE",
-                    basePrice: sanitizeNumeric(cleanCols[4], 0),
-                    layers: sanitizeNumeric(cleanCols[5], 4),
-                    h: sanitizeNumeric(cleanCols[6], 2000),
-                    d: sanitizeNumeric(cleanCols[7], 600),
-                    l: sanitizeNumeric(cleanCols[8], 2000),
+                    basePrice: parseInt(cleanCols[4]) || 0,
+                    layers: parseInt(cleanCols[5]) || 4,
+                    h: parseInt(cleanCols[6]) || 2000,
+                    d: parseInt(cleanCols[7]) || 600,
+                    l: parseInt(cleanCols[8]) || 2000,
                     status: cleanCols[9] || "Ready Stock",
                     capacity: cleanCols[10] || "",
                     svgType: cleanCols[11] || "medium",
@@ -3269,7 +3257,7 @@
 
         let grandTotal = 0;
         cart.forEach(item => {
-            const basePrice = sanitizeNumeric(item.basePrice, 0);
+            const basePrice = Number(item.basePrice) || 0;
             const subtotal = basePrice * item.qty;
             grandTotal += subtotal;
 
