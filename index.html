@@ -1255,24 +1255,44 @@
         }
     }
 
+    function convertGoogleDriveLink(url) {
+        if (!url) return "";
+        url = url.trim();
+        // Regex untuk mendeteksi ID file dari URL Google Drive standar (/file/d/ID/...)
+        const gdRegexp = /\/file\/d\/([a-zA-Z0-9_-]+)/;
+        const match = url.match(gdRegexp);
+        if (match && match[1]) {
+            return `https://lh3.googleusercontent.com/d/${match[1]}`;
+        }
+        // Regex untuk mendeteksi ID dari format query uc?id=ID
+        const ucRegexp = /[?&]id=([a-zA-Z0-9_-]+)/;
+        const matchUc = url.match(ucRegexp);
+        if (matchUc && matchUc[1] && url.includes('drive.google.com')) {
+            return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
+        }
+        return url;
+    }
+
     function getProductImagesArray(images) {
         if (!images) return [];
+        let list = [];
         if (Array.isArray(images)) {
-            return images.filter(u => u && u.trim() !== "");
-        }
-        if (typeof images === 'string') {
+            list = images;
+        } else if (typeof images === 'string') {
             const cleanStr = images.trim();
             if (cleanStr.startsWith('[') && cleanStr.endsWith(']')) {
                 try {
                     const parsed = JSON.parse(cleanStr);
                     if (Array.isArray(parsed)) {
-                        return parsed.filter(u => u && u.trim() !== "");
+                        list = parsed;
                     }
                 } catch (e) {}
+            } else {
+                list = cleanStr.split('|').map(u => u.trim());
             }
-            return cleanStr.split('|').map(u => u.trim()).filter(u => u !== "");
         }
-        return [];
+        // Otomatis bersihkan dan konversi link jika ada link Google Drive
+        return list.filter(u => u && u.trim() !== "").map(url => convertGoogleDriveLink(url));
     }
 
     function navigateCardImage(id, step, e) {
@@ -1416,9 +1436,11 @@
                 `;
             } else {
                 if (p.blueprintUrl && p.blueprintUrl.trim() !== "") {
+                    // Konversi blueprint jika menggunakan Google Drive
+                    const blueprintDirectUrl = convertGoogleDriveLink(p.blueprintUrl);
                     mediaSection = `
                         <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/5">
-                            <img src="${p.blueprintUrl}" alt="CAD Blueprint ${translatedName}" class="w-full h-full object-contain" onerror="this.onerror=null; this.outerHTML='<div class=\'text-[10px] text-red-500 font-mono\'>Gagal Memuat Blueprint Custom</div>';">
+                            <img src="${blueprintDirectUrl}" alt="CAD Blueprint ${translatedName}" class="w-full h-full object-contain" onerror="this.onerror=null; this.outerHTML='<div class=\'text-[10px] text-red-500 font-mono\'>Gagal Memuat Blueprint Custom</div>';">
                         </div>
                     `;
                 } else {
@@ -1464,10 +1486,6 @@
                             <div class="flex justify-between">
                                 <span class="text-gray-500">Harga (Est):</span>
                                 <span class="text-gold-champagne font-bold text-xs">Rp ${basePrice.toLocaleString('id-ID')}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Status:</span>
-                                <span class="${isReady ? 'text-emerald-400' : 'text-amber-400'} font-bold">${activeLeadTime}</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-500">${lblConfig}</span>
@@ -2691,6 +2709,10 @@
         document.getElementById('admin-password-input').value = '';
         document.getElementById('admin-login').classList.remove('hidden');
         document.getElementById('admin-board').classList.add('hidden');
+        
+        // Langsung arahkan kembali ke halaman utama publik
+        exitAdminPortal();
+        
         showToast("Sesi diakhiri secara aman.");
     }
 
@@ -3172,7 +3194,9 @@
         const viewport = document.getElementById('modal-blueprint-viewport');
         if (viewport) {
             if (p.blueprintUrl && p.blueprintUrl.trim() !== "") {
-                viewport.innerHTML = `<img src="${p.blueprintUrl}" alt="CAD Diagram" class="w-full h-full object-contain" onerror="this.onerror=null; this.innerHTML='Gagal memuat blueprint image';">`;
+                // Konversi URL blueprint jika merupakan Google Drive link
+                const blueprintDirectUrl = convertGoogleDriveLink(p.blueprintUrl);
+                viewport.innerHTML = `<img src="${blueprintDirectUrl}" alt="CAD Diagram" class="w-full h-full object-contain" onerror="this.onerror=null; this.innerHTML='Gagal memuat blueprint image';">`;
             } else {
                 viewport.innerHTML = generateRackSVG(p.svgType, p.layers, true, p.h, p.d, p.l);
             }
