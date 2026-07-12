@@ -237,7 +237,7 @@
             adminAddressLabel: "Alamat Kantor Pusat",
             adminGeminiLabel: "Google Gemini API Key (Opsional untuk Fitur AI Advice)",
             adminGeminiDesc: "Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.",
-            adminSheetsUrlLabel: "Google Sheets Web App URL (Opsional - Direct Sync)"
+            adminSheetsUrlLabel: "Database API Web App URL (Opsional - Direct Sync)"
         }
     };
 
@@ -522,10 +522,10 @@
                 </div>
             </div>
 
-            <!-- Loader Real-Time -->
+            <!-- Loader Real-Time (Addressing image_82e7a0.png) -->
             <div id="products-loading" class="py-16 text-center space-y-3">
                 <i class="fa-solid fa-spinner fa-spin text-gold-champagne text-3xl"></i>
-                <p class="text-xs text-gray-500 uppercase tracking-widest font-mono">Menghubungkan ke Google Sheets...</p>
+                <p class="text-xs text-gray-500 uppercase tracking-widest font-mono">Menghubungkan ke Database Pusat...</p>
             </div>
             <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 hidden"></div>
         </section>
@@ -775,10 +775,10 @@
                     <h4 class="text-white font-bold text-xs flex items-center gap-2"><i class="fa-solid fa-terminal text-gold-champagne"></i> Utilitas Sinkronisasi Kilat</h4>
                     <div class="flex flex-wrap gap-2.5">
                         <button onclick="confirmInitializeDefault()" class="px-4 py-2.5 bg-blue-950/20 hover:bg-blue-900/40 border border-blue-500/30 text-blue-300 font-bold text-[10px] uppercase rounded-xl transition">
-                            <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Inisialisasi / Reset Database Google Sheets (Auto-Create Tables)
+                            <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Inisialisasi / Reset Database Cloud (Auto-Create Tables)
                         </button>
                         <button onclick="fetchProductsFromSpreadsheet()" class="px-4 py-2.5 bg-emerald-950/20 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 font-bold text-[10px] uppercase rounded-xl transition">
-                            <i class="fa-solid fa-cloud-arrow-down mr-1.5"></i> Muat Ulang Data Dari Cloud Sheets
+                            <i class="fa-solid fa-cloud-arrow-down mr-1.5"></i> Muat Ulang Data Dari Cloud
                         </button>
                     </div>
                 </div>
@@ -866,7 +866,7 @@
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white outline-none focus:border-gold-champagne">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-emerald-400 font-bold uppercase mb-1.5" data-trans="adminSheetsUrlLabel">Google Sheets Web App URL (Opsional - Direct Sync)</label>
+                        <label class="block text-emerald-400 font-bold uppercase mb-1.5" data-trans="adminSheetsUrlLabel">Database API Web App URL (Opsional - Direct Sync)</label>
                         <input type="url" id="settings-sheets-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white font-mono outline-none focus:border-emerald-500">
                     </div>
                     <div class="md:col-span-2">
@@ -2026,11 +2026,11 @@
         const payload = { action: "addInquiry", name, phone, company, message, details };
         
         try {
-            showToast("Mengirim draf inquiries ke Google Sheets...");
+            showToast("Mengirim draf inquiries ke Database Pusat...");
             await callApi('POST', 'addInquiry', payload);
-            showToast("Inquiries sukses tersimpan di Google Sheets!");
+            showToast("Inquiries sukses tersimpan di Database Pusat!");
         } catch(e) {
-            console.error("Gagal mengirim ke Sheets, menyimpan lokal:", e);
+            console.error("Gagal mengirim ke cloud, menyimpan lokal:", e);
             const mockInquiries = JSON.parse(localStorage.getItem('hikai_mock_inquiries')) || [];
             mockInquiries.unshift({ 
                 id: "inq_" + Date.now(),
@@ -2074,7 +2074,7 @@
                 throw new Error("Format respons tidak valid");
             }
         } catch(e) {
-            console.warn("Gagal terhubung ke cloud Spreadsheet. Memuat dari penyimpanan lokal:", e);
+            console.warn("Gagal terhubung ke Database Cloud. Memuat dari penyimpanan lokal:", e);
             products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [];
             updateDatabaseStatus(false);
         }
@@ -2305,7 +2305,7 @@
     function confirmInitializeDefault() {
         confirmActionType = "reset";
         const desc = document.getElementById('confirm-modal-desc');
-        if (desc) desc.textContent = "Apakah Anda sangat yakin ingin me-reset seluruh tabel produk di Spreadsheet Anda ke pengaturan bawaan pabrik HIKAI? Tindakan ini akan meng-auto create lembar sheet 'Products' dan 'Inquiries' baru jika belum ada.";
+        if (desc) desc.textContent = "Apakah Anda sangat yakin ingin me-reset seluruh tabel produk di Database Cloud Anda ke pengaturan bawaan pabrik HIKAI? Tindakan ini akan meng-auto create tabel 'Products' dan 'Inquiries' baru jika belum ada.";
         document.getElementById('confirm-modal').classList.remove('hidden');
     }
 
@@ -2322,7 +2322,7 @@
         confirmActionType = "delete-inquiry";
         targetDeleteId = id;
         const desc = document.getElementById('confirm-modal-desc');
-        if (desc) desc.textContent = "Apakah Anda yakin ingin menghapus log inquiry prospek ini dari data Spreadsheet?";
+        if (desc) desc.textContent = "Apakah Anda yakin ingin menghapus log inquiry prospek ini dari Database Pusat?";
         document.getElementById('confirm-modal').classList.remove('hidden');
     }
 
@@ -2340,7 +2340,7 @@
                 showToast("Menghapus database lama & menginisialisasi ulang...");
                 const payload = { action: "initializeDefaultProducts", password: activePass };
                 await callApi('POST', 'initializeDefaultProducts', payload);
-                showToast("Inisialisasi database Cloud Spreadsheet sukses!");
+                showToast("Inisialisasi database Cloud sukses!");
                 fetchProductsFromSpreadsheet();
             } catch(e) {
                 console.error("Gagal reset cloud:", e);
@@ -2615,7 +2615,7 @@
 
             if (importedProducts.length > 0) {
                 try {
-                    showToast("Mengunggah berkas Excel ke Cloud Sheets...");
+                    showToast("Mengunggah berkas Excel ke Database Pusat...");
                     await callApi('POST', 'initializeDefaultProducts', { action: "initializeDefaultProducts", password: activePass, products: importedProducts });
                     showToast(`Selesai mengimpor ${importedProducts.length} baris Excel ke Cloud!`);
                     fetchProductsFromSpreadsheet();
