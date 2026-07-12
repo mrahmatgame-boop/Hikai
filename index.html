@@ -531,7 +531,7 @@
         <div id="admin-board" class="hidden space-y-4">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 border-b border-white/5 pb-3">
                 <div class="flex items-center gap-2.5">
-                    <span id="db-status-badge" class="p-1.5 bg-red-950/20 border border-red-500/30 text-red-400 text-[10px] font-bold rounded font-mono">DB DISCONNECTED</span>
+                    <span id="admin-db-status-badge" class="p-1.5 bg-red-950/20 border border-red-500/30 text-red-400 text-[10px] font-bold rounded font-mono">DB DISCONNECTED</span>
                     <h4 class="text-white font-bold text-base">HIKAI Command Center</h4>
                 </div>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto">
@@ -562,11 +562,13 @@
                         <div class="p-2.5 bg-purple-500/10 rounded-xl text-purple-400 text-base"><i class="fa-solid fa-envelope-open-text"></i></div>
                     </div>
                 </div>
-                <div class="bg-obsidian-card p-5 rounded-2xl border border-white/5">
+                <div class="bg-obsidian-card p-5 rounded-2xl border border-white/5 transition-all duration-300" id="stat-db-card">
                     <span class="text-gray-500 text-[9px] uppercase font-bold tracking-widest block">Status Integrasi</span>
                     <div class="flex justify-between items-center mt-1">
                         <h3 class="text-lg font-bold text-red-400" id="stat-db-status">DISCONNECTED</h3>
-                        <div class="p-2.5 bg-red-500/10 rounded-xl text-red-400 text-base"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <div class="p-2.5 bg-red-500/10 rounded-xl text-red-400 text-base transition-all duration-300" id="stat-db-icon-container">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="md:col-span-3 bg-obsidian-card p-5 rounded-2xl border border-white/5 space-y-3">
@@ -1940,6 +1942,64 @@
         }
         updateComparisonTable();
         renderCatalog();
+    }
+
+    function updateDatabaseStatus(isConnected) {
+        const adminBadge = document.getElementById('admin-db-status-badge');
+        const publicBadge = document.getElementById('db-status-badge-public');
+        const dbStatusText = document.getElementById('stat-db-status');
+        const dbStatusCard = document.getElementById('stat-db-card');
+        const dbStatusIconContainer = document.getElementById('stat-db-icon-container');
+        
+        if (isConnected) {
+            // Update admin top bar badge
+            if (adminBadge) {
+                adminBadge.className = "p-1.5 bg-emerald-950/30 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold rounded font-mono";
+                adminBadge.textContent = "DB CONNECTED";
+            }
+            // Update public planner badge
+            if (publicBadge) {
+                publicBadge.className = "p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono";
+                publicBadge.textContent = "CLOUD CONNECTED";
+            }
+            // Update status integration card text
+            if (dbStatusText) {
+                dbStatusText.className = "text-lg font-bold text-emerald-400";
+                dbStatusText.textContent = "SINKRON";
+            }
+            // Update status integration card container borders for modern dark premium feel
+            if (dbStatusCard) {
+                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-emerald-500/20 transition-all duration-300";
+            }
+            // Update status integration card icon wrapper to green theme
+            if (dbStatusIconContainer) {
+                dbStatusIconContainer.className = "p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400 text-base transition-all duration-300";
+            }
+        } else {
+            // Update admin top bar badge for offline mode
+            if (adminBadge) {
+                adminBadge.className = "p-1.5 bg-yellow-950/30 border border-yellow-500/40 text-yellow-400 text-[10px] font-bold rounded font-mono animate-pulse";
+                adminBadge.textContent = "LOCAL OFFLINE MODE";
+            }
+            // Update public planner badge for offline mode
+            if (publicBadge) {
+                publicBadge.className = "p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono";
+                publicBadge.textContent = "OFFLINE LOCAL CACHE";
+            }
+            // Update status integration card text to yellow local cache
+            if (dbStatusText) {
+                dbStatusText.className = "text-lg font-bold text-yellow-400";
+                dbStatusText.textContent = "LOCAL CACHE";
+            }
+            // Update status integration card container borders for local mode
+            if (dbStatusCard) {
+                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-yellow-500/20 transition-all duration-300";
+            }
+            // Update status integration card icon wrapper to yellow theme
+            if (dbStatusIconContainer) {
+                dbStatusIconContainer.className = "p-2.5 bg-yellow-500/10 rounded-xl text-yellow-400 text-base transition-all duration-300";
+            }
+        }
     }
 
     function updateComparisonTable() {
