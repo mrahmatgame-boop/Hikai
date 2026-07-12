@@ -427,7 +427,7 @@
             cartBtnCheckout: "一键发送至微信/WhatsApp定制方案",
             cartBtnReset: "清空重置",
             adminPortal: "HIKAI 内部管理系统",
-            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储系统研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储环境绝对安全。",
+            footerDesc: "PT. Hikai Storage Equipment (\"HIKAI\") 专注高品质工业仓储系统研发生产。我们确保所有产品均符合欧洲 EN 15512 结构极限承载标准，采用优质冷轧硬质高强结构钢保障仓储 environment 绝对安全。",
             lblConfig: "配置:",
             lblMaxCap: "极限承重:",
             btnDetail: "详情",
@@ -655,423 +655,455 @@
     }
 </script>
 
-<div class="bg-black border-b border-obsidian-accent py-2.5 px-4 md:px-8 text-[11px] flex justify-between items-center text-gray-400 no-print">
-    <div class="flex items-center gap-6">
-        <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" id="global-hotline-link" class="hover:text-white font-mono transition">08995719102</a></span>
-        <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> <span id="global-email">info@hikairack.com</span></span>
-        <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: <span id="global-address">Kosambi, Tangerang</span></span>
-    </div>
-    <div class="flex items-center gap-4">
-        <div class="flex gap-2 font-bold text-[10px] tracking-wider">
-            <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono" data-lang="id">ID</button>
-            <span>|</span>
-            <button onclick="setLanguage('en')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition font-mono" data-lang="en">EN</button>
-            <span>|</span>
-            <button onclick="setLanguage('zh')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition font-mono" data-lang="zh">繁中</button>
+<!-- ========================================== -->
+<!-- BINDING CONTAINER: PUBLIC SITE -->
+<!-- ========================================== -->
+<div id="public-site" class="flex flex-col min-h-screen">
+
+    <div class="bg-black border-b border-obsidian-accent py-2.5 px-4 md:px-8 text-[11px] flex justify-between items-center text-gray-400 no-print">
+        <div class="flex items-center gap-6">
+            <span><i class="fa-solid fa-phone text-gold-champagne mr-2"></i> VIP Hotline: <a href="https://wa.me/628995719102" id="global-hotline-link" class="hover:text-white font-mono transition">08995719102</a></span>
+            <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-gold-champagne mr-2"></i> <span id="global-email">info@hikairack.com</span></span>
+            <span class="hidden lg:inline"><i class="fa-solid fa-map-location-dot text-gold-champagne mr-2"></i> Head Office: <span id="global-address">Kosambi, Tangerang</span></span>
         </div>
-    </div>
-</div>
-
-<header class="sticky top-0 z-40 bg-[#020202]/85 backdrop-blur-xl border-b border-white/5 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.8)] no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between transition-all duration-300">
-        <div class="flex items-center gap-3">
-            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-9 sm:h-11 w-auto object-contain rounded-lg transition-transform duration-300 hover:scale-105" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-xl tracking-tighter\'>H</span></div>';">
-            <div class="border-l border-white/10 pl-3 py-1 hidden sm:block">
-                <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase block font-mono font-semibold">Storage Equipment</span>
-            </div>
-        </div>
-
-        <nav class="hidden md:flex items-center lg:gap-5 md:gap-2.5 text-[10px] font-semibold tracking-wider uppercase">
-            <a href="#about" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="about" data-trans="navAbout">
-                Tentang Kami
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#products" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="products" data-trans="navCatalog">
-                Katalog Rack
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#education" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="education" data-trans="navEdu">
-                Edukasi Sistem
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#comparison" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="comparison" data-trans="navCompare">
-                Bandingkan
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#calculator" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="calculator" data-trans="navCalc">
-                Kalkulator Gudang
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#contact" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="contact" data-trans="navContact">
-                Kontak VVIP
-                <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
-            </a>
-        </nav>
-
         <div class="flex items-center gap-4">
-            <button onclick="openCartModal()" class="relative p-2.5 bg-obsidian-card border border-white/10 rounded-full hover:border-gold-champagne text-gray-200 transition">
-                <i class="fa-solid fa-shopping-cart text-sm"></i>
-                <span id="cart-counter" class="hidden absolute -top-1 -right-1 bg-red-600 text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
-            </button>
-            <button onclick="toggleMobileMenu(true)" class="md:hidden p-2.5 bg-obsidian-card border border-white/10 rounded-full hover:border-gold-champagne text-gray-200 transition duration-300 active:scale-95">
-                <i class="fa-solid fa-bars text-sm"></i>
-            </button>
+            <div class="flex gap-2 font-bold text-[10px] tracking-wider">
+                <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono" data-lang="id">ID</button>
+                <span>|</span>
+                <button onclick="setLanguage('en')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition font-mono" data-lang="en">EN</button>
+                <span>|</span>
+                <button onclick="setLanguage('zh')" class="lang-btn px-1.5 py-0.5 text-gray-500 transition font-mono" data-lang="zh">繁中</button>
+            </div>
         </div>
     </div>
-</header>
 
-<div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-500 ease-out pointer-events-none no-print">
-    <div id="mobile-menu-backdrop" onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500"></div>
-    <div class="absolute right-0 top-0 h-full w-[280px] sm:w-[320px] bg-[#060608] border-l border-obsidian-accent p-6 flex flex-col justify-between pointer-events-auto shadow-2xl">
-        <div class="space-y-8">
-            <div class="flex items-center justify-between border-b border-white/5 pb-5">
-                <div class="flex items-center gap-2.5">
-                    <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-8 w-auto object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-base\'>H</span></div>';">
-                    <div class="border-l border-white/10 pl-2 py-0.5">
-                        <span class="text-[10px] font-extrabold tracking-widest text-gray-400 uppercase font-mono block">INTERNAL PANEL</span>
-                    </div>
+    <header class="sticky top-0 z-40 bg-[#020202]/85 backdrop-blur-xl border-b border-white/5 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.8)] no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-9 sm:h-11 w-auto object-contain rounded-lg transition-transform duration-300 hover:scale-105" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-xl tracking-tighter\'>H</span></div>';">
+                <div class="border-l border-white/10 pl-3 py-1 hidden sm:block">
+                    <span class="text-[10px] tracking-[0.2em] text-gray-400 uppercase block font-mono font-semibold">Storage Equipment</span>
                 </div>
-                <button onclick="toggleMobileMenu(false)" class="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
             </div>
-            <nav class="flex flex-col gap-4 text-xs font-bold tracking-widest uppercase">
-                <a href="#about" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-circle-info text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navAbout">Tentang Kami</span>
+
+            <nav class="hidden md:flex items-center lg:gap-5 md:gap-2.5 text-[10px] font-semibold tracking-wider uppercase">
+                <a href="#about" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="about" data-trans="navAbout">
+                    Tentang Kami
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
-                <a href="#products" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-boxes-stacked text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navCatalog">Katalog Rack</span>
+                <a href="#products" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="products" data-trans="navCatalog">
+                    Katalog Rack
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
-                <a href="#education" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-graduation-cap text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navEdu">Edukasi Sistem</span>
+                <a href="#education" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="education" data-trans="navEdu">
+                    Edukasi Sistem
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
-                <a href="#comparison" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-sliders text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navCompare">Bandingkan</span>
+                <a href="#comparison" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="comparison" data-trans="navCompare">
+                    Bandingkan
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
-                <a href="#calculator" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-compass-drafting text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navCalc">Kalkulator Gudang</span>
+                <a href="#calculator" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="calculator" data-trans="navCalc">
+                    Kalkulator Gudang
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
-                <a href="#contact" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
-                    <i class="fa-solid fa-headset text-gold-champagne text-xs w-5 text-center"></i>
-                    <span data-trans="navContact">Kontak VVIP</span>
+                <a href="#contact" class="nav-link-premium relative px-3 py-2 rounded-full border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gold-champagne/30 hover:bg-white/[0.05] transition-all duration-300 active:scale-95 whitespace-nowrap" data-section="contact" data-trans="navContact">
+                    Kontak VVIP
+                    <span class="nav-line absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-gold-champagne to-gold-hover transition-all duration-300 rounded-full"></span>
                 </a>
             </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openCartModal()" class="relative p-2.5 bg-obsidian-card border border-white/10 rounded-full hover:border-gold-champagne text-gray-200 transition">
+                    <i class="fa-solid fa-shopping-cart text-sm"></i>
+                    <span id="cart-counter" class="hidden absolute -top-1 -right-1 bg-red-600 text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button onclick="toggleMobileMenu(true)" class="md:hidden p-2.5 bg-obsidian-card border border-white/10 rounded-full hover:border-gold-champagne text-gray-200 transition duration-300 active:scale-95">
+                    <i class="fa-solid fa-bars text-sm"></i>
+                </button>
+            </div>
         </div>
-        <div class="border-t border-white/5 pt-5 text-center">
-            <p class="text-[8px] text-gray-600 uppercase tracking-widest font-mono">Premium Spatial Engineering</p>
-            <p class="text-[9px] text-gold-champagne font-bold mt-1">PT. HIKAI STORAGE EQUIPMENT</p>
+    </header>
+
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-500 ease-out pointer-events-none no-print">
+        <div id="mobile-menu-backdrop" onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500"></div>
+        <div class="absolute right-0 top-0 h-full w-[280px] sm:w-[320px] bg-[#060608] border-l border-obsidian-accent p-6 flex flex-col justify-between pointer-events-auto shadow-2xl">
+            <div class="space-y-8">
+                <div class="flex items-center justify-between border-b border-white/5 pb-5">
+                    <div class="flex items-center gap-2.5">
+                        <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-8 w-auto object-contain rounded-lg shadow-luxury-glow" onerror="this.onerror=null; this.outerHTML='<div class=\'w-8 h-8 bg-gold-champagne rounded-lg flex items-center justify-center shadow-luxury-glow\'><span class=\'text-black font-extrabold text-base\'>H</span></div>';">
+                        <div class="border-l border-white/10 pl-2 py-0.5">
+                            <span class="text-[10px] font-extrabold tracking-widest text-gray-400 uppercase font-mono block">INTERNAL PANEL</span>
+                        </div>
+                    </div>
+                    <button onclick="toggleMobileMenu(false)" class="p-2 bg-white/5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-4 text-xs font-bold tracking-widest uppercase">
+                    <a href="#about" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-circle-info text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navAbout">Tentang Kami</span>
+                    </a>
+                    <a href="#products" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-boxes-stacked text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navCatalog">Katalog Rack</span>
+                    </a>
+                    <a href="#education" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-graduation-cap text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navEdu">Edukasi Sistem</span>
+                    </a>
+                    <a href="#comparison" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-sliders text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navCompare">Bandingkan</span>
+                    </a>
+                    <a href="#calculator" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-compass-drafting text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navCalc">Kalkulator Gudang</span>
+                    </a>
+                    <a href="#contact" onclick="toggleMobileMenu(false)" class="flex items-center gap-4 text-gray-300 hover:text-gold-champagne transition py-3 border-b border-white/5">
+                        <i class="fa-solid fa-headset text-gold-champagne text-xs w-5 text-center"></i>
+                        <span data-trans="navContact">Kontak VVIP</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-white/5 pt-5 text-center">
+                <p class="text-[8px] text-gray-600 uppercase tracking-widest font-mono">Premium Spatial Engineering</p>
+                <p class="text-[9px] text-gold-champagne font-bold mt-1">PT. HIKAI STORAGE EQUIPMENT</p>
+            </div>
         </div>
     </div>
-</div>
 
-<main class="flex-grow">
-    <section class="relative overflow-hidden pt-8 md:pt-14 pb-10 md:pb-14 border-b border-[#1b1b1d] blueprint-pattern no-print">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.06),transparent_50%)]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
-                <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#1a1813] border border-[#52441c] rounded-full text-gold-champagne text-[10px] font-semibold uppercase tracking-widest mx-auto lg:mx-0">
-                        <i class="fa-solid fa-star text-[9px] text-gold-champagne animate-pulse"></i> <span data-trans="heroBadge">SOLUSI PERGUDANGAN KELAS VVIP</span>
+    <main class="flex-grow">
+        <section class="relative overflow-hidden pt-8 md:pt-14 pb-10 md:pb-14 border-b border-[#1b1b1d] blueprint-pattern no-print">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.06),transparent_50%)]"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#1a1813] border border-[#52441c] rounded-full text-gold-champagne text-[10px] font-semibold uppercase tracking-widest mx-auto lg:mx-0">
+                            <i class="fa-solid fa-star text-[9px] text-gold-champagne animate-pulse"></i> <span data-trans="heroBadge">SOLUSI PERGUDANGAN KELAS VVIP</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                            <span data-trans="heroTitle">Sistem Rak Industri</span> <br />
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne via-gold-light to-[#AA7C11]" data-trans="heroSubtitle">
+                                PT. Hikai Storage Equipment
+                            </span>
+                        </h1>
+                        <p class="text-gray-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-light" data-trans="heroDesc">
+                            Menghadirkan sistem rak baja Cold-Rolled bersertifikat internasional dengan tingkat presisi ekstrem. Didesain mewah, kokoh, dan dihitung secara interaktif untuk efisiensi ruang optimal Anda.</p>
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
+                            <a href="#products" class="w-full sm:w-auto text-center px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg shadow-luxury-glow hover:scale-[1.01] active:scale-95 transition text-xs" data-trans="btnCatalog">
+                                Pilih Spesifikasi Rak
+                            </a>
+                            <a href="#calculator" class="w-full sm:w-auto text-center px-6 py-3 bg-obsidian-card hover:bg-black border border-obsidian-accent text-gray-200 font-semibold rounded-lg active:scale-95 transition text-xs" data-trans="btnCalc">
+                                Rancang Ruang
+                            </a>
+                        </div>
                     </div>
-                    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                        <span data-trans="heroTitle">Sistem Rak Industri</span> <br />
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-champagne via-gold-light to-[#AA7C11]" data-trans="heroSubtitle">
-                            PT. Hikai Storage Equipment
-                        </span>
-                    </h1>
-                    <p class="text-gray-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-light" data-trans="heroDesc">
-                        Menghadirkan sistem rak baja Cold-Rolled bersertifikat internasional dengan tingkat presisi ekstrem. Didesain mewah, kokoh, dan dihitung secara interaktif untuk efisiensi ruang optimal Anda.</p>
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
-                        <a href="#products" class="w-full sm:w-auto text-center px-6 py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg shadow-luxury-glow hover:scale-[1.01] active:scale-95 transition text-xs" data-trans="btnCatalog">
-                            Pilih Spesifikasi Rak
-                        </a>
-                        <a href="#calculator" class="w-full sm:w-auto text-center px-6 py-3 bg-obsidian-card hover:bg-black border border-obsidian-accent text-gray-200 font-semibold rounded-lg active:scale-95 transition text-xs" data-trans="btnCalc">
-                            Rancang Ruang
-                        </a>
-                    </div>
-                </div>
 
-                <div class="lg:col-span-5 w-full mt-4 lg:mt-0">
-                    <div class="bg-obsidian-card border border-white/5 p-4 rounded-2xl shadow-2xl relative card-glow">
-                        <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-2">
-                            <div>
-                                <span class="text-gold-champagne text-[9px] font-bold block uppercase" data-trans="previewTitle">Visual Preview</span>
-                                <h4 class="text-white font-bold text-xs">Medium Duty Starter (4 Layer)</h4>
+                    <div class="lg:col-span-5 w-full mt-4 lg:mt-0">
+                        <div class="bg-obsidian-card border border-white/5 p-4 rounded-2xl shadow-2xl relative card-glow">
+                            <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-2">
+                                <div>
+                                    <span class="text-gold-champagne text-[9px] font-bold block uppercase" data-trans="previewTitle">Visual Preview</span>
+                                    <h4 class="text-white font-bold text-xs">Medium Duty Starter (4 Layer)</h4>
+                                </div>
+                                <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-gold-champagne text-[9px] font-mono rounded">H2000*D600*L2000</span>
                             </div>
-                            <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-gold-champagne text-[9px] font-mono rounded">H2000*D600*L2000</span>
-                        </div>
-                        <div id="hero-svg-container" class="w-full overflow-hidden flex items-center justify-center"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-10 md:py-14 border-b border-obsidian-accent bg-black relative overflow-hidden no-print">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.03),transparent_50%)]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
-                <div class="space-y-4 text-center lg:text-left">
-                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="aboutBadge">SIAPA KAMI</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight" data-trans="aboutTitle">
-                        Dedikasi Presisi Tinggi & <br/>
-                        Rekayasa Tata Ruang Premium
-                    </h2>
-                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="aboutDesc">
-                        PT. Hikai Storage Equipment berdiri sebagai pionir dalam industri manufaktur dan perancangan sistem rak baja penyimpanan industri berat (heavy-duty) dan menengah (medium-duty) di Indonesia. Kami memadukan kekuatan baja premium Cold-Rolled dengan perhitungan presisi matematis untuk melipatgandakan kapasitas penyimpanan gudang Anda tanpa mengorbankan keselamatan kerja.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 pt-2 max-w-sm mx-auto lg:mx-0 text-left">
-                        <div class="border-l-2 border-gold-champagne pl-3">
-                            <h4 class="text-xl font-bold text-white font-mono">100%</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-wider mt-0.5" data-trans="aboutStat1">Standarisasi EN 15512</p>
-                        </div>
-                        <div class="border-l-2 border-gold-champagne pl-3">
-                            <h4 class="text-xl font-bold text-white font-mono">20%+</h4>
-                            <p class="text-[9px] text-gray-500 uppercase tracking-wider mt-0.5" data-trans="aboutStat2">Efisiensi Biaya Struktur</p>
+                            <div id="hero-svg-container" class="w-full overflow-hidden flex items-center justify-center"></div>
                         </div>
                     </div>
                 </div>
-                <div class="relative w-full">
-                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-champagne to-gold-hover opacity-10 blur-xl"></div>
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-48 sm:h-64 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="products" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
-            <div class="space-y-1.5 text-center lg:text-left">
-                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="catalogBadge">KOLEKSI EKSKLUSIF</span>
-                <h2 class="text-2xl font-extrabold text-white" data-trans="catalogTitle">Katalog Sistem Rak HIKAI</h2>
-                <p class="text-gray-400 text-xs sm:text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
-            </div>
-
-            <div class="w-full lg:w-auto overflow-x-auto scrollbar-none pb-1 flex justify-start lg:justify-end">
-                <div class="flex gap-1 bg-obsidian-card p-1 rounded-xl border border-white/5 min-w-max shadow-inner-dark">
-                    <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAll">
-                        Semua Kelas
-                    </button>
-                    <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAngle">
-                        Angle Shelf
-                    </button>
-                    <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterLight">
-                        Light Duty
-                    </button>
-                    <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterMedium">
-                        Medium Duty
-                    </button>
-                    <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterPallet">
-                        Pallet Rack
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
-    </section>
-
-    <section id="education" class="py-10 md:py-14 bg-obsidian-deep border-t border-white/5 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
-                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="eduBadge">Aturan Struktur</span>
-                <h2 class="text-2xl font-bold text-white" data-trans="eduTitle">Memahami Sistem Starter vs Add-On</h2>
-                <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="eduDesc">
-                    Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan **1 Unit Starter** sebagai fondasi utama di ujung baris, lalu sambungkan unit **Add-On** bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!</p>
-                <div class="p-3 bg-obsidian-card border border-white/5 rounded-xl text-[11px] text-gray-400 space-y-2 max-w-sm mx-auto lg:mx-0 text-left">
-                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong data-trans="eduStarter">Starter: 2 Tiang Samping (Mandiri)</strong></p>
-                    <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong data-trans="eduAddOn">Add-On: 1 Tiang Samping (Menempel ke Starter)</strong></p>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 bg-obsidian-card border border-white/5 p-4 rounded-2xl w-full">
-                <h3 class="text-white font-bold text-xs mb-3 text-center sm:text-left" data-trans="eduSchema">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
-                <svg viewBox="0 0 320 160" class="w-full h-auto rounded-lg bg-black/40 border border-[#1b1b1d]">
-                    <rect width="100%" height="100%" fill="#070709" />
-                    <line x1="10" y1="135" x2="310" y2="135" stroke="#333" stroke-width="2" />
-                    <rect x="25" y="30" width="8" height="105" fill="none" stroke="#D4AF37" stroke-width="2" />
-                    <rect x="145" y="30" width="8" height="105" fill="none" stroke="#eab308" stroke-width="2" />
-                    <rect x="33" y="55" width="112" height="4" fill="#444" stroke="#D4AF37" stroke-width="0.5" />
-                    <rect x="33" y="95" width="112" height="4" fill="#444" stroke="#D4AF37" stroke-width="0.5" />
-                    <rect x="275" y="30" width="8" height="105" fill="none" stroke="#22c55e" stroke-width="2" />
-                    <rect x="153" y="55" width="122" height="4" fill="#444" stroke="#22c55e" stroke-width="0.5" />
-                    <rect x="153" y="95" width="122" height="4" fill="#444" stroke="#22c55e" stroke-width="0.5" />
-                    <text x="85" y="20" fill="#D4AF37" font-size="7" font-weight="bold" text-anchor="middle">1x STARTER UNIT</text>
-                    <text x="215" y="20" fill="#22c55e" font-size="7" font-weight="bold" text-anchor="middle">1x ADD-ON UNIT</text>
-                    <text x="150" y="150" fill="#eab308" font-size="7" font-weight="bold" text-anchor="middle" data-trans="eduSharedFrame">TIANG GABUNGAN (SHARED FRAME)</text>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <section id="comparison" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
-        <div class="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">SPESIFIKASI TEKNIS</span>
-            <h2 class="text-2xl font-extrabold text-white" data-trans="compareTitle">Bandingkan Spek Teknis</h2>
-            <p class="text-gray-400 text-xs sm:text-sm font-light" data-trans="compareDesc">Tambahkan rak ke pembanding pada kartu katalog untuk diulas berdampingan di sini.</p>
-        </div>
-
-        <div id="comparison-placeholder" class="text-center py-10 bg-[#0e0e11] rounded-2xl border border-dashed border-[#333] max-w-xl mx-auto">
-            <p class="text-gray-400 text-xs sm:text-sm" data-trans="compareEmpty">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
-        </div>
-
-        <div id="comparison-table-wrapper" class="hidden bg-obsidian-card border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
-            <div class="block sm:hidden text-center text-[10px] text-gray-500 py-1 bg-black/40 border-b border-white/5 font-mono"><i class="fa-solid fa-angles-left-right animate-pulse mr-1.5"></i> Geser horizontal untuk melihat perbandingan</div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs border-collapse">
-                    <thead>
-                        <tr id="comp-header-row" class="bg-black border-b border-white/5">
-                            <th class="p-4 font-bold uppercase tracking-widest text-gold-champagne" data-trans="compareParam">Parameter</th>
-                        </tr>
-                    </thead>
-                    <tbody id="comp-body" class="divide-y divide-white/5"></tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section id="calculator" class="py-10 md:py-14 bg-obsidian-deep border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-            <div class="lg:col-span-5 space-y-4 no-print">
-                <div>
-                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="simBadge">Simulator Tata Letak</span>
-                    <h2 class="text-2xl font-extrabold text-white mt-1" data-trans="simTitle">Atur Layout & Hitung Biaya</h2>
-                    <p class="text-gray-400 text-xs sm:text-sm mt-1.5 font-light" data-trans="simDesc">
-                        Simulasi interaktif bawaan diatur untuk gudang standar Anda. Tambahkan rak dan sesuaikan lebar gang kerja.
-                    </p>
-                </div>
-
-                <div class="bg-obsidian-card border border-gold-champagne/20 p-4 sm:p-5 rounded-2xl space-y-3 shadow-xl card-glow">
-                    <h3 class="text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 border-b border-white/5 pb-2">
-                        <i class="fa-solid fa-table-cells text-gold-champagne"></i> <span data-trans="sizeLabel">Ukuran Lantai Gudang Anda</span>
-                    </h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="roomLength">Panjang Ruangan (M)</label>
-                            <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
-                        </div>
-                        <div>
-                            <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="roomWidth">Lebar Ruangan (M)</label>
-                            <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
-                        </div>
-                    </div>
-                    <div class="pt-1">
-                        <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="aisleLabel">Lebar Gang Kerja / Aisle (M)</label>
-                        <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne py-1.5">
-                        <div class="flex justify-between text-[9px] text-gray-500 mt-0.5">
-                            <span data-trans="calcAisleManual">Sirkulasi Manual (0.8m)</span>
-                            <span class="text-gold-champagne font-bold text-xs" id="label-aisle-value">1.5m</span>
-                            <span data-trans="calcAisleFork">Alat Berat/Forklift (4m)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-obsidian-card border border-white/5 p-4 sm:p-5 rounded-2xl space-y-3">
-                    <h3 class="text-white font-bold text-xs border-b border-white/5 pb-2" data-trans="calcAddTitle">Tambahkan Unit Rak ke Denah:</h3>
-                    <div id="simulator-selection-list" class="space-y-2"></div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 space-y-4 w-full">
-                <div class="hidden print-invoice bg-white text-black p-4 border-b-2 border-black space-y-1">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-extrabold tracking-tight">PT. HIKAI STORAGE EQUIPMENT</h2>
-                        <span class="text-[10px] font-mono">INVOICE PREVIEW</span>
-                    </div>
-                    <p class="text-[9px] text-gray-600">Certified ISO 9001:2015 & EN 15512 Structural Safety Standards | Rukan Osaka PIK 2, Tangerang</p>
-                </div>
-
-                <div class="bg-obsidian-card border border-gold-champagne/25 rounded-2xl p-4 sm:p-6 relative shadow-2xl card-glow">
-                    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-b border-white/5 pb-4 gap-3 no-print">
-                        <div class="flex items-center gap-2.5">
-                            <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-6 w-auto object-contain rounded" onerror="this.onerror=null; this.outerHTML='<span class=\'text-xs font-bold tracking-widest text-gold-champagne block font-serif\'>HIKAI</span>';">
-                            <div class="border-l border-white/10 pl-2 py-0.5">
-                                <span class="text-[8px] tracking-widest text-gray-400 uppercase block font-mono font-bold">PLANNING BOARD</span>
+        <section id="about" class="py-10 md:py-14 border-b border-obsidian-accent bg-black relative overflow-hidden no-print">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.03),transparent_50%)]"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
+                    <div class="space-y-4 text-center lg:text-left">
+                        <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="aboutBadge">SIAPA KAMI</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight" data-trans="aboutTitle">
+                            Dedikasi Presisi Tinggi & <br/>
+                            Rekayasa Tata Ruang Premium
+                        </h2>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="aboutDesc">
+                            PT. Hikai Storage Equipment berdiri sebagai pionir dalam industri manufaktur dan perancangan sistem rak baja penyimpanan industri berat (heavy-duty) dan menengah (medium-duty) di Indonesia. Kami memadukan kekuatan baja premium Cold-Rolled dengan perhitungan presisi matematis untuk melipatgandakan kapasitas penyimpanan gudang Anda tanpa mengorbankan keselamatan kerja.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-2 max-w-sm mx-auto lg:mx-0 text-left">
+                            <div class="border-l-2 border-gold-champagne pl-3">
+                                <h4 class="text-xl font-bold text-white font-mono">100%</h4>
+                                <p class="text-[9px] text-gray-500 uppercase tracking-wider mt-0.5" data-trans="aboutStat1">Standarisasi EN 15512</p>
+                            </div>
+                            <div class="border-l-2 border-gold-champagne pl-3">
+                                <h4 class="text-xl font-bold text-white font-mono">20%+</h4>
+                                <p class="text-[9px] text-gray-500 uppercase tracking-wider mt-0.5" data-trans="aboutStat2">Efisiensi Biaya Struktur</p>
                             </div>
                         </div>
-                        <div class="flex bg-black/80 rounded-lg p-1 border border-white/10 text-xs self-start sm:self-auto overflow-x-auto max-w-full scrollbar-none">
-                            <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1 rounded-lg font-bold transition duration-300" data-trans="tabQuote">Draf Nota</button>
-                            <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1 rounded-lg font-bold transition duration-300" data-trans="tabFloorplan">Denah 2D</button>
-                            <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3 py-1 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5 transition duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
-                        </div>
                     </div>
-                    <div id="calc-content" class="pt-4 space-y-4"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 no-print">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="contactBadge">Kunjungan Survei</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white" data-trans="contactTitle">Hubungi Tim Teknik HIKAI</h2>
-                <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="contactDesc">
-                    Kami siap melayani kebutuhan Anda, mulai dari konsultasi gambar AutoCAD 2D/3D gratis hingga perencanaan beban tonase besar. Kunjungi kantor pemasaran kami untuk berkonsultasi langsung.
-                </p>
-                <div class="space-y-3 pt-3 border-t border-white/5 text-xs text-gray-400">
-                    <div class="flex gap-3">
-                        <i class="fa-solid fa-map-pin text-gold-champagne flex-shrink-0 text-sm mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold" data-trans="contactOffice">Marketing & Sales Office:</h4>
-                            <p class="mt-0.5" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <i class="fa-solid fa-envelope text-gold-champagne flex-shrink-0 text-sm mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold" data-trans="contactEmail">Layanan Dukungan Email:</h4>
-                            <p class="mt-0.5" id="global-form-email">info@hikairack.com</p>
-                        </div>
+                    <div class="relative w-full">
+                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-champagne to-gold-hover opacity-10 blur-xl"></div>
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-48 sm:h-64 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="lg:col-span-7">
-                <div class="bg-obsidian-card border border-white/5 p-5 sm:p-6 rounded-2xl shadow-2xl">
-                    <h3 class="text-base font-bold text-white mb-4" data-trans="formTitle">Formulir Kunjungan Survei & Konsultasi</h3>
-                    <form onsubmit="handleInquirySubmit(event)" class="space-y-3.5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            <div>
-                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formName">Nama Lengkap *</label>
-                                <input type="text" id="form-name" placeholder="Contoh: Budi Santoso" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
-                            </div>
-                            <div>
-                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formPhone">Nomor WhatsApp *</label>
-                                <input type="tel" id="form-phone" placeholder="Contoh: 0811223344" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formCompany">Nama Perusahaan (Opsional)</label>
-                            <input type="text" id="form-company" placeholder="Contoh: PT Sukses Sentosa" class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
-                        </div>
-                        <div>
-                            <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formMessage">Kebutuhan Detail Anda</label>
-                            <textarea id="form-message" rows="3" placeholder="Deskripsikan gudang Anda, tinggi atap, serta muatan barang..." class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne resize-none"></textarea>
-                        </div>
-                        <button type="submit" id="form-submit-btn" class="w-full py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest hover:scale-[1.01] transition shadow-luxury-glow" data-trans="submitInquiry">
-                            Kirim Pengajuan Ke WhatsApp VIP
+        <section id="products" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
+                <div class="space-y-1.5 text-center lg:text-left">
+                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="catalogBadge">KOLEKSI EKSKLUSIF</span>
+                    <h2 class="text-2xl font-extrabold text-white" data-trans="catalogTitle">Katalog Sistem Rak HIKAI</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm max-w-xl font-light" data-trans="catalogDesc">Semua tipe rak industri premium kami dilengkapi dengan pilihan multi-foto rill dan skema gambar CAD.</p>
+                </div>
+
+                <div class="w-full lg:w-auto overflow-x-auto scrollbar-none pb-1 flex justify-start lg:justify-end">
+                    <div class="flex gap-1 bg-obsidian-card p-1 rounded-xl border border-white/5 min-w-max shadow-inner-dark">
+                        <button onclick="setProductFilter('all')" id="filter-btn-all" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAll">
+                            Semua Kelas
                         </button>
-                    </form>
+                        <button onclick="setProductFilter('angle')" id="filter-btn-angle" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterAngle">
+                            Angle Shelf
+                        </button>
+                        <button onclick="setProductFilter('light')" id="filter-btn-light" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterLight">
+                            Light Duty
+                        </button>
+                        <button onclick="setProductFilter('medium')" id="filter-btn-medium" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterMedium">
+                            Medium Duty
+                        </button>
+                        <button onclick="setProductFilter('pallet')" id="filter-btn-pallet" class="filter-btn px-3 sm:px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition duration-300 whitespace-nowrap" data-trans="filterPallet">
+                            Pallet Rack
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
 
-<section id="admin" class="py-10 md:py-14 bg-obsidian-deep border-t border-white/5 hidden no-print">
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
+        </section>
+
+        <section id="education" class="py-10 md:py-14 bg-obsidian-deep border-t border-white/5 no-print">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
+                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="eduBadge">Aturan Struktur</span>
+                    <h2 class="text-2xl font-bold text-white" data-trans="eduTitle">Memahami Sistem Starter vs Add-On</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="eduDesc">
+                        Anda tidak perlu membeli dua unit rak tiang penuh yang berdiri sendiri-sendiri. Cukup gunakan 1 Unit Starter sebagai fondasi utama di ujung baris, lalu sambungkan unit Add-On bertiang tunggal ke barisannya untuk menghemat tempat dan anggaran hingga 20%!</p>
+                    <div class="p-3 bg-obsidian-card border border-white/5 rounded-xl text-[11px] text-gray-400 space-y-2 max-w-sm mx-auto lg:mx-0 text-left">
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-champagne"></i> <strong data-trans="eduStarter">Starter: 2 Tiang Samping (Mandiri)</strong></p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> <strong data-trans="eduAddOn">Add-On: 1 Tiang Samping (Menempel ke Starter)</strong></p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-obsidian-card border border-white/5 p-4 rounded-2xl w-full">
+                    <h3 class="text-white font-bold text-xs mb-3 text-center sm:text-left" data-trans="eduSchema">Skema Barisan Komposit HIKAI (1 Starter + 1 Add-On)</h3>
+                    <svg viewBox="0 0 320 160" class="w-full h-auto rounded-lg bg-black/40 border border-[#1b1b1d]">
+                        <rect width="100%" height="100%" fill="#070709" />
+                        <line x1="10" y1="135" x2="310" y2="135" stroke="#333" stroke-width="2" />
+                        <rect x="25" y="30" width="8" height="105" fill="none" stroke="#D4AF37" stroke-width="2" />
+                        <rect x="145" y="30" width="8" height="105" fill="none" stroke="#eab308" stroke-width="2" />
+                        <rect x="33" y="55" width="112" height="4" fill="#444" stroke="#D4AF37" stroke-width="0.5" />
+                        <rect x="33" y="95" width="112" height="4" fill="#444" stroke="#D4AF37" stroke-width="0.5" />
+                        <rect x="275" y="30" width="8" height="105" fill="none" stroke="#22c55e" stroke-width="2" />
+                        <rect x="153" y="55" width="122" height="4" fill="#444" stroke="#22c55e" stroke-width="0.5" />
+                        <rect x="153" y="95" width="122" height="4" fill="#444" stroke="#22c55e" stroke-width="0.5" />
+                        <text x="85" y="20" fill="#D4AF37" font-size="7" font-weight="bold" text-anchor="middle">1x STARTER UNIT</text>
+                        <text x="215" y="20" fill="#22c55e" font-size="7" font-weight="bold" text-anchor="middle">1x ADD-ON UNIT</text>
+                        <text x="150" y="150" fill="#eab308" font-size="7" font-weight="bold" text-anchor="middle" data-trans="eduSharedFrame">TIANG GABUNGAN (SHARED FRAME)</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
+            <div class="text-center max-w-3xl mx-auto mb-10 space-y-2">
+                <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest">SPESIFIKASI TEKNIS</span>
+                <h2 class="text-2xl font-extrabold text-white" data-trans="compareTitle">Bandingkan Spek Teknis</h2>
+                <p class="text-gray-400 text-xs sm:text-sm font-light" data-trans="compareDesc">Tambahkan rak ke pembanding pada kartu katalog untuk diulas berdampingan di sini.</p>
+            </div>
+
+            <div id="comparison-placeholder" class="text-center py-10 bg-[#0e0e11] rounded-2xl border border-dashed border-[#333] max-w-xl mx-auto">
+                <p class="text-gray-400 text-xs sm:text-sm" data-trans="compareEmpty">Matriks kosong. Silakan pilih rak dari katalog di atas untuk dibandingkan.</p>
+            </div>
+
+            <div id="comparison-table-wrapper" class="hidden bg-obsidian-card border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="block sm:hidden text-center text-[10px] text-gray-500 py-1 bg-black/40 border-b border-white/5 font-mono"><i class="fa-solid fa-angles-left-right animate-pulse mr-1.5"></i> Geser horizontal untuk melihat perbandingan</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr id="comp-header-row" class="bg-black border-b border-white/5">
+                                <th class="p-4 font-bold uppercase tracking-widest text-gold-champagne" data-trans="compareParam">Parameter</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comp-body" class="divide-y divide-white/5"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="py-10 md:py-14 bg-obsidian-deep border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                <div class="lg:col-span-5 space-y-4 no-print">
+                    <div>
+                        <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="simBadge">Simulator Tata Letak</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-1" data-trans="simTitle">Atur Layout & Hitung Biaya</h2>
+                        <p class="text-gray-400 text-xs sm:text-sm mt-1.5 font-light" data-trans="simDesc">
+                            Simulasi interaktif bawaan diatur untuk gudang standar Anda. Tambahkan rak dan sesuaikan lebar gang kerja.
+                        </p>
+                    </div>
+
+                    <div class="bg-obsidian-card border border-gold-champagne/20 p-4 sm:p-5 rounded-2xl space-y-3 shadow-xl card-glow">
+                        <h3 class="text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 border-b border-white/5 pb-2">
+                            <i class="fa-solid fa-table-cells text-gold-champagne"></i> <span data-trans="sizeLabel">Ukuran Lantai Gudang Anda</span>
+                        </h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="roomLength">Panjang Ruangan (M)</label>
+                                <input type="number" id="input-room-length" value="10" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="roomWidth">Lebar Ruangan (M)</label>
+                                <input type="number" id="input-room-width" value="5" min="2" onchange="updateCalculations()" class="w-full bg-black border border-[#2a2a2e] p-2.5 rounded-lg text-xs text-white outline-none focus:border-gold-champagne transition font-semibold">
+                            </div>
+                        </div>
+                        <div class="pt-1">
+                            <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="aisleLabel">Lebar Gang Kerja / Aisle (M)</label>
+                            <input type="range" id="input-aisle-width" min="0.8" max="4.0" step="0.1" value="1.5" oninput="updateCalculations()" class="w-full accent-gold-champagne py-1.5">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-0.5">
+                                <span data-trans="calcAisleManual">Sirkulasi Manual (0.8m)</span>
+                                <span class="text-gold-champagne font-bold text-xs" id="label-aisle-value">1.5m</span>
+                                <span data-trans="calcAisleFork">Alat Berat/Forklift (4m)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-obsidian-card border border-white/5 p-4 sm:p-5 rounded-2xl space-y-3">
+                        <h3 class="text-white font-bold text-xs border-b border-white/5 pb-2" data-trans="calcAddTitle">Tambahkan Unit Rak ke Denah:</h3>
+                        <div id="simulator-selection-list" class="space-y-2.5"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-4 w-full">
+                    <div class="hidden print-invoice bg-white text-black p-4 border-b-2 border-black space-y-1">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-extrabold tracking-tight">PT. HIKAI STORAGE EQUIPMENT</h2>
+                            <span class="text-[10px] font-mono">INVOICE PREVIEW</span>
+                        </div>
+                        <p class="text-[9px] text-gray-600">Certified ISO 9001:2015 & EN 15512 Structural Safety Standards | Rukan Osaka PIK 2, Tangerang</p>
+                    </div>
+
+                    <div class="bg-obsidian-card border border-gold-champagne/25 rounded-2xl p-4 sm:p-6 relative shadow-2xl card-glow">
+                        <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-b border-white/5 pb-4 gap-3 no-print">
+                            <div class="flex items-center gap-2.5">
+                                <img src="https://lh3.googleusercontent.com/d/1ozp4x99G_ub_pqz5Bt3hCgqfNt-ANUSw" alt="HIKAI Logo" class="h-6 w-auto object-contain rounded" onerror="this.onerror=null; this.outerHTML='<span class=\'text-xs font-bold tracking-widest text-gold-champagne block font-serif\'>HIKAI</span>';">
+                                <div class="border-l border-white/10 pl-2 py-0.5">
+                                    <span class="text-[8px] tracking-widest text-gray-400 uppercase block font-mono font-bold">PLANNING BOARD</span>
+                                </div>
+                                <span id="db-status-badge-public" class="p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono">CLOUD CONNECTED</span>
+                            </div>
+                            <div class="flex bg-black/80 rounded-lg p-1 border border-white/10 text-xs self-start sm:self-auto overflow-x-auto max-w-full scrollbar-none">
+                                <button onclick="setCalcTab('quote')" id="calc-tab-quote" class="px-3 py-1 rounded-lg font-bold transition duration-300" data-trans="tabQuote">Draf Nota</button>
+                                <button onclick="setCalcTab('floorplan')" id="calc-tab-floorplan" class="px-3 py-1 rounded-lg font-bold transition duration-300" data-trans="tabFloorplan">Denah 2D</button>
+                                <button onclick="getAISpaceAdvice()" id="calc-tab-ai" class="px-3 py-1 rounded-lg font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5 transition duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advice</button>
+                            </div>
+                        </div>
+                        <div id="calc-content" class="pt-4 space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-10 md:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 no-print">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest" data-trans="contactBadge">Kunjungan Survei</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white" data-trans="contactTitle">Hubungi Tim Teknik HIKAI</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed font-light" data-trans="contactDesc">
+                        Kami siap melayani kebutuhan Anda, mulai dari konsultasi gambar AutoCAD 2D/3D gratis hingga perencanaan beban tonase besar. Kunjungi kantor pemasaran kami untuk berkonsultasi langsung.
+                    </p>
+                    <div class="space-y-3 pt-3 border-t border-white/5 text-xs text-gray-400">
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-map-pin text-gold-champagne flex-shrink-0 text-sm mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold" data-trans="contactOffice">Marketing & Sales Office:</h4>
+                                <p class="mt-0.5" id="global-form-address">Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-envelope text-gold-champagne flex-shrink-0 text-sm mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold" data-trans="contactEmail">Layanan Dukungan Email:</h4>
+                                <p class="mt-0.5" id="global-form-email">info@hikairack.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-obsidian-card border border-white/5 p-5 sm:p-6 rounded-2xl shadow-2xl">
+                        <h3 class="text-base font-bold text-white mb-4" data-trans="formTitle">Formulir Kunjungan Survei & Konsultasi</h3>
+                        <form onsubmit="handleInquirySubmit(event)" class="space-y-3.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <div>
+                                    <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formName">Nama Lengkap *</label>
+                                    <input type="text" id="form-name" placeholder="Contoh: Budi Santoso" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
+                                </div>
+                                <div>
+                                    <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formPhone">Nomor WhatsApp *</label>
+                                    <input type="tel" id="form-phone" placeholder="Contoh: 0811223344" required class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formCompany">Nama Perusahaan (Opsional)</label>
+                                <input type="text" id="form-company" placeholder="Contoh: PT Sukses Sentosa" class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-gray-500 mb-1" data-trans="formMessage">Kebutuhan Detail Anda</label>
+                                <textarea id="form-message" rows="3" placeholder="Deskripsikan gudang Anda, tinggi atap, serta muatan barang..." class="w-full bg-black border border-[#2a2a2e] rounded-lg p-2.5 text-xs text-white outline-none focus:border-gold-champagne resize-none"></textarea>
+                            </div>
+                            <button type="submit" id="form-submit-btn" class="w-full py-3 bg-gradient-to-r from-gold-champagne to-[#AA7C11] text-black font-extrabold rounded-lg text-xs uppercase tracking-widest hover:scale-[1.01] transition shadow-luxury-glow" data-trans="submitInquiry">
+                                Kirim Pengajuan Ke WhatsApp VIP
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#060608] border-t border-white/5 py-10 text-gray-500 text-xs text-center no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3 text-left">
+                    <div class="border-l border-gold-champagne pl-3.5 py-1">
+                        <span class="text-xs font-bold tracking-wider text-gold-champagne block">PT. HIKAI STORAGE EQUIPMENT</span>
+                        <span class="text-[8px] tracking-widest text-gray-500 uppercase block font-mono">Premium Spatial Engineering</span>
+                    </div>
+                </div>
+            </div>
+            <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600" data-trans="footerDesc">
+                PT. Hikai Storage Equipment menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
+            </p>
+            <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-gray-600">
+                <p onclick="handleFooterClick()" class="cursor-pointer select-none hover:text-gold-champagne/80 transition-all duration-300 font-mono active:scale-98">© 2026 PT. Hikai Storage Equipment | Created By Abimat</p>
+                <p class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#D4AF37]"></i> Certified ISO 9001:2015 & EN 15512 Structural Standards</p>
+            </div>
+        </div>
+    </footer>
+
+</div> <!-- /#public-site -->
+
+<!-- ========================================== -->
+<!-- BINDING CONTAINER: PRIVATE ADMIN PORTAL -->
+<!-- ========================================== -->
+<section id="admin" class="min-h-screen bg-obsidian-deep py-10 md:py-14 border-t border-white/5 hidden no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div class="text-center max-w-xl mx-auto space-y-1">
             <span class="text-gold-champagne text-xs font-bold uppercase tracking-widest font-mono"><i class="fa-solid fa-shield-halved mr-1.5"></i> Superadmin Control Suite (Secure Sync)</span>
             <h3 class="text-xl font-bold text-white">Panel Administrasi HIKAI</h3>
-            <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau integrasi database cloud Google Sheets Anda.</p>
+            <p class="text-gray-500 text-xs font-light">Kelola penuh isi website, melacak inquiries prospek, kustomisasi nomor hotline, serta memantau database cloud Google Sheets Anda.</p>
         </div>
 
+        <!-- Admin Login Block -->
         <div id="admin-login" class="max-w-md mx-auto bg-obsidian-card border border-white/5 p-6 rounded-2xl shadow-xl space-y-3.5 text-center">
             <div class="w-12 h-12 bg-gold-champagne/10 rounded-full flex items-center justify-center mx-auto text-gold-champagne border border-gold-champagne/20 mb-1">
                 <i class="fa-solid fa-lock text-sm animate-pulse"></i>
@@ -1080,8 +1112,12 @@
             <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-[#111] hover:bg-gold-champagne hover:text-black text-gold-champagne font-bold text-xs uppercase rounded-lg transition border border-gold-champagne/40">
                 Otentikasi Sandi
             </button>
+            <button type="button" onclick="exitAdminPortal()" class="w-full py-2 bg-transparent hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-xs uppercase rounded-lg transition border border-white/10">
+                Kembali ke Website
+            </button>
         </div>
 
+        <!-- Admin Control Board -->
         <div id="admin-board" class="hidden space-y-4">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 border-b border-white/5 pb-3">
                 <div class="flex items-center gap-2.5">
@@ -1101,6 +1137,7 @@
                 </div>
             </div>
 
+            <!-- Admin Stats Content -->
             <div id="admin-panel-stats" class="admin-panel-content grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-obsidian-card p-5 rounded-2xl border border-white/5">
                     <span class="text-gray-500 text-[9px] uppercase font-bold tracking-widest block">Total Koleksi Rak</span>
@@ -1154,6 +1191,7 @@
                 </div>
             </div>
 
+            <!-- Admin Catalog Content -->
             <div id="admin-panel-catalog" class="admin-panel-content hidden space-y-3">
                 <div class="flex justify-between items-center bg-obsidian-card p-3 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-sm">Manajemen Katalog Produk</h4>
@@ -1180,6 +1218,7 @@
                 <div id="admin-product-cards" class="block md:hidden space-y-2.5"></div>
             </div>
 
+            <!-- Admin CRM Inquiries Content -->
             <div id="admin-panel-crm" class="admin-panel-content hidden space-y-3">
                 <div class="bg-obsidian-card p-3 rounded-xl border border-white/5">
                     <h4 class="text-white font-bold text-sm"><i class="fa-solid fa-id-card text-gold-champagne mr-1.5"></i> Kotak Masuk Prospek HIKAI (CRM)</h4>
@@ -1204,6 +1243,7 @@
                 <div id="admin-inquiry-cards" class="block md:hidden space-y-2.5"></div>
             </div>
 
+            <!-- Admin Settings Content -->
             <div id="admin-panel-settings" class="admin-panel-content hidden bg-obsidian-card p-5 rounded-2xl border border-white/5 space-y-5">
                 <div>
                     <h4 class="text-white font-bold text-sm"><i class="fa-solid fa-gears text-gold-champagne mr-1.5"></i> <span data-trans="adminSettingsTitle">Pengaturan Konfigurasi Web Global</span></h4>
@@ -1241,26 +1281,6 @@
         </div>
     </div>
 </section>
-
-<footer class="bg-[#060608] border-t border-white/5 py-10 text-gray-500 text-xs text-center no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3 text-left">
-                <div class="border-l border-gold-champagne pl-3.5 py-1">
-                    <span class="text-xs font-bold tracking-wider text-gold-champagne block">PT. HIKAI STORAGE EQUIPMENT</span>
-                    <span class="text-[8px] tracking-widest text-gray-500 uppercase block font-mono">Premium Spatial Engineering</span>
-                </div>
-            </div>
-        </div>
-        <p class="max-w-xl mx-auto leading-relaxed text-[11px] text-gray-600" data-trans="footerDesc">
-            PT. Hikai Storage Equipment ("HIKAI") menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.
-        </p>
-        <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-gray-600">
-            <p onclick="handleFooterClick()" class="cursor-pointer select-none hover:text-gold-champagne/80 transition-all duration-300 font-mono active:scale-98">© 2026 PT. Hikai Storage Equipment | Created By Abimat</p>
-            <p class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#D4AF37]"></i> Certified ISO 9001:2015 & EN 15512 Structural Standards</p>
-        </div>
-    </div>
-</footer>
 
 <!-- Toast Notifications -->
 <div id="toast-notification" class="hidden fixed bottom-6 right-6 z-50 bg-[#0c0c0f]/95 backdrop-blur-md border border-gold-champagne/40 p-4 rounded-xl shadow-[0_10px_40px_rgba(212,175,55,0.15)] flex flex-col gap-2 max-w-sm transform translate-y-10 opacity-0 transition-all duration-300">
@@ -1591,10 +1611,11 @@
         productImageIndex[p.id] = 0;
     });
 
-    // Keamanan Ekstrem: Otentikasi 6 Kali Klik Pada Teks Footer Tertentu
+    // Secret Sequential Typing Keylogger Hook
     let footerClickCount = 0;
     let footerClickTimeout;
 
+    // Trigger rahasia 6 kali ketuk pada footer tertentu untuk masuk administrasi
     function handleFooterClick() {
         footerClickCount++;
         clearTimeout(footerClickTimeout);
@@ -1604,7 +1625,7 @@
         } else {
             footerClickTimeout = setTimeout(() => {
                 footerClickCount = 0;
-            }, 2000); // Reset penghitung jika tidak aktif selama 2 detik
+            }, 2000);
         }
     }
 
@@ -1892,16 +1913,36 @@
 </script>
 
 <script>
+    // Mengaktifkan panel admin rahasia (Sembunyikan public-site sepenuhnya demi keamanan visual)
     function openSecretAdminPortal() {
+        document.getElementById('public-site').classList.add('hidden');
         const panel = document.getElementById('admin');
         if (!panel) return;
         panel.classList.remove('hidden');
-        panel.scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        
+        // Memeriksa status login jika sandi sudah tersimpan di session
+        const activePass = sessionStorage.getItem('hikai_admin_session_pass') || '';
+        if (activePass === '6613') {
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('admin-board').classList.remove('hidden');
+            renderAdminProductTable();
+            fetchInquiriesFromSpreadsheet();
+        } else {
+            document.getElementById('admin-login').classList.remove('hidden');
+            document.getElementById('admin-board').classList.add('hidden');
+        }
         showToast("Portal Admin Terbuka (Akses Rahasia 6-Clicks VVIP)");
-        fetchInquiriesFromSpreadsheet();
     }
 
-    // Secret Sequential Typing Keylogger Hook
+    // Tombol pembatal login opsional di layar autentikasi admin
+    function exitAdminPortal() {
+        document.getElementById('admin').classList.add('hidden');
+        document.getElementById('public-site').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // Sequential Typing Keylogger Hook
     let typedKeys = "";
     window.addEventListener("keydown", (e) => {
         typedKeys += e.key.toLowerCase();
@@ -2629,6 +2670,18 @@
             if (res && res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
                 products = res.data.map(item => {
                     const isCustomProduct = item.isCustom === 'true' || item.isCustom === true || item.isEdited === 'true' || item.isEdited === true || false;
+                    
+                    // FALLBACK SENSITIF & CERDAS: Mendukung pemetaan dinamis untuk kolom custom: price, Price, harga, dll.
+                    let parsedPrice = Number(item.basePrice || item.baseprice || item.BasePrice || item.price || item.Price || item.harga || item.Harga || 0);
+                    
+                    // JIKA KOLOM TIDAK ADA (0 / NaN), AMBIL HARGA DEFAULT BERDASARKAN ID PRODUK
+                    if (!parsedPrice || isNaN(parsedPrice)) {
+                        const defaultItem = DEFAULT_PRODUCT_DATA.find(d => d.id === (item.id || item.ID));
+                        if (defaultItem) {
+                            parsedPrice = defaultItem.basePrice;
+                        }
+                    }
+                    
                     return {
                         id: item.id || item.ID || '',
                         name: item.name || item.Name || '',
@@ -2645,7 +2698,7 @@
                         finishing: item.finishing || item.Finishing || 'Powder Coating (Anti-Scratch & Anti-Rust)',
                         construction: item.construction || item.Construction || 'Standard Industrial Joint',
                         bestFor: item.bestFor || item.bestfor || item.BestFor || 'Aplikasi pergudangan serbaguna.',
-                        basePrice: Number(item.basePrice || item.baseprice || item.BasePrice || 0),
+                        basePrice: parsedPrice,
                         blueprintUrl: item.blueprintUrl || item.blueprinturl || item.BlueprintUrl || '',
                         isCustom: isCustomProduct,
                         isEdited: isCustomProduct
@@ -2674,18 +2727,29 @@
 
     function updateDatabaseStatus(isConnected) {
         const badge = document.getElementById('db-status-badge');
+        const badgePub = document.getElementById('db-status-badge-public');
         const dbStatusText = document.getElementById('stat-db-status');
         
-        if (badge) {
-            if (isConnected) {
+        if (isConnected) {
+            if (badge) {
                 badge.className = "p-1.5 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold rounded font-mono";
                 badge.textContent = "DB CONNECTED";
-                if (dbStatusText) dbStatusText.textContent = "SINKRON";
-            } else {
+            }
+            if (badgePub) {
+                badgePub.className = "p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono";
+                badgePub.textContent = "CLOUD CONNECTED";
+            }
+            if (dbStatusText) dbStatusText.textContent = "SINKRON";
+        } else {
+            if (badge) {
                 badge.className = "p-1.5 bg-yellow-950/20 border border-yellow-500/30 text-yellow-400 text-[10px] font-bold rounded font-mono animate-pulse";
                 badge.textContent = "LOCAL OFFLINE MODE";
-                if (dbStatusText) dbStatusText.textContent = "LOCAL CACHE";
             }
+            if (badgePub) {
+                badgePub.className = "p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono";
+                badgePub.textContent = "OFFLINE LOCAL CACHE";
+            }
+            if (dbStatusText) dbStatusText.textContent = "LOCAL CACHE";
         }
     }
 
@@ -2804,16 +2868,6 @@
         }
     }
 
-    function toggleAdminPanel() {
-        const panel = document.getElementById('admin');
-        if (!panel) return;
-        panel.classList.toggle('hidden');
-        if (!panel.classList.contains('hidden')) {
-            panel.scrollIntoView({ behavior: 'smooth' });
-            fetchInquiriesFromSpreadsheet();
-        }
-    }
-
     async function handleAdminLogin() {
         const pass = document.getElementById('admin-password-input').value;
         if (pass === '6613') {
@@ -2828,10 +2882,11 @@
         }
     }
 
+    // Keluar dari panel admin (Sembunyikan panel admin seketika dan kembalikan public-site)
     function logoutAdmin() {
         sessionStorage.removeItem('hikai_admin_session_pass');
-        document.getElementById('admin-login').classList.remove('hidden');
-        document.getElementById('admin-board').classList.add('hidden');
+        exitAdminPortal();
+        showToast("Sesi Admin Telah Berakhir.");
     }
 
     function renderAdminProductTable() {
