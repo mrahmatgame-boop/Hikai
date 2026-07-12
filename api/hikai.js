@@ -15,19 +15,22 @@ export default async function handler(req, res) {
   if (!targetWebhookUrl) {
     return res.status(500).json({
       status: "error",
-      message: "Konfigurasi tidak ditemukan pada Environment Variables Anda."
+      message: "Konfigurasi Vercel Belum Lengkap: GOOGLE_SHEETS_WEBHOOK_URL tidak ditemukan pada Environment Variables Anda."
     });
   }
 
   try {
+    // Menggunakan class URL() modern untuk menghindari Deprecation Warning url.parse()
     const url = new URL(targetWebhookUrl);
     
+    // Secara otomatis meneruskan semua parameter (seperti action, password)
     for (const key in req.query) {
         url.searchParams.append(key, req.query[key]);
     }
     
     const options = {
         method: req.method,
+        // text/plain wajib digunakan agar Google tidak menolak dengan CORS error
         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
     };
 
@@ -42,18 +45,22 @@ export default async function handler(req, res) {
     }
 
     const response = await fetch(url.toString(), options);
+    
+    // BACA SEBAGAI TEXT DULU: Mencegah crash jika Google membalas dengan halaman HTML (bukan JSON)
     const responseText = await response.text();
 
     try {
+        // Coba jadikan JSON
         const data = JSON.parse(responseText);
         return res.status(200).json(data);
     } catch (parseError) {
+        // JIKA MASUK KESINI: Google membalas dengan HTML/Text (Biasanya halaman login Google)
         console.error("Bukan JSON, Google merespon dengan:", responseText.substring(0, 150));
         
         if (responseText.includes('<html') || responseText.includes('google')) {
              return res.status(500).json({
                 status: "error",
-                message: "Akses Ditolak oleh Google",
+                message: "Akses Ditolak oleh Google. Pastikan 'Who has access' (Siapa yang memiliki akses) di Apps Script diatur ke 'Anyone' (Siapa saja).",
                 detail: "Google meminta login ulang / merespon dengan HTML."
             });
         }
