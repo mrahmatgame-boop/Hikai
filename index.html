@@ -157,6 +157,8 @@
             </div>
             <div class="flex gap-2 font-bold text-[10px] tracking-wider">
                 <button onclick="setLanguage('id')" class="lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono" data-lang="id">ID</button>
+                <button onclick="setLanguage('en')" class="lang-btn px-1.5 py-0.5 text-gray-400 hover:text-white transition font-mono" data-lang="en">EN</button>
+                <button onclick="setLanguage('zh')" class="lang-btn px-1.5 py-0.5 text-gray-400 hover:text-white transition font-mono" data-lang="zh">中文</button>
             </div>
         </div>
     </div>
@@ -508,9 +510,6 @@
 
 </div>
 
-<!-- ========================================== -->
-<!-- BINDING CONTAINER: PRIVATE ADMIN PORTAL -->
-<!-- ========================================== -->
 <section id="admin" class="min-h-screen bg-obsidian-deep py-10 md:py-14 border-t border-white/5 hidden no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div class="text-center max-w-xl mx-auto space-y-1">
@@ -865,6 +864,131 @@
        MODUL KONSOLIDASI JS TUNGGAL - HIKAI STORAGE EQUIPMENT
        ======================================================== */
 
+    // 1. Declare DEFAULT_PRODUCT_DATA at the very top of the script block
+    const DEFAULT_PRODUCT_DATA = [
+        {
+            id: "hikai-mdr-set",
+            name: "Medium Duty Rack (Starter)",
+            type: "Medium Duty",
+            code: "MDR-2000-ST",
+            layers: 4,
+            h: 2000,
+            d: 600,
+            l: 2000,
+            capacity: "350 - 500 Kg / Level",
+            svgType: "medium",
+            description: "Sistem ambalan penyimpanan beban menengah dengan penyesuaian tinggi ambalan yang fleksibel. Menggunakan plat baja cold-rolled dengan interlocking presisi tinggi.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+            construction: "1 Set Starter (2 Upright Frames / Berdiri Mandiri)",
+            bestFor: "Penyimpanan sparepart otomotif kelas berat, arsip korporat tinggi, & logistik box skala menengah.",
+            basePrice: 2950000,
+            blueprintUrl: "",
+            status: "Ready Stock"
+        },
+        {
+            id: "hikai-mdr-addon",
+            name: "Medium Duty Rack (Add-On)",
+            type: "Medium Duty",
+            code: "MDR-2000-AO",
+            layers: 4,
+            h: 2000,
+            d: 600,
+            l: 2000,
+            capacity: "350 - 500 Kg / Level",
+            svgType: "medium-addon",
+            description: "Unit ekspansi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+            construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
+            bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box.",
+            basePrice: 2350000,
+            blueprintUrl: "",
+            status: "Ready Stock"
+        },
+        {
+            id: "hikai-ldr-set",
+            name: "Light Duty Rack (1 Set)",
+            type: "Light Duty",
+            code: "LDR-2000-SET",
+            layers: 4,
+            h: 2000,
+            d: 600,
+            l: 2000,
+            capacity: "150 - 200 Kg / Level",
+            svgType: "light",
+            description: "Solusi penyimpanan serbaguna yang ramping namun memiliki kekuatan luar biasa. Menggunakan pemasangan boltless (tanpa baut) untuk penataan layout super cepat.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
+            construction: "Independent Starter (4 Joint Pillars / Kokoh Fleksibel)",
+            bestFor: "Penyimpanan retail butik mewah, backroom perkantoran VVIP, arsip penting, obat-obatan, dan barang berukuran sedang.",
+            basePrice: 1950000,
+            blueprintUrl: "",
+            status: "Inden: 10-30 Hari"
+        },
+        {
+            id: "hikai-asr-set",
+            name: "Angle Shelf Rack (1 Set)",
+            type: "Angle Shelf",
+            code: "ASR-1000-SET",
+            layers: 4,
+            h: 2000,
+            d: 400,
+            l: 1000,
+            capacity: "100 - 150 Kg / Level",
+            svgType: "angle",
+            description: "Sistem rak besi siku lubang legendaris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Standard Industrial Powder Coating",
+            construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
+            bestFor: "Display toko retail kelontong, gudang sekunder rumah tangga, arsip ringan perkantoran.",
+            basePrice: 950000,
+            blueprintUrl: "",
+            status: "Ready Stock"
+        },
+        {
+            id: "hikai-pr-2700",
+            name: "Heavy Duty Pallet Rack (L2700)",
+            type: "Pallet Rack",
+            code: "PR-2700-HD",
+            layers: 3,
+            h: 3000,
+            d: 1000,
+            l: 2700,
+            capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+            svgType: "pallet-large",
+            description: "Rak palet industri kelas berat bersertifikat standardisasi beban EN 15512. Dirancang khusus untuk penanganan kargo menggunakan forklift, memuat hingga 3 palet standar per baris tingkat.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+            construction: "Structural Anchor Uprights with Cross Bracing Beam",
+            bestFor: "Penyimpanan palet kargo berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik.",
+            basePrice: 4500000,
+            blueprintUrl: "",
+            status: "Ready Stock"
+        },
+        {
+            id: "hikai-pr-2500",
+            name: "Heavy Duty Pallet Rack (L2500)",
+            type: "Pallet Rack",
+            code: "PR-2500-HD",
+            layers: 3,
+            h: 3000,
+            d: 1000,
+            l: 2500,
+            capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+            svgType: "pallet-medium",
+            description: "Varian kompak dari sistem heavy-duty HIKAI dengan bentang bersih 2.5 meter. Sempurna untuk menyelaraskan baris penyimpanan palet ganda dengan presisi tinggi pada area terbatas.",
+            images: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+            finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+            construction: "Structural Anchor Uprights with Cross Bracing Beam",
+            bestFor: "Pergudangan berkapasitas tinggi dengan optimasi lebar kolom yang presisi untuk efisiensi ruang maksimum.",
+            basePrice: 3950000,
+            blueprintUrl: "",
+            status: "Ready Stock"
+        }
+    ];
+
+    // 2. Define multilingual translation dictionary
     const translations = {
         id: {
             navHome: "Beranda",
@@ -910,7 +1034,7 @@
             compareDims: "Dimensi Presisi",
             compareConst: "Jenis Konstruksi",
             compareFinishing: "Finishing Lapisan",
-            simBadge: "SIMULATOR TATA LETAK",
+            simBadge: "Simulator Tata Letak",
             simTitle: "Atur Layout & Hitung Biaya",
             simDesc: "Simulasi interaktif bawaan diatur untuk gudang standar Anda. Tambahkan rak dan sesuaikan lebar gang kerja.",
             sizeLabel: "Ukuran Lantai Gudang Anda",
@@ -952,7 +1076,7 @@
             cartEmpty: "Draf belanja masih kosong.",
             cartBtnCheckout: "Ajukan Penawaran WhatsApp",
             cartBtnReset: "Reset",
-            adminPortal: "HIKAI Internal Portal",
+            adminPortal: "HIKAI Internal Panel",
             footerDesc: "PT. Hikai Storage Equipment menyuplai sistem tata kelola pergudangan industri berpresisi tinggi. Kami menjamin seluruh standardisasi uji beban EN 15512 serta kualitas bahan baku Cold-Rolled Steel terbaik untuk keamanan gudang Anda.",
             lblConfig: "Konfigurasi:",
             lblMaxCap: "Kapasitas Maks:",
@@ -963,15 +1087,212 @@
             adminSettingsTitle: "Global Web Configuration Settings",
             adminHotlineLabel: "WhatsApp VIP Hotline (Format: 628xxx)",
             adminEmailLabel: "Support Email",
-            adminAddressLabel: "Alamat Kantor Pusat",
-            adminGeminiLabel: "Google Gemini API Key (Opsional untuk Fitur AI Advice)",
-            adminGeminiDesc: "Konfigurasikan API Key untuk mengaktifkan AI Advice secara dinamis. Jika kosong, sistem akan menjalankan draf analisis simulasi bawaan.",
-            adminSheetsUrlLabel: "Sistem Web App Connection URL (Direct Sync)"
+            adminAddressLabel: "Head Office Address",
+            adminSheetsUrlLabel: "Web App Connection URL (Direct Sync)"
+        },
+        en: {
+            navHome: "Home",
+            navAbout: "About Us",
+            navCatalog: "Rack Catalog",
+            navEdu: "System Education",
+            navCompare: "Compare",
+            navCalc: "Warehouse Calc",
+            navContact: "VVIP Contact",
+            heroBadge: "VVIP CLASS WAREHOUSE SOLUTIONS",
+            heroTitle: "Industrial Rack System",
+            heroSubtitle: "PT. Hikai Storage Equipment",
+            heroDesc: "Presenting internationally certified Cold-Rolled steel rack systems with extreme precision. Luxuriously designed, robust, and interactively calculated for your optimal space efficiency.",
+            btnCatalog: "Select Rack Spec",
+            btnCalc: "Design Space",
+            previewTitle: "Visual Preview",
+            aboutBadge: "WHO WE ARE",
+            aboutTitle: "Dedication to High Precision &<br/>Premium Space Engineering",
+            aboutDesc: "PT. Hikai Storage Equipment stands as a pioneer in the manufacturing and design of heavy-duty and medium-duty industrial steel storage rack systems in Indonesia. We combine premium Cold-Rolled steel strength with precise mathematical calculations to multiply your warehouse storage capacity without compromising work safety.",
+            aboutStat1: "EN 15512 Standards",
+            aboutStat2: "Structural Cost Efficiency",
+            catalogBadge: "EXCLUSIVE COLLECTION",
+            catalogTitle: "HIKAI Rack System Catalog",
+            catalogDesc: "All our premium industrial rack types feature real multi-photo options, CAD engineering layouts, and live cloud database integration.",
+            filterAll: "All Classes",
+            filterAngle: "Angle Shelf",
+            filterLight: "Light Duty",
+            filterMedium: "Medium Duty",
+            filterPallet: "Pallet Rack",
+            eduBadge: "STRUCTURAL RULES",
+            eduTitle: "Understanding Starter vs Add-On Systems",
+            eduDesc: "You don't need to buy two separate stand-alone upright frame units. Simply use 1 Starter Unit as the main foundation at the row's end, then connect single-frame Add-On units to the row to save space and budget up to 20%!",
+            eduStarter: "Starter: 2 Side Frames (Independent)",
+            eduAddOn: "Add-On: 1 Side Frame (Attaches to Starter)",
+            eduSchema: "HIKAI Composite Row Layout (1 Starter + 1 Add-On)",
+            eduSharedFrame: "SHARED UPRIGHT FRAME",
+            compareTitle: "Compare Technical Specs",
+            compareDesc: "Add racks to the comparison matrix from the catalog cards to review them side-by-side here.",
+            compareEmpty: "Matrix is empty. Please select racks from the catalog above to compare.",
+            compareParam: "Parameter",
+            compareLayers: "Layer Configuration",
+            compareCapacity: "Max Capacity",
+            compareDims: "Precision Dimensions",
+            compareConst: "Construction Type",
+            compareFinishing: "Layer Finishing",
+            simBadge: "LAYOUT SIMULATOR",
+            simTitle: "Plan Layout & Calculate Cost",
+            simDesc: "Built-in interactive simulation is configured for your standard warehouse. Add racks and adjust the working aisle width.",
+            sizeLabel: "Your Warehouse Floor Dimensions",
+            roomLength: "Room Length (M)",
+            roomWidth: "Room Width (M)",
+            aisleLabel: "Working Aisle Width (M)",
+            calcAisleManual: "Manual Handling (0.8m)",
+            calcAisleFork: "Heavy Forklift (4m)",
+            calcAddTitle: "Add Rack Units to Floorplan:",
+            tabQuote: "Draft Quote",
+            tabFloorplan: "2D Layout",
+            btnTambah: "Add",
+            calcEmpty: "Calculator is empty. Please add some rack units.",
+            calcTotalEst: "Total Est. Initial Investment:",
+            calcBtnInquiry: "Submit via VIP WhatsApp",
+            calcWarning: "Some racks exceed your warehouse wall boundaries!",
+            calcSafe: "Layout is safe and space-efficient.",
+            contactBadge: "Survey Visit",
+            contactTitle: "Contact HIKAI Engineering Team",
+            contactDesc: "We are ready to serve your needs, from free 2D/3D AutoCAD layouts to heavy tonnage load planning. Visit our marketing office for custom consultations.",
+            contactOffice: "Marketing & Sales Office:",
+            contactEmail: "Customer Support Email:",
+            formTitle: "Survey Visit & Consultation Form",
+            formName: "Full Name *",
+            formPhone: "WhatsApp Number *",
+            formCompany: "Company Name (Optional)",
+            formMessage: "Your Detailed Requirements",
+            formMessagePlaceholder: "Describe your warehouse ceiling height, payload weight...",
+            formNamePlaceholder: "e.g., John Doe",
+            formPhonePlaceholder: "e.g., 0811223344",
+            submitInquiry: "Submit Request to VIP WhatsApp",
+            modalCapacity: "Payload Capacity:",
+            modalFinishing: "Finishing Coating Protection:",
+            modalBestFor: "Best Recommendation:",
+            modalBtnAdd: "Add to Estimation Draft",
+            modalBtnClose: "Close",
+            cartTitle: "Your VVIP Quote Draft",
+            cartSubtitle: "REVIEW ESTIMATED PRICE & SPECIFICATIONS LIST",
+            cartEmpty: "Your shopping draft is empty.",
+            cartBtnCheckout: "Apply WhatsApp Proposal",
+            cartBtnReset: "Reset",
+            adminPortal: "HIKAI Panel",
+            footerDesc: "PT. Hikai Storage Equipment supplies high-precision industrial warehouse management systems. We guarantee load standards compliance under EN 15512 and premium Cold-Rolled raw materials.",
+            lblConfig: "Configuration:",
+            lblMaxCap: "Max Capacity:",
+            btnDetail: "Product Detail",
+            btnAddToCart: "Add to Draft",
+            lblLayerUnit: "Layers",
+            saveGlobalSettings: "Save Global Settings",
+            adminSettingsTitle: "Global Web Configuration Settings",
+            adminHotlineLabel: "WhatsApp VIP Hotline (Format: 628xxx)",
+            adminEmailLabel: "Support Email",
+            adminAddressLabel: "Head Office Address",
+            adminSheetsUrlLabel: "Web App Connection URL (Direct Sync)"
+        },
+        zh: {
+            navHome: "首页",
+            navAbout: "关于我们",
+            navCatalog: "货架目录",
+            navEdu: "系统科普",
+            navCompare: "参数对比",
+            navCalc: "排布计算器",
+            navContact: "尊享联系",
+            heroBadge: "至臻级仓储解决方案",
+            heroTitle: "工业货架系统",
+            heroSubtitle: "海凯仓储设备",
+            heroDesc: "为您呈现通过国际认证、极度精准的冷轧钢货架系统。设计奢华、坚固耐用，并通过交互式精准计算，助您实现最佳空间利用率。",
+            btnCatalog: "选择货架规格",
+            btnCalc: "规划空间",
+            previewTitle: "视觉预览",
+            aboutBadge: "关于我们",
+            aboutTitle: "匠心铸就高精度与<br/>高端空间工程规划",
+            aboutDesc: "PT. Hikai Storage Equipment（海凯仓储设备有限公司）作为印尼中型及重型工业钢制储物货架制造与设计领域的领航先驱，我们将优质冷轧钢的硬核强度与精密数学计算完美结合，在保障生产安全的前提下，令您的仓库存储容量成倍增长。",
+            aboutStat1: "EN 15512 标准认证",
+            aboutStat2: "结构成本高效节约",
+            catalogBadge: "专属臻选系列",
+            catalogTitle: "海凯货架系统目录",
+            catalogDesc: "我们所有的高端工业货架均配有实物多图展示、CAD 工程图纸以及云端数据库连接。",
+            filterAll: "全部类别",
+            filterAngle: "角钢货架",
+            filterLight: "轻型货架",
+            filterMedium: "中型货架",
+            filterPallet: "托盘货架",
+            eduBadge: "结构规范",
+            eduTitle: "了解主架 (Starter) 与副架 (Add-On) 系统",
+            eduDesc: "您无需购买两组完全独立安装的双柱片货架。只需在排尾使用一整套主架（Starter）作为基础，然后将单柱片的副架（Add-On）依次挂接，即可节省多达 20% 的空间与预算！",
+            eduStarter: "主架 (Starter)：双侧柱片（独立站立）",
+            eduAddOn: "副架 (Add-On)：单侧柱片（连接至主架）",
+            eduSchema: "海凯组合货架排布图（1 主架 + 1 副架）",
+            eduSharedFrame: "公用柱片 (SHARED FRAME)",
+            compareTitle: "技术规格对比",
+            compareDesc: "在上面的货架目录卡片中点击对比按钮，即可在此处并排查看技术参数。",
+            compareEmpty: "对比列表为空。请从上方的目录中选择货架进行对比。",
+            compareParam: "对比参数",
+            compareLayers: "层数配置",
+            compareCapacity: "承载能力上限",
+            compareDims: "精准外形尺寸",
+            compareConst: "结构类型",
+            compareFinishing: "表面处理工艺",
+            simBadge: "排布模拟器",
+            simTitle: "货架规划与成本测算",
+            simDesc: "为您预设的标准库房交互式排布系统。添加货架并自由调节通道宽度。",
+            sizeLabel: "您的库房地面尺寸",
+            roomLength: "库房长度 (米)",
+            roomWidth: "库房宽度 (米)",
+            aisleLabel: "作业通道宽度 (米)",
+            calcAisleManual: "手动搬运 (0.8米)",
+            calcAisleFork: "重型叉车 (4米)",
+            calcAddTitle: "添加货架至平面图:",
+            tabQuote: "估价草案",
+            tabFloorplan: "2D平面图",
+            btnTambah: "添加",
+            calcEmpty: "计算器为空。请添加货架组件。",
+            calcTotalEst: "总预计初期投资:",
+            calcBtnInquiry: "提交至尊享微信/WhatsApp",
+            calcWarning: "部分货架已超出库房墙体边界！",
+            calcSafe: "货架规划安全合理，空间利用率极高。",
+            contactBadge: "现场测绘",
+            contactTitle: "联系海凯技术工程团队",
+            contactDesc: "我们随时恭候您的垂询，为您提供免费的 CAD 2D/3D 平面排布方案、重载承重规划等。欢迎莅lim我们的营销中心进行定制化咨询。",
+            contactOffice: "营销与销售中心:",
+            contactEmail: "客户支持邮箱:",
+            formTitle: "现场测绘与定制咨询申请表",
+            formName: "姓名 *",
+            formPhone: "联系电话/WhatsApp *",
+            formCompany: "公司名称 (选填)",
+            formMessage: "您的具体需求描述",
+            formMessagePlaceholder: "例如描述您的仓库顶棚高度、预计承重物品...",
+            formNamePlaceholder: "例：张三",
+            formPhonePlaceholder: "例：0811223344",
+            submitInquiry: "提交申请至尊享客服",
+            modalCapacity: "每层承重能力:",
+            modalFinishing: "防护涂层处理:",
+            modalBestFor: "最佳推荐场景:",
+            modalBtnAdd: "添加到估价清单",
+            modalBtnClose: "关闭",
+            cartTitle: "您的尊享报价方案",
+            cartSubtitle: "查看预估价格与货架规格配置清单",
+            cartEmpty: "您的预算清单中暂无货架。",
+            cartBtnCheckout: "申请 WhatsApp/微信 方案书",
+            cartBtnReset: "重置",
+            adminPortal: "海凯系统管理后台",
+            footerDesc: "PT. Hikai Storage Equipment（海凯仓储设备有限公司）为您提供高精度的工业仓库管理系统方案。我们承诺严格执行 EN 15512 承重测试标准，并全部采用高档冷轧钢原材料以确保您的仓库安全。",
+            lblConfig: "结构配置:",
+            lblMaxCap: "承载能力上限:",
+            btnDetail: "产品详情",
+            btnAddToCart: "加入清单",
+            lblLayerUnit: "层",
+            saveGlobalSettings: "保存全局设置",
+            adminSettingsTitle: "全局网站配置设置",
+            adminHotlineLabel: "WhatsApp VIP 专线 (格式: 628xxx)",
+            adminEmailLabel: "支持服务邮箱",
+            adminAddressLabel: "总部地址",
+            adminSheetsUrlLabel: "云数据库接口 URL (同步通道)"
         }
     };
 
-    let currentLang = 'id';
-
+    // 3. Define product translation dictionary
     const productTranslations = {
         "hikai-mdr-set": {
             id: {
@@ -981,6 +1302,22 @@
                 finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
                 construction: "1 Set Starter (2 Upright Frames / Berdiri Mandiri)",
                 bestFor: "Penyimpanan sparepart otomotif kelas berat, arsip korporat tinggi, & logistik box skala menengah."
+            },
+            en: {
+                name: "Medium Duty Rack (Starter)",
+                description: "Medium duty storage shelf system with highly flexible shelf height adjustment. Made from cold-rolled steel plate with high-precision interlocking joints.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Set Starter (2 Upright Frames / Stand-alone)",
+                bestFor: "Heavy automotive spareparts, high density corporate archives, and medium-scale logistics boxes."
+            },
+            zh: {
+                name: "中型货架 (主架-Starter)",
+                description: "中型货架储存系统，层高可自由灵活调节。采用高品质冷轧钢板制造，配备高精度安全咬合插接件。",
+                capacity: "每层 350 - 500 公斤",
+                finishing: "奢华户外粉末喷涂（防刮、防锈、耐腐蚀）",
+                construction: "1套主架（包含2片双侧立柱片，可独立平稳站立）",
+                bestFor: "存放重型汽车配件、高密度企业级档案卷宗以及中型物流周转箱。"
             }
         },
         "hikai-mdr-addon": {
@@ -991,6 +1328,22 @@
                 finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
                 construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
                 bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box."
+            },
+            en: {
+                name: "Medium Duty Rack (Add-On)",
+                description: "Cost-effective Add-On expansion unit. Uses only one side upright frame, connecting directly to the previous Starter unit. Saves up to 20% on structural budget.",
+                capacity: "350 - 500 Kg / Level",
+                finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
+                construction: "1 Set Add-On (1 Upright Frame / Attaches to Starter)",
+                bestFor: "Row extensions for long storage systems of parts and storage boxes."
+            },
+            zh: {
+                name: "中型货架 (副架-Add-On)",
+                description: "极具性价比的副架扩展单元。仅含一片侧边立柱，直接与相邻的前置主架相连接。可为您节省多达 20% 的钢结构采购预算。",
+                capacity: "每层 350 - 500 公斤",
+                finishing: "奢华户外粉末喷涂（防刮、防锈、耐腐蚀）",
+                construction: "1套副架（包含1片侧立柱，需依托并挂接在主架侧边）",
+                bestFor: "用于中型零件和仓储周转箱的连续多联货架长排扩展延伸。"
             }
         },
         "hikai-ldr-set": {
@@ -1001,6 +1354,22 @@
                 finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
                 construction: "Independent Starter (4 Joint Pillars / Kokoh Fleksibel)",
                 bestFor: "Penyimpanan retail butik mewah, backroom perkantoran VVIP, arsip penting, obat-obatan, dan barang berukuran sedang."
+            },
+            en: {
+                name: "Light Duty Rack (1 Set)",
+                description: "A sleek yet incredibly strong versatile storage solution. Utilizing quick-assembly boltless joint locks for ultra-fast spatial reorganization.",
+                capacity: "150 - 200 Kg / Level",
+                finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
+                construction: "Independent Starter (4 Joint Pillars / Sturdy & Flexible)",
+                bestFor: "Luxury retail boutiques, VVIP corporate office backrooms, high-security document archives, medicine, and medium-sized items."
+            },
+            zh: {
+                name: "轻型货架 (整套套件)",
+                description: "外观雅致且承重惊人的多功能轻型货架。采用全无钉免螺栓结构（Boltless）快速拼接咬合设计，实现超高速无忧组装拆卸。",
+                capacity: "每层 150 - 200 公斤",
+                finishing: "洁净高光亮粉末粉体喷涂（防指纹、防脏污、极易清理）",
+                construction: "独立主架单元（4根高强度立柱，架构极其稳固且灵活）",
+                bestFor: "高档奢侈零售精品店、VVIP 企业高管后勤室、重要精密文件档案库、药品和中型轻便箱件储藏。"
             }
         },
         "hikai-asr-set": {
@@ -1011,6 +1380,22 @@
                 finishing: "Standard Industrial Powder Coating",
                 construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
                 bestFor: "Display toko retail kelontong, gudang sekunder rumah tangga, arsip ringan perkantoran."
+            },
+            en: {
+                name: "Angle Shelf Rack (1 Set)",
+                description: "The legendary slotted angle iron shelf, enhanced with HIKAI structural strength standards. Extremely flexible, highly economical, and perfect for light storage.",
+                capacity: "100 - 150 Kg / Level",
+                finishing: "Standard Industrial Powder Coating",
+                construction: "Slotted Angle Joint (Strong Slotted Structural Angle)",
+                bestFor: "Retail stores displays, home secondary garage storage, light office document folders."
+            },
+            zh: {
+                name: "万能角钢货架 (整套套件)",
+                description: "享誉全球的经典万能孔角钢货架，现依据海凯高强承载结构规范重塑。灵活度极佳、造价经济、极耐负荷，适用于各种轻型仓储场景。",
+                capacity: "每层 100 - 150 公斤",
+                finishing: "标准工业级抗静电粉体喷涂",
+                construction: "多孔槽型角钢连接（坚固耐用的工业级螺栓拉力结构）",
+                bestFor: "零售杂货便利店商品陈列、高档别墅地下室/车库备用储物、企事业单位轻量办公室档案格。"
             }
         },
         "hikai-pr-2700": {
@@ -1021,6 +1406,22 @@
                 finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
                 construction: "Structural Anchor Uprights with Cross Bracing Beam",
                 bestFor: "Penyimpanan palet kargo berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik."
+            },
+            en: {
+                name: "Heavy Duty Pallet Rack (L2700)",
+                description: "Industrial heavy-duty pallet rack system certified under EN 15512 load testing standards. Tailored for heavy-duty forklift operation, storing up to 3 standard pallets side-by-side per level.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "Heavy bulk pallet storage, large-scale e-commerce logistic hubs, and factory warehouses."
+            },
+            zh: {
+                name: "重型托盘货架 (长度2700mm)",
+                description: "通过欧洲 EN 15512 严苛承载安全性测试认证的重型工业托盘式货架。专为叉车作业设计，每层横梁跨度完美容纳3个标准尺寸栈板托盘。",
+                capacity: "每层 1000 - 2000 公斤（每跨立柱最大总负载 6000 公斤）",
+                finishing: "重工业级环氧树脂-聚酯高强度静电熔融防腐喷粉",
+                construction: "地锚型加强柱片与十字交叉防晃背拉式承重横梁系统",
+                bestFor: "重载大体量托盘货物存储、大型跨国电商供应链转运中心及制造厂重件原材料库房。"
             }
         },
         "hikai-pr-2500": {
@@ -1031,134 +1432,27 @@
                 finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
                 construction: "Structural Anchor Uprights with Cross Bracing Beam",
                 bestFor: "Pergudangan berkapasitas tinggi dengan optimasi lebar kolom yang presisi untuk efisiensi ruang maksimum."
+            },
+            en: {
+                name: "Heavy Duty Pallet Rack (L2500)",
+                description: "A compact variation of HIKAI heavy-duty system with 2.5m clear span. Perfect for aligning double standard pallets with extreme precision in tight physical environments.",
+                capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
+                finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
+                construction: "Structural Anchor Uprights with Cross Bracing Beam",
+                bestFor: "High-density warehouses with precise columns width optimization for maximum square-meter utilization."
+            },
+            zh: {
+                name: "重型托盘货架 (长度2500mm)",
+                description: "海凯重载托盘货架系统的精凑版横梁规格，净跨2.5米。非常适合在场地有限的狭小空间内以极高精度安全对齐安放双托盘货物。",
+                capacity: "每层 1000 - 2000 公斤（每跨立柱最大总负载 6000 公斤）",
+                finishing: "重工业级环氧树脂-聚酯高强度静电熔融防腐喷粉",
+                construction: "地锚型加强柱片与十字交叉防晃背拉式承重横梁系统",
+                bestFor: "高负荷立体化多层仓库，需对立柱横梁间距进行极度优化以实现坪效最大化。"
             }
         }
     };
 
-    const DEFAULT_PRODUCT_DATA = [
-        {
-            id: "hikai-mdr-set",
-            name: "Medium Duty Rack (Starter)",
-            type: "Medium Duty",
-            code: "MDR-2000-ST",
-            layers: 4,
-            h: 2000, d: 600, l: 2000,
-            capacity: "350 - 500 Kg / Level",
-            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
-            construction: "1 Set Starter (2 Upright Frames / Berdiri Mandiri)",
-            bestFor: "Penyimpanan sparepart otomotif kelas berat, arsip korporat tinggi, & logistik box skala menengah.",
-            basePrice: 2850000,
-            description: "Sistem ambalan penyimpanan beban menengah dengan penyesuaian tinggi ambalan yang fleksibel. Menggunakan plat baja cold-rolled dengan interlocking presisi tinggi.",
-            images: [
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80",
-                "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "medium",
-            blueprintUrl: "",
-            status: "Ready Stock"
-        },
-        {
-            id: "hikai-mdr-addon", 
-            name: "Medium Duty Rack (Add-On)",
-            type: "Medium Duty",
-            code: "MDR-2000-AO",
-            layers: 4,
-            h: 2000, d: 600, l: 2000,
-            capacity: "350 - 500 Kg / Level",
-            finishing: "Luxurious Powder Coating (Anti-Scratch & Anti-Rust)",
-            construction: "1 Set Add-On (1 Upright Frame / Menempel ke Rak Starter)",
-            bestFor: "Ekstensi barisan panjang penyimpanan sparepart dan logistik box.",
-            basePrice: 2250000,
-            description: "Unit ekspansi Add-On yang jauh lebih hemat biaya. Hanya menggunakan satu tiang utama (Upright) dan dikaitkan pada tiang Starter unit sebelumnya. Menghemat anggaran struktur hingga 20%.",
-            images: [
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "medium-addon",
-            blueprintUrl: "",
-            status: "Ready Stock"
-        },
-        {
-            id: "hikai-ldr-set",
-            name: "Light Duty Rack (1 Set)",
-            type: "Light Duty",
-            code: "LDR-2000-SET",
-            layers: 4,
-            h: 2000, d: 600, l: 2000,
-            capacity: "150 - 200 Kg / Level",
-            finishing: "Clean-Finished High Gloss Powder Coating (Anti-Fingerprint)",
-            construction: "Independent Starter (4 Joint Pillars / Kokoh Fleksibel)",
-            bestFor: "Penyimpanan retail butik mewah, backroom perkantoran VVIP, arsip penting, obat-obatan, dan barang berukuran sedang.",
-            basePrice: 1950000,
-            description: "Solusi penyimpanan serbaguna yang ramping namun memiliki kekuatan luar biasa. Menggunakan pemasangan boltless (tanpa baut) untuk penataan layout super cepat.",
-            images: [
-                "https://images.unsplash.com/photo-1566576721346-d4bd3b235017?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "light",
-            blueprintUrl: "",
-            status: "Ready Stock"
-        },
-        {
-            id: "hikai-asr-set",
-            name: "Angle Shelf Rack (1 Set)",
-            type: "Angle Shelf",
-            code: "ASR-2000-SET",
-            layers: 5,
-            h: 2000, d: 400, l: 2000,
-            capacity: "100 - 150 Kg / Level",
-            finishing: "Standard Industrial Powder Coating",
-            construction: "Slotted Angle Joint (Besi Siku Lubang Kokoh)",
-            bestFor: "Display toko retail kelontong, gudang sekunder rumah tangga, arsip ringan perkantoran.",
-            basePrice: 1350000,
-            description: "Sistem rak besi siku lubang legendaris yang disempurnakan dengan standar kekuatan HIKAI. Sangat fleksibel, ekonomis, dan kokoh untuk berbagai fungsi pergudangan ringan.",
-            images: [
-                "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "angle",
-            blueprintUrl: "",
-            status: "Ready Stock"
-        },
-        {
-            id: "hikai-pr-2700",
-            name: "Heavy Duty Pallet Rack (L2700)",
-            type: "Pallet Rack",
-            code: "PR-3000-2700",
-            layers: 3,
-            h: 3000, d: 1000, l: 2700,
-            capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
-            finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
-            construction: "Structural Anchor Uprights with Cross Bracing Beam",
-            bestFor: "Penyimpanan palet logistik kargo berat, pergudangan distribusi e-commerce skala besar, & manufaktur pabrik.",
-            basePrice: 4800000,
-            description: "Rak palet industri kelas berat bersertifikat standardisasi beban EN 15512. Dirancang khusus untuk penanganan kargo menggunakan forklift, memuat hingga 3 palet standar per baris tingkat.",
-            images: [
-                "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "pallet-large",
-            blueprintUrl: "",
-            status: "Inden: 7-10 Hari"
-        },
-        {
-            id: "hikai-pr-2500",
-            name: "Heavy Duty Pallet Rack (L2500)",
-            type: "Pallet Rack",
-            code: "PR-3000-2500",
-            layers: 3,
-            h: 3000, d: 1000, l: 2500,
-            capacity: "1000 - 2000 Kg / Level (Max 6000 Kg per Bay)",
-            finishing: "Heavy Duty Epoxy-Polyester Powder Coating",
-            construction: "Structural Anchor Uprights with Cross Bracing Beam",
-            bestFor: "Pergudangan berkapasitas tinggi dengan optimasi lebar kolom yang presisi untuk efisiensi ruang maksimum.",
-            basePrice: 4500000,
-            description: "Varian kompak dari sistem heavy-duty HIKAI dengan bentang bersih 2.5 meter. Sempurna untuk menyelaraskan baris penyimpanan palet ganda dengan presisi tinggi pada area terbatas.",
-            images: [
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
-            ],
-            svgType: "pallet-medium",
-            blueprintUrl: "",
-            status: "Inden: 7-10 Hari"
-        }
-    ];
-
+    // 4. Initialize global variables with fallbacks
     let products = JSON.parse(localStorage.getItem('hikai_products_cache')) || [...DEFAULT_PRODUCT_DATA];
     let cart = JSON.parse(localStorage.getItem('hikai_cart')) || [];
     let comparisonList = [];
@@ -1178,6 +1472,7 @@
     let confirmActionType = "product";
     let productViewMode = {}; 
     let productImageIndex = {};
+    let currentLang = 'id';
 
     function initializeViewState() {
         products.forEach(p => {
@@ -1188,7 +1483,7 @@
     initializeViewState();
 
     function getProductTranslation(p, field) {
-        if (p[field] && (p.isCustom || p.isEdited || currentLang === 'id')) {
+        if (p[field] && (p.isCustom || p.isEdited)) {
             return p[field];
         }
         const trans = productTranslations[p.id];
@@ -1200,6 +1495,16 @@
 
     function setLanguage(lang) {
         currentLang = lang;
+        
+        // Update language button visual status
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.className = "lang-btn px-1.5 py-0.5 text-gold-champagne border-b-2 border-gold-champagne transition font-mono";
+            } else {
+                btn.className = "lang-btn px-1.5 py-0.5 text-gray-400 hover:text-white transition font-mono";
+            }
+        });
+
         document.querySelectorAll('[data-trans]').forEach(el => {
             const key = el.getAttribute('data-trans');
             if (translations[lang] && translations[lang][key]) {
@@ -1259,24 +1564,23 @@
         if (!url) return "";
         url = url.trim();
         
-        // Cek jika link merujuk pada folder Google Drive (bukan file gambar tunggal)
         if (url.includes('/folders/') || url.includes('/drive/folders/')) {
             console.warn("HIKAI Warning: Link yang dimasukkan adalah link FOLDER Google Drive. Harap gunakan link FILE gambar tunggal.");
             return "https://placehold.co/600x400/020202/D4AF37?text=Gunakan+Link+File+Bukan+Folder";
         }
 
-        // Regex untuk mendeteksi ID file dari URL Google Drive standar (/file/d/ID/...)
+        // Match standard google drive view/edit sharing links
         const gdRegexp = /\/file\/d\/([a-zA-Z0-9_-]+)/;
         const match = url.match(gdRegexp);
         if (match && match[1]) {
-            return `https://lh3.googleusercontent.com/d/${match[1]}`;
+            return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
         }
         
-        // Regex untuk mendeteksi ID dari format query uc?id=ID atau open?id=ID
+        // Match standard query parameter sharing links
         const ucRegexp = /[?&]id=([a-zA-Z0-9_-]+)/;
         const matchUc = url.match(ucRegexp);
         if (matchUc && matchUc[1] && (url.includes('drive.google.com') || url.includes('docs.google.com'))) {
-            return `https://lh3.googleusercontent.com/d/${matchUc[1]}`;
+            return `https://drive.google.com/thumbnail?id=${matchUc[1]}&sz=w1000`;
         }
         return url;
     }
@@ -1299,7 +1603,6 @@
                 list = cleanStr.split('|').map(u => u.trim());
             }
         }
-        // Otomatis bersihkan dan konversi link jika ada link Google Drive
         return list.filter(u => u && u.trim() !== "").map(url => convertGoogleDriveLink(url));
     }
 
@@ -1423,6 +1726,7 @@
                     <button onclick="jumpToCardImage('${p.id}', ${idx}, event)" class="${idx === activeIndex ? 'w-2.5 h-1.5 rounded-full bg-gold-champagne' : 'w-1.5 h-1.5 rounded-full bg-white/20 hover:bg-white/40'} transition-all duration-300 focus:outline-none" style="min-width: 6px; min-height: 6px;" aria-label="Slide ${idx + 1}"></button>
                 `).join('');
 
+                // Beautifully formatted container with padding + bg-[#0a0a0d] + object-contain to prevent image cropping
                 mediaSection = `
                     <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden group bg-[#0a0a0d] border border-white/5 shadow-inner flex items-center justify-center p-1.5"
                          ontouchstart="handleTouchStart(event, '${p.id}')"
@@ -1444,10 +1748,9 @@
                 `;
             } else {
                 if (p.blueprintUrl && p.blueprintUrl.trim() !== "") {
-                    // Konversi blueprint jika menggunakan Google Drive
                     const blueprintDirectUrl = convertGoogleDriveLink(p.blueprintUrl);
                     mediaSection = `
-                        <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/5">
+                        <div class="relative h-40 sm:h-44 w-full rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/5 p-1">
                             <img src="${blueprintDirectUrl}" alt="CAD Blueprint ${translatedName}" class="w-full h-full object-contain" onerror="this.onerror=null; this.outerHTML='<div class=\'text-[10px] text-red-500 font-mono\'>Gagal Memuat Blueprint Custom</div>';">
                         </div>
                     `;
@@ -1467,7 +1770,7 @@
             const basePrice = Number(p.basePrice) || 0;
 
             grid.innerHTML += `
-                <div class="glass-luxury rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl">
+                <div class="glass-luxury rounded-2xl hover:border-gold-champagne/50 transition flex flex-col justify-between overflow-hidden shadow-2xl animate-fade-in">
                     <div class="p-3 bg-[#060608]/90 relative">
                         <div class="absolute top-5 left-5 z-10 flex bg-black/85 backdrop-blur-md rounded-lg p-1 border border-white/10 shadow-lg">
                             <button onclick="toggleViewMode('${p.id}', 'photo')" class="px-2 py-0.5 rounded text-[8px] font-bold uppercase transition duration-200 ${view === 'photo' ? 'bg-gold-champagne text-black font-extrabold shadow' : 'text-gray-400 hover:text-white'}">Foto Real</button>
@@ -1523,7 +1826,6 @@
     }
 
     async function callApi(method, action, body = null, queryParams = {}) {
-        // SELALU panggil proksi Vercel lokal untuk menghindari CORS di sisi browser!
         let proxyUrl = `/api/hikai?action=${action}`;
         
         try {
@@ -1532,15 +1834,12 @@
             }
         } catch (e) {}
 
-        // Pasangkan query parameters tambahan jika ada
         Object.entries(queryParams).forEach(([key, val]) => {
             proxyUrl += `&${key}=${encodeURIComponent(val)}`;
         });
 
         const headers = { 'Content-Type': 'application/json' };
 
-        // JIKA admin mengisi URL Google Sheets kustom di UI Pengaturan, kirimkan via header khusus.
-        // Proksi Vercel akan membacanya dan mengambil data secara aman di sisi server.
         if (globalSettings.sheetsUrl && globalSettings.sheetsUrl.trim() !== "") {
             headers['x-target-url'] = globalSettings.sheetsUrl.trim();
         }
@@ -1565,35 +1864,49 @@
     }
 
     function updateDatabaseStatus(isConnected) {
-        const badge = document.getElementById('db-status-badge');
-        const badgePub = document.getElementById('db-status-badge-public');
+        const adminBadge = document.getElementById('admin-db-status-badge');
+        const publicBadge = document.getElementById('db-status-badge-public');
         const dbStatusText = document.getElementById('stat-db-status');
+        const dbStatusCard = document.getElementById('stat-db-card');
+        const dbStatusIconContainer = document.getElementById('stat-db-icon-container');
         
         if (isConnected) {
-            if (badge) {
-                badge.className = "p-1.5 bg-emerald-950/30 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold rounded font-mono";
-                badge.textContent = "DB CONNECTED";
+            if (adminBadge) {
+                adminBadge.className = "p-1.5 bg-emerald-950/30 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold rounded font-mono";
+                adminBadge.textContent = "DB CONNECTED";
             }
-            if (badgePub) {
-                badgePub.className = "p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono";
-                badgePub.textContent = "CLOUD CONNECTED";
+            if (publicBadge) {
+                publicBadge.className = "p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono";
+                publicBadge.textContent = "CLOUD CONNECTED";
             }
             if (dbStatusText) {
                 dbStatusText.className = "text-lg font-bold text-emerald-400";
                 dbStatusText.textContent = "SINKRON";
             }
-        } else {
-            if (badge) {
-                badge.className = "p-1.5 bg-yellow-950/30 border border-yellow-500/40 text-yellow-400 text-[10px] font-bold rounded font-mono animate-pulse";
-                badge.textContent = "LOCAL OFFLINE MODE";
+            if (dbStatusCard) {
+                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-emerald-500/20 transition-all duration-300";
             }
-            if (badgePub) {
-                badgePub.className = "p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono";
-                badgePub.textContent = "OFFLINE LOCAL CACHE";
+            if (dbStatusIconContainer) {
+                dbStatusIconContainer.className = "p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400 text-base transition-all duration-300";
+            }
+        } else {
+            if (adminBadge) {
+                adminBadge.className = "p-1.5 bg-yellow-950/30 border border-yellow-500/40 text-yellow-400 text-[10px] font-bold rounded font-mono animate-pulse";
+                adminBadge.textContent = "LOCAL OFFLINE MODE";
+            }
+            if (publicBadge) {
+                publicBadge.className = "p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono";
+                publicBadge.textContent = "OFFLINE LOCAL CACHE";
             }
             if (dbStatusText) {
                 dbStatusText.className = "text-lg font-bold text-yellow-400";
                 dbStatusText.textContent = "LOCAL CACHE";
+            }
+            if (dbStatusCard) {
+                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-yellow-500/20 transition-all duration-300";
+            }
+            if (dbStatusIconContainer) {
+                dbStatusIconContainer.className = "p-2.5 bg-yellow-500/10 rounded-xl text-yellow-400 text-base transition-all duration-300";
             }
         }
     }
@@ -1968,64 +2281,6 @@
         renderCatalog();
     }
 
-    function updateDatabaseStatus(isConnected) {
-        const adminBadge = document.getElementById('admin-db-status-badge');
-        const publicBadge = document.getElementById('db-status-badge-public');
-        const dbStatusText = document.getElementById('stat-db-status');
-        const dbStatusCard = document.getElementById('stat-db-card');
-        const dbStatusIconContainer = document.getElementById('stat-db-icon-container');
-        
-        if (isConnected) {
-            // Update admin top bar badge
-            if (adminBadge) {
-                adminBadge.className = "p-1.5 bg-emerald-950/30 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold rounded font-mono";
-                adminBadge.textContent = "DB CONNECTED";
-            }
-            // Update public planner badge
-            if (publicBadge) {
-                publicBadge.className = "p-1 bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[8px] font-bold rounded font-mono";
-                publicBadge.textContent = "CLOUD CONNECTED";
-            }
-            // Update status integration card text
-            if (dbStatusText) {
-                dbStatusText.className = "text-lg font-bold text-emerald-400";
-                dbStatusText.textContent = "SINKRON";
-            }
-            // Update status integration card container borders for modern dark premium feel
-            if (dbStatusCard) {
-                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-emerald-500/20 transition-all duration-300";
-            }
-            // Update status integration card icon wrapper to green theme
-            if (dbStatusIconContainer) {
-                dbStatusIconContainer.className = "p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400 text-base transition-all duration-300";
-            }
-        } else {
-            // Update admin top bar badge for offline mode
-            if (adminBadge) {
-                adminBadge.className = "p-1.5 bg-yellow-950/30 border border-yellow-500/40 text-yellow-400 text-[10px] font-bold rounded font-mono animate-pulse";
-                adminBadge.textContent = "LOCAL OFFLINE MODE";
-            }
-            // Update public planner badge for offline mode
-            if (publicBadge) {
-                publicBadge.className = "p-1 bg-yellow-950/20 border border-yellow-500/20 text-yellow-400 text-[8px] font-bold rounded font-mono";
-                publicBadge.textContent = "OFFLINE LOCAL CACHE";
-            }
-            // Update status integration card text to yellow local cache
-            if (dbStatusText) {
-                dbStatusText.className = "text-lg font-bold text-yellow-400";
-                dbStatusText.textContent = "LOCAL CACHE";
-            }
-            // Update status integration card container borders for local mode
-            if (dbStatusCard) {
-                dbStatusCard.className = "bg-obsidian-card p-5 rounded-2xl border border-yellow-500/20 transition-all duration-300";
-            }
-            // Update status integration card icon wrapper to yellow theme
-            if (dbStatusIconContainer) {
-                dbStatusIconContainer.className = "p-2.5 bg-yellow-500/10 rounded-xl text-yellow-400 text-base transition-all duration-300";
-            }
-        }
-    }
-
     function updateComparisonTable() {
         const placeholder = document.getElementById('comparison-placeholder');
         const tableWrapper = document.getElementById('comparison-table-wrapper');
@@ -2184,10 +2439,18 @@
         setCalcTab('ai');
         const calcContent = document.getElementById('calc-content');
         if (!calcContent) return;
+
+        const loadingTexts = {
+            id: "AI sedang merancang analisis tata ruang...",
+            en: "AI is engineering your warehouse layout analysis...",
+            zh: "AI 正在规划您的仓储空间排布分析..."
+        };
+        const activeLoadingText = loadingTexts[currentLang] || loadingTexts.id;
+
         calcContent.innerHTML = `
             <div class="py-10 text-center flex flex-col items-center justify-center space-y-3">
                 <i class="fa-solid fa-spinner fa-spin text-purple-400 text-2xl"></i>
-                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase">AI sedang merancang analisis tata ruang...</p>
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase">${activeLoadingText}</p>
             </div>
         `;
 
@@ -2196,20 +2459,48 @@
         const aisleWidth = document.getElementById('input-aisle-width')?.value || 1.5;
         const rackDetails = cart.map(i => `${getProductTranslation(i, 'name')} x${i.qty}`).join(', ');
 
-        const prompt = `Sebagai konsultan logistik pergudangan profesional VVIP HIKAI, berikan analisis optimasi tata ruang berdasarkan ukuran ruangan ${roomLength}m x ${roomWidth}m, lebar gang kerja (aisle) ${aisleWidth}m, dan total rak: ${rackDetails || 'Belum ada rak'}. Berikan 3 rekomendasi pendek bahasa Indonesia terstruktur HTML.`;
-        
+        const prompts = {
+            id: `Sebagai konsultan logistik pergudangan profesional VVIP HIKAI, berikan analisis optimasi tata ruang berdasarkan ukuran ruangan ${roomLength}m x ${roomWidth}m, lebar gang kerja (aisle) ${aisleWidth}m, dan total rak: ${rackDetails || 'Belum ada rak'}. Berikan 3 rekomendasi pendek dalam bahasa Indonesia terstruktur HTML.`,
+            en: `As a professional VVIP HIKAI warehouse logistics consultant, provide a space optimization analysis based on a room size of ${roomLength}m x ${roomWidth}m, a working aisle width of ${aisleWidth}m, and the following racks: ${rackDetails || 'No racks added yet'}. Provide 3 short recommendations in English structured in HTML.`,
+            zh: `作为海凯 (HIKAI) 专业尊享级仓储物流顾问，请根据以下条件提供空间排布优化分析：库房尺寸 ${roomLength}米 x ${roomWidth}米，作业通道宽度 ${aisleWidth}米，已添加货架：${rackDetails || '暂未添加货架'}。请使用简体中文提供 3 条简短的 HTML 格式化推荐建议。`
+        };
+
+        const systemInstructions = {
+            id: "Asisten insinyur tata ruang pergudangan PT Hikai Storage Equipment.",
+            en: "Warehouse spatial layout engineering assistant at PT Hikai Storage Equipment.",
+            zh: "海凯仓储设备有限公司 (PT Hikai Storage Equipment) 仓储空间排布规划工程助理。"
+        };
+
+        const activePrompt = prompts[currentLang] || prompts.id;
+        const activeSystemInstruction = systemInstructions[currentLang] || systemInstructions.id;
         const activeKey = globalSettings.geminiKey || "";
 
-        // Fallback otomatis jika API Key kosong atau bernilai default null/undefined
+        const fallbacks = {
+            id: `
+                <p class="text-amber-400 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Analisis Simulasi Tata Ruang Gudang (Mode Offline):</p>
+                <p><strong>1. Rekomendasi Alur Gang Kerja:</strong> Dimensi gang ${aisleWidth}m yang Anda tentukan sangat ideal untuk manuver peralatan angkat seperti Hand Stacker Elektrik atau Reach Truck. Untuk efisiensi ruang maksimum, pertahankan penempatan barisan rak sejajar dengan sisi dinding terpanjang (${roomLength}m).</p>
+                <p><strong>2. Efisiensi Biaya Struktur (Shared Frame):</strong> Sistem mendeteksi kombinasi rakitan modular Anda. Maksimalkan penyambungan unit Add-On secara beruntun dari tumpuan unit Starter untuk mereduksi tumpuan tiang ganda samping dan memangkas anggaran belanja hingga 20%.</p>
+                <p><strong>3. Rekayasa Ketahanan Slab Lantai:</strong> Pastikan permukaan pelat beton lantai dasar gudang Anda memiliki mutu standardisasi struktural minimum K-300 demi menopang tumpuan beban kaki tiang vertikal HIKAI dengan aman.</p>
+            `,
+            en: `
+                <p class="text-amber-400 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Warehouse Layout Simulation Analysis (Offline Mode):</p>
+                <p><strong>1. Aisle Flow Optimization:</strong> The aisle width of ${aisleWidth}m is highly ideal for operating manual hand stackers or reach trucks. For maximum space utilization, keep rack rows parallel to the longest wall (${roomLength}m).</p>
+                <p><strong>2. Structural Cost Efficiency (Shared Frame):</strong> Our system detected modular assemblies in your cart. Utilize single-frame Add-On sets linked sequentially from a Starter set to reduce upright frame costs by up to 20%.</p>
+                <p><strong>3. Floor Slab Load Rating:</strong> Ensure your warehouse floor slab meets minimum K-300 structural concrete standard (or equivalent) to safely support HIKAI upright leg point loads.</p>
+            `,
+            zh: `
+                <p class="text-amber-400 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> 仓库空间排布模拟分析 (离线缓存模式):</p>
+                <p><strong>1. 作业通道流线优化：</strong>您设定的通道宽度 ${aisleWidth}米 非常适合操作手动堆高车或前移式叉车。为了实现最大空间利用率，请保持货架排布平行于最长墙面 (${roomLength}米)。</p>
+                <p><strong>2. 结构成本优化 (公用立柱)：</strong>系统检测到您的清单中包含模块化组合货架。请务必从主架 (Starter) 开始，连续挂接副架 (Add-On)，以减少立柱片的重复采购，最高可节省 20% 结构预算。</p>
+                <p><strong>3. 地坪基础承重：</strong>请确保您的仓库地坪达到最低 K-300 结构混凝土标准（或同等强度），以安全支撑海凯 (HIKAI) 货架立柱底脚的点荷载。</p>
+            `
+        };
+
+        const activeFallback = fallbacks[currentLang] || fallbacks.id;
+
         if (!activeKey || activeKey.trim() === "" || activeKey === "undefined" || activeKey === "null") {
             setTimeout(() => {
-                const sampleAdvice = `
-                    <p class="text-amber-400 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Analisis Simulasi Tata Ruang Gudang (Mode Offline):</p>
-                    <p><strong>1. Rekomendasi Alur Gang Kerja:</strong> Dimensi gang ${aisleWidth}m yang Anda tentukan sangat ideal untuk manuver peralatan angkat seperti Hand Stacker Elektrik atau Reach Truck. Untuk efisiensi ruang maksimum, pertahankan penempatan barisan rak sejajar dengan sisi dinding terpanjang (${roomLength}m).</p>
-                    <p><strong>2. Efisiensi Biaya Struktur (Shared Frame):</strong> Sistem mendeteksi kombinasi rakitan modular Anda. Maksimalkan penyambungan unit Add-On secara beruntun dari tumpuan unit Starter untuk mereduksi tumpuan tiang ganda samping dan memangkas anggaran belanja hingga 20%.</p>
-                    <p><strong>3. Rekayasa Ketahanan Slab Lantai:</strong> Pastikan permukaan pelat beton lantai dasar gudang Anda memiliki mutu standardisasi struktural minimum K-300 demi menopang tumpuan beban kaki tiang vertikal HIKAI dengan aman.</p>
-                `;
-                renderAIAdviceBlock(sampleAdvice);
+                renderAIAdviceBlock(activeFallback);
             }, 800);
             return;
         }
@@ -2219,26 +2510,19 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
+                    contents: [{ parts: [{ text: activePrompt }] }],
                     systemInstruction: {
-                        parts: [{ text: "Asisten insinyur tata ruang pergudangan PT Hikai Storage Equipment." }]
+                        parts: [{ text: activeSystemInstruction }]
                     }
                 })
             });
             const data = await response.json();
-            const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, mesin AI saat ini sedang sibuk mengestimasi beban struktural.";
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "System currently busy.";
             const formattedText = text.replace(/\n/g, '<br>');
             renderAIAdviceBlock(formattedText);
         } catch (err) {
-            // JIKA API KEY EROR / EXPIRED: Alihkan ke simulasi offline yang indah demi user-experience yang sempurna
-            const fallbackAdvice = `
-                <p class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Analisis Simulasi Tata Ruang Gudang (Kunci API tidak merespon):</p>
-                <p><strong>1. Rekomendasi Alur Gang Kerja:</strong> Dimensi gang ${aisleWidth}m yang Anda tentukan sangat ideal untuk manuver peralatan angkat seperti Hand Stacker Elektrik atau Reach Truck. Untuk efisiensi ruang maksimum, pertahankan penempatan barisan rak sejajar dengan sisi dinding terpanjang (${roomLength}m).</p>
-                <p><strong>2. Efisiensi Biaya Struktur (Shared Frame):</strong> Sistem mendeteksi kombinasi rakitan modular Anda. Maksimalkan penyambungan unit Add-On secara beruntun dari tumpuan unit Starter untuk mereduksi tumpuan tiang ganda samping dan memangkas anggaran belanja hingga 20%.</p>
-                <p><strong>3. Rekayasa Ketahanan Slab Lantai:</strong> Pastikan permukaan pelat beton lantai dasar gudang Anda memiliki mutu standardisasi struktural minimum K-300 demi menopang tumpuan beban kaki tiang vertikal HIKAI dengan aman.</p>
-            `;
-            renderAIAdviceBlock(fallbackAdvice);
-            showToast("Gemini API Key tidak valid. Menampilkan draf simulasi offline.", false);
+            renderAIAdviceBlock(activeFallback);
+            showToast("Gemini API Key offline mode active.", false);
         }
     }
 
@@ -2726,7 +3010,6 @@
         document.getElementById('admin-login').classList.remove('hidden');
         document.getElementById('admin-board').classList.add('hidden');
         
-        // Langsung arahkan kembali ke halaman utama publik
         exitAdminPortal();
         
         showToast("Sesi diakhiri secara aman.");
@@ -3210,7 +3493,6 @@
         const viewport = document.getElementById('modal-blueprint-viewport');
         if (viewport) {
             if (p.blueprintUrl && p.blueprintUrl.trim() !== "") {
-                // Konversi URL blueprint jika merupakan Google Drive link
                 const blueprintDirectUrl = convertGoogleDriveLink(p.blueprintUrl);
                 viewport.innerHTML = `<img src="${blueprintDirectUrl}" alt="CAD Diagram" class="w-full h-full object-contain" onerror="this.onerror=null; this.innerHTML='Gagal memuat blueprint image';">`;
             } else {
@@ -3256,7 +3538,7 @@
             const translatedName = getProductTranslation(item, 'name');
 
             wrapper.innerHTML += `
-                <div class="py-3 flex justify-between items-center text-xs gap-3">
+                <div class="py-3 flex justify-between items-center text-xs gap-3 animate-fade-in">
                     <div>
                         <h4 class="font-bold text-white">${translatedName}</h4>
                         <span class="text-[9px] text-gray-500 font-mono">${item.code} | Rp ${basePrice.toLocaleString('id-ID')}</span>
