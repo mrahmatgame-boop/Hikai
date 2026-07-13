@@ -13,6 +13,19 @@
     <!-- FontAwesome Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <style>
+        :root {
+            /* Default fallback colors yang nantinya diatur dinamis lewat Admin Panel */
+            --color-gold-champagne: #D4AF37;
+            --color-gold-hover: #AA7C11;
+            --color-gold-light: #f4ebd0;
+            --color-obsidian-base: #020202;
+            --color-obsidian-deep: #060608;
+            --color-obsidian-card: #0c0c0f;
+            --color-obsidian-accent: #18181f;
+        }
+    </style>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -24,15 +37,15 @@
                     },
                     colors: {
                         obsidian: {
-                            base: '#020202',
-                            deep: '#060608',
-                            card: '#0c0c0f',
-                            accent: '#18181f'
+                            base: 'var(--color-obsidian-base)',
+                            deep: 'var(--color-obsidian-deep)',
+                            card: 'var(--color-obsidian-card)',
+                            accent: 'var(--color-obsidian-accent)'
                         },
                         gold: {
-                            champagne: '#D4AF37',
-                            hover: '#AA7C11',
-                            light: '#f4ebd0'
+                            champagne: 'var(--color-gold-champagne)',
+                            hover: 'var(--color-gold-hover)',
+                            light: 'var(--color-gold-light)'
                         }
                     },
                     boxShadow: {
@@ -46,7 +59,7 @@
     
     <style>
         body {
-            background-color: #020202;
+            background-color: var(--color-obsidian-base);
             color: #f3f4f6;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -56,14 +69,14 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #060608;
+            background: var(--color-obsidian-deep);
         }
         ::-webkit-scrollbar-thumb {
-            background: #D4AF37;
+            background: var(--color-gold-champagne);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #AA7C11;
+            background: var(--color-gold-hover);
         }
         .blueprint-pattern {
             background-size: 24px 24px;
@@ -323,7 +336,7 @@
                     </div>
                     <div class="relative w-full">
                         <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-champagne to-gold-hover opacity-10 blur-xl"></div>
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-48 sm:h-64 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
+                        <img id="about-section-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80" alt="HIKAI Manufacturing" class="rounded-2xl border border-white/10 w-full h-48 sm:h-64 object-cover shadow-2xl relative z-10" onerror="this.onerror=null; this.src='https://placehold.co/800x400/020202/D4AF37?text=HIKAI+Engineering';">
                     </div>
                 </div>
             </div>
@@ -737,6 +750,48 @@
                         <label class="block text-gray-400 font-bold uppercase mb-1.5" data-trans="adminEmailLabel">Email Dukungan Pelanggan</label>
                         <input type="email" id="settings-email" placeholder="info@hikairack.com" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
                     </div>
+
+                    <div class="md:col-span-2 border-t border-white/5 pt-3.5">
+                        <h5 class="text-white font-bold text-[11px] uppercase tracking-wider mb-2.5 text-gold-champagne"><i class="fa-solid fa-images mr-1.5"></i> Kustomisasi Gambar & Foto Web (Support Google Drive)</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-400 font-bold mb-1">Tautan Foto Hero Banner (Atas Kanan)</label>
+                                <input type="url" id="settings-hero-img" placeholder="Kosongkan untuk menggunakan animasi skema SVG rak..." class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 font-bold mb-1">Tautan Foto Bagian "Tentang Kami"</label>
+                                <input type="url" id="settings-about-img" placeholder="https://images.unsplash.com..." class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white font-mono outline-none focus:border-gold-champagne">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2 border-t border-white/5 pt-3.5">
+                        <h5 class="text-white font-bold text-[11px] uppercase tracking-wider mb-2.5 text-gold-champagne"><i class="fa-solid fa-palette mr-1.5"></i> Kustomisasi Skema Warna Tema (VVIP Branding)</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-gray-400 font-bold mb-1">Warna Emas Utama (Champagne)</label>
+                                <div class="flex gap-2">
+                                    <input type="color" id="settings-color-gold" value="#D4AF37" onchange="previewColorChange()" class="w-10 h-10 bg-transparent border-0 cursor-pointer">
+                                    <input type="text" id="settings-color-gold-text" value="#D4AF37" class="flex-grow bg-black border border-[#333] p-2 rounded-lg text-white font-mono text-xs uppercase" oninput="syncColorInput('gold')">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 font-bold mb-1">Emas Saat Hover (Lebih Gelap)</label>
+                                <div class="flex gap-2">
+                                    <input type="color" id="settings-color-gold-hover" value="#AA7C11" onchange="previewColorChange()" class="w-10 h-10 bg-transparent border-0 cursor-pointer">
+                                    <input type="text" id="settings-color-gold-hover-text" value="#AA7C11" class="flex-grow bg-black border border-[#333] p-2 rounded-lg text-white font-mono text-xs uppercase" oninput="syncColorInput('gold-hover')">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 font-bold mb-1">Warna Background (Obsidian)</label>
+                                <div class="flex gap-2">
+                                    <input type="color" id="settings-color-bg" value="#020202" onchange="previewColorChange()" class="w-10 h-10 bg-transparent border-0 cursor-pointer">
+                                    <input type="text" id="settings-color-bg-text" value="#020202" class="flex-grow bg-black border border-[#333] p-2 rounded-lg text-white font-mono text-xs uppercase" oninput="syncColorInput('bg')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="md:col-span-2">
                         <label class="block text-gray-400 font-bold uppercase mb-1.5" data-trans="adminAddressLabel">Alamat Kantor Pusat</label>
                         <input type="text" id="settings-address" placeholder="Rukan Osaka OTPA No. 17 PIK 2, Tangerang" class="w-full bg-black border border-[#333] p-2.5 rounded-lg text-white outline-none focus:border-gold-champagne">
@@ -1416,7 +1471,12 @@
         email: "info@hikairack.com",
         address: "Rukan Osaka OTPA No. 17 PIK 2, Salembaran Jati, Kosambi, Tangerang, Banten 15214",
         geminiKey: "",
-        sheetsUrl: ""
+        sheetsUrl: "",
+        themeGold: "#D4AF37",
+        themeGoldHover: "#AA7C11",
+        themeBg: "#020202",
+        heroImgUrl: "",
+        aboutImgUrl: ""
     };
 
     let targetDeleteId = null;
@@ -3324,6 +3384,7 @@
         const fAddress = document.getElementById('global-address');
         const formEmail = document.getElementById('global-form-email');
         const formAddress = document.getElementById('global-form-address');
+        const aboutImg = document.getElementById('about-section-img');
 
         if (hLink) {
             hLink.textContent = globalSettings.hotline;
@@ -3334,17 +3395,154 @@
         if (formEmail) formEmail.textContent = globalSettings.email;
         if (formAddress) formAddress.textContent = globalSettings.address;
 
+        if (aboutImg) {
+            aboutImg.src = convertGoogleDriveLink(globalSettings.aboutImgUrl || 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80');
+        }
+
+        const heroSvgContainer = document.getElementById('hero-svg-container');
+        const heroPreviewTitle = document.getElementById('hero-preview-title');
+        if (heroSvgContainer) {
+            if (globalSettings.heroImgUrl && globalSettings.heroImgUrl.trim() !== "") {
+                if (heroPreviewTitle) heroPreviewTitle.textContent = "HIKAI Production Overview";
+                heroSvgContainer.innerHTML = `<img src="${convertGoogleDriveLink(globalSettings.heroImgUrl)}" alt="Hikai Premium" class="w-full h-40 sm:h-44 object-contain rounded-xl select-none" onerror="this.onerror=null; this.src='https://placehold.co/600x400/020202/D4AF37?text=HIKAI+Racking';">`;
+            } else {
+                if (heroPreviewTitle) heroPreviewTitle.textContent = "Medium Duty Starter (4 Layers)";
+                heroSvgContainer.innerHTML = generateRackSVG('medium', 4, true, 2000, 600, 2000);
+            }
+        }
+
+        // Terapkan custom CSS variables ke element root HTML
+        document.documentElement.style.setProperty('--color-gold-champagne', globalSettings.themeGold || '#D4AF37');
+        document.documentElement.style.setProperty('--color-gold-hover', globalSettings.themeGoldHover || '#AA7C11');
+        document.documentElement.style.setProperty('--color-obsidian-base', globalSettings.themeBg || '#020202');
+
         const sHotline = document.getElementById('settings-hotline');
         const sEmail = document.getElementById('settings-email');
         const sAddress = document.getElementById('settings-address');
         const sGemini = document.getElementById('settings-gemini-key');
         const sSheets = document.getElementById('settings-sheets-url');
+        const sHeroImg = document.getElementById('settings-hero-img');
+        const sAboutImg = document.getElementById('settings-about-img');
+
+        // Color Inputs
+        const colorGoldPicker = document.getElementById('settings-color-gold');
+        const colorGoldText = document.getElementById('settings-color-gold-text');
+        const colorGoldHoverPicker = document.getElementById('settings-color-gold-hover');
+        const colorGoldHoverText = document.getElementById('settings-color-gold-hover-text');
+        const colorBgPicker = document.getElementById('settings-color-bg');
+        const colorBgText = document.getElementById('settings-color-bg-text');
 
         if (sHotline) sHotline.value = globalSettings.hotline;
         if (sEmail) sEmail.value = globalSettings.email;
         if (sAddress) sAddress.value = globalSettings.address;
         if (sGemini) sGemini.value = globalSettings.geminiKey;
         if (sSheets) sSheets.value = globalSettings.sheetsUrl;
+        if (sHeroImg) sHeroImg.value = globalSettings.heroImgUrl || "";
+        if (sAboutImg) sAboutImg.value = globalSettings.aboutImgUrl || "";
+
+        if (colorGoldPicker) colorGoldPicker.value = globalSettings.themeGold || '#D4AF37';
+        if (colorGoldText) colorGoldText.value = (globalSettings.themeGold || '#D4AF37').toUpperCase();
+        if (colorGoldHoverPicker) colorGoldHoverPicker.value = globalSettings.themeGoldHover || '#AA7C11';
+        if (colorGoldHoverText) colorGoldHoverText.value = (globalSettings.themeGoldHover || '#AA7C11').toUpperCase();
+        if (colorBgPicker) colorBgPicker.value = globalSettings.themeBg || '#020202';
+        if (colorBgText) colorBgText.value = (globalSettings.themeBg || '#020202').toUpperCase();
+    }
+
+    function syncColorInput(type) {
+        if (type === 'gold') {
+            const hex = document.getElementById('settings-color-gold-text').value;
+            if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                document.getElementById('settings-color-gold').value = hex;
+                previewColorChange();
+            }
+        } else if (type === 'gold-hover') {
+            const hex = document.getElementById('settings-color-gold-hover-text').value;
+            if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                document.getElementById('settings-color-gold-hover').value = hex;
+                previewColorChange();
+            }
+        } else if (type === 'bg') {
+            const hex = document.getElementById('settings-color-bg-text').value;
+            if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                document.getElementById('settings-color-bg').value = hex;
+                previewColorChange();
+            }
+        }
+    }
+
+    function previewColorChange() {
+        const gold = document.getElementById('settings-color-gold').value;
+        const goldHover = document.getElementById('settings-color-gold-hover').value;
+        const bg = document.getElementById('settings-color-bg').value;
+
+        document.getElementById('settings-color-gold-text').value = gold.toUpperCase();
+        document.getElementById('settings-color-gold-hover-text').value = goldHover.toUpperCase();
+        document.getElementById('settings-color-bg-text').value = bg.toUpperCase();
+
+        // Terapkan langsung ke view untuk real-time preview instan
+        document.documentElement.style.setProperty('--color-gold-champagne', gold);
+        document.documentElement.style.setProperty('--color-gold-hover', goldHover);
+        document.documentElement.style.setProperty('--color-obsidian-base', bg);
+    }
+
+    async function saveGlobalWebSettings() {
+        const payload = {
+            action: "saveSettings",
+            password: sessionStorage.getItem('hikai_admin_session_pass'),
+            hotline: document.getElementById('settings-hotline').value.trim(),
+            email: document.getElementById('settings-email').value.trim(),
+            address: document.getElementById('settings-address').value.trim(),
+            geminiKey: document.getElementById('settings-gemini-key').value.trim(),
+            themeGold: document.getElementById('settings-color-gold').value,
+            themeGoldHover: document.getElementById('settings-color-gold-hover').value,
+            themeBg: document.getElementById('settings-color-bg').value,
+            heroImgUrl: document.getElementById('settings-hero-img').value.trim(),
+            aboutImgUrl: document.getElementById('settings-about-img').value.trim()
+        };
+
+        const localSheetsUrl = document.getElementById('settings-sheets-url').value.trim();
+        if (localSheetsUrl) {
+            localStorage.setItem('hikai_sheets_url', localSheetsUrl);
+            globalSettings.sheetsUrl = localSheetsUrl;
+        } else {
+            localStorage.removeItem('hikai_sheets_url');
+            globalSettings.sheetsUrl = "";
+        }
+
+        try {
+            showToast("Menyimpan ke Cloud...");
+            const res = await callApi('POST', 'saveSettings', payload);
+            if (res.status === 'success') {
+                globalSettings.hotline = payload.hotline;
+                globalSettings.email = payload.email;
+                globalSettings.address = payload.address;
+                globalSettings.geminiKey = payload.geminiKey;
+                globalSettings.themeGold = payload.themeGold;
+                globalSettings.themeGoldHover = payload.themeGoldHover;
+                globalSettings.themeBg = payload.themeBg;
+                globalSettings.heroImgUrl = payload.heroImgUrl;
+                globalSettings.aboutImgUrl = payload.aboutImgUrl;
+                
+                localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
+                applyWebSettings();
+                showToast("Pengaturan tersimpan permanen di Database Cloud!");
+            }
+        } catch(e) {
+            // Fallback penyimpanan offline lokal
+            globalSettings.hotline = payload.hotline;
+            globalSettings.email = payload.email;
+            globalSettings.address = payload.address;
+            globalSettings.geminiKey = payload.geminiKey;
+            globalSettings.themeGold = payload.themeGold;
+            globalSettings.themeGoldHover = payload.themeGoldHover;
+            globalSettings.themeBg = payload.themeBg;
+            globalSettings.heroImgUrl = payload.heroImgUrl;
+            globalSettings.aboutImgUrl = payload.aboutImgUrl;
+
+            showToast("Pengaturan disimpan lokal sementara di browser Anda.", false);
+            localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
+            applyWebSettings();
+        }
     }
 
     async function loadGlobalWebSettings() {
@@ -3355,6 +3553,11 @@
                 globalSettings.email = res.data.email || globalSettings.email;
                 globalSettings.address = res.data.address || globalSettings.address;
                 globalSettings.geminiKey = res.data.geminiKey || globalSettings.geminiKey;
+                globalSettings.themeGold = res.data.themeGold || globalSettings.themeGold;
+                globalSettings.themeGoldHover = res.data.themeGoldHover || globalSettings.themeGoldHover;
+                globalSettings.themeBg = res.data.themeBg || globalSettings.themeBg;
+                globalSettings.heroImgUrl = res.data.heroImgUrl || globalSettings.heroImgUrl;
+                globalSettings.aboutImgUrl = res.data.aboutImgUrl || globalSettings.aboutImgUrl;
                 
                 localStorage.setItem('hikai_global_settings', JSON.stringify(globalSettings));
             }
